@@ -113,8 +113,14 @@ footer p { margin: 0 0 6px; }
 .nav a[aria-current="page"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
 .nav .lang { font-weight: 400; opacity: .75; }
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
-.cards > li > a { display: block; color: inherit; height: 100%; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
-.cards > li > a:hover { text-decoration: none; border-color: var(--accent); }
+.cards > li { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; transition: border-color .15s; }
+.cards > li:hover { border-color: var(--accent); }
+.card-link { display: block; color: inherit; flex: 1; }
+.card-link:hover { text-decoration: none; }
+.card-link:hover h3 { text-decoration: underline; }
+.card-actions { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; margin: 12px 0 0; padding-top: 12px; border-top: 1px solid var(--line); }
+.card-actions a { font-size: 13px; font-weight: 600; }
+.card-actions .tg { margin-left: auto; color: var(--ink-2); }
 .cards h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
 .cards .sub { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
 .cards .hd { font-size: 15px; font-weight: 600; margin: 0 0 10px; line-height: 1.35; }
@@ -124,5 +130,4 @@ footer p { margin: 0 0 6px; }
 .cards .dist { margin: 10px 0 8px; }
 .cards .legend { grid-template-columns: repeat(4, auto); justify-content: start; gap: 4px 14px; font-size: 12px; }
 .cards .legend .n { margin-left: 4px; }
-.cards .more { color: var(--accent-ink); font-size: 13px; font-weight: 600; margin: 12px 0 0; }
 

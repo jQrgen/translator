@@ -25,7 +25,8 @@
 <section>
   <ul class="cards">
     {% for r in reports %}
-    <li><a href="{{ r.chat.slug }}/">
+    <li>
+      <a class="card-link" href="{{ r.chat.slug }}/">
       <h3>{% if r.chat.flag %}<span aria-hidden="true">{{ r.chat.flag }}</span> {% endif %}{{ r.chat.title }}</h3>
       <p class="sub">{{ r.chat.language }}{% if r.chat.member_count %} · {{ "{:,}".format(r.chat.member_count) }} members{% endif %} · <time datetime="{{ r.window_start | iso }}">{{ r.window_start | utc }}</time> → <time datetime="{{ r.window_end | iso }}">{{ r.window_end | utc }}</time></p>
       <p class="hd">{{ r.summary.headline }}</p>
@@ -37,8 +38,12 @@
       <ul class="legend">
         {% for d in distribution[r.chat.slug] %}<li><span class="dot {{ d.key }}"></span>{{ d.label }}<span class="n">{{ d.count }}</span></li>{% endfor %}
       </ul>
-      <p class="more">Read the {{ r.messages | length }} messages →</p>
-    </a></li>
+      </a>
+      <p class="card-actions">
+        <a href="{{ r.chat.slug }}/">Read the {{ r.messages | length }} messages →</a>
+        <a class="tg" href="{{ r.chat.url }}" rel="noopener">Telegram ↗</a>
+      </p>
+    </li>
     {% endfor %}
   </ul>
 </section>

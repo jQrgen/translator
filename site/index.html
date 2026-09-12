@@ -121,8 +121,14 @@ footer p { margin: 0 0 6px; }
 .nav a[aria-current="page"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
 .nav .lang { font-weight: 400; opacity: .75; }
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
-.cards > li > a { display: block; color: inherit; height: 100%; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
-.cards > li > a:hover { text-decoration: none; border-color: var(--accent); }
+.cards > li { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; transition: border-color .15s; }
+.cards > li:hover { border-color: var(--accent); }
+.card-link { display: block; color: inherit; flex: 1; }
+.card-link:hover { text-decoration: none; }
+.card-link:hover h3 { text-decoration: underline; }
+.card-actions { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; margin: 12px 0 0; padding-top: 12px; border-top: 1px solid var(--line); }
+.card-actions a { font-size: 13px; font-weight: 600; }
+.card-actions .tg { margin-left: auto; color: var(--ink-2); }
 .cards h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
 .cards .sub { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
 .cards .hd { font-size: 15px; font-weight: 600; margin: 0 0 10px; line-height: 1.35; }
@@ -132,7 +138,6 @@ footer p { margin: 0 0 6px; }
 .cards .dist { margin: 10px 0 8px; }
 .cards .legend { grid-template-columns: repeat(4, auto); justify-content: start; gap: 4px 14px; font-size: 12px; }
 .cards .legend .n { margin-left: 4px; }
-.cards .more { color: var(--accent-ink); font-size: 13px; font-weight: 600; margin: 12px 0 0; }
 
 </style>
 </head>
@@ -179,7 +184,8 @@ footer p { margin: 0 0 6px; }
 <section>
   <ul class="cards">
     
-    <li><a href="nexa_china/">
+    <li>
+      <a class="card-link" href="nexa_china/">
       <h3><span aria-hidden="true">🇨🇳</span> NEXA 🇨🇳 中文</h3>
       <p class="sub">Chinese · 265 members · <time datetime="2026-09-04T01:37:12+00:00">2026-09-04 01:37 UTC</time> → <time datetime="2026-09-12T16:17:19+00:00">2026-09-12 16:17 UTC</time></p>
       <p class="hd">Node 2.2.0.0 update guidance, wallet questions, low group activity, and candid price talk dominate a quiet window.</p>
@@ -191,10 +197,15 @@ footer p { margin: 0 0 6px; }
       <ul class="legend">
         <li><span class="dot positive"></span>Positive<span class="n">22</span></li><li><span class="dot mixed"></span>Mixed<span class="n">9</span></li><li><span class="dot neutral"></span>Neutral<span class="n">55</span></li><li><span class="dot negative"></span>Negative<span class="n">14</span></li>
       </ul>
-      <p class="more">Read the 100 messages →</p>
-    </a></li>
+      </a>
+      <p class="card-actions">
+        <a href="nexa_china/">Read the 100 messages →</a>
+        <a class="tg" href="https://t.me/Nexa_China" rel="noopener">Telegram ↗</a>
+      </p>
+    </li>
     
-    <li><a href="nexa_netherlands/">
+    <li>
+      <a class="card-link" href="nexa_netherlands/">
       <h3><span aria-hidden="true">🇳🇱</span> Nexa_Netherlands</h3>
       <p class="sub">Dutch · 21 members · <time datetime="2026-09-08T11:10:56+00:00">2026-09-08 11:10 UTC</time> → <time datetime="2026-09-12T06:35:03+00:00">2026-09-12 06:35 UTC</time></p>
       <p class="hd">Revived Dutch Nexa group talks Tailstorm hardfork, X-promotion tactics, price hopes and memecoin disdain</p>
@@ -206,10 +217,15 @@ footer p { margin: 0 0 6px; }
       <ul class="legend">
         <li><span class="dot positive"></span>Positive<span class="n">62</span></li><li><span class="dot mixed"></span>Mixed<span class="n">5</span></li><li><span class="dot neutral"></span>Neutral<span class="n">28</span></li><li><span class="dot negative"></span>Negative<span class="n">5</span></li>
       </ul>
-      <p class="more">Read the 100 messages →</p>
-    </a></li>
+      </a>
+      <p class="card-actions">
+        <a href="nexa_netherlands/">Read the 100 messages →</a>
+        <a class="tg" href="https://t.me/Nexa_Netherlands" rel="noopener">Telegram ↗</a>
+      </p>
+    </li>
     
-    <li><a href="nexa_germany/">
+    <li>
+      <a class="card-link" href="nexa_germany/">
       <h3><span aria-hidden="true">🇩🇪</span> Nexa Germany</h3>
       <p class="sub">German · 27 members · <time datetime="2025-05-27T16:17:54+00:00">2025-05-27 16:17 UTC</time> → <time datetime="2026-09-09T20:02:51+00:00">2026-09-09 20:02 UTC</time></p>
       <p class="hd">Near-silent German group: an automated news feed of Nexa dev updates, with one brief 2025 skepticism exchange</p>
@@ -221,10 +237,15 @@ footer p { margin: 0 0 6px; }
       <ul class="legend">
         <li><span class="dot positive"></span>Positive<span class="n">63</span></li><li><span class="dot mixed"></span>Mixed<span class="n">2</span></li><li><span class="dot neutral"></span>Neutral<span class="n">34</span></li><li><span class="dot negative"></span>Negative<span class="n">1</span></li>
       </ul>
-      <p class="more">Read the 100 messages →</p>
-    </a></li>
+      </a>
+      <p class="card-actions">
+        <a href="nexa_germany/">Read the 100 messages →</a>
+        <a class="tg" href="https://t.me/Nexa_Germany" rel="noopener">Telegram ↗</a>
+      </p>
+    </li>
     
-    <li><a href="nexa_india/">
+    <li>
+      <a class="card-link" href="nexa_india/">
       <h3><span aria-hidden="true">🇮🇳</span> NEXA INDIA 🇮🇳</h3>
       <p class="sub">Hindi · 352 members · <time datetime="2026-03-26T14:04:04+00:00">2026-03-26 14:04 UTC</time> → <time datetime="2026-09-10T15:09:52+00:00">2026-09-10 15:09 UTC</time></p>
       <p class="hd">Six months of Nexa announcements: first halving, Tailstorm hard-fork prep, NexaPoW 2.0, plus grassroots India adoption talk</p>
@@ -236,10 +257,15 @@ footer p { margin: 0 0 6px; }
       <ul class="legend">
         <li><span class="dot positive"></span>Positive<span class="n">58</span></li><li><span class="dot mixed"></span>Mixed<span class="n">0</span></li><li><span class="dot neutral"></span>Neutral<span class="n">40</span></li><li><span class="dot negative"></span>Negative<span class="n">2</span></li>
       </ul>
-      <p class="more">Read the 100 messages →</p>
-    </a></li>
+      </a>
+      <p class="card-actions">
+        <a href="nexa_india/">Read the 100 messages →</a>
+        <a class="tg" href="https://t.me/Nexa_India" rel="noopener">Telegram ↗</a>
+      </p>
+    </li>
     
-    <li><a href="nexa_korean/">
+    <li>
+      <a class="card-link" href="nexa_korean/">
       <h3><span aria-hidden="true">🇰🇷</span> Nexa Korean</h3>
       <p class="sub">Korean · 29 members · <time datetime="2023-11-30T14:18:35+00:00">2023-11-30 14:18 UTC</time> → <time datetime="2026-04-28T16:02:23+00:00">2026-04-28 16:02 UTC</time></p>
       <p class="hd">A slow-dying Korean Nexa group: price despair, mining-vs-buying advice, wallet headaches, and two flare-ups</p>
@@ -251,10 +277,15 @@ footer p { margin: 0 0 6px; }
       <ul class="legend">
         <li><span class="dot positive"></span>Positive<span class="n">19</span></li><li><span class="dot mixed"></span>Mixed<span class="n">5</span></li><li><span class="dot neutral"></span>Neutral<span class="n">50</span></li><li><span class="dot negative"></span>Negative<span class="n">26</span></li>
       </ul>
-      <p class="more">Read the 100 messages →</p>
-    </a></li>
+      </a>
+      <p class="card-actions">
+        <a href="nexa_korean/">Read the 100 messages →</a>
+        <a class="tg" href="https://t.me/nexa_korean" rel="noopener">Telegram ↗</a>
+      </p>
+    </li>
     
-    <li><a href="nexa_nor/">
+    <li>
+      <a class="card-link" href="nexa_nor/">
       <h3><span aria-hidden="true">🇳🇴</span> Nexa Norge</h3>
       <p class="sub">Norwegian · 37 members · <time datetime="2024-04-05T13:47:30+00:00">2024-04-05 13:47 UTC</time> → <time datetime="2026-09-08T02:21:19+00:00">2026-09-08 02:21 UTC</time></p>
       <p class="hd">A quiet Norwegian Nexa channel: troll bans, wallet and event news, and complaints about crypto-hostile banks.</p>
@@ -266,10 +297,15 @@ footer p { margin: 0 0 6px; }
       <ul class="legend">
         <li><span class="dot positive"></span>Positive<span class="n">30</span></li><li><span class="dot mixed"></span>Mixed<span class="n">7</span></li><li><span class="dot neutral"></span>Neutral<span class="n">53</span></li><li><span class="dot negative"></span>Negative<span class="n">10</span></li>
       </ul>
-      <p class="more">Read the 100 messages →</p>
-    </a></li>
+      </a>
+      <p class="card-actions">
+        <a href="nexa_nor/">Read the 100 messages →</a>
+        <a class="tg" href="https://t.me/nexa_nor" rel="noopener">Telegram ↗</a>
+      </p>
+    </li>
     
-    <li><a href="nexa_philippines/">
+    <li>
+      <a class="card-link" href="nexa_philippines/">
       <h3><span aria-hidden="true">🇵🇭</span> Nexa 🇵🇭 Philippines</h3>
       <p class="sub">Filipino · 21 members · <time datetime="2024-12-12T09:51:42+00:00">2024-12-12 09:51 UTC</time> → <time datetime="2026-06-15T20:31:19+00:00">2026-06-15 20:31 UTC</time></p>
       <p class="hd">A quiet Filipino Nexa group: launch-day onboarding, newcomer Q&amp;A, then sporadic price, wallet and halving chatter.</p>
@@ -281,10 +317,15 @@ footer p { margin: 0 0 6px; }
       <ul class="legend">
         <li><span class="dot positive"></span>Positive<span class="n">18</span></li><li><span class="dot mixed"></span>Mixed<span class="n">2</span></li><li><span class="dot neutral"></span>Neutral<span class="n">27</span></li><li><span class="dot negative"></span>Negative<span class="n">1</span></li>
       </ul>
-      <p class="more">Read the 48 messages →</p>
-    </a></li>
+      </a>
+      <p class="card-actions">
+        <a href="nexa_philippines/">Read the 48 messages →</a>
+        <a class="tg" href="https://t.me/nexa_Philippines" rel="noopener">Telegram ↗</a>
+      </p>
+    </li>
     
-    <li><a href="nexa_poland/">
+    <li>
+      <a class="card-link" href="nexa_poland/">
       <h3><span aria-hidden="true">🇵🇱</span> Nexa Polska</h3>
       <p class="sub">Polish · 63 members · <time datetime="2026-09-10T16:53:12+00:00">2026-09-10 16:53 UTC</time> → <time datetime="2026-09-11T18:57:11+00:00">2026-09-11 18:57 UTC</time></p>
       <p class="hd">Off-topic rants about surveillance and the EU give way to AI-driven project audits of Firo, Xelis and Nexa</p>
@@ -296,10 +337,15 @@ footer p { margin: 0 0 6px; }
       <ul class="legend">
         <li><span class="dot positive"></span>Positive<span class="n">23</span></li><li><span class="dot mixed"></span>Mixed<span class="n">11</span></li><li><span class="dot neutral"></span>Neutral<span class="n">39</span></li><li><span class="dot negative"></span>Negative<span class="n">27</span></li>
       </ul>
-      <p class="more">Read the 100 messages →</p>
-    </a></li>
+      </a>
+      <p class="card-actions">
+        <a href="nexa_poland/">Read the 100 messages →</a>
+        <a class="tg" href="https://t.me/nexa_poland" rel="noopener">Telegram ↗</a>
+      </p>
+    </li>
     
-    <li><a href="nexa_ru/">
+    <li>
+      <a class="card-link" href="nexa_ru/">
       <h3><span aria-hidden="true">🇷🇺</span> Nexa - RU - Official</h3>
       <p class="sub">Russian · 691 members · <time datetime="2026-09-02T19:11:08+00:00">2026-09-02 19:11 UTC</time> → <time datetime="2026-09-12T03:37:35+00:00">2026-09-12 03:37 UTC</time></p>
       <p class="hd">Community-built prediction site, a modest NEXA price rally, and node 2.2.0.0 / Tailstorm fork talk</p>
@@ -311,10 +357,15 @@ footer p { margin: 0 0 6px; }
       <ul class="legend">
         <li><span class="dot positive"></span>Positive<span class="n">25</span></li><li><span class="dot mixed"></span>Mixed<span class="n">12</span></li><li><span class="dot neutral"></span>Neutral<span class="n">52</span></li><li><span class="dot negative"></span>Negative<span class="n">11</span></li>
       </ul>
-      <p class="more">Read the 100 messages →</p>
-    </a></li>
+      </a>
+      <p class="card-actions">
+        <a href="nexa_ru/">Read the 100 messages →</a>
+        <a class="tg" href="https://t.me/nexa_ru" rel="noopener">Telegram ↗</a>
+      </p>
+    </li>
     
-    <li><a href="nexa_spanish/">
+    <li>
+      <a class="card-link" href="nexa_spanish/">
       <h3><span aria-hidden="true">🇪🇸</span> Nexa 🇪🇸 Spanish</h3>
       <p class="sub">Spanish · 16 members · <time datetime="2026-04-03T23:06:17+00:00">2026-04-03 23:06 UTC</time> → <time datetime="2026-09-10T15:23:32+00:00">2026-09-10 15:23 UTC</time></p>
       <p class="hd">Near-pure announcement feed: Nexa&#39;s first halving, NexScript/wallet releases, Tailstorm and hardware work, with rare member questions.</p>
@@ -326,10 +377,15 @@ footer p { margin: 0 0 6px; }
       <ul class="legend">
         <li><span class="dot positive"></span>Positive<span class="n">60</span></li><li><span class="dot mixed"></span>Mixed<span class="n">2</span></li><li><span class="dot neutral"></span>Neutral<span class="n">36</span></li><li><span class="dot negative"></span>Negative<span class="n">2</span></li>
       </ul>
-      <p class="more">Read the 100 messages →</p>
-    </a></li>
+      </a>
+      <p class="card-actions">
+        <a href="nexa_spanish/">Read the 100 messages →</a>
+        <a class="tg" href="https://t.me/Nexa_Spanish" rel="noopener">Telegram ↗</a>
+      </p>
+    </li>
     
-    <li><a href="nexatr/">
+    <li>
+      <a class="card-link" href="nexatr/">
       <h3><span aria-hidden="true">🇹🇷</span> NEXA TÜRKİYE 🇹🇷(Resmi)</h3>
       <p class="sub">Turkish · 631 members · <time datetime="2026-09-03T10:50:03+00:00">2026-09-03 10:50 UTC</time> → <time datetime="2026-09-11T22:19:21+00:00">2026-09-11 22:19 UTC</time></p>
       <p class="hd">Turkish Nexa community awaits the Tailstorm hard fork, cheers a price uptick, and debates macro and Trump</p>
@@ -341,10 +397,15 @@ footer p { margin: 0 0 6px; }
       <ul class="legend">
         <li><span class="dot positive"></span>Positive<span class="n">35</span></li><li><span class="dot mixed"></span>Mixed<span class="n">8</span></li><li><span class="dot neutral"></span>Neutral<span class="n">53</span></li><li><span class="dot negative"></span>Negative<span class="n">4</span></li>
       </ul>
-      <p class="more">Read the 100 messages →</p>
-    </a></li>
+      </a>
+      <p class="card-actions">
+        <a href="nexatr/">Read the 100 messages →</a>
+        <a class="tg" href="https://t.me/nexatr" rel="noopener">Telegram ↗</a>
+      </p>
+    </li>
     
-    <li><a href="nexa_viet/">
+    <li>
+      <a class="card-link" href="nexa_viet/">
       <h3><span aria-hidden="true">🇻🇳</span> Nexa Vietnam</h3>
       <p class="sub">Vietnamese · 28 members · <time datetime="2024-11-04T02:36:49+00:00">2024-11-04 02:36 UTC</time> → <time datetime="2026-09-06T20:13:18+00:00">2026-09-06 20:13 UTC</time></p>
       <p class="hd">A near-dormant group: bot welcomes, occasional price gripes, one real mining chat and a moderation spat.</p>
@@ -356,8 +417,12 @@ footer p { margin: 0 0 6px; }
       <ul class="legend">
         <li><span class="dot positive"></span>Positive<span class="n">43</span></li><li><span class="dot mixed"></span>Mixed<span class="n">1</span></li><li><span class="dot neutral"></span>Neutral<span class="n">44</span></li><li><span class="dot negative"></span>Negative<span class="n">12</span></li>
       </ul>
-      <p class="more">Read the 100 messages →</p>
-    </a></li>
+      </a>
+      <p class="card-actions">
+        <a href="nexa_viet/">Read the 100 messages →</a>
+        <a class="tg" href="https://t.me/nexa_viet" rel="noopener">Telegram ↗</a>
+      </p>
+    </li>
     
   </ul>
 </section>
