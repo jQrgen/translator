@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ report.chat.title }} — English</title>
+<meta name="description" content="{{ summary.headline }}">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --line: #e1e0d9; --ring: rgba(11,11,11,.10); --wash: rgba(11,11,11,.04);
+  --accent: #2a78d6; --accent-ink: #1c5cab;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #c98500; --neu: #898781; --mid: #f0efec;
+  --zh: #52514e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+    --accent: #3987e5; --accent-ink: #86b6ef;
+    --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+    --zh: #c3c2b7;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+  --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+  --accent: #3987e5; --accent-ink: #86b6ef;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+  --zh: #c3c2b7;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--page); color: var(--ink);
+  font: 15px/1.55 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  padding-inline: clamp(16px, 4vw, 32px); padding-block: 0 64px;
+}
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 900px; margin: 0 auto; }
+header.top { padding-block: 40px 24px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+h1 { font-size: clamp(24px, 4vw, 34px); line-height: 1.15; margin: 0 0 10px; letter-spacing: -.01em; }
+.meta { color: var(--ink-2); font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; }
+.meta span::before { content: ""; }
+h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; font-weight: 600; }
+section { padding-block: 32px; }
+section + section { border-top: 1px solid var(--line); }
+.headline { font-size: clamp(19px, 2.6vw, 24px); line-height: 1.3; font-weight: 600; margin: 0 0 12px; letter-spacing: -.01em; }
+.lede { font-size: 16px; color: var(--ink-2); margin: 0; max-width: 70ch; }
+.grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.topics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.topic { width: 100%; text-align: left; background: transparent; border: 1px solid transparent; border-radius: 10px; padding: 12px 14px; color: inherit; font: inherit; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; }
+.topic:hover { background: var(--wash); }
+.topic[aria-pressed="true"] { border-color: var(--accent); background: var(--wash); }
+.topic .t { font-weight: 600; }
+.topic .n { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.topic .s { grid-column: 1 / -1; color: var(--ink-2); font-size: 14px; }
+.mood-label { font-size: 26px; font-weight: 700; letter-spacing: -.01em; margin: 0 0 4px; }
+.mood-score { color: var(--muted); font-size: 13px; margin: 0 0 12px; font-variant-numeric: tabular-nums; }
+.meter { position: relative; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--neg), var(--mid) 50%, var(--pos)); margin: 6px 0 4px; }
+.meter i { position: absolute; top: 50%; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 3px solid var(--ink); transform: translate(-50%, -50%); box-shadow: 0 0 0 2px var(--surface); }
+.meter-ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+.mood-desc { margin: 0 0 20px; color: var(--ink-2); font-size: 14px; }
+.dist { display: flex; height: 12px; border-radius: 4px; overflow: hidden; gap: 2px; background: var(--surface); margin-bottom: 10px; }
+.dist b { display: block; height: 100%; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 13px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend .n { margin-left: auto; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.positive { --c: var(--pos); } .negative { --c: var(--neg); } .mixed { --c: var(--mix); } .neutral { --c: var(--neu); }
+.dot, .dist b { background: var(--c); }
+.chip { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--ink-2); padding: 2px 8px 2px 6px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); white-space: nowrap; }
+.chip::before { content: attr(data-glyph); width: 14px; height: 14px; border-radius: 50%; background: var(--c); color: #fff; display: inline-grid; place-items: center; font-size: 11px; line-height: 1; }
+.hl { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hl a { display: block; color: inherit; background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 12px 14px; }
+.hl a:hover { text-decoration: none; border-color: var(--accent); }
+.hl .q { font-size: 15px; margin: 0 0 4px; }
+.hl .w { font-size: 13px; color: var(--ink-2); margin: 0; }
+.hl .w b { font-weight: 600; color: var(--ink); }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 16px; position: sticky; top: 0; background: var(--page); padding-block: 10px; z-index: 2; border-bottom: 1px solid var(--line); }
+.controls .sp { flex: 1; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.fbtn { font: inherit; font-size: 13px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.fbtn[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); cursor: pointer; user-select: none; }
+.toggle input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+.active-topic { display: none; font-size: 13px; color: var(--ink-2); padding: 8px 12px; border-radius: 8px; background: var(--wash); margin-bottom: 12px; }
+.active-topic.on { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.active-topic button { font: inherit; font-size: 13px; background: none; border: 0; color: var(--accent-ink); cursor: pointer; padding: 0; }
+.msgs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.msg { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 12px 16px; scroll-margin-top: 70px; }
+.msg[hidden] { display: none; }
+.msg.flash { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42,120,214,.25); }
+.msg .head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 6px; font-size: 13px; }
+.msg .who { font-weight: 600; color: var(--ink); font-size: 14px; }
+.msg time { color: var(--muted); font-variant-numeric: tabular-nums; }
+.msg .lnk { margin-left: auto; color: var(--muted); font-size: 12px; }
+.msg .reply { border-left: 3px solid var(--line); padding: 2px 10px; margin: 0 0 8px; color: var(--ink-2); font-size: 13px; }
+.msg .reply b { font-weight: 600; }
+.msg .en { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg .zh { margin: 6px 0 0; color: var(--zh); font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+body.hide-zh .msg .zh { display: none; }
+.msg .note { margin: 8px 0 0; font-size: 13px; color: var(--ink-2); font-style: italic; }
+.msg .note::before { content: "Note: "; font-style: normal; font-weight: 600; }
+.empty { display: none; color: var(--muted); padding: 24px 0; text-align: center; }
+.empty.on { display: block; }
+footer { color: var(--muted); font-size: 13px; padding-top: 32px; border-top: 1px solid var(--line); }
+footer p { margin: 0 0 6px; }
+@media (prefers-reduced-motion: no-preference) { .msg { transition: border-color .3s, box-shadow .3s; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow">Telegram · Chinese → English mirror</p>
+  <h1>{{ report.chat.title }}</h1>
+  <p class="meta">
+    <span><a href="{{ report.chat.url }}" rel="noopener">{{ report.chat.url | replace("https://", "") }}</a></span>
+    {% if report.chat.member_count %}<span>{{ "{:,}".format(report.chat.member_count) }} members</span>{% endif %}
+    <span>Last {{ messages | length }} messages · <time datetime="{{ report.window_start | iso }}">{{ report.window_start | utc }}</time> → <time datetime="{{ report.window_end | iso }}">{{ report.window_end | utc }}</time></span>
+    <span>Updated <time datetime="{{ report.generated_at | iso }}">{{ report.generated_at | utc }}</time></span>
+  </p>
+</header>
+
+<section id="summary">
+  <h2>Summary</h2>
+  <p class="headline">{{ summary.headline }}</p>
+  <p class="lede">{{ summary.summary }}</p>
+</section>
+
+<section id="analysis">
+  <div class="grid">
+    <div class="card">
+      <h2>Topics</h2>
+      <ul class="topics">
+        {% for topic in summary.topics %}
+        <li>
+          <button class="topic" type="button" data-topic="{{ loop.index0 }}" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">{{ topic.title }}</span>
+            <span class="n">{{ topic_counts[loop.index0] }} msg{{ "s" if topic_counts[loop.index0] != 1 }} · <span class="chip {{ topic.sentiment.value }}" data-glyph="{{ sentiment_meta[topic.sentiment.value].glyph }}">{{ sentiment_meta[topic.sentiment.value].label }}</span></span>
+            <span class="s">{{ topic.summary }}</span>
+          </button>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Mood</h2>
+      <p class="mood-label">{{ summary.mood_label }}</p>
+      <p class="mood-score">Mood score {{ "%+.2f" | format(summary.mood_score) }} on a −1 … +1 scale</p>
+      <div class="meter" role="img" aria-label="Mood score {{ '%+.2f' | format(summary.mood_score) }} of 1"><i style="left: {{ mood_pct }}%"></i></div>
+      <div class="meter-ticks"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
+      <p class="mood-desc">{{ summary.mood_description }}</p>
+      <h2>Sentiment by message</h2>
+      <div class="dist" role="img" aria-label="{% for d in distribution %}{{ d.label }} {{ d.count }}{{ ', ' if not loop.last }}{% endfor %}">
+        {% for d in distribution if d.count %}<b class="{{ d.key }}" style="flex: {{ d.count }}" title="{{ d.label }}: {{ d.count }}"></b>{% endfor %}
+      </div>
+      <ul class="legend">
+        {% for d in distribution %}
+        <li><span class="dot {{ d.key }}"></span>{{ d.label }}<span class="n">{{ d.count }} · {{ d.pct }}%</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% if summary.highlights %}
+<section id="highlights">
+  <h2>Worth reading first</h2>
+  <ul class="hl">
+    {% for h in summary.highlights %}{% set m = by_id[h.message_id] %}
+    <li><a href="#m-{{ m.id }}">
+      <p class="q">“{{ m.translation }}”</p>
+      <p class="w"><b>{{ m.sender_name }}</b> · {{ h.why }}</p>
+    </a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+<section id="messages">
+  <h2>Messages</h2>
+  <div class="controls">
+    <div class="filters" role="group" aria-label="Filter by sentiment">
+      <button class="fbtn" type="button" data-sent="all" aria-pressed="true">All</button>
+      {% for d in distribution %}<button class="fbtn" type="button" data-sent="{{ d.key }}" aria-pressed="false">{{ d.label }} ({{ d.count }})</button>{% endfor %}
+    </div>
+    <span class="sp"></span>
+    <label class="toggle"><input type="checkbox" id="show-zh" checked> Show original Chinese</label>
+  </div>
+  <div class="active-topic" id="active-topic"><span>Topic: <b id="active-topic-name"></b></span><button type="button" id="clear-topic">Show all messages</button></div>
+  <ol class="msgs" id="msg-list">
+    {% for m in messages %}
+    <li class="msg" id="m-{{ m.id }}" data-sent="{{ m.sentiment.value }}" data-topics="{{ topic_ids[m.id] | join(' ') }}">
+      <div class="head">
+        <span class="who">{{ m.sender_name }}</span>
+        <time datetime="{{ m.date | iso }}">{{ m.date | utc }}</time>
+        <span class="chip {{ m.sentiment.value }}" data-glyph="{{ sentiment_meta[m.sentiment.value].glyph }}" title="score {{ '%+.2f' | format(m.sentiment_score) }}">{{ sentiment_meta[m.sentiment.value].label }}</span>
+        {% if m.link %}<a class="lnk" href="{{ m.link }}" rel="noopener" title="Open on Telegram">#{{ m.id }} ↗</a>{% endif %}
+      </div>
+      {% if m.reply_to_id and m.reply_to_id in by_id %}{% set r = by_id[m.reply_to_id] %}
+      <p class="reply">↩ <b>{{ r.sender_name }}</b>: {{ r.translation | truncate(120) }}</p>
+      {% endif %}
+      <p class="en">{{ m.translation }}</p>
+      <p class="zh" lang="zh-Hans">{{ m.text }}</p>
+      {% if m.note %}<p class="note">{{ m.note }}</p>{% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+  <p class="empty" id="empty">No messages match these filters.</p>
+</section>
+
+<footer>
+  <p>Translations, sentiment scores and the summary are generated automatically by {{ report.model }} and may contain mistakes. Original messages belong to their authors on Telegram.</p>
+  <p><a href="data.json">Raw data (JSON)</a></p>
+</footer>
+
+</div>
+<script>
+(function () {
+  var msgs = Array.prototype.slice.call(document.querySelectorAll('.msg'));
+  var sent = 'all', topic = null;
+  var topicNames = {{ summary.topics | map(attribute="title") | list | tojson }};
+
+  function apply() {
+    var shown = 0;
+    msgs.forEach(function (m) {
+      var ok = (sent === 'all' || m.dataset.sent === sent) &&
+               (topic === null || (' ' + m.dataset.topics + ' ').indexOf(' ' + topic + ' ') !== -1);
+      m.hidden = !ok; if (ok) shown++;
+    });
+    document.getElementById('empty').classList.toggle('on', shown === 0);
+    var bar = document.getElementById('active-topic');
+    bar.classList.toggle('on', topic !== null);
+    if (topic !== null) document.getElementById('active-topic-name').textContent = topicNames[topic] + ' (' + shown + ')';
+    document.querySelectorAll('.topic').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.topic === String(topic))); });
+  }
+  document.querySelectorAll('.fbtn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      sent = b.dataset.sent;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      apply();
+    });
+  });
+  document.querySelectorAll('.topic').forEach(function (b) {
+    b.addEventListener('click', function () {
+      topic = (String(topic) === b.dataset.topic) ? null : Number(b.dataset.topic);
+      apply();
+      if (topic !== null) document.getElementById('messages').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  document.getElementById('clear-topic').addEventListener('click', function () { topic = null; apply(); });
+
+  var zh = document.getElementById('show-zh');
+  try { if (localStorage.getItem('showZh') === '0') zh.checked = false; } catch (e) {}
+  function syncZh() {
+    document.body.classList.toggle('hide-zh', !zh.checked);
+    try { localStorage.setItem('showZh', zh.checked ? '1' : '0'); } catch (e) {}
+  }
+  zh.addEventListener('change', syncZh); syncZh();
+
+  // Show timestamps in the viewer's local time zone.
+  var fmt = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+  document.querySelectorAll('time[datetime]').forEach(function (t) {
+    var d = new Date(t.getAttribute('datetime'));
+    if (!isNaN(d)) { t.title = t.textContent; t.textContent = fmt.format(d); }
+  });
+
+  // Highlight links: reveal the target even if filtered out, then flash it.
+  document.querySelectorAll('.hl a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      sent = 'all'; topic = null;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.sent === 'all')); });
+      apply();
+      var el = document.querySelector(a.getAttribute('href'));
+      if (el) { el.classList.add('flash'); setTimeout(function () { el.classList.remove('flash'); }, 1600); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
