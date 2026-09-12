@@ -1,0 +1,1913 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexa Norge — English</title>
+<meta name="description" content="A quiet Norwegian Nexa channel: troll bans, wallet and event news, and complaints about crypto-hostile banks.">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --line: #e1e0d9; --ring: rgba(11,11,11,.10); --wash: rgba(11,11,11,.04);
+  --accent: #2a78d6; --accent-ink: #1c5cab;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #c98500; --neu: #898781; --mid: #f0efec;
+  --zh: #52514e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+    --accent: #3987e5; --accent-ink: #86b6ef;
+    --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+    --zh: #c3c2b7;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+  --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+  --accent: #3987e5; --accent-ink: #86b6ef;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+  --zh: #c3c2b7;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--page); color: var(--ink);
+  font: 15px/1.55 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  padding-inline: clamp(16px, 4vw, 32px); padding-block: 0 64px;
+}
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 900px; margin: 0 auto; }
+header.top { padding-block: 40px 24px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+h1 { font-size: clamp(24px, 4vw, 34px); line-height: 1.15; margin: 0 0 10px; letter-spacing: -.01em; }
+.meta { color: var(--ink-2); font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; }
+.meta span::before { content: ""; }
+h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; font-weight: 600; }
+section { padding-block: 32px; }
+h2 .sub { font-weight: 400; letter-spacing: 0; text-transform: none; }
+section + section { border-top: 1px solid var(--line); }
+.headline { font-size: clamp(19px, 2.6vw, 24px); line-height: 1.3; font-weight: 600; margin: 0 0 12px; letter-spacing: -.01em; }
+.lede { font-size: 16px; color: var(--ink-2); margin: 0; max-width: 70ch; }
+.grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.topics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.topic { width: 100%; text-align: left; background: transparent; border: 1px solid transparent; border-radius: 10px; padding: 12px 14px; color: inherit; font: inherit; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; }
+.topic:hover { background: var(--wash); }
+.topic[aria-pressed="true"] { border-color: var(--accent); background: var(--wash); }
+.topic .t { font-weight: 600; }
+.topic .n { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.topic .s { grid-column: 1 / -1; color: var(--ink-2); font-size: 14px; }
+.mood-label { font-size: 26px; font-weight: 700; letter-spacing: -.01em; margin: 0 0 4px; }
+.mood-score { color: var(--muted); font-size: 13px; margin: 0 0 12px; font-variant-numeric: tabular-nums; }
+.meter { position: relative; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--neg), var(--mid) 50%, var(--pos)); margin: 6px 0 4px; }
+.meter i { position: absolute; top: 50%; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 3px solid var(--ink); transform: translate(-50%, -50%); box-shadow: 0 0 0 2px var(--surface); }
+.meter-ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+.mood-desc { margin: 0 0 20px; color: var(--ink-2); font-size: 14px; }
+.dist { display: flex; height: 12px; border-radius: 4px; overflow: hidden; gap: 2px; background: var(--surface); margin-bottom: 10px; }
+.dist b { display: block; height: 100%; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 13px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend .n { margin-left: auto; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.positive { --c: var(--pos); } .negative { --c: var(--neg); } .mixed { --c: var(--mix); } .neutral { --c: var(--neu); }
+.dot, .dist b { background: var(--c); }
+.chip { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--ink-2); padding: 2px 8px 2px 6px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); white-space: nowrap; }
+.chip::before { content: attr(data-glyph); width: 14px; height: 14px; border-radius: 50%; background: var(--c); color: #fff; display: inline-grid; place-items: center; font-size: 11px; line-height: 1; }
+.hl { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hl a { display: block; color: inherit; background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 12px 14px; }
+.hl a:hover { text-decoration: none; border-color: var(--accent); }
+.hl .q { font-size: 15px; margin: 0 0 4px; }
+.hl .w { font-size: 13px; color: var(--ink-2); margin: 0; }
+.hl .w b { font-weight: 600; color: var(--ink); }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 16px; position: sticky; top: 0; background: var(--page); padding-block: 10px; z-index: 2; border-bottom: 1px solid var(--line); }
+.controls .sp { flex: 1; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.fbtn { font: inherit; font-size: 13px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.fbtn[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); cursor: pointer; user-select: none; }
+.toggle input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+.active-topic { display: none; font-size: 13px; color: var(--ink-2); padding: 8px 12px; border-radius: 8px; background: var(--wash); margin-bottom: 12px; }
+.active-topic.on { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.active-topic button { font: inherit; font-size: 13px; background: none; border: 0; color: var(--accent-ink); cursor: pointer; padding: 0; }
+.msgs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.msg { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 12px 16px; scroll-margin-top: 70px; }
+.msg[hidden] { display: none; }
+.msg.flash { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42,120,214,.25); }
+.msg .head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 6px; font-size: 13px; }
+.msg .who { font-weight: 600; color: var(--ink); font-size: 14px; }
+.msg time { color: var(--muted); font-variant-numeric: tabular-nums; }
+.msg .lnk { margin-left: auto; color: var(--muted); font-size: 12px; }
+.msg .reply { border-left: 3px solid var(--line); padding: 2px 10px; margin: 0 0 8px; color: var(--ink-2); font-size: 13px; }
+.msg .reply b { font-weight: 600; }
+.msg .en { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg .zh { margin: 6px 0 0; color: var(--zh); font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+body.hide-zh .msg .zh { display: none; }
+.msg .note { margin: 8px 0 0; font-size: 13px; color: var(--ink-2); font-style: italic; }
+.msg .note::before { content: "Note: "; font-style: normal; font-weight: 600; }
+.empty { display: none; color: var(--muted); padding: 24px 0; text-align: center; }
+.empty.on { display: block; }
+footer { color: var(--muted); font-size: 13px; padding-top: 32px; border-top: 1px solid var(--line); }
+footer p { margin: 0 0 6px; }
+@media (prefers-reduced-motion: no-preference) { .msg { transition: border-color .3s, box-shadow .3s; } }
+.nav { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; padding: 0; list-style: none; }
+.nav a { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); }
+.nav a:hover { text-decoration: none; border-color: var(--accent); }
+.nav a[aria-current="page"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.nav .lang { font-weight: 400; opacity: .75; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
+.cards > li > a { display: block; color: inherit; height: 100%; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.cards > li > a:hover { text-decoration: none; border-color: var(--accent); }
+.cards h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.cards .sub { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+.cards .hd { font-size: 15px; font-weight: 600; margin: 0 0 10px; line-height: 1.35; }
+.cards .mood { display: flex; align-items: baseline; gap: 8px; margin: 0 0 8px; }
+.cards .mood b { font-size: 20px; letter-spacing: -.01em; }
+.cards .mood span { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.cards .dist { margin: 10px 0 8px; }
+.cards .legend { grid-template-columns: repeat(4, auto); justify-content: start; gap: 4px 14px; font-size: 12px; }
+.cards .legend .n { margin-left: 4px; }
+.cards .more { color: var(--accent-ink); font-size: 13px; font-weight: 600; margin: 12px 0 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <ul class="nav" aria-label="Communities">
+  <li><a href="../">Overview</a></li>
+  
+  <li><a href="../nexa_china/"><span aria-hidden="true">🇨🇳</span> Chinese</a></li>
+  
+  <li><a href="../nexa_netherlands/"><span aria-hidden="true">🇳🇱</span> Dutch</a></li>
+  
+  <li><a href="../nexa_germany/"><span aria-hidden="true">🇩🇪</span> German</a></li>
+  
+  <li><a href="../nexa_india/"><span aria-hidden="true">🇮🇳</span> Hindi</a></li>
+  
+  <li><a href="../nexa_korean/"><span aria-hidden="true">🇰🇷</span> Korean</a></li>
+  
+  <li><a href="../nexa_nor/" aria-current="page"><span aria-hidden="true">🇳🇴</span> Norwegian</a></li>
+  
+  <li><a href="../nexa_philippines/"><span aria-hidden="true">🇵🇭</span> Filipino</a></li>
+  
+  <li><a href="../nexa_poland/"><span aria-hidden="true">🇵🇱</span> Polish</a></li>
+  
+  <li><a href="../nexa_ru/"><span aria-hidden="true">🇷🇺</span> Russian</a></li>
+  
+  <li><a href="../nexa_spanish/"><span aria-hidden="true">🇪🇸</span> Spanish</a></li>
+  
+  <li><a href="../nexatr/"><span aria-hidden="true">🇹🇷</span> Turkish</a></li>
+  
+  <li><a href="../nexa_viet/"><span aria-hidden="true">🇻🇳</span> Vietnamese</a></li>
+  
+</ul>
+  <p class="eyebrow">Telegram · Norwegian → English mirror</p>
+  <h1>Nexa Norge</h1>
+  <p class="meta">
+    <span><a href="https://t.me/nexa_nor" rel="noopener">t.me/nexa_nor</a></span>
+    <span>37 members</span>
+    <span>Last 100 messages · <time datetime="2024-04-05T13:47:30+00:00">2024-04-05 13:47 UTC</time> → <time datetime="2026-09-08T02:21:19+00:00">2026-09-08 02:21 UTC</time></span>
+    <span>Updated <time datetime="2026-09-12T16:30:50.929134+00:00">2026-09-12 16:30 UTC</time></span>
+  </p>
+</header>
+
+<section id="summary">
+  <h2>Summary</h2>
+  <p class="headline">A quiet Norwegian Nexa channel: troll bans, wallet and event news, and complaints about crypto-hostile banks.</p>
+  <p class="lede">This window stretches from April 2024 into 2026 in a very low-traffic group, so it reads as a series of short bursts rather than a continuous conversation. It opens with moderators jQrgen ⛛, Rose (bot), Bbob and Ede repeatedly banning a returning troll they identify as &#39;Hyper&#39;, whom Bbob explains is still bitter that cyber/allstar was never reinstated as community manager. After that, jQrgen ⛛ and endo mostly post project news: the Wally Nexa iPhone wallet beta and its App Store launch, the KnowNexa video series, the ScriptQuest developer challenge with a $6k prize pool, AusCryptoCon sponsorship, and the successful first Nexa mainnet hard fork in March 2025. The longest substantive discussion comes from roastbacitracin, a Swede living in Norway, who details how Sparebank1 and DNB froze his accounts after crypto cash-outs and how it took months and a formal complaint to resolve. Between these, there is friendly small talk, greetings, event chatter (Nordic Blockchain Conference, a discounted BTC halving festival ticket, a possible Oslo hackathon meetup) and a brief question about whether the Blitz FPGA card can mine, which jQrgen ⛛ answers with a flat no.</p>
+</section>
+
+<section id="analysis">
+  <div class="grid">
+    <div class="card">
+      <h2>Topics</h2>
+      <ul class="topics">
+        
+        <li>
+          <button class="topic" type="button" data-topic="0" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Banning a persistent troll</span>
+            <span class="n">27 msgs · <span class="chip negative" data-glyph="−">Negative</span></span>
+            <span class="s">jQrgen ⛛ used /dban repeatedly (with Rose the bot confirming), while Bbob and Ede discussed the serial account-maker &#39;Hyper&#39;, whose grievance Bbob traced back to cyber/allstar not returning as community manager; jQrgen ⛛&#39;s remarks grew increasingly scathing.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="1" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Norwegian banks hostile to crypto</span>
+            <span class="n">7 msgs · <span class="chip negative" data-glyph="−">Negative</span></span>
+            <span class="s">roastbacitracin asked which Norwegian bank is least hostile for cashing out to fiat and then gave a detailed account of Sparebank1 freezing his account for three weeks and DNB blocking it without notice after 500,000 NOK in transfers, taking two months and a formal complaint to unlock; jQrgen ⛛ asked follow-ups and suggested Revolut supports NOK.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="2" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Wally wallet and Nexa announcements</span>
+            <span class="n">12 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">jQrgen ⛛ shared the TestFlight beta and later the App Store release of the Wally Nexa Wallet for iPhone; endo and Onur_Chinaski posted official items including KnowNexa episode 4 on Tailstorm, the ScriptQuest NexScript developer challenge with $3k/$2k/$1k prizes, and the successful first mainnet hard fork at block 766,084.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="3" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Events and meetups</span>
+            <span class="n">13 msgs · <span class="chip neutral" data-glyph="·">Neutral</span></span>
+            <span class="s">jQrgen ⛛ floated an Oslo gathering around a future hackathon, offered a half-price ticket to the Bitcoin halving festival he could no longer attend, and asked who was going to the Nordic Blockchain Conference; Ede said she would check her schedule, and jQrgen ⛛ noted a Norwegian contingent was attending.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="4" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Newcomers and small talk</span>
+            <span class="n">34 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">roastbacitracin joked about lacking Norwegian citizenship after 20 years in Norway, confirmed jQrgen ⛛&#39;s Bitcoin Unlimited membership, and the group traded morning greetings; Ede translated endo&#39;s quip that Norwegian is hard to learn.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="5" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Blitz FPGA card question</span>
+            <span class="n">4 msgs · <span class="chip neutral" data-glyph="·">Neutral</span></span>
+            <span class="s">roastbacitracin relayed a question about who benefits from the Blitz card and whether it earns mining rewards; jQrgen ⛛ first didn&#39;t recognise the name, then confirmed Blitz is not for mining.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="6" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Liberstad legal status</span>
+            <span class="n">3 msgs · <span class="chip neutral" data-glyph="·">Neutral</span></span>
+            <span class="s">jQrgen ⛛ quoted material noting Liberstad has no concessions from the Norwegian government and is still legally Norway, wondering aloud what the exit plan is.</span>
+          </button>
+        </li>
+        
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Mood</h2>
+      <p class="mood-label">Quiet and friendly</p>
+      <p class="mood-score">Mood score +0.20 on a −1 … +1 scale</p>
+      <div class="meter" role="img" aria-label="Mood score +0.20 of 1"><i style="left: 60.0%"></i></div>
+      <div class="meter-ticks"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
+      <p class="mood-desc">The window starts with irritation and some mockery as moderators clear out a repeat troll, with jQrgen ⛛ and Bbob openly contemptuous of someone they see as wasting his energy on anonymous complaining. After that the tone settles into a sparse, easygoing rhythm of greetings, event invitations and official Nexa news, with genuine enthusiasm around the Wally iPhone wallet release and the hard fork. The one clearly sour note later on is roastbacitracin&#39;s frustration with Sparebank1 and DNB freezing his accounts, which the group treats sympathetically rather than dramatically. Overall the channel feels small and collegial rather than energetic.</p>
+      <h2>Sentiment by message</h2>
+      <div class="dist" role="img" aria-label="Positive 30, Mixed 7, Neutral 53, Negative 10">
+        <b class="positive" style="flex: 30" title="Positive: 30"></b><b class="mixed" style="flex: 7" title="Mixed: 7"></b><b class="neutral" style="flex: 53" title="Neutral: 53"></b><b class="negative" style="flex: 10" title="Negative: 10"></b>
+      </div>
+      <ul class="legend">
+        
+        <li><span class="dot positive"></span>Positive<span class="n">30 · 30.0%</span></li>
+        
+        <li><span class="dot mixed"></span>Mixed<span class="n">7 · 7.0%</span></li>
+        
+        <li><span class="dot neutral"></span>Neutral<span class="n">53 · 53.0%</span></li>
+        
+        <li><span class="dot negative"></span>Negative<span class="n">10 · 10.0%</span></li>
+        
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section id="highlights">
+  <h2>Worth reading first</h2>
+  <ul class="hl">
+    
+    <li><a href="#m-764">
+      <p class="q">“he probably doesn&#39;t know what he stands for himself anymore - it used to be that cyber/allstar was supposed to come back as community manager, but once that was no longer a possibility it just turned into general rage against the injustices of the universe.”</p>
+      <p class="w"><b>Bbob</b> · Bbob&#39;s backstory on the recurring troll explains the grudge behind the repeated ban waves.</p>
+    </a></li>
+    
+    <li><a href="#m-840">
+      <p class="q">“I&#39;ve actually only cashed out once. Early December 2021.
+
+Sparebank1 locked my account for maybe three weeks, but I was in touch with a mortgage advisor during that time, so he helped me get the account opened again. Barely a year later I did get a warning when I transferred some money to Kraken, saying they didn&#39;t want to be involved in cryptocurrency transfers.
+
+DNB a bit worse. Locked my account without telling me. Came as a surprise when I was going to use my card in everyday life. My DNB account was probably under surveillance and blocked after 500,000 NOK in transfers. No one to turn to. Customer service informs me that that department can&#39;t be contacted.
+
+It took about two months to get the account unlocked after starting the long formal complaint process that was going to end up involving the financial supervisory authority.
+
+I have a feeling it&#39;s not going to get any easier in the autumn of 2025 when the next withdrawal will happen. Heard a lot of good things about Revolut, but it is a foreign bank, and if I want to use NOK here in Norway I&#39;m worried the same problem will come up :(”</p>
+      <p class="w"><b>roastbacitracin</b> · The window&#39;s most substantive post: a detailed first-hand account of Norwegian banks freezing accounts over crypto cash-outs.</p>
+    </a></li>
+    
+    <li><a href="#m-844">
+      <p class="q">“Wally Wallet for iPhone is live on the App Store
+
+https://apps.apple.com/no/app/wally-nexa-wallet/id6469619075
+
+https://x.com/jQrgensn/status/1788473026373107879”</p>
+      <p class="w"><b>jQrgen ⛛</b> · Concrete product milestone - the Wally Nexa wallet going live on the iOS App Store.</p>
+    </a></li>
+    
+    <li><a href="#m-900">
+      <p class="q">“🎉 PRIZES ANNOUNCED: Take part in our Developers Challenge this month - #ScriptQuest!
+
+We&#39;re excited to announce the prizes for the ScriptQuest challenge.
+
+Nexians, this is your chance to show what you can do with NexScript.
+
+First place: $3,000 USD in $NEXA
+Second place: $2,000 USD in $NEXA
+Third place: $1,000 USD in $NEXA
+
+ScriptQuest has been extended and runs from 5 August 2024 at 11:00 (UTC) to 11 September 2024 at 11:00 (UTC).
+
+How to take part:
+
+Use our resource library and use NexScript to create an interesting use case.
+
+Get started: Create a thread in the #ScriptQuest thread on the forum https://forum.nexa.org/t/developer-prize-pool-announced-for-scriptquest/299 to submit your use case and discuss your ideas with our community.
+
+Happy building! ⚒️”</p>
+      <p class="w"><b>endo</b> · Official ScriptQuest developer challenge with a $6,000 prize pool and deadline details.</p>
+    </a></li>
+    
+    <li><a href="#m-937">
+      <p class="q">“📒 Nexa Mainnet Successfully Upgraded: First Hard Fork Introduces New Features 🎈
+
+Nexa&#39;s hard fork was successfully activated at block number 766,084 at 12:22 UTC on March 31, 2025. All full node users must upgrade their software.
+
+Read more:
+https://forum.nexa.org/t/nexa-mainnet-successfully-upgraded-first-hard-fork-introduces-new-features/553”</p>
+      <p class="w"><b>endo</b> · Announcement that Nexa&#39;s first mainnet hard fork activated successfully, with an upgrade requirement for full node operators.</p>
+    </a></li>
+    
+  </ul>
+</section>
+
+
+<section id="messages">
+  <h2>Messages <span class="sub">· newest first</span></h2>
+  <div class="controls">
+    <div class="filters" role="group" aria-label="Filter by sentiment">
+      <button class="fbtn" type="button" data-sent="all" aria-pressed="true">All</button>
+      <button class="fbtn" type="button" data-sent="positive" aria-pressed="false">Positive (30)</button><button class="fbtn" type="button" data-sent="mixed" aria-pressed="false">Mixed (7)</button><button class="fbtn" type="button" data-sent="neutral" aria-pressed="false">Neutral (53)</button><button class="fbtn" type="button" data-sent="negative" aria-pressed="false">Negative (10)</button>
+    </div>
+    <span class="sp"></span>
+    <label class="toggle"><input type="checkbox" id="show-zh" checked> Show original Norwegian</label>
+  </div>
+  <div class="active-topic" id="active-topic"><span>Topic: <b id="active-topic-name"></b></span><button type="button" id="clear-topic">Show all messages</button></div>
+  <ol class="msgs" id="msg-list" reversed>
+    
+    <li class="msg" id="m-990" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2026-09-08T02:21:19+00:00">2026-09-08 02:21 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/990" rel="noopener" title="Open on Telegram">#990 ↗</a>
+      </div>
+      
+      <p class="en">Oops</p>
+      <p class="zh" lang="nb">Oops</p>
+      
+    </li>
+    
+    <li class="msg" id="m-989" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Ede</span>
+        <time datetime="2026-09-08T02:19:02+00:00">2026-09-08 02:19 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/989" rel="noopener" title="Open on Telegram">#989 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>jQrgen ⛛</b>: https://luma.com/3nr6u4ln</p>
+      
+      <p class="en">Your Instagram is wrong on Luma : )</p>
+      <p class="zh" lang="nb">Din instagram är fel på Luma : )</p>
+      
+    </li>
+    
+    <li class="msg" id="m-987" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2026-09-07T22:53:07+00:00">2026-09-07 22:53 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/987" rel="noopener" title="Open on Telegram">#987 ↗</a>
+      </div>
+      
+      <p class="en">https://luma.com/3nr6u4ln</p>
+      <p class="zh" lang="nb">https://luma.com/3nr6u4ln</p>
+      
+    </li>
+    
+    <li class="msg" id="m-970" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-05-14T09:51:51+00:00">2026-05-14 09:51 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/970" rel="noopener" title="Open on Telegram">#970 ↗</a>
+      </div>
+      
+      <p class="en">/report</p>
+      <p class="zh" lang="nb">/report</p>
+      <p class="note">Bot command reporting a message to the admins.</p>
+    </li>
+    
+    <li class="msg" id="m-958" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2025-06-12T17:36:39+00:00">2025-06-12 17:36 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/958" rel="noopener" title="Open on Telegram">#958 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/TheVladCostea/status/1933211447884157350?t=d3RYdHjjxziruRAQHkR1ZQ&amp;s=35</p>
+      <p class="zh" lang="nb">https://x.com/TheVladCostea/status/1933211447884157350?t=d3RYdHjjxziruRAQHkR1ZQ&amp;s=35</p>
+      
+    </li>
+    
+    <li class="msg" id="m-956" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Joakim🔽</span>
+        <time datetime="2025-05-18T20:56:36+00:00">2025-05-18 20:56 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/956" rel="noopener" title="Open on Telegram">#956 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>jQrgen ⛛</b>: How&#39;s it going?</p>
+      
+      <p class="en">All good here 😁</p>
+      <p class="zh" lang="nb">Bra her 😁</p>
+      
+    </li>
+    
+    <li class="msg" id="m-954" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2025-05-17T12:01:24+00:00">2025-05-17 12:01 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/954" rel="noopener" title="Open on Telegram">#954 ↗</a>
+      </div>
+      
+      <p class="en">Happy Constitution Day</p>
+      <p class="zh" lang="nb">Gratulerer med dagen</p>
+      <p class="note">May 17 is Norway&#39;s national day; &#34;gratulerer med dagen&#34; is the standard greeting for it (also used for birthdays).</p>
+    </li>
+    
+    <li class="msg" id="m-953" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2025-05-12T12:43:17+00:00">2025-05-12 12:43 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/953" rel="noopener" title="Open on Telegram">#953 ↗</a>
+      </div>
+      
+      <p class="en">Good good 🙌</p>
+      <p class="zh" lang="nb">Good good 🙌</p>
+      
+    </li>
+    
+    <li class="msg" id="m-952" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2025-05-12T12:35:00+00:00">2025-05-12 12:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/952" rel="noopener" title="Open on Telegram">#952 ↗</a>
+      </div>
+      
+      <p class="en">How&#39;s it going?</p>
+      <p class="zh" lang="nb">Hvordan går det?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-951" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2025-05-12T09:46:55+00:00">2025-05-12 09:46 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/951" rel="noopener" title="Open on Telegram">#951 ↗</a>
+      </div>
+      
+      <p class="en">Hi</p>
+      <p class="zh" lang="nb">Hei</p>
+      
+    </li>
+    
+    <li class="msg" id="m-950" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2025-05-12T09:45:40+00:00">2025-05-12 09:45 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/950" rel="noopener" title="Open on Telegram">#950 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>jQrgen ⛛</b>: Hello</p>
+      
+      <p class="en">Hi, sir. 🙏</p>
+      <p class="zh" lang="nb">Hi, sir. 🙏</p>
+      
+    </li>
+    
+    <li class="msg" id="m-949" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2025-05-12T09:37:42+00:00">2025-05-12 09:37 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/949" rel="noopener" title="Open on Telegram">#949 ↗</a>
+      </div>
+      
+      <p class="en">Hello</p>
+      <p class="zh" lang="nb">Hello</p>
+      
+    </li>
+    
+    <li class="msg" id="m-940" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2025-04-06T17:54:06+00:00">2025-04-06 17:54 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/940" rel="noopener" title="Open on Telegram">#940 ↗</a>
+      </div>
+      
+      <p class="en">Welcome</p>
+      <p class="zh" lang="nb">Velkommen</p>
+      
+    </li>
+    
+    <li class="msg" id="m-937" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2025-03-31T15:07:17+00:00">2025-03-31 15:07 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/937" rel="noopener" title="Open on Telegram">#937 ↗</a>
+      </div>
+      
+      <p class="en">📒 Nexa Mainnet Successfully Upgraded: First Hard Fork Introduces New Features 🎈
+
+Nexa&#39;s hard fork was successfully activated at block number 766,084 at 12:22 UTC on March 31, 2025. All full node users must upgrade their software.
+
+Read more:
+https://forum.nexa.org/t/nexa-mainnet-successfully-upgraded-first-hard-fork-introduces-new-features/553</p>
+      <p class="zh" lang="nb">📒 Nexa Mainnet Vellykket Oppgradert: Første Hard Fork Introduserer Nye Funksjoner 🎈
+
+Nexas hard fork ble vellykket aktivert på blokknummer 766 084 kl. 12:22 UTC den 31. mars 2025. Alle full node-brukere må oppgradere programvaren sin.
+
+Les mer:
+https://forum.nexa.org/t/nexa-mainnet-successfully-upgraded-first-hard-fork-introduces-new-features/553</p>
+      
+    </li>
+    
+    <li class="msg" id="m-936" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2025-03-26T16:53:10+00:00">2025-03-26 16:53 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/936" rel="noopener" title="Open on Telegram">#936 ↗</a>
+      </div>
+      
+      <p class="en">https://t.me/nexacoin</p>
+      <p class="zh" lang="nb">https://t.me/nexacoin</p>
+      
+    </li>
+    
+    <li class="msg" id="m-935" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2025-03-26T16:52:32+00:00">2025-03-26 16:52 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/935" rel="noopener" title="Open on Telegram">#935 ↗</a>
+      </div>
+      
+      <p class="en">Yo👋</p>
+      <p class="zh" lang="nb">Halla👋</p>
+      
+    </li>
+    
+    <li class="msg" id="m-934" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Viktoria Bakken</span>
+        <time datetime="2025-03-26T16:33:05+00:00">2025-03-26 16:33 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/934" rel="noopener" title="Open on Telegram">#934 ↗</a>
+      </div>
+      
+      <p class="en">Yo</p>
+      <p class="zh" lang="nb">Halla</p>
+      
+    </li>
+    
+    <li class="msg" id="m-917" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-01-03T18:47:20+00:00">2025-01-03 18:47 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/917" rel="noopener" title="Open on Telegram">#917 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>jQrgen ⛛</b>: /dban</p>
+      
+      <p class="en">Another one bites the dust...!
+Banned Emilia.</p>
+      <p class="zh" lang="nb">Another one bites the dust...!
+Banned Emilia.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-915" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2025-01-03T18:47:19+00:00">2025-01-03 18:47 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/915" rel="noopener" title="Open on Telegram">#915 ↗</a>
+      </div>
+      
+      <p class="en">/dban</p>
+      <p class="zh" lang="nb">/dban</p>
+      <p class="note">Bot command to delete the message and ban the user.</p>
+    </li>
+    
+    <li class="msg" id="m-914" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-01-03T18:46:36+00:00">2025-01-03 18:46 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/914" rel="noopener" title="Open on Telegram">#914 ↗</a>
+      </div>
+      
+      <p class="en">Reported Emilia [7789175409] to admins.​​​​​​</p>
+      <p class="zh" lang="nb">Reported Emilia [7789175409] to admins.​​​​​​</p>
+      
+    </li>
+    
+    <li class="msg" id="m-913" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Ede</span>
+        <time datetime="2025-01-03T18:46:35+00:00">2025-01-03 18:46 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/913" rel="noopener" title="Open on Telegram">#913 ↗</a>
+      </div>
+      
+      <p class="en">/report</p>
+      <p class="zh" lang="nb">/report</p>
+      <p class="note">Bot command to report a message (likely spam) to the admins.</p>
+    </li>
+    
+    <li class="msg" id="m-910" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-12-28T22:27:38+00:00">2024-12-28 22:27 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/910" rel="noopener" title="Open on Telegram">#910 ↗</a>
+      </div>
+      
+      <p class="en">Blitz isn&#39;t for mining</p>
+      <p class="zh" lang="nb">Blitz er ikke for mining</p>
+      
+    </li>
+    
+    <li class="msg" id="m-909" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-12-28T22:27:11+00:00">2024-12-28 22:27 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/909" rel="noopener" title="Open on Telegram">#909 ↗</a>
+      </div>
+      
+      <p class="en">Ah right, that FPGA card haha</p>
+      <p class="zh" lang="nb">Åja det fpga kortet ja haha</p>
+      
+    </li>
+    
+    <li class="msg" id="m-908" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-12-18T04:53:00+00:00">2024-12-18 04:53 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/908" rel="noopener" title="Open on Telegram">#908 ↗</a>
+      </div>
+      
+      <p class="en">What&#39;s a Blitz card?</p>
+      <p class="zh" lang="nb">Hva er et Blitz card?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-907" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">roastbacitracin</span>
+        <time datetime="2024-12-17T20:35:30+00:00">2024-12-17 20:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.15">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/907" rel="noopener" title="Open on Telegram">#907 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>jQrgen ⛛</b>: pesis, that&#39;s correct. I&#39;m a member, yeah</p>
+      
+      <p class="en">Great. Do you have any &#34;inside info&#34; regarding this:
+
+hi Endo
+
+Might be a stupid question, but who will benefit from the Blitz card?
+
+ie:
+-   Can a &#34;Blitzer&#34; receive mining rewards... or
+-   Is Blitz used to speed up certain token specific tasks that will burden the main Nexa chain very much?
+
+-   or something else?
+
+❤️😃</p>
+      <p class="zh" lang="nb">Flott, Har du noen &#34;inside info&#34; angående detta:
+
+hi Endo
+
+Might be a stupid question, but who will benefit from the Blitz card?
+
+ie:
+-   Can a &#34;Blitzer&#34; receive mining rewards... or
+-   Is Blitz used to speed up certain token specific tasks that will burden the main Nexa chain very much?
+
+-   or something else?
+
+❤️😃</p>
+      <p class="note">Sender writes a Swedish/Norwegian mix, then pastes a question he asked in English elsewhere.</p>
+    </li>
+    
+    <li class="msg" id="m-906" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-10-04T04:58:22+00:00">2024-10-04 04:58 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/906" rel="noopener" title="Open on Telegram">#906 ↗</a>
+      </div>
+      
+      <p class="en">pesis, that&#39;s correct. I&#39;m a member, yeah</p>
+      <p class="zh" lang="nb">pesis, det er korrekt. Jeg er medlem altså</p>
+      
+    </li>
+    
+    <li class="msg" id="m-905" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-10-04T04:57:36+00:00">2024-10-04 04:57 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/905" rel="noopener" title="Open on Telegram">#905 ↗</a>
+      </div>
+      
+      <p class="en">Hey there, sweet brother</p>
+      <p class="zh" lang="nb">Tjena söta bror</p>
+      <p class="note">&#34;Söta bror&#34; (Swedish) is the affectionate Norwegian–Swedish nickname the two neighbours use for each other.</p>
+    </li>
+    
+    <li class="msg" id="m-904" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">roastbacitracin</span>
+        <time datetime="2024-09-30T20:10:36+00:00">2024-09-30 20:10 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.30">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/904" rel="noopener" title="Open on Telegram">#904 ↗</a>
+      </div>
+      
+      <p class="en">Hey hey there. Greetings from Tromsø.
+Hey @jQrgen, aren&#39;t you part of the Bitcoin Unlimited organization?</p>
+      <p class="zh" lang="nb">Tjena mittbena. hilsen fra Tromsø.
+Du  @jQrgen; er ikke du del av the Bitcoin Unlimited organization?</p>
+      <p class="note">&#34;Tjena mittbena&#34; is a jokey Swedish rhyming greeting, roughly &#34;heya hey&#34;.</p>
+    </li>
+    
+    <li class="msg" id="m-902" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-08-14T14:31:57+00:00">2024-08-14 14:31 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/902" rel="noopener" title="Open on Telegram">#902 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/NexaMoney/status/1823728789161173134</p>
+      <p class="zh" lang="nb">https://x.com/NexaMoney/status/1823728789161173134</p>
+      
+    </li>
+    
+    <li class="msg" id="m-900" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-08-14T11:50:36+00:00">2024-08-14 11:50 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.80">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/900" rel="noopener" title="Open on Telegram">#900 ↗</a>
+      </div>
+      
+      <p class="en">🎉 PRIZES ANNOUNCED: Take part in our Developers Challenge this month - #ScriptQuest!
+
+We&#39;re excited to announce the prizes for the ScriptQuest challenge.
+
+Nexians, this is your chance to show what you can do with NexScript.
+
+First place: $3,000 USD in $NEXA
+Second place: $2,000 USD in $NEXA
+Third place: $1,000 USD in $NEXA
+
+ScriptQuest has been extended and runs from 5 August 2024 at 11:00 (UTC) to 11 September 2024 at 11:00 (UTC).
+
+How to take part:
+
+Use our resource library and use NexScript to create an interesting use case.
+
+Get started: Create a thread in the #ScriptQuest thread on the forum https://forum.nexa.org/t/developer-prize-pool-announced-for-scriptquest/299 to submit your use case and discuss your ideas with our community.
+
+Happy building! ⚒️</p>
+      <p class="zh" lang="nb">🎉 PREMIER KUNNGJORT: Delta i vår Developers Challenge denne måneden - #ScriptQuest!
+
+Vi er begeistret for å kunngjøre premiene for ScriptQuest-utfordringen.
+
+Nexians, dette er din sjanse til å vise hva du kan gjøre med NexScript.
+
+Første plass: $3,000 USD i $NEXA  
+Andre plass: $2,000 USD i $NEXA  
+Tredje plass: $1,000 USD i $NEXA
+
+ScriptQuest har blitt forlenget og varer fra 5. august 2024 kl. 11:00 (UTC) til 11. september 2024 kl. 11:00 (UTC).
+
+Slik deltar du:
+
+Bruk vårt ressursbibliotek og bruk NexScript til å lage en interessant brukssak.
+
+Kom i gang: Opprett en tråd i #ScriptQuest-tråden på forumet https://forum.nexa.org/t/developer-prize-pool-announced-for-scriptquest/299 for å sende inn din brukssak og diskutere ideene dine med vårt samfunn.
+
+Lykke til med byggingen! ⚒️</p>
+      
+    </li>
+    
+    <li class="msg" id="m-896" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-08-08T05:15:02+00:00">2024-08-08 05:15 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/896" rel="noopener" title="Open on Telegram">#896 ↗</a>
+      </div>
+      
+      <p class="en">🎥 Welcome to episode 4 of #KnowNexa!
+
+Our core values at Nexa are decentralisation, privacy and trust.
+
+And Tailstorm is changing the game for users looking for those same values in the technology they use. 🙌
+
+👉 Share the episode on X:
+https://x.com/NexaMoney/status/1821102014761447654</p>
+      <p class="zh" lang="nb">🎥 Velkommen til episode 4 av #KnowNexa!
+
+Våre kjerneverdier hos Nexa er desentralisering, personvern og tillit.
+
+Og Tailstorm endrer spillet for brukere som leter etter de samme verdiene i teknologien de bruker. 🙌
+
+👉 Del episoden på X:
+https://x.com/NexaMoney/status/1821102014761447654</p>
+      
+    </li>
+    
+    <li class="msg" id="m-895" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Shanice Creator</span>
+        <time datetime="2024-08-06T20:59:34+00:00">2024-08-06 20:59 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/895" rel="noopener" title="Open on Telegram">#895 ↗</a>
+      </div>
+      
+      <p class="en">🫡</p>
+      <p class="zh" lang="nb">🫡</p>
+      
+    </li>
+    
+    <li class="msg" id="m-894" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-08-06T14:28:20+00:00">2024-08-06 14:28 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/894" rel="noopener" title="Open on Telegram">#894 ↗</a>
+      </div>
+      
+      <p class="en">🫡</p>
+      <p class="zh" lang="nb">🫡</p>
+      
+    </li>
+    
+    <li class="msg" id="m-892" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2024-07-23T08:41:29+00:00">2024-07-23 08:41 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/892" rel="noopener" title="Open on Telegram">#892 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/AusCryptoCon/status/1815659460968517976?t=wmSUCd7ogv7lFMmoF_kbDA&amp;s=35</p>
+      <p class="zh" lang="nb">https://x.com/AusCryptoCon/status/1815659460968517976?t=wmSUCd7ogv7lFMmoF_kbDA&amp;s=35</p>
+      
+    </li>
+    
+    <li class="msg" id="m-891" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-07-23T07:21:47+00:00">2024-07-23 07:21 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.35">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/891" rel="noopener" title="Open on Telegram">#891 ↗</a>
+      </div>
+      
+      <p class="en">Theatre sponsor and all that, nice</p>
+      <p class="zh" lang="nb">Teatersponsor og greier ja</p>
+      <p class="note">Casual, slightly amused approval; &#34;og greier&#34; = &#34;and stuff&#34;.</p>
+    </li>
+    
+    <li class="msg" id="m-889" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-07-23T07:12:21+00:00">2024-07-23 07:12 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/889" rel="noopener" title="Open on Telegram">#889 ↗</a>
+      </div>
+      
+      <p class="en">🚨JUST CONFIRMED:
+
+Nexa is an official theatre sponsor for AusCryptoCon 2024 🎉
+
+Nexians, you can use the discount code NEXA at checkout to save on tickets: AusCryptoCon.com
+
+Let&#39;s spread the word: https://x.com/auscryptocon/status/1815641166349738370?s=46</p>
+      <p class="zh" lang="nb">🚨NETTOPP BEKREFTET:
+
+Nexa er en offisiell teatersponsor for AusCryptoCon 2024 🎉
+
+Nexians, dere kan bruke rabattkoden NEXA ved utsjekking for å spare på billetter: AusCryptoCon.com
+
+La oss spre ordet: https://x.com/auscryptocon/status/1815641166349738370?s=46</p>
+      
+    </li>
+    
+    <li class="msg" id="m-888" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Ede</span>
+        <time datetime="2024-07-23T06:37:23+00:00">2024-07-23 06:37 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/888" rel="noopener" title="Open on Telegram">#888 ↗</a>
+      </div>
+      
+      <p class="en">The way I understand him, he&#39;s saying that Norwegian isn&#39;t easy to learn 😁</p>
+      <p class="zh" lang="nb">Som jag förstår han säger att det är inte lätt att lära sig norska 😁</p>
+      <p class="note">Written in Swedish.</p>
+    </li>
+    
+    <li class="msg" id="m-887" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-07-23T06:18:16+00:00">2024-07-23 06:18 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/887" rel="noopener" title="Open on Telegram">#887 ↗</a>
+      </div>
+      
+      <p class="en">Huh?</p>
+      <p class="zh" lang="nb">Hæ?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-886" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-07-23T06:16:38+00:00">2024-07-23 06:16 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/886" rel="noopener" title="Open on Telegram">#886 ↗</a>
+      </div>
+      
+      <p class="en">This one&#39;s not going to be easy to learn</p>
+      <p class="zh" lang="nb">Denne blir ikke lett å lære</p>
+      
+    </li>
+    
+    <li class="msg" id="m-885" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-07-23T06:08:13+00:00">2024-07-23 06:08 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/885" rel="noopener" title="Open on Telegram">#885 ↗</a>
+      </div>
+      
+      <p class="en">Mornin&#39; yeah</p>
+      <p class="zh" lang="nb">Mårn ja</p>
+      <p class="note">&#34;Mårn&#34; is a clipped, colloquial form of &#34;god morgen&#34;.</p>
+    </li>
+    
+    <li class="msg" id="m-884" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-07-23T06:03:28+00:00">2024-07-23 06:03 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/884" rel="noopener" title="Open on Telegram">#884 ↗</a>
+      </div>
+      
+      <p class="en">Good morning</p>
+      <p class="zh" lang="nb">God morgen</p>
+      
+    </li>
+    
+    <li class="msg" id="m-883" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-07-23T06:01:05+00:00">2024-07-23 06:01 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/883" rel="noopener" title="Open on Telegram">#883 ↗</a>
+      </div>
+      
+      <p class="en">Good morning</p>
+      <p class="zh" lang="nb">God morgen</p>
+      
+    </li>
+    
+    <li class="msg" id="m-881" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2024-07-21T17:34:28+00:00">2024-07-21 17:34 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/881" rel="noopener" title="Open on Telegram">#881 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>jQrgen ⛛</b>: /dban</p>
+      
+      <p class="en">Another one bites the dust...!
+Banned Mark.</p>
+      <p class="zh" lang="nb">Another one bites the dust...!
+Banned Mark.</p>
+      <p class="note">Automated bot confirmation of a ban, quoting the Queen song.</p>
+    </li>
+    
+    <li class="msg" id="m-879" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-07-21T17:34:27+00:00">2024-07-21 17:34 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/879" rel="noopener" title="Open on Telegram">#879 ↗</a>
+      </div>
+      
+      <p class="en">/dban</p>
+      <p class="zh" lang="nb">/dban</p>
+      <p class="note">Moderation command: delete message and ban the user.</p>
+    </li>
+    
+    <li class="msg" id="m-876" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-07-19T06:27:47+00:00">2024-07-19 06:27 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/876" rel="noopener" title="Open on Telegram">#876 ↗</a>
+      </div>
+      
+      <p class="en">Gm!</p>
+      <p class="zh" lang="nb">Gm!</p>
+      
+    </li>
+    
+    <li class="msg" id="m-875" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2024-07-19T06:20:01+00:00">2024-07-19 06:20 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/875" rel="noopener" title="Open on Telegram">#875 ↗</a>
+      </div>
+      
+      <p class="en">GM💸</p>
+      <p class="zh" lang="nb">GM💸</p>
+      <p class="note">&#34;GM&#34; = &#34;good morning&#34;, standard crypto-community greeting.</p>
+    </li>
+    
+    <li class="msg" id="m-874" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-07-19T05:15:36+00:00">2024-07-19 05:15 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/874" rel="noopener" title="Open on Telegram">#874 ↗</a>
+      </div>
+      
+      <p class="en">Hey there</p>
+      <p class="zh" lang="nb">Halla</p>
+      <p class="note">&#34;Halla&#34; is a casual Norwegian greeting, like &#34;yo&#34;/&#34;hey&#34;.</p>
+    </li>
+    
+    <li class="msg" id="m-869" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-06-17T15:04:29+00:00">2024-06-17 15:04 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/869" rel="noopener" title="Open on Telegram">#869 ↗</a>
+      </div>
+      
+      <p class="en">Thanks, Nexian :)</p>
+      <p class="zh" lang="nb">Thanks, Nexian :)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-866" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-06-17T15:02:18+00:00">2024-06-17 15:02 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/866" rel="noopener" title="Open on Telegram">#866 ↗</a>
+      </div>
+      
+      <p class="en">Thanks</p>
+      <p class="zh" lang="nb">Thanks</p>
+      
+    </li>
+    
+    <li class="msg" id="m-864" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-06-17T15:01:34+00:00">2024-06-17 15:01 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/864" rel="noopener" title="Open on Telegram">#864 ↗</a>
+      </div>
+      
+      <p class="en">All right? Do you have a link to the event :)</p>
+      <p class="zh" lang="nb">All right? Do you have a link to the event :)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-862" data-sent="neutral" data-topics="6">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-06-17T12:02:54+00:00">2024-06-17 12:02 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/862" rel="noopener" title="Open on Telegram">#862 ↗</a>
+      </div>
+      
+      <p class="en">Essentially Liberstad is still legally Norway and I wonder what the exit plan is?</p>
+      <p class="zh" lang="nb">Essentially Liberstad is still legally Norway and I wonder what the exit plan is?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-861" data-sent="neutral" data-topics="6">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-06-17T12:02:17+00:00">2024-06-17 12:02 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/861" rel="noopener" title="Open on Telegram">#861 ↗</a>
+      </div>
+      
+      <p class="en">&#34;Despite having the aim of becoming a future private city, there have been no negotiations with or concessions from Norway&#39;s government. Therefore, on paper, Norway&#39;s law still fully applies in Liberstad.&#34;</p>
+      <p class="zh" lang="nb">&#34;Despite having the aim of becoming a future private city, there have been no negotiations with or concessions from Norway’s government. Therefore, on paper, Norway’s law still fully applies in Liberstad.&#34;</p>
+      <p class="note">Liberstad is a libertarian private-city project in southern Norway.</p>
+    </li>
+    
+    <li class="msg" id="m-860" data-sent="neutral" data-topics="6">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-06-17T12:01:46+00:00">2024-06-17 12:01 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/860" rel="noopener" title="Open on Telegram">#860 ↗</a>
+      </div>
+      
+      <p class="en">Nice?</p>
+      <p class="zh" lang="nb">Nice?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-856" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-06-08T06:06:18+00:00">2024-06-08 06:06 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.15">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/856" rel="noopener" title="Open on Telegram">#856 ↗</a>
+      </div>
+      
+      <p class="en">There&#39;s a bunch of people going there from Norway at least</p>
+      <p class="zh" lang="nb">Det er en gjeng som skal dit fra Norge ihvertfall</p>
+      
+    </li>
+    
+    <li class="msg" id="m-853" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Ede</span>
+        <time datetime="2024-06-07T21:45:27+00:00">2024-06-07 21:45 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.15">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/853" rel="noopener" title="Open on Telegram">#853 ↗</a>
+      </div>
+      
+      <p class="en">Okay, I&#39;ll check if I have time</p>
+      <p class="zh" lang="nb">Okej kollar om jag hinner</p>
+      
+    </li>
+    
+    <li class="msg" id="m-852" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Ede</span>
+        <time datetime="2024-06-07T21:34:04+00:00">2024-06-07 21:34 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/852" rel="noopener" title="Open on Telegram">#852 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>jQrgen ⛛</b>: Anyone going to this? https://www.nordicblockchain.com/conference2024</p>
+      
+      <p class="en">Don&#39;t actually know. Are you going?</p>
+      <p class="zh" lang="nb">Vet inte faktiskt. Ska du med?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-851" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-06-05T20:10:42+00:00">2024-06-05 20:10 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/851" rel="noopener" title="Open on Telegram">#851 ↗</a>
+      </div>
+      
+      <p class="en">Anyone going to this? https://www.nordicblockchain.com/conference2024</p>
+      <p class="zh" lang="nb">Noen som skal hit? https://www.nordicblockchain.com/conference2024</p>
+      
+    </li>
+    
+    <li class="msg" id="m-845" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2024-05-16T10:28:42+00:00">2024-05-16 10:28 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/845" rel="noopener" title="Open on Telegram">#845 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/NexaMoney/status/1791052574965068191?t=XvIDa2FgnQR190TUeCn-Ew&amp;s=35</p>
+      <p class="zh" lang="nb">https://x.com/NexaMoney/status/1791052574965068191?t=XvIDa2FgnQR190TUeCn-Ew&amp;s=35</p>
+      
+    </li>
+    
+    <li class="msg" id="m-844" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-05-09T08:44:23+00:00">2024-05-09 08:44 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/844" rel="noopener" title="Open on Telegram">#844 ↗</a>
+      </div>
+      
+      <p class="en">Wally Wallet for iPhone is live on the App Store
+
+https://apps.apple.com/no/app/wally-nexa-wallet/id6469619075
+
+https://x.com/jQrgensn/status/1788473026373107879</p>
+      <p class="zh" lang="nb">Wally Wallet for iPhone is live on the App Store
+
+https://apps.apple.com/no/app/wally-nexa-wallet/id6469619075
+
+https://x.com/jQrgensn/status/1788473026373107879</p>
+      
+    </li>
+    
+    <li class="msg" id="m-843" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-27T18:34:52+00:00">2024-04-27 18:34 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/843" rel="noopener" title="Open on Telegram">#843 ↗</a>
+      </div>
+      
+      <p class="en">Thanks for sharing ;)</p>
+      <p class="zh" lang="nb">Takk for at du delte ;)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-842" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-27T18:34:36+00:00">2024-04-27 18:34 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/842" rel="noopener" title="Open on Telegram">#842 ↗</a>
+      </div>
+      
+      <p class="en">Revolut has NOK, doesn&#39;t it?</p>
+      <p class="zh" lang="nb">Revolut har vel NOK?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-841" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-27T18:34:32+00:00">2024-04-27 18:34 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/841" rel="noopener" title="Open on Telegram">#841 ↗</a>
+      </div>
+      
+      <p class="en">Okok</p>
+      <p class="zh" lang="nb">Okok</p>
+      
+    </li>
+    
+    <li class="msg" id="m-840" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">roastbacitracin</span>
+        <time datetime="2024-04-27T15:27:44+00:00">2024-04-27 15:27 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.50">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_nor/840" rel="noopener" title="Open on Telegram">#840 ↗</a>
+      </div>
+      
+      <p class="en">I&#39;ve actually only cashed out once. Early December 2021.
+
+Sparebank1 locked my account for maybe three weeks, but I was in touch with a mortgage advisor during that time, so he helped me get the account opened again. Barely a year later I did get a warning when I transferred some money to Kraken, saying they didn&#39;t want to be involved in cryptocurrency transfers.
+
+DNB a bit worse. Locked my account without telling me. Came as a surprise when I was going to use my card in everyday life. My DNB account was probably under surveillance and blocked after 500,000 NOK in transfers. No one to turn to. Customer service informs me that that department can&#39;t be contacted.
+
+It took about two months to get the account unlocked after starting the long formal complaint process that was going to end up involving the financial supervisory authority.
+
+I have a feeling it&#39;s not going to get any easier in the autumn of 2025 when the next withdrawal will happen. Heard a lot of good things about Revolut, but it is a foreign bank, and if I want to use NOK here in Norway I&#39;m worried the same problem will come up :(</p>
+      <p class="zh" lang="nb">Jag har egentlig bare cashat ut en gang. Tidlig desember 2021. 
+
+Sparebank1 låste kontot mitt under kanskje tre uker, men jag var i kontakt med en boliglånshandlegger under den tiden så han hjelpte meg før å få kontot åpnet igjen. Ett knappt år etterpå fick jeg dokk en varning når jeg overförte litt penger till Kraken att de ikke ville vara delaktiga i kryptovalutaoverføringer.
+
+DNB litt värre. Låste kontot mitt utan att gi meg beskjed. Kom som en overraskning når jeg skulle bruke kortet mitt i vardagen. Mitt konto i DNB var sannsynligvis under oppsikt og blokkert efter 500.000 nok i transfereringer. Ingen att henvende meg til. Kundeservise opplyser meg om att den avdelingen ikke går att kontakta. 
+
+Det tog nok sirka to månader att låsa opp kontot etter att ha startet den lange formelle klageveien som skulle kommit att involvera banktillsynet.
+
+Jeg har en følelse att det ikke kommer å bli lettare under høsten 2025 når neste uttag vil skje. Hørt mye gott om Revolut, men det er ju en utenlandsk bank og hvis jeg vill bruke NOK  her i Norge så er jeg urolig att samma problem vil oppstå :(</p>
+      
+    </li>
+    
+    <li class="msg" id="m-838" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-24T04:53:52+00:00">2024-04-24 04:53 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/838" rel="noopener" title="Open on Telegram">#838 ↗</a>
+      </div>
+      
+      <p class="en">Do you have more information about your case?</p>
+      <p class="zh" lang="nb">Har du mer informasjon om saken din?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-837" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-23T21:29:01+00:00">2024-04-23 21:29 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/837" rel="noopener" title="Open on Telegram">#837 ↗</a>
+      </div>
+      
+      <p class="en">Are the banks hostile? :))</p>
+      <p class="zh" lang="nb">Er bankene hostile? :))</p>
+      
+    </li>
+    
+    <li class="msg" id="m-835" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">roastbacitracin</span>
+        <time datetime="2024-04-19T21:02:28+00:00">2024-04-19 21:02 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/835" rel="noopener" title="Open on Telegram">#835 ↗</a>
+      </div>
+      
+      <p class="en">I&#39;m going to go a bit off topic here, hope that&#39;s ok 🤗
+
+Is anyone using a Norwegian bank for cashing out to FIAT that isn&#39;t so hostile?</p>
+      <p class="zh" lang="nb">Jeg vil gå litt off topic här, håper det er ok 🤗
+
+Er det noen som bruker norsk bank för att ta ut FIAT til som ikke er så hostile?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-834" data-sent="mixed" data-topics="3">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-17T15:40:12+00:00">2024-04-17 15:40 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_nor/834" rel="noopener" title="Open on Telegram">#834 ↗</a>
+      </div>
+      
+      <p class="en">Selling a ticket to the (BTC) halvening festival this weekend at 50% off!
+
+Halvingfestival.com
+
+
+Unfortunately it doesn&#39;t work out for me to go to the halving festival after all</p>
+      <p class="zh" lang="nb">Selger billett til (BTC) halvening festival i helga med 50% avslag!
+
+Halvingfestival.com
+
+
+Det passer ikke å dra på halvering festival allikevel for min del dessverre</p>
+      
+    </li>
+    
+    <li class="msg" id="m-832" data-sent="mixed" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-08T21:46:38+00:00">2024-04-08 21:46 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.25">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_nor/832" rel="noopener" title="Open on Telegram">#832 ↗</a>
+      </div>
+      
+      <p class="en">Fun that there&#39;s a community, but I have to switch off Telegram and Discord when I need to concentrate</p>
+      <p class="zh" lang="nb">Gøy at det finnes et community men må slå av Telegram og Discord når jeg skal konsentrere meg</p>
+      
+    </li>
+    
+    <li class="msg" id="m-831" data-sent="mixed" data-topics="3">
+      <div class="head">
+        <span class="who">roastbacitracin</span>
+        <time datetime="2024-04-08T21:34:30+00:00">2024-04-08 21:34 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.05">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_nor/831" rel="noopener" title="Open on Telegram">#831 ↗</a>
+      </div>
+      
+      <p class="en">Heh, I still haven&#39;t gotten into Solidity and my coding career ended in 2015. Count me out :D</p>
+      <p class="zh" lang="nb">Heh, jeg har fortsatt inte satt meg in i Solidity og min koderkarriäre sluttet i 2015. Count me out :D</p>
+      
+    </li>
+    
+    <li class="msg" id="m-830" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-08T21:31:34+00:00">2024-04-08 21:31 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/830" rel="noopener" title="Open on Telegram">#830 ↗</a>
+      </div>
+      
+      <p class="en">Whenever the hackathon finally happens, we were thinking of gathering a bunch of people in Oslo, but that&#39;s probably a while off yet!</p>
+      <p class="zh" lang="nb">Når omsider blir hackathon så tenkte vi å samle en gjeng i Oslo, men det blir nok en stund til!</p>
+      
+    </li>
+    
+    <li class="msg" id="m-829" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-08T21:28:55+00:00">2024-04-08 21:28 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/829" rel="noopener" title="Open on Telegram">#829 ↗</a>
+      </div>
+      
+      <p class="en">Yep</p>
+      <p class="zh" lang="nb">Jepp</p>
+      
+    </li>
+    
+    <li class="msg" id="m-828" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-08T21:28:45+00:00">2024-04-08 21:28 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.35">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/828" rel="noopener" title="Open on Telegram">#828 ↗</a>
+      </div>
+      
+      <p class="en">Okay, nice then</p>
+      <p class="zh" lang="nb">Okay nice da</p>
+      
+    </li>
+    
+    <li class="msg" id="m-827" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">roastbacitracin</span>
+        <time datetime="2024-04-08T21:06:41+00:00">2024-04-08 21:06 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.15">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/827" rel="noopener" title="Open on Telegram">#827 ↗</a>
+      </div>
+      
+      <p class="en">20 years in Norway :D
+
+If anyone has objections, I&#39;m always in the main chat
+
+Say Jørgen. You&#39;re very active on Telegram. Are you part of BU too?</p>
+      <p class="zh" lang="nb">20 år i Noreg :D
+
+Hvis noen har inändningar så finns jeg alltid i the main chat
+
+Du Jørgen. Du er veldig aktiv på Telegram. Er du også del av BU?</p>
+      <p class="note">BU = Bitcoin Unlimited, the organisation behind Nexa.</p>
+    </li>
+    
+    <li class="msg" id="m-826" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-08T21:02:02+00:00">2024-04-08 21:02 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/826" rel="noopener" title="Open on Telegram">#826 ↗</a>
+      </div>
+      
+      <p class="en">That&#39;ll be just fine</p>
+      <p class="zh" lang="nb">Det går nok fint</p>
+      
+    </li>
+    
+    <li class="msg" id="m-825" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">roastbacitracin</span>
+        <time datetime="2024-04-08T20:56:05+00:00">2024-04-08 20:56 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.35">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/825" rel="noopener" title="Open on Telegram">#825 ↗</a>
+      </div>
+      
+      <p class="en">@jQrgen Hey, I stopped by here yesterday. Figured I still don&#39;t have Norwegian citizenship, so I left. I&#39;m actually Swedish :D</p>
+      <p class="zh" lang="nb">@jQrgen Tjena, var innom her igår. Tenkte att jeg fortsatt ikke har norskt statsborgerskap så jeg lämna. Er egentlig svensk jeg :D</p>
+      <p class="note">Written in a Swedish-Norwegian mix; &#34;Tjena&#34; is casual Swedish for &#34;hey&#34;.</p>
+    </li>
+    
+    <li class="msg" id="m-824" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-08T20:54:59+00:00">2024-04-08 20:54 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/824" rel="noopener" title="Open on Telegram">#824 ↗</a>
+      </div>
+      
+      <p class="en">Welcome</p>
+      <p class="zh" lang="nb">Velkommen</p>
+      
+    </li>
+    
+    <li class="msg" id="m-823" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-08T20:54:57+00:00">2024-04-08 20:54 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/823" rel="noopener" title="Open on Telegram">#823 ↗</a>
+      </div>
+      
+      <p class="en">H4ll4</p>
+      <p class="zh" lang="nb">H4ll4</p>
+      <p class="note">Leetspeak spelling of &#34;halla&#34;, a casual Norwegian &#34;hey&#34;.</p>
+    </li>
+    
+    <li class="msg" id="m-821" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-08T19:07:34+00:00">2024-04-08 19:07 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.20">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/821" rel="noopener" title="Open on Telegram">#821 ↗</a>
+      </div>
+      
+      <p class="en">Join the Wally Nexa Wallet BETA for iPhone
+
+https://testflight.apple.com/join/AznUHg38</p>
+      <p class="zh" lang="nb">Join the Wally Nexa Wallet BETA for iPhone
+
+https://testflight.apple.com/join/AznUHg38</p>
+      
+    </li>
+    
+    <li class="msg" id="m-820" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-04-08T14:12:36+00:00">2024-04-08 14:12 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/820" rel="noopener" title="Open on Telegram">#820 ↗</a>
+      </div>
+      
+      <p class="en">https://twitter.com/ultrasoundape/status/1777323707628708047?t=zIYZ7XSuEIvLYn-k7kAemQ&amp;s=19</p>
+      <p class="zh" lang="nb">https://twitter.com/ultrasoundape/status/1777323707628708047?t=zIYZ7XSuEIvLYn-k7kAemQ&amp;s=19</p>
+      
+    </li>
+    
+    <li class="msg" id="m-771" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-05T23:19:15+00:00">2024-04-05 23:19 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/771" rel="noopener" title="Open on Telegram">#771 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/jQrgensn/status/1776388525010600313</p>
+      <p class="zh" lang="nb">https://x.com/jQrgensn/status/1776388525010600313</p>
+      
+    </li>
+    
+    <li class="msg" id="m-768" data-sent="negative" data-topics="0">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-05T14:09:20+00:00">2024-04-05 14:09 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_nor/768" rel="noopener" title="Open on Telegram">#768 ↗</a>
+      </div>
+      
+      <p class="en">Does he know that he&#39;s going to die and that he has limited time left to live?</p>
+      <p class="zh" lang="nb">Vet han at han skal dø og at han har begrenset tid igjen å leve?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-767" data-sent="negative" data-topics="0">
+      <div class="head">
+        <span class="who">Bbob</span>
+        <time datetime="2024-04-05T14:07:44+00:00">2024-04-05 14:07 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_nor/767" rel="noopener" title="Open on Telegram">#767 ↗</a>
+      </div>
+      
+      <p class="en">much easier to complain online</p>
+      <p class="zh" lang="nb">mye enklere å klage online</p>
+      
+    </li>
+    
+    <li class="msg" id="m-766" data-sent="negative" data-topics="0">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-05T14:04:53+00:00">2024-04-05 14:04 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.60">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_nor/766" rel="noopener" title="Open on Telegram">#766 ↗</a>
+      </div>
+      
+      <p class="en">Should have gotten treatment</p>
+      <p class="zh" lang="nb">Burde gått på behandling</p>
+      
+    </li>
+    
+    <li class="msg" id="m-765" data-sent="negative" data-topics="0">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-05T14:04:10+00:00">2024-04-05 14:04 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.50">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_nor/765" rel="noopener" title="Open on Telegram">#765 ↗</a>
+      </div>
+      
+      <p class="en">Petty</p>
+      <p class="zh" lang="nb">Smålig</p>
+      
+    </li>
+    
+    <li class="msg" id="m-764" data-sent="negative" data-topics="0">
+      <div class="head">
+        <span class="who">Bbob</span>
+        <time datetime="2024-04-05T14:02:46+00:00">2024-04-05 14:02 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_nor/764" rel="noopener" title="Open on Telegram">#764 ↗</a>
+      </div>
+      
+      <p class="en">he probably doesn&#39;t know what he stands for himself anymore - it used to be that cyber/allstar was supposed to come back as community manager, but once that was no longer a possibility it just turned into general rage against the injustices of the universe.</p>
+      <p class="zh" lang="nb">han vet vel ikke selv hva han står for lenger - det pleide å være at cyber/allstar skulle komme tilbake som community manager, men etter at det ikke lenger var noen mulighet så ble det bare generelt raseri mot universets urettferdigheter.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-763" data-sent="negative" data-topics="0">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-05T14:01:01+00:00">2024-04-05 14:01 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_nor/763" rel="noopener" title="Open on Telegram">#763 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Bbob</b>: if only he&#39;d put that energy into something productive...</p>
+      
+      <p class="en">Wonder why he hides behind anonymity? Can&#39;t he put his face to what he stands for?</p>
+      <p class="zh" lang="nb">Lurer på hvorfor han gjemmer seg bak anonymitet? Kan han ikke putte fjeset sitt på det han står for?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-762" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2024-04-05T13:59:50+00:00">2024-04-05 13:59 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/762" rel="noopener" title="Open on Telegram">#762 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>jQrgen ⛛</b>: /dban</p>
+      
+      <p class="en">Another one bites the dust...!
+Banned M || log1.</p>
+      <p class="zh" lang="nb">Another one bites the dust...!
+Banned M || log1.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-761" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-05T13:59:50+00:00">2024-04-05 13:59 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/761" rel="noopener" title="Open on Telegram">#761 ↗</a>
+      </div>
+      
+      <p class="en">/dban</p>
+      <p class="zh" lang="nb">/dban</p>
+      
+    </li>
+    
+    <li class="msg" id="m-760" data-sent="negative" data-topics="0">
+      <div class="head">
+        <span class="who">Bbob</span>
+        <time datetime="2024-04-05T13:59:12+00:00">2024-04-05 13:59 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_nor/760" rel="noopener" title="Open on Telegram">#760 ↗</a>
+      </div>
+      
+      <p class="en">if only he&#39;d put that energy into something productive...</p>
+      <p class="zh" lang="nb">hadde han bare brukt energien på noe produktivt...</p>
+      
+    </li>
+    
+    <li class="msg" id="m-759" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-05T13:57:55+00:00">2024-04-05 13:57 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_nor/759" rel="noopener" title="Open on Telegram">#759 ↗</a>
+      </div>
+      
+      <p class="en">A persistent fellow, you&#39;ve got to respect that!</p>
+      <p class="zh" lang="nb">En standhaftig kar, det står det respekt av!</p>
+      <p class="note">Sarcastic &#34;respect&#34; for the troll&#39;s persistence.</p>
+    </li>
+    
+    <li class="msg" id="m-758" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-05T13:57:42+00:00">2024-04-05 13:57 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_nor/758" rel="noopener" title="Open on Telegram">#758 ↗</a>
+      </div>
+      
+      <p class="en">Hahaha</p>
+      <p class="zh" lang="nb">Hahaha</p>
+      
+    </li>
+    
+    <li class="msg" id="m-757" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">Bbob</span>
+        <time datetime="2024-04-05T13:57:15+00:00">2024-04-05 13:57 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.30">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_nor/757" rel="noopener" title="Open on Telegram">#757 ↗</a>
+      </div>
+      
+      <p class="en">good old Hyper never gets tired of making new accounts just to complain - the man is persistent 😉</p>
+      <p class="zh" lang="nb">gode gamle Hyper går nok aldri lei av å lage nye brukere for å klage - mannen er standhaftig 😉</p>
+      <p class="note">Sarcastic; &#34;Hyper&#34; is a known serial troll in the community.</p>
+    </li>
+    
+    <li class="msg" id="m-756" data-sent="negative" data-topics="0">
+      <div class="head">
+        <span class="who">Ede</span>
+        <time datetime="2024-04-05T13:50:19+00:00">2024-04-05 13:50 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.50">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_nor/756" rel="noopener" title="Open on Telegram">#756 ↗</a>
+      </div>
+      
+      <p class="en">Ah, they just want to create chaos and conflict. Sad that they don&#39;t have anything better to do...</p>
+      <p class="zh" lang="nb">Aa dem vill bara skapa kaos och konflikter. Ledsen att dem inte har nåt bättre att göra...</p>
+      <p class="note">Written in Swedish.</p>
+    </li>
+    
+    <li class="msg" id="m-755" data-sent="negative" data-topics="0">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-05T13:49:05+00:00">2024-04-05 13:49 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.50">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_nor/755" rel="noopener" title="Open on Telegram">#755 ↗</a>
+      </div>
+      
+      <p class="en">Can&#39;t be bothered spending energy on anonymous, manic people online</p>
+      <p class="zh" lang="nb">Orker ikke å bruke energi på anonyme, maniske folk online</p>
+      
+    </li>
+    
+    <li class="msg" id="m-754" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2024-04-05T13:48:19+00:00">2024-04-05 13:48 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/754" rel="noopener" title="Open on Telegram">#754 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>jQrgen ⛛</b>: /dban</p>
+      
+      <p class="en">Another one bites the dust...!
+Banned M.</p>
+      <p class="zh" lang="nb">Another one bites the dust...!
+Banned M.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-753" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-05T13:48:19+00:00">2024-04-05 13:48 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/753" rel="noopener" title="Open on Telegram">#753 ↗</a>
+      </div>
+      
+      <p class="en">/dban</p>
+      <p class="zh" lang="nb">/dban</p>
+      
+    </li>
+    
+    <li class="msg" id="m-752" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-05T13:47:51+00:00">2024-04-05 13:47 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.20">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_nor/752" rel="noopener" title="Open on Telegram">#752 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Ede</b>: He seems to be pretty mad 😡 lol</p>
+      
+      <p class="en">Funny guy...</p>
+      <p class="zh" lang="nb">Artig fyr...</p>
+      <p class="note">Said sarcastically about the banned user.</p>
+    </li>
+    
+    <li class="msg" id="m-750" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2024-04-05T13:47:43+00:00">2024-04-05 13:47 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/750" rel="noopener" title="Open on Telegram">#750 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>jQrgen ⛛</b>: /dban</p>
+      
+      <p class="en">Another one bites the dust...!
+Banned M.</p>
+      <p class="zh" lang="nb">Another one bites the dust...!
+Banned M.</p>
+      <p class="note">Automated message from the moderation bot.</p>
+    </li>
+    
+    <li class="msg" id="m-748" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2024-04-05T13:47:43+00:00">2024-04-05 13:47 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_nor/748" rel="noopener" title="Open on Telegram">#748 ↗</a>
+      </div>
+      
+      <p class="en">/dban</p>
+      <p class="zh" lang="nb">/dban</p>
+      <p class="note">Moderation bot command: delete message and ban the user.</p>
+    </li>
+    
+    <li class="msg" id="m-747" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">Ede</span>
+        <time datetime="2024-04-05T13:47:30+00:00">2024-04-05 13:47 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_nor/747" rel="noopener" title="Open on Telegram">#747 ↗</a>
+      </div>
+      
+      <p class="en">He seems to be pretty mad 😡 lol</p>
+      <p class="zh" lang="nb">Han verkar att vara ganska mad 😡 lol</p>
+      <p class="note">Written in Swedish; refers to a user who was ranting in the chat.</p>
+    </li>
+    
+  </ol>
+  <p class="empty" id="empty">No messages match these filters.</p>
+</section>
+
+<footer>
+  <p>Translations, sentiment scores and the summary are generated automatically by claude-opus-5 and may contain mistakes. Original messages belong to their authors on Telegram.</p>
+  <p><a href="data.json">Raw data (JSON)</a></p>
+</footer>
+
+</div>
+<script>
+(function () {
+  var msgs = Array.prototype.slice.call(document.querySelectorAll('.msg'));
+  var sent = 'all', topic = null;
+  var topicNames = ["Banning a persistent troll", "Norwegian banks hostile to crypto", "Wally wallet and Nexa announcements", "Events and meetups", "Newcomers and small talk", "Blitz FPGA card question", "Liberstad legal status"];
+
+  function apply() {
+    var shown = 0;
+    msgs.forEach(function (m) {
+      var ok = (sent === 'all' || m.dataset.sent === sent) &&
+               (topic === null || (' ' + m.dataset.topics + ' ').indexOf(' ' + topic + ' ') !== -1);
+      m.hidden = !ok; if (ok) shown++;
+    });
+    document.getElementById('empty').classList.toggle('on', shown === 0);
+    var bar = document.getElementById('active-topic');
+    bar.classList.toggle('on', topic !== null);
+    if (topic !== null) document.getElementById('active-topic-name').textContent = topicNames[topic] + ' (' + shown + ')';
+    document.querySelectorAll('.topic').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.topic === String(topic))); });
+  }
+  document.querySelectorAll('.fbtn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      sent = b.dataset.sent;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      apply();
+    });
+  });
+  document.querySelectorAll('.topic').forEach(function (b) {
+    b.addEventListener('click', function () {
+      topic = (String(topic) === b.dataset.topic) ? null : Number(b.dataset.topic);
+      apply();
+      if (topic !== null) document.getElementById('messages').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  document.getElementById('clear-topic').addEventListener('click', function () { topic = null; apply(); });
+
+  var zh = document.getElementById('show-zh');
+  try { if (localStorage.getItem('showZh') === '0') zh.checked = false; } catch (e) {}
+  function syncZh() {
+    document.body.classList.toggle('hide-zh', !zh.checked);
+    try { localStorage.setItem('showZh', zh.checked ? '1' : '0'); } catch (e) {}
+  }
+  zh.addEventListener('change', syncZh); syncZh();
+
+  // Show timestamps in the viewer's local time zone.
+  var fmt = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+  document.querySelectorAll('time[datetime]').forEach(function (t) {
+    var d = new Date(t.getAttribute('datetime'));
+    if (!isNaN(d)) { t.title = t.textContent; t.textContent = fmt.format(d); }
+  });
+
+  // Highlight links: reveal the target even if filtered out, then flash it.
+  document.querySelectorAll('.hl a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      sent = 'all'; topic = null;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.sent === 'all')); });
+      apply();
+      var el = document.querySelector(a.getAttribute('href'));
+      if (el) { el.classList.add('flash'); setTimeout(function () { el.classList.remove('flash'); }, 1600); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

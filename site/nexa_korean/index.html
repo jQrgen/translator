@@ -1,0 +1,1797 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexa Korean — English</title>
+<meta name="description" content="A slow-dying Korean Nexa group: price despair, mining-vs-buying advice, wallet headaches, and two flare-ups">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --line: #e1e0d9; --ring: rgba(11,11,11,.10); --wash: rgba(11,11,11,.04);
+  --accent: #2a78d6; --accent-ink: #1c5cab;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #c98500; --neu: #898781; --mid: #f0efec;
+  --zh: #52514e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+    --accent: #3987e5; --accent-ink: #86b6ef;
+    --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+    --zh: #c3c2b7;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+  --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+  --accent: #3987e5; --accent-ink: #86b6ef;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+  --zh: #c3c2b7;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--page); color: var(--ink);
+  font: 15px/1.55 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  padding-inline: clamp(16px, 4vw, 32px); padding-block: 0 64px;
+}
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 900px; margin: 0 auto; }
+header.top { padding-block: 40px 24px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+h1 { font-size: clamp(24px, 4vw, 34px); line-height: 1.15; margin: 0 0 10px; letter-spacing: -.01em; }
+.meta { color: var(--ink-2); font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; }
+.meta span::before { content: ""; }
+h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; font-weight: 600; }
+section { padding-block: 32px; }
+h2 .sub { font-weight: 400; letter-spacing: 0; text-transform: none; }
+section + section { border-top: 1px solid var(--line); }
+.headline { font-size: clamp(19px, 2.6vw, 24px); line-height: 1.3; font-weight: 600; margin: 0 0 12px; letter-spacing: -.01em; }
+.lede { font-size: 16px; color: var(--ink-2); margin: 0; max-width: 70ch; }
+.grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.topics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.topic { width: 100%; text-align: left; background: transparent; border: 1px solid transparent; border-radius: 10px; padding: 12px 14px; color: inherit; font: inherit; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; }
+.topic:hover { background: var(--wash); }
+.topic[aria-pressed="true"] { border-color: var(--accent); background: var(--wash); }
+.topic .t { font-weight: 600; }
+.topic .n { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.topic .s { grid-column: 1 / -1; color: var(--ink-2); font-size: 14px; }
+.mood-label { font-size: 26px; font-weight: 700; letter-spacing: -.01em; margin: 0 0 4px; }
+.mood-score { color: var(--muted); font-size: 13px; margin: 0 0 12px; font-variant-numeric: tabular-nums; }
+.meter { position: relative; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--neg), var(--mid) 50%, var(--pos)); margin: 6px 0 4px; }
+.meter i { position: absolute; top: 50%; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 3px solid var(--ink); transform: translate(-50%, -50%); box-shadow: 0 0 0 2px var(--surface); }
+.meter-ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+.mood-desc { margin: 0 0 20px; color: var(--ink-2); font-size: 14px; }
+.dist { display: flex; height: 12px; border-radius: 4px; overflow: hidden; gap: 2px; background: var(--surface); margin-bottom: 10px; }
+.dist b { display: block; height: 100%; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 13px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend .n { margin-left: auto; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.positive { --c: var(--pos); } .negative { --c: var(--neg); } .mixed { --c: var(--mix); } .neutral { --c: var(--neu); }
+.dot, .dist b { background: var(--c); }
+.chip { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--ink-2); padding: 2px 8px 2px 6px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); white-space: nowrap; }
+.chip::before { content: attr(data-glyph); width: 14px; height: 14px; border-radius: 50%; background: var(--c); color: #fff; display: inline-grid; place-items: center; font-size: 11px; line-height: 1; }
+.hl { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hl a { display: block; color: inherit; background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 12px 14px; }
+.hl a:hover { text-decoration: none; border-color: var(--accent); }
+.hl .q { font-size: 15px; margin: 0 0 4px; }
+.hl .w { font-size: 13px; color: var(--ink-2); margin: 0; }
+.hl .w b { font-weight: 600; color: var(--ink); }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 16px; position: sticky; top: 0; background: var(--page); padding-block: 10px; z-index: 2; border-bottom: 1px solid var(--line); }
+.controls .sp { flex: 1; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.fbtn { font: inherit; font-size: 13px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.fbtn[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); cursor: pointer; user-select: none; }
+.toggle input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+.active-topic { display: none; font-size: 13px; color: var(--ink-2); padding: 8px 12px; border-radius: 8px; background: var(--wash); margin-bottom: 12px; }
+.active-topic.on { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.active-topic button { font: inherit; font-size: 13px; background: none; border: 0; color: var(--accent-ink); cursor: pointer; padding: 0; }
+.msgs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.msg { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 12px 16px; scroll-margin-top: 70px; }
+.msg[hidden] { display: none; }
+.msg.flash { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42,120,214,.25); }
+.msg .head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 6px; font-size: 13px; }
+.msg .who { font-weight: 600; color: var(--ink); font-size: 14px; }
+.msg time { color: var(--muted); font-variant-numeric: tabular-nums; }
+.msg .lnk { margin-left: auto; color: var(--muted); font-size: 12px; }
+.msg .reply { border-left: 3px solid var(--line); padding: 2px 10px; margin: 0 0 8px; color: var(--ink-2); font-size: 13px; }
+.msg .reply b { font-weight: 600; }
+.msg .en { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg .zh { margin: 6px 0 0; color: var(--zh); font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+body.hide-zh .msg .zh { display: none; }
+.msg .note { margin: 8px 0 0; font-size: 13px; color: var(--ink-2); font-style: italic; }
+.msg .note::before { content: "Note: "; font-style: normal; font-weight: 600; }
+.empty { display: none; color: var(--muted); padding: 24px 0; text-align: center; }
+.empty.on { display: block; }
+footer { color: var(--muted); font-size: 13px; padding-top: 32px; border-top: 1px solid var(--line); }
+footer p { margin: 0 0 6px; }
+@media (prefers-reduced-motion: no-preference) { .msg { transition: border-color .3s, box-shadow .3s; } }
+.nav { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; padding: 0; list-style: none; }
+.nav a { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); }
+.nav a:hover { text-decoration: none; border-color: var(--accent); }
+.nav a[aria-current="page"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.nav .lang { font-weight: 400; opacity: .75; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
+.cards > li > a { display: block; color: inherit; height: 100%; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.cards > li > a:hover { text-decoration: none; border-color: var(--accent); }
+.cards h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.cards .sub { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+.cards .hd { font-size: 15px; font-weight: 600; margin: 0 0 10px; line-height: 1.35; }
+.cards .mood { display: flex; align-items: baseline; gap: 8px; margin: 0 0 8px; }
+.cards .mood b { font-size: 20px; letter-spacing: -.01em; }
+.cards .mood span { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.cards .dist { margin: 10px 0 8px; }
+.cards .legend { grid-template-columns: repeat(4, auto); justify-content: start; gap: 4px 14px; font-size: 12px; }
+.cards .legend .n { margin-left: 4px; }
+.cards .more { color: var(--accent-ink); font-size: 13px; font-weight: 600; margin: 12px 0 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <ul class="nav" aria-label="Communities">
+  <li><a href="../">Overview</a></li>
+  
+  <li><a href="../nexa_china/"><span aria-hidden="true">🇨🇳</span> Chinese</a></li>
+  
+  <li><a href="../nexa_netherlands/"><span aria-hidden="true">🇳🇱</span> Dutch</a></li>
+  
+  <li><a href="../nexa_germany/"><span aria-hidden="true">🇩🇪</span> German</a></li>
+  
+  <li><a href="../nexa_india/"><span aria-hidden="true">🇮🇳</span> Hindi</a></li>
+  
+  <li><a href="../nexa_korean/" aria-current="page"><span aria-hidden="true">🇰🇷</span> Korean</a></li>
+  
+  <li><a href="../nexa_nor/"><span aria-hidden="true">🇳🇴</span> Norwegian</a></li>
+  
+  <li><a href="../nexa_philippines/"><span aria-hidden="true">🇵🇭</span> Filipino</a></li>
+  
+  <li><a href="../nexa_poland/"><span aria-hidden="true">🇵🇱</span> Polish</a></li>
+  
+  <li><a href="../nexa_ru/"><span aria-hidden="true">🇷🇺</span> Russian</a></li>
+  
+  <li><a href="../nexa_spanish/"><span aria-hidden="true">🇪🇸</span> Spanish</a></li>
+  
+  <li><a href="../nexatr/"><span aria-hidden="true">🇹🇷</span> Turkish</a></li>
+  
+  <li><a href="../nexa_viet/"><span aria-hidden="true">🇻🇳</span> Vietnamese</a></li>
+  
+</ul>
+  <p class="eyebrow">Telegram · Korean → English mirror</p>
+  <h1>Nexa Korean</h1>
+  <p class="meta">
+    <span><a href="https://t.me/nexa_korean" rel="noopener">t.me/nexa_korean</a></span>
+    <span>29 members</span>
+    <span>Last 100 messages · <time datetime="2023-11-30T14:18:35+00:00">2023-11-30 14:18 UTC</time> → <time datetime="2026-04-28T16:02:23+00:00">2026-04-28 16:02 UTC</time></span>
+    <span>Updated <time datetime="2026-09-12T16:29:43.674030+00:00">2026-09-12 16:29 UTC</time></span>
+  </p>
+</header>
+
+<section id="summary">
+  <h2>Summary</h2>
+  <p class="headline">A slow-dying Korean Nexa group: price despair, mining-vs-buying advice, wallet headaches, and two flare-ups</p>
+  <p class="lede">This window spans roughly two and a half years (Nov 2023 – Apr 2026) in a very low-traffic Korean group, so conversations are short bursts separated by weeks or months. Early on 바 맨 and PLUS W chat about whether Nexa has bottomed, compare other mining coins (Qubic, Firo) and decide to just hold into spring, while 바 맨 says he&#39;s done with mining coins entirely. Practical questions recur: 책사 여왕벌 on changing deposit addresses in the Otoplo wallet, GD Y on mining payouts and the xeggex exchange, and 경재 신 reporting that Coinone rejected his Nexa transfer as &#39;concealed funds&#39;. Sentiment splits between 보물 신&#39;s very bullish long-term calls (100x by 2026, 1,000x by 2027) and HAYAN LEXUS&#39;s skepticism, which escalated into a spat with Shon Parker that ended with HAYAN LEXUS declaring the Korean group useless and leaving. A separate English-language troll (user 7395312124) spammed &#39;scammers/rug&#39; accusations and Kaspa praise, answered calmly by endo; much later endo confirms the group has no active admins and that the Nexa team held a conference in Korea and hopes the Korean community revives. The final messages are link drops, a 2026 market-status post, and Russian spam.</p>
+</section>
+
+<section id="analysis">
+  <div class="grid">
+    <div class="card">
+      <h2>Topics</h2>
+      <ul class="topics">
+        
+        <li>
+          <button class="topic" type="button" data-topic="0" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Price outlook and holding Nexa</span>
+            <span class="n">24 msgs · <span class="chip mixed" data-glyph="±">Mixed</span></span>
+            <span class="s">PLUS W and 바 맨 hoped for a bounce and decided to hold into spring; 보물 신 repeatedly pushed a long-term thesis (supply &gt;90% mined by end-2026, 100x by 2026, 1,000x by 2027, &#39;$1&#39;), while Shon Parker joked about becoming a whale and HAYAN LEXUS challenged the basis for such confidence and later asked whether it was worth buying after the long decline.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="1" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Mining vs. buying (DCA)</span>
+            <span class="n">11 msgs · <span class="chip neutral" data-glyph="·">Neutral</span></span>
+            <span class="s">바 맨 said he&#39;s giving up on mining coins and teased a new one; PLUS W asked about Qubic and Firo; GD Y considered running a low-power miner, and kazya Lee advised that DCA-buying on crashes beat mining after electricity costs.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="2" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Wallets, exchanges and deposit problems</span>
+            <span class="n">13 msgs · <span class="chip negative" data-glyph="−">Negative</span></span>
+            <span class="s">책사 여왕벌 asked why the Otoplo wallet keeps generating new deposit addresses; 경재 신 reported Nexa deposits being suspended and a Coinone transfer rejected as &#39;concealed funds&#39;, asking how others move coins from foreign exchanges into Korea; GD Y asked about xeggex and kazya Lee recommended MEXC instead.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="3" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Clash over &#39;obvious&#39; questions</span>
+            <span class="n">9 msgs · <span class="chip negative" data-glyph="−">Negative</span></span>
+            <span class="s">HAYAN LEXUS asked whether Nexa is truly decentralized or whether the team could alter/shut the code; Shon Parker told him to study first, and HAYAN LEXUS left saying the official English group answered him kindly (≈29% mined, code can&#39;t be tampered with) and that the Korean group is useless.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="4" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">English-language troll attack</span>
+            <span class="n">19 msgs · <span class="chip negative" data-glyph="−">Negative</span></span>
+            <span class="s">user 7395312124 spammed accusations that Nexa is a scam, a &#39;2 years failure&#39; with new ATLs and a &#39;rug V2.0&#39; roadmap, praising Kaspa as king of L1 PoW; endo replied calmly and refused to engage further.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="5" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Group inactivity and team presence</span>
+            <span class="n">6 msgs · <span class="chip mixed" data-glyph="±">Mixed</span></span>
+            <span class="s">HAYAN LEXUS asked whether the room was dead and called for &#39;survivors&#39;; jQrgen said hello and endo explained the Nexa team has no active admins here, that the group was community-made, and that a recent conference in Korea went well and they hope the Korean community revives.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="6" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">News, promos and link drops</span>
+            <span class="n">10 msgs · <span class="chip neutral" data-glyph="·">Neutral</span></span>
+            <span class="s">책사 여왕벌 posted the Bitget Earn 20% APR listing, a Naver news article about someone secretly mining Nexa, blog links and a March 2026 market update (≈12–14% weekly drop blamed on Israel–Iran conflict, ~$5.13M market cap, volume up 25%); 보물 신 promoted a new Korean Nexa Naver cafe.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="7" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Off-topic and spam</span>
+            <span class="n">7 msgs · <span class="chip neutral" data-glyph="·">Neutral</span></span>
+            <span class="s">바 맨 joked about riding Grok instead, PLUS W asked for its spelling, and the window closes with a Russian promotional spam message.</span>
+          </button>
+        </li>
+        
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Mood</h2>
+      <p class="mood-label">Resigned with flare-ups</p>
+      <p class="mood-score">Mood score +0.00 on a −1 … +1 scale</p>
+      <div class="meter" role="img" aria-label="Mood score +0.00 of 1"><i style="left: 50.0%"></i></div>
+      <div class="meter-ticks"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
+      <p class="mood-desc">The baseline is weary: a handful of holders checking whether the bottom is in, some bursts of optimism from 보물 신 and playful whale jokes from Shon Parker, but mostly long silences and complaints like &#39;there&#39;s just no hope&#39; and &#39;it&#39;s dead, guess I should sell&#39;. Two sharp negative spikes stand out — the Shon Parker vs HAYAN LEXUS argument that drove a member out, and the English troll&#39;s scam accusations. A brief positive lift comes in late 2025 when endo from the Nexa team appears, mentions a Korea conference and asks for the community to revive, but the group quickly lapses back into solo link drops and spam.</p>
+      <h2>Sentiment by message</h2>
+      <div class="dist" role="img" aria-label="Positive 19, Mixed 5, Neutral 50, Negative 26">
+        <b class="positive" style="flex: 19" title="Positive: 19"></b><b class="mixed" style="flex: 5" title="Mixed: 5"></b><b class="neutral" style="flex: 50" title="Neutral: 50"></b><b class="negative" style="flex: 26" title="Negative: 26"></b>
+      </div>
+      <ul class="legend">
+        
+        <li><span class="dot positive"></span>Positive<span class="n">19 · 19.0%</span></li>
+        
+        <li><span class="dot mixed"></span>Mixed<span class="n">5 · 5.0%</span></li>
+        
+        <li><span class="dot neutral"></span>Neutral<span class="n">50 · 50.0%</span></li>
+        
+        <li><span class="dot negative"></span>Negative<span class="n">26 · 26.0%</span></li>
+        
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section id="highlights">
+  <h2>Worth reading first</h2>
+  <ul class="hl">
+    
+    <li><a href="#m-378">
+      <p class="q">“I&#39;ve learned that the official group is far friendlier than this Korean one.
+That about 29% of the coins have been mined,
+and that touching the code is impossible —
+they answered both of my questions simply, clearly and kindly.
+The way I see it, this Korean group is completely useless and I don&#39;t think I&#39;ll ever come back. Happy investing, y&#39;all.”</p>
+      <p class="w"><b>HAYAN LEXUS</b> · A member publicly quits, saying the official English group answered his questions (29% mined, code can&#39;t be changed) while the Korean group is &#39;completely useless&#39; — a clear community-health signal.</p>
+    </a></li>
+    
+    <li><a href="#m-443">
+      <p class="q">“We are members of the Nexa team. Unfortunately, this group currently has no active admins. (This group was created by the community a long time ago.) We recently held a conference in Korea, and we hope the Korean community becomes active again. It was a truly wonderful experience!”</p>
+      <p class="w"><b>endo</b> · Nexa team member endo confirms the group has no active admins, that it was community-created, and mentions a recent conference in Korea.</p>
+    </a></li>
+    
+    <li><a href="#m-358">
+      <p class="q">“Nexa coin is at its all-time low right now; I see 100x by 2026. And 1,000x by 2027. ^^”</p>
+      <p class="w"><b>보물 신</b> · 보물 신&#39;s headline bull call — all-time low now, 100x by 2026, 1,000x by 2027 — which later triggers pushback.</p>
+    </a></li>
+    
+    <li><a href="#m-332">
+      <p class="q">“I sent the coins I had on Nexa over to Coinone and it got rejected as &#34;concealed funds&#34; or something like that”</p>
+      <p class="w"><b>경재 신</b> · Concrete, actionable problem: a Nexa withdrawal to Coinone was rejected as &#39;concealed funds&#39;, with the user asking how others get coins into Korean exchanges.</p>
+    </a></li>
+    
+    <li><a href="#m-415">
+      <p class="q">“Speaking as someone who&#39;s done a lot of mining, DCA actually gave me better results. Use the money you&#39;d spend on the electricity bill to just buy instead. If you&#39;re interested, scoop some up every time the price crashes or is cheap.”</p>
+      <p class="w"><b>kazya Lee</b> · kazya Lee&#39;s practical advice from experience: after electricity costs, DCA-buying on dips beat mining.</p>
+    </a></li>
+    
+    <li><a href="#m-403">
+      <p class="q">“After 2022 and 2023 roadmap failures just seen 24-25 roadmap is the New rug V2.0”</p>
+      <p class="w"><b>user 7395312124</b> · Peak of the troll rant — calls the 24-25 roadmap &#39;the New rug V2.0&#39; after alleged 2022/2023 failures; shows the criticism the project faces.</p>
+    </a></li>
+    
+  </ul>
+</section>
+
+
+<section id="messages">
+  <h2>Messages <span class="sub">· newest first</span></h2>
+  <div class="controls">
+    <div class="filters" role="group" aria-label="Filter by sentiment">
+      <button class="fbtn" type="button" data-sent="all" aria-pressed="true">All</button>
+      <button class="fbtn" type="button" data-sent="positive" aria-pressed="false">Positive (19)</button><button class="fbtn" type="button" data-sent="mixed" aria-pressed="false">Mixed (5)</button><button class="fbtn" type="button" data-sent="neutral" aria-pressed="false">Neutral (50)</button><button class="fbtn" type="button" data-sent="negative" aria-pressed="false">Negative (26)</button>
+    </div>
+    <span class="sp"></span>
+    <label class="toggle"><input type="checkbox" id="show-zh" checked> Show original Korean</label>
+  </div>
+  <div class="active-topic" id="active-topic"><span>Topic: <b id="active-topic-name"></b></span><button type="button" id="clear-topic">Show all messages</button></div>
+  <ol class="msgs" id="msg-list" reversed>
+    
+    <li class="msg" id="m-480" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">Рассматриваю Интересные Проекты 🧩 Подробности В &#34;О Себе&#34;</span>
+        <time datetime="2026-04-28T16:02:23+00:00">2026-04-28 16:02 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/480" rel="noopener" title="Open on Telegram">#480 ↗</a>
+      </div>
+      
+      <p class="en">Hello.
+I&#39;m looking at unconventional and bold projects for solid cooperation. I can do A LOT and A VARIETY of things. Post with a link to the service is in my profile. Many thanks for your attention🙏</p>
+      <p class="zh" lang="ko">Здравствуйте.
+РРассматриваю нестандартные и смелые проекты для крепкого сотрудничества. Умею МНОГО и РАЗНОГО. Публикация с переходом на сервис в профиле. Большая благодарность за ваше внимание🙏</p>
+      <p class="note">Russian-language spam/solicitation message.</p>
+    </li>
+    
+    <li class="msg" id="m-469" data-sent="mixed" data-topics="6">
+      <div class="head">
+        <span class="who">책사 여왕벌</span>
+        <time datetime="2026-03-05T13:33:30+00:00">2026-03-05 13:33 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_korean/469" rel="noopener" title="Open on Telegram">#469 ↗</a>
+      </div>
+      
+      <p class="en">Cryptocurrency Nexa (NEXA) market trends
+
+Impact of geopolitical risk: Due to the Israel-Iran conflict (codename &#39;Epic Fury&#39;) that broke out in early March 2026, the fear index across the crypto market spiked. As a result, Nexa also fell roughly 12–14% over the past 7 days, but it is currently recovering those losses and attempting a rebound.
+
+Technical indicators: The current circulating supply is around 10 trillion NEXA, and the market cap is holding at about $5.13 million (roughly 6.8 billion won).
+On major exchanges (MEXC, BingX, etc.), trading volume is up about 25% from the previous day, showing improving liquidity.</p>
+      <p class="zh" lang="ko">​ 암호화폐 넥사(NEXA) 시장 동향
+
+​지정학적 리스크 영향: 2026년 3월 초 발생한 이스라엘-이란 분쟁(작전명 &#39;에픽 퓨리&#39;)으로 인해 암호화폐 시장 전반에 공포 지수가 급등했습니다. 이로 인해 넥사 역시 지난 7일간 약 12~14%의 하락을 겪었으나, 현재는 하락폭을 만회하며 반등을 시도 중입니다.
+
+​기술적 지표: 현재 유통 공급량은 약 10조 NEXA 수준이며, 시가총액은 약 513만 달러(약 68억 원) 규모로 유지되고 있습니다. 
+주요 거래소(MEXC, BingX 등)에서 거래량이 전일 대비 약 25% 증가하며 유동성이 개선되는 모습입니다.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-468" data-sent="neutral" data-topics="6">
+      <div class="head">
+        <span class="who">책사 여왕벌</span>
+        <time datetime="2026-03-03T13:20:58+00:00">2026-03-03 13:20 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/468" rel="noopener" title="Open on Telegram">#468 ↗</a>
+      </div>
+      
+      <p class="en">https://ljh3416.blogspot.com/2026/03/nexa.html</p>
+      <p class="zh" lang="ko">https://ljh3416.blogspot.com/2026/03/nexa.html</p>
+      
+    </li>
+    
+    <li class="msg" id="m-467" data-sent="neutral" data-topics="6">
+      <div class="head">
+        <span class="who">책사 여왕벌</span>
+        <time datetime="2026-03-03T04:57:45+00:00">2026-03-03 04:57 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/467" rel="noopener" title="Open on Telegram">#467 ↗</a>
+      </div>
+      
+      <p class="en">http://ljh3416.blogspot.com/2026/02/blog-post.html</p>
+      <p class="zh" lang="ko">http://ljh3416.blogspot.com/2026/02/blog-post.html</p>
+      
+    </li>
+    
+    <li class="msg" id="m-444" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2025-09-26T06:35:16+00:00">2025-09-26 06:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/444" rel="noopener" title="Open on Telegram">#444 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/NexaMoney/status/1970361134810308820?t=NKOlvutgJsj9D9VvwoVXnQ&amp;s=19</p>
+      <p class="zh" lang="ko">https://x.com/NexaMoney/status/1970361134810308820?t=NKOlvutgJsj9D9VvwoVXnQ&amp;s=19</p>
+      
+    </li>
+    
+    <li class="msg" id="m-443" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2025-09-26T06:34:54+00:00">2025-09-26 06:34 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/443" rel="noopener" title="Open on Telegram">#443 ↗</a>
+      </div>
+      
+      <p class="en">We are members of the Nexa team. Unfortunately, this group currently has no active admins. (This group was created by the community a long time ago.) We recently held a conference in Korea, and we hope the Korean community becomes active again. It was a truly wonderful experience!</p>
+      <p class="zh" lang="ko">우리는 Nexa 팀 멤버입니다. 안타깝게도 이 그룹에는 현재 활동 중인 관리자가 없습니다. (이 그룹은 예전에 커뮤니티에 의해 만들어졌습니다)우리는 최근 한국에서 컨퍼런스를 개최했으며, 한국 커뮤니티가 다시 활성화되기를 바라고 있습니다.정말 멋진 경험이었습니다!</p>
+      
+    </li>
+    
+    <li class="msg" id="m-441" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">HAYAN LEXUS</span>
+        <time datetime="2025-09-26T06:22:45+00:00">2025-09-26 06:22 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/441" rel="noopener" title="Open on Telegram">#441 ↗</a>
+      </div>
+      
+      <p class="en">Looks like there&#39;s one survivor. Are you Korean?</p>
+      <p class="zh" lang="ko">생존자 한분 계시네요 한국분이세요?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-440" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2025-09-26T05:53:19+00:00">2025-09-26 05:53 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/440" rel="noopener" title="Open on Telegram">#440 ↗</a>
+      </div>
+      
+      <p class="en">Hello</p>
+      <p class="zh" lang="ko">안녕하세요</p>
+      
+    </li>
+    
+    <li class="msg" id="m-438" data-sent="mixed" data-topics="5">
+      <div class="head">
+        <span class="who">HAYAN LEXUS</span>
+        <time datetime="2025-09-26T03:53:44+00:00">2025-09-26 03:53 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_korean/438" rel="noopener" title="Open on Telegram">#438 ↗</a>
+      </div>
+      
+      <p class="en">If there are any survivors in this room, raise your hand~</p>
+      <p class="zh" lang="ko">이방에 생존자 있으면 손~</p>
+      <p class="note">Joking about the group being dead/inactive.</p>
+    </li>
+    
+    <li class="msg" id="m-436" data-sent="negative" data-topics="5">
+      <div class="head">
+        <span class="who">HAYAN LEXUS</span>
+        <time datetime="2025-07-17T22:10:33+00:00">2025-07-17 22:10 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/436" rel="noopener" title="Open on Telegram">#436 ↗</a>
+      </div>
+      
+      <p class="en">Is this room dead?</p>
+      <p class="zh" lang="ko">이방은 죽었슴?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-435" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">HAYAN LEXUS</span>
+        <time datetime="2025-06-19T13:06:00+00:00">2025-06-19 13:06 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/435" rel="noopener" title="Open on Telegram">#435 ↗</a>
+      </div>
+      
+      <p class="en">What do you all think about getting into Nexa now? It&#39;s fallen a whole lot since then.</p>
+      <p class="zh" lang="ko">지금 넥사 들어가는거 어떤거 같슴 그동안 많이도 떨어졌네</p>
+      
+    </li>
+    
+    <li class="msg" id="m-420" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">GD Y</span>
+        <time datetime="2024-12-16T06:24:35+00:00">2024-12-16 06:24 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/420" rel="noopener" title="Open on Telegram">#420 ↗</a>
+      </div>
+      
+      <p class="en">Thanks for the answer</p>
+      <p class="zh" lang="ko">답변 감사해요</p>
+      
+    </li>
+    
+    <li class="msg" id="m-419" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">kazya Lee</span>
+        <time datetime="2024-12-16T04:51:08+00:00">2024-12-16 04:51 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/419" rel="noopener" title="Open on Telegram">#419 ↗</a>
+      </div>
+      
+      <p class="en">I only use the MEXC exchange and xeggex isn&#39;t on my radar, so I don&#39;t really know. I heard it&#39;s an exchange that even Americans can use easily, but the trading volume for cheap non-major altcoins is way too low, so it&#39;s not one I use much.</p>
+      <p class="zh" lang="ko">mexc 거래소만 이용중이고 xeggex는 관심밖이라 잘 모르겠습니다.
+미국인들도 잘 이용할수 있는 거래소라고 하던데 메이저가 아닌 저가의 알트코인들 거래량이 너무 적어 잘 이용하지 않는 거래소입니다</p>
+      
+    </li>
+    
+    <li class="msg" id="m-418" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">GD Y</span>
+        <time datetime="2024-12-16T04:46:55+00:00">2024-12-16 04:46 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/418" rel="noopener" title="Open on Telegram">#418 ↗</a>
+      </div>
+      
+      <p class="en">What country is xeggex based in? I heard a rumor it&#39;s Africa — is that right?</p>
+      <p class="zh" lang="ko">xeggex는 어느나라 거래소인가요?
+아프리카 라고 카더라 하던데 맞나요?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-417" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">kazya Lee</span>
+        <time datetime="2024-12-16T04:37:40+00:00">2024-12-16 04:37 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/417" rel="noopener" title="Open on Telegram">#417 ↗</a>
+      </div>
+      
+      <p class="en">Yes, buying more every time the price crashes.</p>
+      <p class="zh" lang="ko">네 가격 폭락할때마다 추매하는거죠</p>
+      
+    </li>
+    
+    <li class="msg" id="m-416" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">GD Y</span>
+        <time datetime="2024-12-16T04:36:50+00:00">2024-12-16 04:36 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/416" rel="noopener" title="Open on Telegram">#416 ↗</a>
+      </div>
+      
+      <p class="en">By DCA you mean buying the coin with cash, right?</p>
+      <p class="zh" lang="ko">dca가 돈으로 코인 매수 하는거 말씀하시는거죠?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-415" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">kazya Lee</span>
+        <time datetime="2024-12-15T11:10:47+00:00">2024-12-15 11:10 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/415" rel="noopener" title="Open on Telegram">#415 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>GD Y</b>: I&#39;m thinking of running this just for fun — it&#39;s low power. Anyone here know about it?</p>
+      
+      <p class="en">Speaking as someone who&#39;s done a lot of mining, DCA actually gave me better results. Use the money you&#39;d spend on the electricity bill to just buy instead. If you&#39;re interested, scoop some up every time the price crashes or is cheap.</p>
+      <p class="zh" lang="ko">채굴 많이 해본 사람 입장에서 차라리 DCA하는게 오히려 좋은 결과를 얻었었습니다
+전기요금 낼 돈으로 구매하시는게
+관심 있다면 가격이 폭락하거나 저렴할때마다 담으세요</p>
+      <p class="note">DCA = dollar-cost averaging.</p>
+    </li>
+    
+    <li class="msg" id="m-411" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">GD Y</span>
+        <time datetime="2024-11-26T09:15:23+00:00">2024-11-26 09:15 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/411" rel="noopener" title="Open on Telegram">#411 ↗</a>
+      </div>
+      
+      <p class="en">I&#39;m thinking of running this just for fun — it&#39;s low power. Anyone here know about it?</p>
+      <p class="zh" lang="ko">이거 재미 삼아 돌려 볼려고 하는데
+저전력이고
+혹시 아는분?</p>
+      <p class="note">&#34;Running&#34; here means running a mining rig.</p>
+    </li>
+    
+    <li class="msg" id="m-403" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T15:02:33+00:00">2024-11-01 15:02 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.90">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/403" rel="noopener" title="Open on Telegram">#403 ↗</a>
+      </div>
+      
+      <p class="en">After 2022 and 2023 roadmap failures just seen 24-25 roadmap is the New rug V2.0</p>
+      <p class="zh" lang="ko">After 2022 and 2023 roadmap failures just seen 24-25 roadmap is the New rug V2.0</p>
+      <p class="note">&#34;Rug&#34; = rug pull, i.e. a scam exit.</p>
+    </li>
+    
+    <li class="msg" id="m-402" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T15:01:10+00:00">2024-11-01 15:01 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.90">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/402" rel="noopener" title="Open on Telegram">#402 ↗</a>
+      </div>
+      
+      <p class="en">You are the scammers of l1 pows</p>
+      <p class="zh" lang="ko">You are the scammers of l1 pows</p>
+      
+    </li>
+    
+    <li class="msg" id="m-401" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T15:01:03+00:00">2024-11-01 15:01 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/401" rel="noopener" title="Open on Telegram">#401 ↗</a>
+      </div>
+      
+      <p class="en">Kaspa is the king of l1 pows</p>
+      <p class="zh" lang="ko">Kaspa is the king of l1 pows</p>
+      <p class="note">Praise for rival coin Kaspa, implicitly an attack on Nexa.</p>
+    </li>
+    
+    <li class="msg" id="m-400" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T15:00:41+00:00">2024-11-01 15:00 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.70">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/400" rel="noopener" title="Open on Telegram">#400 ↗</a>
+      </div>
+      
+      <p class="en">Trying to kaspa steps but you will not achieve it</p>
+      <p class="zh" lang="ko">Trying to kaspa steps but you will not achieve it</p>
+      
+    </li>
+    
+    <li class="msg" id="m-399" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T15:00:27+00:00">2024-11-01 15:00 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.50">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/399" rel="noopener" title="Open on Telegram">#399 ↗</a>
+      </div>
+      
+      <p class="en">Ahahahahaha</p>
+      <p class="zh" lang="ko">Ahahahahaha</p>
+      <p class="note">Mocking laughter directed at the project.</p>
+    </li>
+    
+    <li class="msg" id="m-398" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T15:00:26+00:00">2024-11-01 15:00 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/398" rel="noopener" title="Open on Telegram">#398 ↗</a>
+      </div>
+      
+      <p class="en">2024 is hardfork and asics year</p>
+      <p class="zh" lang="ko">2024 is hardfork and asics year</p>
+      <p class="note">Said sarcastically, mocking Nexa&#39;s roadmap promises.</p>
+    </li>
+    
+    <li class="msg" id="m-397" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-11-01T15:00:24+00:00">2024-11-01 15:00 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/397" rel="noopener" title="Open on Telegram">#397 ↗</a>
+      </div>
+      
+      <p class="en">Don&#39;t need it bro :)</p>
+      <p class="zh" lang="ko">Don&#39;t need it bro :)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-396" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T15:00:06+00:00">2024-11-01 15:00 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.90">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/396" rel="noopener" title="Open on Telegram">#396 ↗</a>
+      </div>
+      
+      <p class="en">Scammers</p>
+      <p class="zh" lang="ko">Scammers</p>
+      
+    </li>
+    
+    <li class="msg" id="m-395" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T15:00:04+00:00">2024-11-01 15:00 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.90">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/395" rel="noopener" title="Open on Telegram">#395 ↗</a>
+      </div>
+      
+      <p class="en">Liars</p>
+      <p class="zh" lang="ko">Liars</p>
+      
+    </li>
+    
+    <li class="msg" id="m-394" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T15:00:02+00:00">2024-11-01 15:00 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.60">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/394" rel="noopener" title="Open on Telegram">#394 ↗</a>
+      </div>
+      
+      <p class="en">60+ age devs and team</p>
+      <p class="zh" lang="ko">60+ age devs and team</p>
+      
+    </li>
+    
+    <li class="msg" id="m-393" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T14:59:53+00:00">2024-11-01 14:59 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.60">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/393" rel="noopener" title="Open on Telegram">#393 ↗</a>
+      </div>
+      
+      <p class="en">Nothing more</p>
+      <p class="zh" lang="ko">Nothing more</p>
+      
+    </li>
+    
+    <li class="msg" id="m-392" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T14:59:51+00:00">2024-11-01 14:59 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.80">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/392" rel="noopener" title="Open on Telegram">#392 ↗</a>
+      </div>
+      
+      <p class="en">Nexa big picture is fail</p>
+      <p class="zh" lang="ko">Nexa big picture is fail</p>
+      
+    </li>
+    
+    <li class="msg" id="m-391" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T14:59:44+00:00">2024-11-01 14:59 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/391" rel="noopener" title="Open on Telegram">#391 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>endo</b>: Bro, take care. Laughing the one who is the last. Stay wise. :) I think only wise people care about Nexa, and they...</p>
+      
+      <p class="en">:)</p>
+      <p class="zh" lang="ko">:)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-390" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-11-01T14:59:22+00:00">2024-11-01 14:59 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/390" rel="noopener" title="Open on Telegram">#390 ↗</a>
+      </div>
+      
+      <p class="en">Bro, take care. Laughing the one who is the last. Stay wise. :) I think only wise people care about Nexa, and they should see a big picture. :)</p>
+      <p class="zh" lang="ko">Bro, take care. Laughing the one who is the last. Stay wise. :) I think only wise people care about Nexa, and they should see a big picture. :)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-389" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T14:58:33+00:00">2024-11-01 14:58 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.90">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/389" rel="noopener" title="Open on Telegram">#389 ↗</a>
+      </div>
+      
+      <p class="en">Nexa will be always shit</p>
+      <p class="zh" lang="ko">Nexa will be always shit</p>
+      
+    </li>
+    
+    <li class="msg" id="m-388" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T14:58:28+00:00">2024-11-01 14:58 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.80">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/388" rel="noopener" title="Open on Telegram">#388 ↗</a>
+      </div>
+      
+      <p class="en">2 years failure lol</p>
+      <p class="zh" lang="ko">2 years failure lol</p>
+      
+    </li>
+    
+    <li class="msg" id="m-387" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T14:58:21+00:00">2024-11-01 14:58 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/387" rel="noopener" title="Open on Telegram">#387 ↗</a>
+      </div>
+      
+      <p class="en">🍌</p>
+      <p class="zh" lang="ko">🍌</p>
+      <p class="note">Banana emoji used mockingly.</p>
+    </li>
+    
+    <li class="msg" id="m-386" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T14:58:13+00:00">2024-11-01 14:58 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.80">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/386" rel="noopener" title="Open on Telegram">#386 ↗</a>
+      </div>
+      
+      <p class="en">Are you enjoying the innocent people money by making every month New atl?</p>
+      <p class="zh" lang="ko">Are you enjoying the innocent people money by making every month New atl?</p>
+      <p class="note">ATL = all-time low.</p>
+    </li>
+    
+    <li class="msg" id="m-384" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">user 7395312124</span>
+        <time datetime="2024-11-01T14:44:36+00:00">2024-11-01 14:44 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/384" rel="noopener" title="Open on Telegram">#384 ↗</a>
+      </div>
+      
+      <p class="en">@ultrasoundape</p>
+      <p class="zh" lang="ko">@ultrasoundape</p>
+      
+    </li>
+    
+    <li class="msg" id="m-379" data-sent="negative" data-topics="3">
+      <div class="head">
+        <span class="who">Shon Parker</span>
+        <time datetime="2024-10-20T06:40:43+00:00">2024-10-20 06:40 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/379" rel="noopener" title="Open on Telegram">#379 ↗</a>
+      </div>
+      
+      <p class="en">Bye then.</p>
+      <p class="zh" lang="ko">잘가셔요</p>
+      <p class="note">Curt, dismissive &#39;good riddance&#39; tone.</p>
+    </li>
+    
+    <li class="msg" id="m-378" data-sent="negative" data-topics="3">
+      <div class="head">
+        <span class="who">HAYAN LEXUS</span>
+        <time datetime="2024-10-20T06:40:02+00:00">2024-10-20 06:40 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.60">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/378" rel="noopener" title="Open on Telegram">#378 ↗</a>
+      </div>
+      
+      <p class="en">I&#39;ve learned that the official group is far friendlier than this Korean one.
+That about 29% of the coins have been mined,
+and that touching the code is impossible —
+they answered both of my questions simply, clearly and kindly.
+The way I see it, this Korean group is completely useless and I don&#39;t think I&#39;ll ever come back. Happy investing, y&#39;all.</p>
+      <p class="zh" lang="ko">이 한국방보다 오피셜방이 휠씬 친절한 곳이란걸 알게됬습니다
+채굴된 코인이 29프로 정도라는것과
+코드를 건드는게 불가능하다는것 
+내 두가지 질문에 모두 간단명료하게 친절하게 답변 해주네요
+이 한국방은 내가볼때 전혀 쓸모없는 곳이고 앞으로 올 일도 없을것 같습니다 즐투들 하세요</p>
+      <p class="note">&#39;즐투&#39; = &#39;즐거운 투자&#39; (happy investing), used here with a sarcastic farewell edge.</p>
+    </li>
+    
+    <li class="msg" id="m-377" data-sent="negative" data-topics="3">
+      <div class="head">
+        <span class="who">HAYAN LEXUS</span>
+        <time datetime="2024-10-20T05:05:59+00:00">2024-10-20 05:05 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/377" rel="noopener" title="Open on Telegram">#377 ↗</a>
+      </div>
+      
+      <p class="en">Is this a place where you&#39;re not allowed to ask questions?</p>
+      <p class="zh" lang="ko">여기서는 질문하면 안되는곳인가요</p>
+      
+    </li>
+    
+    <li class="msg" id="m-376" data-sent="negative" data-topics="3">
+      <div class="head">
+        <span class="who">Shon Parker</span>
+        <time datetime="2024-10-20T04:59:27+00:00">2024-10-20 04:59 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.55">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/376" rel="noopener" title="Open on Telegram">#376 ↗</a>
+      </div>
+      
+      <p class="en">You&#39;d better study at least a little bit before asking questions.</p>
+      <p class="zh" lang="ko">공부 쥬금이라도 하고 질문 하시는게 좋을듯 하네요</p>
+      <p class="note">&#39;쥬금&#39; is a playful misspelling of &#39;쬐금&#39; (a tiny bit).</p>
+    </li>
+    
+    <li class="msg" id="m-375" data-sent="negative" data-topics="3">
+      <div class="head">
+        <span class="who">Shon Parker</span>
+        <time datetime="2024-10-20T04:58:38+00:00">2024-10-20 04:58 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.50">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/375" rel="noopener" title="Open on Telegram">#375 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>HAYAN LEXUS</b>: Is Nexa a fully decentralized coin like Bitcoin, or is it a coin where the team can step in and mess with the code...</p>
+      
+      <p class="en">You only ask the most obvious questions.</p>
+      <p class="zh" lang="ko">너무 뻔한 질문만 하시네요</p>
+      
+    </li>
+    
+    <li class="msg" id="m-374" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">HAYAN LEXUS</span>
+        <time datetime="2024-10-20T04:46:21+00:00">2024-10-20 04:46 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/374" rel="noopener" title="Open on Telegram">#374 ↗</a>
+      </div>
+      
+      <p class="en">Is Nexa a fully decentralized coin like Bitcoin, or is it a coin where the team can step in and mess with the code and shut it down if they feel like it?</p>
+      <p class="zh" lang="ko">넥사는 비트코인처럼 완전히 탈중화된 코인인가요 아니면 팀이 마음만 먹으면 개입해서 코드를 건들고 닫을수 있는 코인인가요</p>
+      
+    </li>
+    
+    <li class="msg" id="m-371" data-sent="negative" data-topics="0">
+      <div class="head">
+        <span class="who">Shon Parker</span>
+        <time datetime="2024-10-14T04:30:16+00:00">2024-10-14 04:30 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/371" rel="noopener" title="Open on Telegram">#371 ↗</a>
+      </div>
+      
+      <p class="en">Nexa&#39;s nothing special either</p>
+      <p class="zh" lang="ko">넥사라고 머 별거 없죠</p>
+      
+    </li>
+    
+    <li class="msg" id="m-370" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">Shon Parker</span>
+        <time datetime="2024-10-14T04:29:54+00:00">2024-10-14 04:29 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_korean/370" rel="noopener" title="Open on Telegram">#370 ↗</a>
+      </div>
+      
+      <p class="en">Aren&#39;t all the other coins at the bottom too lol</p>
+      <p class="zh" lang="ko">다른코인도 다 바닥 아닌가요 ㅋ</p>
+      
+    </li>
+    
+    <li class="msg" id="m-369" data-sent="negative" data-topics="0">
+      <div class="head">
+        <span class="who">HAYAN LEXUS</span>
+        <time datetime="2024-10-14T04:29:14+00:00">2024-10-14 04:29 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/369" rel="noopener" title="Open on Telegram">#369 ↗</a>
+      </div>
+      
+      <p class="en">What percent has been mined that the price is at rock bottom?</p>
+      <p class="zh" lang="ko">채굴된 양이 몇프로길래 가격이 바닥인가요</p>
+      
+    </li>
+    
+    <li class="msg" id="m-368" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Shon Parker</span>
+        <time datetime="2024-10-14T03:09:32+00:00">2024-10-14 03:09 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/368" rel="noopener" title="Open on Telegram">#368 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>HAYAN LEXUS</b>: Does Nexa even have a team?</p>
+      
+      <p class="en">Isn&#39;t it the BCH team?</p>
+      <p class="zh" lang="ko">비캐팀 아닌가요</p>
+      <p class="note">&#39;비캐&#39; = 비트코인캐시, Bitcoin Cash.</p>
+    </li>
+    
+    <li class="msg" id="m-367" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">HAYAN LEXUS</span>
+        <time datetime="2024-10-13T19:12:42+00:00">2024-10-13 19:12 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/367" rel="noopener" title="Open on Telegram">#367 ↗</a>
+      </div>
+      
+      <p class="en">What percentage has been mined so far?</p>
+      <p class="zh" lang="ko">채굴 몇퍼센트 된 상태인가요</p>
+      
+    </li>
+    
+    <li class="msg" id="m-366" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">HAYAN LEXUS</span>
+        <time datetime="2024-10-13T19:10:55+00:00">2024-10-13 19:10 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.15">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/366" rel="noopener" title="Open on Telegram">#366 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>보물 신</b>: Nexa coin is at its all-time low right now; I see 100x by 2026. And 1,000x by 2027. ^^</p>
+      
+      <p class="en">I&#39;m curious what the basis is for you being so confident.</p>
+      <p class="zh" lang="ko">그렇게 자신하시는 근거가 뭔지 궁금합니다</p>
+      <p class="note">Replying to the earlier prediction of 100x by 2026 and 1,000x by 2027; tone is mildly skeptical.</p>
+    </li>
+    
+    <li class="msg" id="m-365" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-10-13T18:46:40+00:00">2024-10-13 18:46 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/365" rel="noopener" title="Open on Telegram">#365 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>HAYAN LEXUS</b>: Does Nexa even have a team?</p>
+      
+      <p class="en">Yes, nexa.org linktr.ee/nexacoin t.me/nexacoin</p>
+      <p class="zh" lang="ko">Yes, nexa.org linktr.ee/nexacoin t.me/nexacoin</p>
+      
+    </li>
+    
+    <li class="msg" id="m-364" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">HAYAN LEXUS</span>
+        <time datetime="2024-10-13T18:43:53+00:00">2024-10-13 18:43 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/364" rel="noopener" title="Open on Telegram">#364 ↗</a>
+      </div>
+      
+      <p class="en">Does Nexa even have a team?</p>
+      <p class="zh" lang="ko">넥사는 팀이 존재하나요</p>
+      
+    </li>
+    
+    <li class="msg" id="m-362" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">보물 신</span>
+        <time datetime="2024-09-18T20:45:59+00:00">2024-09-18 20:45 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/362" rel="noopener" title="Open on Telegram">#362 ↗</a>
+      </div>
+      
+      <p class="en">If you join the Nexa coin cafe, there&#39;s good info there too.</p>
+      <p class="zh" lang="ko">넥사코인 카페에 가입하시면 좋은정보도 있습니다.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-361" data-sent="neutral" data-topics="6">
+      <div class="head">
+        <span class="who">보물 신</span>
+        <time datetime="2024-09-15T06:26:56+00:00">2024-09-15 06:26 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/361" rel="noopener" title="Open on Telegram">#361 ↗</a>
+      </div>
+      
+      <p class="en">If you&#39;re interested in Nexa coin, join the cafe.</p>
+      <p class="zh" lang="ko">넥사코인에 관심이 있다면 카페 가입하세요.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-360" data-sent="neutral" data-topics="6">
+      <div class="head">
+        <span class="who">보물 신</span>
+        <time datetime="2024-09-15T05:41:57+00:00">2024-09-15 05:41 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/360" rel="noopener" title="Open on Telegram">#360 ↗</a>
+      </div>
+      
+      <p class="en">The above is about how a Nexa coin cafe was opened in Korea too, on September 11, 2024.</p>
+      <p class="zh" lang="ko">위 내용은 2024년 9월 11일 국내에도 넥사코인 카페가 개설 되었습니다.</p>
+      <p class="note">&#34;Cafe&#34; = a Naver Cafe, a Korean online community forum.</p>
+    </li>
+    
+    <li class="msg" id="m-359" data-sent="neutral" data-topics="6">
+      <div class="head">
+        <span class="who">보물 신</span>
+        <time datetime="2024-09-15T05:35:08+00:00">2024-09-15 05:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/359" rel="noopener" title="Open on Telegram">#359 ↗</a>
+      </div>
+      
+      <p class="en">https://m.cafe.naver.com/ca-fe/web/cafes/31283388/articles/6?tc=article_bottom_article_list</p>
+      <p class="zh" lang="ko">https://m.cafe.naver.com/ca-fe/web/cafes/31283388/articles/6?tc=article_bottom_article_list</p>
+      
+    </li>
+    
+    <li class="msg" id="m-358" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">보물 신</span>
+        <time datetime="2024-09-07T21:45:06+00:00">2024-09-07 21:45 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.80">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/358" rel="noopener" title="Open on Telegram">#358 ↗</a>
+      </div>
+      
+      <p class="en">Nexa coin is at its all-time low right now; I see 100x by 2026. And 1,000x by 2027. ^^</p>
+      <p class="zh" lang="ko">넥사코인 현재 최저점이며, 2026년에는 100배 봅니다. 그리고 2027년에는 1,000배 보고 있습니다.^^</p>
+      
+    </li>
+    
+    <li class="msg" id="m-357" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">보물 신</span>
+        <time datetime="2024-09-07T21:35:31+00:00">2024-09-07 21:35 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.35">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/357" rel="noopener" title="Open on Telegram">#357 ↗</a>
+      </div>
+      
+      <p class="en">Nexa coin sure is popular. ^^</p>
+      <p class="zh" lang="ko">넥사코인 인기가 많네요.^^</p>
+      <p class="note">Said in reaction to the news about someone covertly mining Nexa — half-joking.</p>
+    </li>
+    
+    <li class="msg" id="m-356" data-sent="neutral" data-topics="6">
+      <div class="head">
+        <span class="who">책사 여왕벌</span>
+        <time datetime="2024-09-06T13:17:35+00:00">2024-09-06 13:17 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/356" rel="noopener" title="Open on Telegram">#356 ↗</a>
+      </div>
+      
+      <p class="en">Apparently someone was secretly mining Nexa coin,,,,</p>
+      <p class="zh" lang="ko">넥사코인을 몰래 채굴했다는군요,,,,</p>
+      
+    </li>
+    
+    <li class="msg" id="m-355" data-sent="neutral" data-topics="6">
+      <div class="head">
+        <span class="who">책사 여왕벌</span>
+        <time datetime="2024-09-06T13:17:01+00:00">2024-09-06 13:17 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/355" rel="noopener" title="Open on Telegram">#355 ↗</a>
+      </div>
+      
+      <p class="en">https://n.news.naver.com/article/659/0000025147?sid=102</p>
+      <p class="zh" lang="ko">https://n.news.naver.com/article/659/0000025147?sid=102</p>
+      
+    </li>
+    
+    <li class="msg" id="m-354" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">보물 신</span>
+        <time datetime="2024-08-28T06:54:33+00:00">2024-08-28 06:54 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/354" rel="noopener" title="Open on Telegram">#354 ↗</a>
+      </div>
+      
+      <p class="en">With Nexa, holding long-term is the answer.
+Once the supply (mined amount) increase passes 90% by the end of 2026,
+I think the price will rise a lot.</p>
+      <p class="zh" lang="ko">넥사는 장기 보유가 답입니다.
+공급량(채굴량) 증가가 2026년 말이 되면
+90%를 초과하여 가격이 많이 상승할것 같습니다.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-353" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Shon Parker</span>
+        <time datetime="2024-08-27T02:50:37+00:00">2024-08-27 02:50 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/353" rel="noopener" title="Open on Telegram">#353 ↗</a>
+      </div>
+      
+      <p class="en">Even if it just gets to 1 won, I&#39;d be super happy lol</p>
+      <p class="zh" lang="ko">1원만 가도, 너무 행복합니다 ㅋ</p>
+      
+    </li>
+    
+    <li class="msg" id="m-352" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Shon Parker</span>
+        <time datetime="2024-08-27T02:50:07+00:00">2024-08-27 02:50 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/352" rel="noopener" title="Open on Telegram">#352 ↗</a>
+      </div>
+      
+      <p class="en">Big whale!!</p>
+      <p class="zh" lang="ko">큰손!!</p>
+      <p class="note">&#34;큰손&#34; literally &#34;big hand&#34; = a whale / major investor; here he&#39;s joking about himself.</p>
+    </li>
+    
+    <li class="msg" id="m-351" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Shon Parker</span>
+        <time datetime="2024-08-27T02:49:36+00:00">2024-08-27 02:49 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/351" rel="noopener" title="Open on Telegram">#351 ↗</a>
+      </div>
+      
+      <p class="en">Whoa, then I&#39;d make... 4 trillion won[..</p>
+      <p class="zh" lang="ko">와 그럼난.. 4조원을 벌겠네[..</p>
+      
+    </li>
+    
+    <li class="msg" id="m-350" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Shon Parker</span>
+        <time datetime="2024-08-27T02:49:22+00:00">2024-08-27 02:49 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/350" rel="noopener" title="Open on Telegram">#350 ↗</a>
+      </div>
+      
+      <p class="en">$1? ㄸ</p>
+      <p class="zh" lang="ko">1달러요? ㄸ</p>
+      <p class="note">&#34;ㄸ&#34; is a stray/cut-off consonant, likely a typo or a trailing exclamation.</p>
+    </li>
+    
+    <li class="msg" id="m-349" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">보물 신</span>
+        <time datetime="2024-08-27T02:32:10+00:00">2024-08-27 02:32 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.45">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/349" rel="noopener" title="Open on Telegram">#349 ↗</a>
+      </div>
+      
+      <p class="en">Lately it&#39;s been creeping up bit by bit.</p>
+      <p class="zh" lang="ko">요즈음, 조금씩 오르네요</p>
+      
+    </li>
+    
+    <li class="msg" id="m-348" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">보물 신</span>
+        <time datetime="2024-08-17T07:15:45+00:00">2024-08-17 07:15 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/348" rel="noopener" title="Open on Telegram">#348 ↗</a>
+      </div>
+      
+      <p class="en">Let&#39;s go to $1!</p>
+      <p class="zh" lang="ko">1달러 가자!</p>
+      
+    </li>
+    
+    <li class="msg" id="m-345" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">보물 신</span>
+        <time datetime="2024-08-04T02:24:23+00:00">2024-08-04 02:24 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/345" rel="noopener" title="Open on Telegram">#345 ↗</a>
+      </div>
+      
+      <p class="en">Hoping it goes up soon.</p>
+      <p class="zh" lang="ko">곧 상승을 기원합니다.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-344" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">책사 여왕벌</span>
+        <time datetime="2024-08-02T05:21:11+00:00">2024-08-02 05:21 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/344" rel="noopener" title="Open on Telegram">#344 ↗</a>
+      </div>
+      
+      <p class="en">Nexa wallet, Otoplo
+
+https://wallet.otoplo.com/</p>
+      <p class="zh" lang="ko">넥사 지갑 오토풀
+
+https://wallet.otoplo.com/</p>
+      
+    </li>
+    
+    <li class="msg" id="m-342" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">책사 여왕벌</span>
+        <time datetime="2024-08-02T05:16:45+00:00">2024-08-02 05:16 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/342" rel="noopener" title="Open on Telegram">#342 ↗</a>
+      </div>
+      
+      <p class="en">🎉 Nexa (NEXA) is now listed under Bitget Earn&#39;s Savings. Subscribe to $NEXA on Savings today to enjoy a 20% APR. 
+
+Supply is limited, so don&#39;t miss this opportunity!
+
+📌 Subscription period: July 26, 6:00 PM – October 24, 6:00 PM (UTC+8).
+
+After the Fixed Savings subscription matures, your funds will automatically transfer to Flexible Savings products, continuing to accrue interest. Put your idle funds to work and earn profits consistently!
+
+👉 Read more:
+https://www.bitget.com/support/articles/12560603813206
+
+👉 Share the news:
+https://x.com/nexamoney/status/1816805739899592801?s=46</p>
+      <p class="zh" lang="ko">🎉 Nexa (NEXA) is now listed under Bitget Earn&#39;s Savings. Subscribe to $NEXA on Savings today to enjoy a 20% APR. 
+
+Supply is limited, so don&#39;t miss this opportunity!
+
+📌 Subscription period: July 26, 6:00 PM – October 24, 6:00 PM (UTC+8).
+
+After the Fixed Savings subscription matures, your funds will automatically transfer to Flexible Savings products, continuing to accrue interest. Put your idle funds to work and earn profits consistently!
+
+👉 Read more:
+https://www.bitget.com/support/articles/12560603813206
+
+👉 Share the news:
+https://x.com/nexamoney/status/1816805739899592801?s=46</p>
+      
+    </li>
+    
+    <li class="msg" id="m-333" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">경재 신</span>
+        <time datetime="2024-02-24T14:10:44+00:00">2024-02-24 14:10 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/333" rel="noopener" title="Open on Telegram">#333 ↗</a>
+      </div>
+      
+      <p class="en">When you guys send coins from an overseas exchange to a domestic Korean crypto company, what route do you use?</p>
+      <p class="zh" lang="ko">해외 거래소에서 국내로 코인업체로 입금시키실때 어떠한 경로로 하시는지 다른 분들은요</p>
+      
+    </li>
+    
+    <li class="msg" id="m-332" data-sent="negative" data-topics="2">
+      <div class="head">
+        <span class="who">경재 신</span>
+        <time datetime="2024-02-24T14:09:56+00:00">2024-02-24 14:09 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/332" rel="noopener" title="Open on Telegram">#332 ↗</a>
+      </div>
+      
+      <p class="en">I sent the coins I had on Nexa over to Coinone and it got rejected as &#34;concealed funds&#34; or something like that</p>
+      <p class="zh" lang="ko">Nexa 에 잇던 코인 코인원으로 입금시켯더니 은닉자금이런식으로 반려가 되엇는데</p>
+      <p class="note">Coinone is a Korean exchange; &#34;은닉자금&#34; (hidden/concealed funds) refers to an AML flag on the deposit.</p>
+    </li>
+    
+    <li class="msg" id="m-331" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">경재 신</span>
+        <time datetime="2024-02-23T10:35:25+00:00">2024-02-23 10:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.15">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/331" rel="noopener" title="Open on Telegram">#331 ↗</a>
+      </div>
+      
+      <p class="en">no idea what&#39;s going on</p>
+      <p class="zh" lang="ko">먼지 모르겟내요</p>
+      
+    </li>
+    
+    <li class="msg" id="m-330" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">경재 신</span>
+        <time datetime="2024-02-23T10:35:17+00:00">2024-02-23 10:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/330" rel="noopener" title="Open on Telegram">#330 ↗</a>
+      </div>
+      
+      <p class="en">they suspended deposits</p>
+      <p class="zh" lang="ko">입금중단햇는데</p>
+      
+    </li>
+    
+    <li class="msg" id="m-329" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">경재 신</span>
+        <time datetime="2024-02-23T10:35:13+00:00">2024-02-23 10:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/329" rel="noopener" title="Open on Telegram">#329 ↗</a>
+      </div>
+      
+      <p class="en">Over at Nexa</p>
+      <p class="zh" lang="ko">Nexa 에서</p>
+      
+    </li>
+    
+    <li class="msg" id="m-328" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">GD Y</span>
+        <time datetime="2024-02-23T10:34:12+00:00">2024-02-23 10:34 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/328" rel="noopener" title="Open on Telegram">#328 ↗</a>
+      </div>
+      
+      <p class="en">What happened?</p>
+      <p class="zh" lang="ko">무슨일 인가요?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-327" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">GD Y</span>
+        <time datetime="2024-02-23T10:34:05+00:00">2024-02-23 10:34 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/327" rel="noopener" title="Open on Telegram">#327 ↗</a>
+      </div>
+      
+      <p class="en">Why?</p>
+      <p class="zh" lang="ko">왜여?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-326" data-sent="negative" data-topics="2">
+      <div class="head">
+        <span class="who">Black Berries</span>
+        <time datetime="2024-02-23T02:48:08+00:00">2024-02-23 02:48 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.70">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/326" rel="noopener" title="Open on Telegram">#326 ↗</a>
+      </div>
+      
+      <p class="en">It&#39;s dead... guess I should sell what I mined.</p>
+      <p class="zh" lang="ko">망했네... 채굴한거 팔아야지</p>
+      
+    </li>
+    
+    <li class="msg" id="m-324" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">GD Y</span>
+        <time datetime="2024-01-21T08:31:37+00:00">2024-01-21 08:31 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/324" rel="noopener" title="Open on Telegram">#324 ↗</a>
+      </div>
+      
+      <p class="en">Nexa, what&#39;s going on?</p>
+      <p class="zh" lang="ko">넥사 무슨일입니까</p>
+      
+    </li>
+    
+    <li class="msg" id="m-322" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Black Berries</span>
+        <time datetime="2023-12-27T04:59:18+00:00">2023-12-27 04:59 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/322" rel="noopener" title="Open on Telegram">#322 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>GD Y</b>: I&#39;m mining Nexa — does this coin not come in right away?</p>
+      
+      <p class="en">With the Wally wallet it comes in regularly, no problem.</p>
+      <p class="zh" lang="ko">wally 지갑은 꼬박꼬박 잘 들어오는데요</p>
+      
+    </li>
+    
+    <li class="msg" id="m-320" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">GD Y</span>
+        <time datetime="2023-12-17T02:49:28+00:00">2023-12-17 02:49 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/320" rel="noopener" title="Open on Telegram">#320 ↗</a>
+      </div>
+      
+      <p class="en">I&#39;m mining Nexa — does this coin not come in right away?</p>
+      <p class="zh" lang="ko">넥사 채굴하는데 
+이 코인은 바로바로 안들어 오나요?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-319" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">책사 여왕벌</span>
+        <time datetime="2023-12-16T12:27:07+00:00">2023-12-16 12:27 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/319" rel="noopener" title="Open on Telegram">#319 ↗</a>
+      </div>
+      
+      <p class="en">Is anyone here using the Nexa Otoplo personal wallet?
+This is a personal wallet, but does the deposit address keep changing?
+
+I bought Nexa and sent it to my own address, but a new deposit address got generated. I deposited 4 times —
+3 went to the same address and 1 went to the newly generated address, but the total amount is the same...</p>
+      <p class="zh" lang="ko">혹시 넥사 오토플 개인지갑 사용하시는 계실까요?
+이거 개인지갑인데 입금 주소가 계속 변경되나요?
+
+네사 구입해서 제 개인주소로 입금하는데 입금 주소가 새로 생성되서요 4번 입금했는데
+3번은 같은주소로 입금했고 1번은
+새로 생성된 주소로 입금했는데 총액은 같아서요...</p>
+      
+    </li>
+    
+    <li class="msg" id="m-318" data-sent="neutral" data-topics="">
+      <div class="head">
+        <span class="who">HAYAN LEXUS</span>
+        <time datetime="2023-12-11T05:01:27+00:00">2023-12-11 05:01 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/318" rel="noopener" title="Open on Telegram">#318 ↗</a>
+      </div>
+      
+      <p class="en">In terms of transfer speed and fees, which is better, Kaspa or Nexa?</p>
+      <p class="zh" lang="ko">전송 속도나 수수료면에서 카스파 넥사 둘중에 어떤게 나을까요?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-314" data-sent="negative" data-topics="0">
+      <div class="head">
+        <span class="who">하이</span>
+        <time datetime="2023-12-05T14:16:02+00:00">2023-12-05 14:16 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.60">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/314" rel="noopener" title="Open on Telegram">#314 ↗</a>
+      </div>
+      
+      <p class="en">There&#39;s just no hope..</p>
+      <p class="zh" lang="ko">답도없네..</p>
+      <p class="note">답도없다 literally &#39;there isn&#39;t even an answer&#39; — i.e. hopeless, beyond saving.</p>
+    </li>
+    
+    <li class="msg" id="m-312" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">PLUS W</span>
+        <time datetime="2023-12-04T00:33:59+00:00">2023-12-04 00:33 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/312" rel="noopener" title="Open on Telegram">#312 ↗</a>
+      </div>
+      
+      <p class="en">What is it, Barman?</p>
+      <p class="zh" lang="ko">뭔가요?바맨님?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-309" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">바 맨</span>
+        <time datetime="2023-12-03T05:22:36+00:00">2023-12-03 05:22 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/309" rel="noopener" title="Open on Telegram">#309 ↗</a>
+      </div>
+      
+      <p class="en">Looks good.</p>
+      <p class="zh" lang="ko">좋아보임</p>
+      
+    </li>
+    
+    <li class="msg" id="m-307" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">바 맨</span>
+        <time datetime="2023-12-03T05:22:17+00:00">2023-12-03 05:22 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/307" rel="noopener" title="Open on Telegram">#307 ↗</a>
+      </div>
+      
+      <p class="en">There&#39;s a new mining coin coming out.</p>
+      <p class="zh" lang="ko">채굴새로운거 하나 나오네요</p>
+      
+    </li>
+    
+    <li class="msg" id="m-306" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">바 맨</span>
+        <time datetime="2023-12-02T01:00:43+00:00">2023-12-02 01:00 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/306" rel="noopener" title="Open on Telegram">#306 ↗</a>
+      </div>
+      
+      <p class="en">7Yep, me too</p>
+      <p class="zh" lang="ko">7넵 저두요</p>
+      <p class="note">The &#39;7&#39; is a stray typo before 넵 (&#39;yep&#39;).</p>
+    </li>
+    
+    <li class="msg" id="m-305" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">PLUS W</span>
+        <time datetime="2023-12-02T00:51:43+00:00">2023-12-02 00:51 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/305" rel="noopener" title="Open on Telegram">#305 ↗</a>
+      </div>
+      
+      <p class="en">I&#39;m thinking of just holding Nexa too, until spring.</p>
+      <p class="zh" lang="ko">저도 넥사는 그냥 들고 갈까 싶어요 봄 까지</p>
+      
+    </li>
+    
+    <li class="msg" id="m-304" data-sent="mixed" data-topics="7">
+      <div class="head">
+        <span class="who">PLUS W</span>
+        <time datetime="2023-12-02T00:51:14+00:00">2023-12-02 00:51 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.20">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_korean/304" rel="noopener" title="Open on Telegram">#304 ↗</a>
+      </div>
+      
+      <p class="en">I&#39;ve been looking at DeFi coins, but they&#39;ve run up so much that I&#39;m scared of buying the top, so I can&#39;t bring myself to get in.</p>
+      <p class="zh" lang="ko">디파이 코인 보고 있는데 너무 올라 상투 잡을까 겁나서 못들어가겠네요</p>
+      <p class="note">상투 잡다 (&#39;grabbing the topknot&#39;) = buying at the very top of a rally.</p>
+    </li>
+    
+    <li class="msg" id="m-303" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">PLUS W</span>
+        <time datetime="2023-12-02T00:50:09+00:00">2023-12-02 00:50 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/303" rel="noopener" title="Open on Telegram">#303 ↗</a>
+      </div>
+      
+      <p class="en">Yeah lol</p>
+      <p class="zh" lang="ko">네 ㅋㅋ</p>
+      
+    </li>
+    
+    <li class="msg" id="m-302" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">바 맨</span>
+        <time datetime="2023-12-02T00:11:16+00:00">2023-12-02 00:11 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_korean/302" rel="noopener" title="Open on Telegram">#302 ↗</a>
+      </div>
+      
+      <p class="en">I&#39;m not touching mining coins anymore hehe</p>
+      <p class="zh" lang="ko">채굴코인은 더이상 손안대려고요 ㅎㅎ</p>
+      
+    </li>
+    
+    <li class="msg" id="m-301" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">PLUS W</span>
+        <time datetime="2023-12-01T23:12:31+00:00">2023-12-01 23:12 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/301" rel="noopener" title="Open on Telegram">#301 ↗</a>
+      </div>
+      
+      <p class="en">Could you give me the spelling of Grok, please?</p>
+      <p class="zh" lang="ko">그록 스펠링좀 부탁드립니다</p>
+      
+    </li>
+    
+    <li class="msg" id="m-300" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">PLUS W</span>
+        <time datetime="2023-12-01T23:12:06+00:00">2023-12-01 23:12 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/300" rel="noopener" title="Open on Telegram">#300 ↗</a>
+      </div>
+      
+      <p class="en">Qubic (QuBIC), Firo (FIRO)
+These are mining coins too — what do you think of them?</p>
+      <p class="zh" lang="ko">큐빅(QuBIC) 파이로(FIRO)
+이것도 채굴 코인이던데 어떻게 생각하시나요?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-299" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">PLUS W</span>
+        <time datetime="2023-12-01T23:10:16+00:00">2023-12-01 23:10 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/299" rel="noopener" title="Open on Telegram">#299 ↗</a>
+      </div>
+      
+      <p class="en">Barman, you must do a lot of searching around.</p>
+      <p class="zh" lang="ko">바맨님 많이 검색하시나봅니다</p>
+      
+    </li>
+    
+    <li class="msg" id="m-298" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">PLUS W</span>
+        <time datetime="2023-12-01T23:09:57+00:00">2023-12-01 23:09 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/298" rel="noopener" title="Open on Telegram">#298 ↗</a>
+      </div>
+      
+      <p class="en">Grok???</p>
+      <p class="zh" lang="ko">그록요???</p>
+      
+    </li>
+    
+    <li class="msg" id="m-297" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">바 맨</span>
+        <time datetime="2023-12-01T10:17:11+00:00">2023-12-01 10:17 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/297" rel="noopener" title="Open on Telegram">#297 ↗</a>
+      </div>
+      
+      <p class="en">Should&#39;ve ridden Grok instead, Elon Musk.</p>
+      <p class="zh" lang="ko">그록을타시지 일론머스크</p>
+      <p class="note">Joking reference to Elon Musk&#39;s Grok AI — teasing that one should have bet on that instead.</p>
+    </li>
+    
+    <li class="msg" id="m-296" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">PLUS W</span>
+        <time datetime="2023-12-01T09:27:22+00:00">2023-12-01 09:27 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/296" rel="noopener" title="Open on Telegram">#296 ↗</a>
+      </div>
+      
+      <p class="en">Has Nexa stopped dropping now??</p>
+      <p class="zh" lang="ko">넥사 이제 하락 멈춘건가요??</p>
+      
+    </li>
+    
+    <li class="msg" id="m-295" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">바 맨</span>
+        <time datetime="2023-11-30T14:22:29+00:00">2023-11-30 14:22 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_korean/295" rel="noopener" title="Open on Telegram">#295 ↗</a>
+      </div>
+      
+      <p class="en">Hope that happens.</p>
+      <p class="zh" lang="ko">그랬음좋겟네요</p>
+      
+    </li>
+    
+    <li class="msg" id="m-294" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">PLUS W</span>
+        <time datetime="2023-11-30T14:21:22+00:00">2023-11-30 14:21 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.20">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_korean/294" rel="noopener" title="Open on Telegram">#294 ↗</a>
+      </div>
+      
+      <p class="en">I hope it touches the 120 line and then just pumps mindlessly ㅜ</p>
+      <p class="zh" lang="ko">120선 터치하고 무지성 올라줬으면 하네요 ㅜ</p>
+      <p class="note">무지성 (&#39;no-brain/mindless&#39;) is slang for a reckless, unthinking move — here, a pump with no regard for logic. ㅜ is a crying emoticon.</p>
+    </li>
+    
+    <li class="msg" id="m-293" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">바 맨</span>
+        <time datetime="2023-11-30T14:18:35+00:00">2023-11-30 14:18 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_korean/293" rel="noopener" title="Open on Telegram">#293 ↗</a>
+      </div>
+      
+      <p class="en">Meanwhile neox isn&#39;t moving at all.</p>
+      <p class="zh" lang="ko">그와중에 neox는 움직임없네요</p>
+      
+    </li>
+    
+  </ol>
+  <p class="empty" id="empty">No messages match these filters.</p>
+</section>
+
+<footer>
+  <p>Translations, sentiment scores and the summary are generated automatically by claude-opus-5 and may contain mistakes. Original messages belong to their authors on Telegram.</p>
+  <p><a href="data.json">Raw data (JSON)</a></p>
+</footer>
+
+</div>
+<script>
+(function () {
+  var msgs = Array.prototype.slice.call(document.querySelectorAll('.msg'));
+  var sent = 'all', topic = null;
+  var topicNames = ["Price outlook and holding Nexa", "Mining vs. buying (DCA)", "Wallets, exchanges and deposit problems", "Clash over \u0027obvious\u0027 questions", "English-language troll attack", "Group inactivity and team presence", "News, promos and link drops", "Off-topic and spam"];
+
+  function apply() {
+    var shown = 0;
+    msgs.forEach(function (m) {
+      var ok = (sent === 'all' || m.dataset.sent === sent) &&
+               (topic === null || (' ' + m.dataset.topics + ' ').indexOf(' ' + topic + ' ') !== -1);
+      m.hidden = !ok; if (ok) shown++;
+    });
+    document.getElementById('empty').classList.toggle('on', shown === 0);
+    var bar = document.getElementById('active-topic');
+    bar.classList.toggle('on', topic !== null);
+    if (topic !== null) document.getElementById('active-topic-name').textContent = topicNames[topic] + ' (' + shown + ')';
+    document.querySelectorAll('.topic').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.topic === String(topic))); });
+  }
+  document.querySelectorAll('.fbtn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      sent = b.dataset.sent;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      apply();
+    });
+  });
+  document.querySelectorAll('.topic').forEach(function (b) {
+    b.addEventListener('click', function () {
+      topic = (String(topic) === b.dataset.topic) ? null : Number(b.dataset.topic);
+      apply();
+      if (topic !== null) document.getElementById('messages').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  document.getElementById('clear-topic').addEventListener('click', function () { topic = null; apply(); });
+
+  var zh = document.getElementById('show-zh');
+  try { if (localStorage.getItem('showZh') === '0') zh.checked = false; } catch (e) {}
+  function syncZh() {
+    document.body.classList.toggle('hide-zh', !zh.checked);
+    try { localStorage.setItem('showZh', zh.checked ? '1' : '0'); } catch (e) {}
+  }
+  zh.addEventListener('change', syncZh); syncZh();
+
+  // Show timestamps in the viewer's local time zone.
+  var fmt = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+  document.querySelectorAll('time[datetime]').forEach(function (t) {
+    var d = new Date(t.getAttribute('datetime'));
+    if (!isNaN(d)) { t.title = t.textContent; t.textContent = fmt.format(d); }
+  });
+
+  // Highlight links: reveal the target even if filtered out, then flash it.
+  document.querySelectorAll('.hl a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      sent = 'all'; topic = null;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.sent === 'all')); });
+      apply();
+      var el = document.querySelector(a.getAttribute('href'));
+      if (el) { el.classList.add('flash'); setTimeout(function () { el.classList.remove('flash'); }, 1600); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -15,7 +15,25 @@ class ChatInfo(BaseModel):
     title: str
     username: str
     url: str
+    language: str        # source language, e.g. "Chinese"
+    lang_code: str       # BCP-47 tag for the original text, e.g. "zh-Hans"
     member_count: int | None = None
+
+    @property
+    def slug(self) -> str:
+        return self.username.lower()
+
+    @property
+    def flag(self) -> str:
+        return _FLAGS.get(self.language.lower(), "")
+
+
+_FLAGS = {
+    "chinese": "🇨🇳", "dutch": "🇳🇱", "german": "🇩🇪",
+    "hindi": "🇮🇳", "korean": "🇰🇷", "norwegian": "🇳🇴",
+    "filipino": "🇵🇭", "polish": "🇵🇱", "russian": "🇷🇺",
+    "spanish": "🇪🇸", "turkish": "🇹🇷", "vietnamese": "🇻🇳",
+}
 
 
 class RawMessage(BaseModel):

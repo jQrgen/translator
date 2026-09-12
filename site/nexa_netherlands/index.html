@@ -1,0 +1,1809 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexa_Netherlands — English</title>
+<meta name="description" content="Revived Dutch Nexa group talks Tailstorm hardfork, X-promotion tactics, price hopes and memecoin disdain">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --line: #e1e0d9; --ring: rgba(11,11,11,.10); --wash: rgba(11,11,11,.04);
+  --accent: #2a78d6; --accent-ink: #1c5cab;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #c98500; --neu: #898781; --mid: #f0efec;
+  --zh: #52514e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+    --accent: #3987e5; --accent-ink: #86b6ef;
+    --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+    --zh: #c3c2b7;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+  --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+  --accent: #3987e5; --accent-ink: #86b6ef;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+  --zh: #c3c2b7;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--page); color: var(--ink);
+  font: 15px/1.55 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  padding-inline: clamp(16px, 4vw, 32px); padding-block: 0 64px;
+}
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 900px; margin: 0 auto; }
+header.top { padding-block: 40px 24px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+h1 { font-size: clamp(24px, 4vw, 34px); line-height: 1.15; margin: 0 0 10px; letter-spacing: -.01em; }
+.meta { color: var(--ink-2); font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; }
+.meta span::before { content: ""; }
+h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; font-weight: 600; }
+section { padding-block: 32px; }
+h2 .sub { font-weight: 400; letter-spacing: 0; text-transform: none; }
+section + section { border-top: 1px solid var(--line); }
+.headline { font-size: clamp(19px, 2.6vw, 24px); line-height: 1.3; font-weight: 600; margin: 0 0 12px; letter-spacing: -.01em; }
+.lede { font-size: 16px; color: var(--ink-2); margin: 0; max-width: 70ch; }
+.grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.topics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.topic { width: 100%; text-align: left; background: transparent; border: 1px solid transparent; border-radius: 10px; padding: 12px 14px; color: inherit; font: inherit; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; }
+.topic:hover { background: var(--wash); }
+.topic[aria-pressed="true"] { border-color: var(--accent); background: var(--wash); }
+.topic .t { font-weight: 600; }
+.topic .n { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.topic .s { grid-column: 1 / -1; color: var(--ink-2); font-size: 14px; }
+.mood-label { font-size: 26px; font-weight: 700; letter-spacing: -.01em; margin: 0 0 4px; }
+.mood-score { color: var(--muted); font-size: 13px; margin: 0 0 12px; font-variant-numeric: tabular-nums; }
+.meter { position: relative; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--neg), var(--mid) 50%, var(--pos)); margin: 6px 0 4px; }
+.meter i { position: absolute; top: 50%; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 3px solid var(--ink); transform: translate(-50%, -50%); box-shadow: 0 0 0 2px var(--surface); }
+.meter-ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+.mood-desc { margin: 0 0 20px; color: var(--ink-2); font-size: 14px; }
+.dist { display: flex; height: 12px; border-radius: 4px; overflow: hidden; gap: 2px; background: var(--surface); margin-bottom: 10px; }
+.dist b { display: block; height: 100%; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 13px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend .n { margin-left: auto; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.positive { --c: var(--pos); } .negative { --c: var(--neg); } .mixed { --c: var(--mix); } .neutral { --c: var(--neu); }
+.dot, .dist b { background: var(--c); }
+.chip { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--ink-2); padding: 2px 8px 2px 6px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); white-space: nowrap; }
+.chip::before { content: attr(data-glyph); width: 14px; height: 14px; border-radius: 50%; background: var(--c); color: #fff; display: inline-grid; place-items: center; font-size: 11px; line-height: 1; }
+.hl { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hl a { display: block; color: inherit; background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 12px 14px; }
+.hl a:hover { text-decoration: none; border-color: var(--accent); }
+.hl .q { font-size: 15px; margin: 0 0 4px; }
+.hl .w { font-size: 13px; color: var(--ink-2); margin: 0; }
+.hl .w b { font-weight: 600; color: var(--ink); }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 16px; position: sticky; top: 0; background: var(--page); padding-block: 10px; z-index: 2; border-bottom: 1px solid var(--line); }
+.controls .sp { flex: 1; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.fbtn { font: inherit; font-size: 13px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.fbtn[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); cursor: pointer; user-select: none; }
+.toggle input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+.active-topic { display: none; font-size: 13px; color: var(--ink-2); padding: 8px 12px; border-radius: 8px; background: var(--wash); margin-bottom: 12px; }
+.active-topic.on { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.active-topic button { font: inherit; font-size: 13px; background: none; border: 0; color: var(--accent-ink); cursor: pointer; padding: 0; }
+.msgs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.msg { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 12px 16px; scroll-margin-top: 70px; }
+.msg[hidden] { display: none; }
+.msg.flash { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42,120,214,.25); }
+.msg .head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 6px; font-size: 13px; }
+.msg .who { font-weight: 600; color: var(--ink); font-size: 14px; }
+.msg time { color: var(--muted); font-variant-numeric: tabular-nums; }
+.msg .lnk { margin-left: auto; color: var(--muted); font-size: 12px; }
+.msg .reply { border-left: 3px solid var(--line); padding: 2px 10px; margin: 0 0 8px; color: var(--ink-2); font-size: 13px; }
+.msg .reply b { font-weight: 600; }
+.msg .en { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg .zh { margin: 6px 0 0; color: var(--zh); font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+body.hide-zh .msg .zh { display: none; }
+.msg .note { margin: 8px 0 0; font-size: 13px; color: var(--ink-2); font-style: italic; }
+.msg .note::before { content: "Note: "; font-style: normal; font-weight: 600; }
+.empty { display: none; color: var(--muted); padding: 24px 0; text-align: center; }
+.empty.on { display: block; }
+footer { color: var(--muted); font-size: 13px; padding-top: 32px; border-top: 1px solid var(--line); }
+footer p { margin: 0 0 6px; }
+@media (prefers-reduced-motion: no-preference) { .msg { transition: border-color .3s, box-shadow .3s; } }
+.nav { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; padding: 0; list-style: none; }
+.nav a { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); }
+.nav a:hover { text-decoration: none; border-color: var(--accent); }
+.nav a[aria-current="page"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.nav .lang { font-weight: 400; opacity: .75; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
+.cards > li > a { display: block; color: inherit; height: 100%; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.cards > li > a:hover { text-decoration: none; border-color: var(--accent); }
+.cards h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.cards .sub { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+.cards .hd { font-size: 15px; font-weight: 600; margin: 0 0 10px; line-height: 1.35; }
+.cards .mood { display: flex; align-items: baseline; gap: 8px; margin: 0 0 8px; }
+.cards .mood b { font-size: 20px; letter-spacing: -.01em; }
+.cards .mood span { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.cards .dist { margin: 10px 0 8px; }
+.cards .legend { grid-template-columns: repeat(4, auto); justify-content: start; gap: 4px 14px; font-size: 12px; }
+.cards .legend .n { margin-left: 4px; }
+.cards .more { color: var(--accent-ink); font-size: 13px; font-weight: 600; margin: 12px 0 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <ul class="nav" aria-label="Communities">
+  <li><a href="../">Overview</a></li>
+  
+  <li><a href="../nexa_china/"><span aria-hidden="true">🇨🇳</span> Chinese</a></li>
+  
+  <li><a href="../nexa_netherlands/" aria-current="page"><span aria-hidden="true">🇳🇱</span> Dutch</a></li>
+  
+  <li><a href="../nexa_germany/"><span aria-hidden="true">🇩🇪</span> German</a></li>
+  
+  <li><a href="../nexa_india/"><span aria-hidden="true">🇮🇳</span> Hindi</a></li>
+  
+  <li><a href="../nexa_korean/"><span aria-hidden="true">🇰🇷</span> Korean</a></li>
+  
+  <li><a href="../nexa_nor/"><span aria-hidden="true">🇳🇴</span> Norwegian</a></li>
+  
+  <li><a href="../nexa_philippines/"><span aria-hidden="true">🇵🇭</span> Filipino</a></li>
+  
+  <li><a href="../nexa_poland/"><span aria-hidden="true">🇵🇱</span> Polish</a></li>
+  
+  <li><a href="../nexa_ru/"><span aria-hidden="true">🇷🇺</span> Russian</a></li>
+  
+  <li><a href="../nexa_spanish/"><span aria-hidden="true">🇪🇸</span> Spanish</a></li>
+  
+  <li><a href="../nexatr/"><span aria-hidden="true">🇹🇷</span> Turkish</a></li>
+  
+  <li><a href="../nexa_viet/"><span aria-hidden="true">🇻🇳</span> Vietnamese</a></li>
+  
+</ul>
+  <p class="eyebrow">Telegram · Dutch → English mirror</p>
+  <h1>Nexa_Netherlands</h1>
+  <p class="meta">
+    <span><a href="https://t.me/Nexa_Netherlands" rel="noopener">t.me/Nexa_Netherlands</a></span>
+    <span>21 members</span>
+    <span>Last 100 messages · <time datetime="2026-09-08T11:10:56+00:00">2026-09-08 11:10 UTC</time> → <time datetime="2026-09-12T06:35:03+00:00">2026-09-12 06:35 UTC</time></span>
+    <span>Updated <time datetime="2026-09-12T16:25:03.438422+00:00">2026-09-12 16:25 UTC</time></span>
+  </p>
+</header>
+
+<section id="summary">
+  <h2>Summary</h2>
+  <p class="headline">Revived Dutch Nexa group talks Tailstorm hardfork, X-promotion tactics, price hopes and memecoin disdain</p>
+  <p class="lede">The Dutch/Belgian Nexa group was restarted about a week before this window and is picking up activity, with ZYDEXN welcoming returning member Jaxxx and a bot (Rose) greeting several new joiners. Lenn Treve drives the most substantive content: hype for the upcoming Tailstorm hybrid-DAG hardfork, a link to the arXiv paper, a Dutch-language explainer article on X, and a long list of prepared technical questions/comments (finality, sub-blocks, uncle rewards, checkpoints, SPV) plus a request for members to comment and copy-link the post within 30 minutes to game the algorithm. Price talk is bullish but vague — ZYDEXN and Lenn Treve speak of billions in market cap, a thin MEXC order book, and a push back to 0.00017. The one mild friction came when Sheldon ⛛ψ Cooper pushed back on ZYDEXN also promoting $ALPH in a Nexa-focused channel; it was settled amicably, with ZYDEXN arguing cross-posting reaches a wider audience and agreeing the chat should stay Nexa-only. The window ends with playful talk about launching memes/tokens on Nexa via tokenex, dismissal of memecoins as gambling, and Lenn Treve speculating that an influencer is quietly accumulating Nexa.</p>
+</section>
+
+<section id="analysis">
+  <div class="grid">
+    <div class="card">
+      <h2>Topics</h2>
+      <ul class="topics">
+        
+        <li>
+          <button class="topic" type="button" data-topic="0" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Tailstorm hardfork and technical deep-dive</span>
+            <span class="n">10 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">Lenn Treve announced the upcoming Tailstorm hybrid-DAG hardfork, shared the arXiv paper and a Dutch explainer on X, and posted a detailed set of technical questions and talking points on sub-block finality, PoW-less summaries, uncle rewards, checkpoints and light wallets. Blacktea ▽ also shared a forum article on Peter Rizun&#39;s hardware-acceleration/&#39;scaling by circuit&#39; work.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="1" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">X promotion and algorithm boosting</span>
+            <span class="n">10 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">Lenn Treve asked members to comment on and copy-link his article within 30 minutes for an algorithm boost, later reporting &#39;good quality accounts&#39; engaging and that his new strategy works; ZYDEXN asked people to like and share his post too. Sheldon ⛛ψ Cooper got excited that a serious account liked Lenn&#39;s post.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="2" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">ALPH cross-promotion friction</span>
+            <span class="n">11 msgs · <span class="chip mixed" data-glyph="±">Mixed</span></span>
+            <span class="s">Sheldon ⛛ψ Cooper gently objected to ZYDEXN promoting $ALPH alongside Nexa, saying the channel should stay Nexa-focused; ZYDEXN defended it as reaching a wider audience but agreed the chat should be purely Nexa, and both ended on friendly terms.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="3" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Price and market cap expectations</span>
+            <span class="n">15 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">ZYDEXN repeatedly predicted a 1B+ (and later multi-billion) market cap, noted the MEXC order book is very thin, and called for a push back to 0.00017; Lenn Treve agreed ATH would return once the masses catch on and later claimed Nexa was pumping while BTC and ETH stagnate.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="4" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Memecoins vs building on Nexa</span>
+            <span class="n">17 msgs · <span class="chip mixed" data-glyph="±">Mixed</span></span>
+            <span class="s">Lenn Treve and ZYDEXN dismissed memecoins as rug-prone gambling, then joked about launching a meme token on Nexa via tokenex — ZYDEXN suggesting a &#39;ZYDEXN coin&#39; and Lenn Treve proposing the name SHITCOIN; Sheldon ⛛ψ Cooper praised Nexa&#39;s fairness and its tooling for launching projects.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="5" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Group revival and new members</span>
+            <span class="n">29 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">Jaxxx returned and remarked the group had been dead; ZYDEXN explained it was relaunched a week ago and urged everyone to invite others. The Rose bot welcomed several newcomers and posted the standard exchange list with a self-custody reminder after a /buy command from Blacktea ▽.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="6" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Community evangelism</span>
+            <span class="n">8 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">Sheldon ⛛ψ Cooper described himself as Nexa&#39;s biggest fan despite being called crazy, called for a &#39;Nexa movement&#39; with street visibility and a Saylor-style &#39;Buy Nexa&#39; sticker campaign, and argued Nexa can replace SOL, ETH and BTC.</span>
+          </button>
+        </li>
+        
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Mood</h2>
+      <p class="mood-label">Enthusiastic and bullish</p>
+      <p class="mood-score">Mood score +0.60 on a −1 … +1 scale</p>
+      <div class="meter" role="img" aria-label="Mood score +0.60 of 1"><i style="left: 80.0%"></i></div>
+      <div class="meter-ticks"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
+      <p class="mood-desc">The tone is upbeat throughout: a revived group, anticipation for the Tailstorm hardfork, and confident long-term price predictions. A brief dip into mild friction occurs when Sheldon ⛛ψ Cooper questions ZYDEXN&#39;s $ALPH posts, but it resolves politely within minutes. Late in the window the mood turns jokey (SHITCOIN, ZYDEXN coin) with only a small negative note about BTC and ETH stagnating.</p>
+      <h2>Sentiment by message</h2>
+      <div class="dist" role="img" aria-label="Positive 62, Mixed 5, Neutral 28, Negative 5">
+        <b class="positive" style="flex: 62" title="Positive: 62"></b><b class="mixed" style="flex: 5" title="Mixed: 5"></b><b class="neutral" style="flex: 28" title="Neutral: 28"></b><b class="negative" style="flex: 5" title="Negative: 5"></b>
+      </div>
+      <ul class="legend">
+        
+        <li><span class="dot positive"></span>Positive<span class="n">62 · 62.0%</span></li>
+        
+        <li><span class="dot mixed"></span>Mixed<span class="n">5 · 5.0%</span></li>
+        
+        <li><span class="dot neutral"></span>Neutral<span class="n">28 · 28.0%</span></li>
+        
+        <li><span class="dot negative"></span>Negative<span class="n">5 · 5.0%</span></li>
+        
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section id="highlights">
+  <h2>Worth reading first</h2>
+  <ul class="hl">
+    
+    <li><a href="#m-264">
+      <p class="q">“1. So if I understand correctly: my transaction will soon already be in a sub-block of ~3 seconds, but it&#39;s only truly final with the summary of ~2 minutes?
+2. In the paper a summary is PoW-less. Nexa turns the last sub-block into the summary. Doesn&#39;t that lose exactly the &#34;every node assembles the summary itself&#34; advantage, or is that actually smarter against forks?
+3. Reward discount based on tree depth sounds good against selfish mining. Does Nexa apply that discount one-to-one from the paper, or only the DAG structure and Bobtail variance?
+4. If sub-blocks live in RAM and are then trimmed: how do I prove in 5 years that tx X was in sub-block Y? Does the summary remain enough for an SPV wallet?
+5. 40 sub-blocks per summary, target 3 seconds. What happens if the network is slow for a bit and 60 come in? Who decides which 40 win — the miner of the summary?
+6. Rolling checkpoints at 200 blocks: at 2 minutes per summary that&#39;s almost 7 hours. Isn&#39;t that late for exchanges, or is it precisely the intention so that Tailstorm is allowed to reorg first?
+7. Will light wallets need extra logic soon, or do they just see the same Nexa chain and users notice nothing until the confirmation counter ticks faster?
+8. The paper punishes withholding via depth. Nexa counts uncles towards the work. Don&#39;t those somewhat contradict each other? Rewarding uncles = rewarding a flat tree?”</p>
+      <p class="w"><b>Lenn Treve</b> · Lenn Treve&#39;s eight detailed Tailstorm questions are the most substantive technical content in the window — finality, uncle rewards, checkpoints, SPV.</p>
+    </a></li>
+    
+    <li><a href="#m-263">
+      <p class="q">“It would help enormously if you:
+
+1. paste a question / comment under this article within 30 minutes
+2. Click the copy link 🔗 of the article for a 40x algorithm boost”</p>
+      <p class="w"><b>Lenn Treve</b> · Explicit call to coordinate comments and copy-link clicks within 30 minutes for a &#39;40x algorithm boost&#39; — an organised engagement-farming request worth the team&#39;s attention.</p>
+    </a></li>
+    
+    <li><a href="#m-287">
+      <p class="q">“I get that you&#39;re also a big fan of alph, but I&#39;m guessing the idea here is actually to keep the main focus on nexa 👀”</p>
+      <p class="w"><b>Sheldon ⛛ψ Cooper</b> · The one moment of friction: a polite objection to $ALPH promotion in the Nexa channel, and the start of a short moderation-adjacent debate.</p>
+    </a></li>
+    
+    <li><a href="#m-323">
+      <p class="q">“I know a good name: SHITCOIN”</p>
+      <p class="w"><b>Lenn Treve</b> · Lenn Treve&#39;s punchline after the memecoin-bashing: proposing to launch a Nexa token called SHITCOIN.</p>
+    </a></li>
+    
+    <li><a href="#m-244">
+      <p class="q">“Order book is also super thin on MEXC at the moment”</p>
+      <p class="w"><b>ZYDEXN</b> · Concrete market observation — the MEXC order book is described as very thin, relevant context for the bullish price talk.</p>
+    </a></li>
+    
+  </ul>
+</section>
+
+
+<section id="messages">
+  <h2>Messages <span class="sub">· newest first</span></h2>
+  <div class="controls">
+    <div class="filters" role="group" aria-label="Filter by sentiment">
+      <button class="fbtn" type="button" data-sent="all" aria-pressed="true">All</button>
+      <button class="fbtn" type="button" data-sent="positive" aria-pressed="false">Positive (62)</button><button class="fbtn" type="button" data-sent="mixed" aria-pressed="false">Mixed (5)</button><button class="fbtn" type="button" data-sent="neutral" aria-pressed="false">Neutral (28)</button><button class="fbtn" type="button" data-sent="negative" aria-pressed="false">Negative (5)</button>
+    </div>
+    <span class="sp"></span>
+    <label class="toggle"><input type="checkbox" id="show-zh" checked> Show original Dutch</label>
+  </div>
+  <div class="active-topic" id="active-topic"><span>Topic: <b id="active-topic-name"></b></span><button type="button" id="clear-topic">Show all messages</button></div>
+  <ol class="msgs" id="msg-list" reversed>
+    
+    <li class="msg" id="m-328" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-12T06:35:03+00:00">2026-09-12 06:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/328" rel="noopener" title="Open on Telegram">#328 ↗</a>
+      </div>
+      
+      <p class="en">Or a video</p>
+      <p class="zh" lang="nl">Of video</p>
+      
+    </li>
+    
+    <li class="msg" id="m-327" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-12T06:35:00+00:00">2026-09-12 06:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/327" rel="noopener" title="Open on Telegram">#327 ↗</a>
+      </div>
+      
+      <p class="en">And once he/she has enough, they&#39;ll make a post</p>
+      <p class="zh" lang="nl">En als hij/zij genoeg heeft maakt hij een post</p>
+      
+    </li>
+    
+    <li class="msg" id="m-326" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-12T06:34:40+00:00">2026-09-12 06:34 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/326" rel="noopener" title="Open on Telegram">#326 ↗</a>
+      </div>
+      
+      <p class="en">I think an influencer is buying up Nexa</p>
+      <p class="zh" lang="nl">Ik denk dat een influencer Nexa aan het kopen is</p>
+      
+    </li>
+    
+    <li class="msg" id="m-325" data-sent="negative" data-topics="3">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T14:52:42+00:00">2026-09-10 14:52 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/325" rel="noopener" title="Open on Telegram">#325 ↗</a>
+      </div>
+      
+      <p class="en">Too baaad</p>
+      <p class="zh" lang="nl">Helaaas</p>
+      
+    </li>
+    
+    <li class="msg" id="m-324" data-sent="negative" data-topics="3">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-10T13:00:39+00:00">2026-09-10 13:00 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.50">Negative</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/324" rel="noopener" title="Open on Telegram">#324 ↗</a>
+      </div>
+      
+      <p class="en">Bitcoin and ETH just can&#39;t get off the ground, pffff</p>
+      <p class="zh" lang="nl">Bitcoin en ETh komt maar niet van de grond pfff</p>
+      
+    </li>
+    
+    <li class="msg" id="m-323" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-10T09:52:49+00:00">2026-09-10 09:52 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/323" rel="noopener" title="Open on Telegram">#323 ↗</a>
+      </div>
+      
+      <p class="en">I know a good name: SHITCOIN</p>
+      <p class="zh" lang="nl">Ik weet een goede naam: SHITCOIN</p>
+      <p class="note">Joking suggestion for the meme token&#39;s name.</p>
+    </li>
+    
+    <li class="msg" id="m-322" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T09:36:29+00:00">2026-09-10 09:36 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/322" rel="noopener" title="Open on Telegram">#322 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Lenn Treve</b>: You can make a meme on Nexa super easily. Shall I make one? 😁</p>
+      
+      <p class="en">Yeah, make the ZYDEXN coin with my profile picture 🤣</p>
+      <p class="zh" lang="nl">Jaa maak de ZYDEXN coin met mijn profiel foto 🤣</p>
+      
+    </li>
+    
+    <li class="msg" id="m-321" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T09:32:42+00:00">2026-09-10 09:32 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/321" rel="noopener" title="Open on Telegram">#321 ↗</a>
+      </div>
+      
+      <p class="en">They&#39;re also building tools to quickly launch your own project (libs with examples), for individuals as well as for institutions, so that&#39;s absolutely great</p>
+      <p class="zh" lang="nl">Ze bouwen ook tools om snel je eigen project te lanceren (libs met voorbeelden), zowel voor individuelen als voor instanties, dus dat is helemaal top</p>
+      
+    </li>
+    
+    <li class="msg" id="m-320" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-10T09:31:02+00:00">2026-09-10 09:31 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/320" rel="noopener" title="Open on Telegram">#320 ↗</a>
+      </div>
+      
+      <p class="en">https://tokenex.nexa.org</p>
+      <p class="zh" lang="nl">https://tokenex.nexa.org</p>
+      
+    </li>
+    
+    <li class="msg" id="m-319" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T09:30:11+00:00">2026-09-10 09:30 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/319" rel="noopener" title="Open on Telegram">#319 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Lenn Treve</b>: You can make a meme on Nexa super easily. Shall I make one? 😁</p>
+      
+      <p class="en">Yeah exactly, Nexa is genuinely a fair chain and yeah it&#39;s easy to build something on it</p>
+      <p class="zh" lang="nl">ja precies, nexa is oprecht een eerlijke chain en idd makkelijk om er iets op te maken</p>
+      
+    </li>
+    
+    <li class="msg" id="m-318" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-10T09:29:36+00:00">2026-09-10 09:29 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/318" rel="noopener" title="Open on Telegram">#318 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>ZYDEXN</b>: If memes end up getting built on Nexa later on, that&#39;d be fun 🔥😜</p>
+      
+      <p class="en">You can make a meme on Nexa super easily. Shall I make one? 😁</p>
+      <p class="zh" lang="nl">Je kan heel makkelijk een meme maken op Nexa. Zal ik er een maken? 😁</p>
+      
+    </li>
+    
+    <li class="msg" id="m-317" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T09:27:53+00:00">2026-09-10 09:27 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/317" rel="noopener" title="Open on Telegram">#317 ↗</a>
+      </div>
+      
+      <p class="en">The masses will keep hanging around in that old junk at first, but eventually they won&#39;t be able to deny Nexa 😁</p>
+      <p class="zh" lang="nl">De massa blijft eerst in die oude zooi hangen, maar zullen nexa uiteindelijk niet kunnen ontkennen 😁</p>
+      
+    </li>
+    
+    <li class="msg" id="m-316" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T09:25:54+00:00">2026-09-10 09:25 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/316" rel="noopener" title="Open on Telegram">#316 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>ZYDEXN</b>: If memes end up getting built on Nexa later on, that&#39;d be fun 🔥😜</p>
+      
+      <p class="en">That&#39;s totally fine, it&#39;s just part of the game these days. Nexa can replace Sol, Eth and BTC just fine.</p>
+      <p class="zh" lang="nl">dat is helemaal goed, hoort er tegenwoordig bij. Nexa kan Sol, Eth en BTC prima vervangen.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-315" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T09:24:20+00:00">2026-09-10 09:24 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/315" rel="noopener" title="Open on Telegram">#315 ↗</a>
+      </div>
+      
+      <p class="en">If memes end up getting built on Nexa later on, that&#39;d be fun 🔥😜</p>
+      <p class="zh" lang="nl">Als er nou straks meme’s gebouwden worden op Nexa is wel leuk 🔥😜</p>
+      
+    </li>
+    
+    <li class="msg" id="m-314" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-10T09:20:17+00:00">2026-09-10 09:20 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/314" rel="noopener" title="Open on Telegram">#314 ↗</a>
+      </div>
+      
+      <p class="en">It&#39;s just gambling</p>
+      <p class="zh" lang="nl">Is gewoon gokken</p>
+      
+    </li>
+    
+    <li class="msg" id="m-313" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-10T09:20:05+00:00">2026-09-10 09:20 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/313" rel="noopener" title="Open on Telegram">#313 ↗</a>
+      </div>
+      
+      <p class="en">Nah man, you never know when they&#39;re going to drain it</p>
+      <p class="zh" lang="nl">Nee joh je weet nooit wanneer ze hem leeg trekken</p>
+      <p class="note">&#39;leeg trekken&#39; = rug pull / dumping the liquidity.</p>
+    </li>
+    
+    <li class="msg" id="m-312" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T09:19:51+00:00">2026-09-10 09:19 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/312" rel="noopener" title="Open on Telegram">#312 ↗</a>
+      </div>
+      
+      <p class="en">Nothing else</p>
+      <p class="zh" lang="nl">Meer niet</p>
+      
+    </li>
+    
+    <li class="msg" id="m-311" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T09:19:48+00:00">2026-09-10 09:19 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/311" rel="noopener" title="Open on Telegram">#311 ↗</a>
+      </div>
+      
+      <p class="en">For me it&#39;s purely NEXA and ALPH</p>
+      <p class="zh" lang="nl">Bij mij puur NEXA en ALPH</p>
+      
+    </li>
+    
+    <li class="msg" id="m-310" data-sent="mixed" data-topics="4">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T09:19:37+00:00">2026-09-10 09:19 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/310" rel="noopener" title="Open on Telegram">#310 ↗</a>
+      </div>
+      
+      <p class="en">I don&#39;t buy that garbage either</p>
+      <p class="zh" lang="nl">Ik koop die rommel ook niet</p>
+      
+    </li>
+    
+    <li class="msg" id="m-309" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T09:19:30+00:00">2026-09-10 09:19 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/309" rel="noopener" title="Open on Telegram">#309 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Lenn Treve</b>: Someone kept nagging at me that I shouldn&#39;t buy Nexa but some memecoin or other.
+I said: cut it out, I don&#39;t need that junk 🤣</p>
+      
+      <p class="en">Hahaha yeah man</p>
+      <p class="zh" lang="nl">Hahaha jaa man</p>
+      
+    </li>
+    
+    <li class="msg" id="m-308" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-10T09:16:52+00:00">2026-09-10 09:16 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/308" rel="noopener" title="Open on Telegram">#308 ↗</a>
+      </div>
+      
+      <p class="en">And Nexa is pumping</p>
+      <p class="zh" lang="nl">En Nexa pumpt</p>
+      
+    </li>
+    
+    <li class="msg" id="m-307" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-10T09:16:44+00:00">2026-09-10 09:16 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/307" rel="noopener" title="Open on Telegram">#307 ↗</a>
+      </div>
+      
+      <p class="en">Now the memecoin is doing nothing 🤣</p>
+      <p class="zh" lang="nl">Nu doet de memecoin niks 🤣</p>
+      
+    </li>
+    
+    <li class="msg" id="m-306" data-sent="mixed" data-topics="4">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-10T09:15:45+00:00">2026-09-10 09:15 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/306" rel="noopener" title="Open on Telegram">#306 ↗</a>
+      </div>
+      
+      <p class="en">Someone kept nagging at me that I shouldn&#39;t buy Nexa but some memecoin or other.
+I said: cut it out, I don&#39;t need that junk 🤣</p>
+      <p class="zh" lang="nl">Iemand zanikte de hele tijd aan m’n kop dat ik geen Nexa moet kopen maar een of andere memecoin.
+Ik zei: kappen nou ik hoef die troep niet 🤣</p>
+      
+    </li>
+    
+    <li class="msg" id="m-305" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T08:57:30+00:00">2026-09-10 08:57 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/305" rel="noopener" title="Open on Telegram">#305 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Sheldon ⛛ψ Cooper</b>: people have called me crazy, but I keep believing xD</p>
+      
+      <p class="en">Haha yeah, me too</p>
+      <p class="zh" lang="nl">Haha jaa mij ook</p>
+      
+    </li>
+    
+    <li class="msg" id="m-304" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T08:37:42+00:00">2026-09-10 08:37 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/304" rel="noopener" title="Open on Telegram">#304 ↗</a>
+      </div>
+      
+      <p class="en">And our own version of Saylor who always says Buy Bitcoin. So Buy Nexa stickers etc lol xD</p>
+      <p class="zh" lang="nl">En een eigen variant van Saylor die zegt altijd Buy Bitcoin. Dus Koop Nexa stickers etc lol xD</p>
+      <p class="note">Michael Saylor is famous for constantly telling people to &#39;Buy Bitcoin&#39;.</p>
+    </li>
+    
+    <li class="msg" id="m-303" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T08:35:53+00:00">2026-09-10 08:35 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/303" rel="noopener" title="Open on Telegram">#303 ↗</a>
+      </div>
+      
+      <p class="en">we have to make sure everyone will see us</p>
+      <p class="zh" lang="nl">we moeten gaan zorgen dat iedereen ons zal zien</p>
+      
+    </li>
+    
+    <li class="msg" id="m-302" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T08:35:02+00:00">2026-09-10 08:35 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.80">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/302" rel="noopener" title="Open on Telegram">#302 ↗</a>
+      </div>
+      
+      <p class="en">Nexa movement!!</p>
+      <p class="zh" lang="nl">Nexa beweging!!</p>
+      
+    </li>
+    
+    <li class="msg" id="m-301" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T08:34:31+00:00">2026-09-10 08:34 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/301" rel="noopener" title="Open on Telegram">#301 ↗</a>
+      </div>
+      
+      <p class="en">If Nexa gets even more traction, then you&#39;ll see Nexa everywhere, even out on the street, I think</p>
+      <p class="zh" lang="nl">Als nexa nog meer tractie krjigt, dan zie je Nexa overal, ook op straat, denk ik</p>
+      
+    </li>
+    
+    <li class="msg" id="m-300" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T08:33:25+00:00">2026-09-10 08:33 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/300" rel="noopener" title="Open on Telegram">#300 ↗</a>
+      </div>
+      
+      <p class="en">people have called me crazy, but I keep believing xD</p>
+      <p class="zh" lang="nl">mensen hebben me voor gek verklaard, maar I keep believing xD</p>
+      
+    </li>
+    
+    <li class="msg" id="m-299" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T08:32:51+00:00">2026-09-10 08:32 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/299" rel="noopener" title="Open on Telegram">#299 ↗</a>
+      </div>
+      
+      <p class="en">always have been</p>
+      <p class="zh" lang="nl">altijd geweest</p>
+      
+    </li>
+    
+    <li class="msg" id="m-298" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T08:32:32+00:00">2026-09-10 08:32 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/298" rel="noopener" title="Open on Telegram">#298 ↗</a>
+      </div>
+      
+      <p class="en">anyway, I&#39;m honestly the biggest fan of Nexa myself 😁</p>
+      <p class="zh" lang="nl">maargoed, ben zelf echt de grootste fan van Nexa 😁</p>
+      
+    </li>
+    
+    <li class="msg" id="m-297" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T08:31:49+00:00">2026-09-10 08:31 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/297" rel="noopener" title="Open on Telegram">#297 ↗</a>
+      </div>
+      
+      <p class="en">I suspect so</p>
+      <p class="zh" lang="nl">Ik vermoed het</p>
+      
+    </li>
+    
+    <li class="msg" id="m-296" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T08:31:14+00:00">2026-09-10 08:31 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/296" rel="noopener" title="Open on Telegram">#296 ↗</a>
+      </div>
+      
+      <p class="en">Actually this chat should be purely $NEXA</p>
+      <p class="zh" lang="nl">Eigenlijk moet deze chat puur $NEXA</p>
+      
+    </li>
+    
+    <li class="msg" id="m-295" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T08:30:57+00:00">2026-09-10 08:30 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/295" rel="noopener" title="Open on Telegram">#295 ↗</a>
+      </div>
+      
+      <p class="en">I get you too, you know</p>
+      <p class="zh" lang="nl">ik jou ook wel hoor</p>
+      
+    </li>
+    
+    <li class="msg" id="m-294" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T08:30:52+00:00">2026-09-10 08:30 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/294" rel="noopener" title="Open on Telegram">#294 ↗</a>
+      </div>
+      
+      <p class="en">But I get you 👍</p>
+      <p class="zh" lang="nl">Maar ik snapje 👍</p>
+      
+    </li>
+    
+    <li class="msg" id="m-293" data-sent="mixed" data-topics="2">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T08:30:44+00:00">2026-09-10 08:30 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/293" rel="noopener" title="Open on Telegram">#293 ↗</a>
+      </div>
+      
+      <p class="en">It could work, but still.</p>
+      <p class="zh" lang="nl">Het kan werken, maarja.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-292" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T08:30:30+00:00">2026-09-10 08:30 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.35">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/292" rel="noopener" title="Open on Telegram">#292 ↗</a>
+      </div>
+      
+      <p class="en">Get it? I reach a bigger audience</p>
+      <p class="zh" lang="nl">Snapje? Ik bereik een grotere doelgroep</p>
+      
+    </li>
+    
+    <li class="msg" id="m-291" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T08:30:15+00:00">2026-09-10 08:30 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.35">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/291" rel="noopener" title="Open on Telegram">#291 ↗</a>
+      </div>
+      
+      <p class="en">People who are purely searching for $ALPH also come across my post about $NEXA</p>
+      <p class="zh" lang="nl">Mensen die puur naar $ALPH zoeken komen mijn post over $NEXA ook weer tegen</p>
+      
+    </li>
+    
+    <li class="msg" id="m-290" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T08:29:57+00:00">2026-09-10 08:29 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/290" rel="noopener" title="Open on Telegram">#290 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Sheldon ⛛ψ Cooper</b>: I do get it.. but then I might want to start promoting other coins too haha xD</p>
+      
+      <p class="en">You have to look at it this way</p>
+      <p class="zh" lang="nl">Je moet het zo zien</p>
+      
+    </li>
+    
+    <li class="msg" id="m-289" data-sent="mixed" data-topics="2">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T08:29:46+00:00">2026-09-10 08:29 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/289" rel="noopener" title="Open on Telegram">#289 ↗</a>
+      </div>
+      
+      <p class="en">I do get it.. but then I might want to start promoting other coins too haha xD</p>
+      <p class="zh" lang="nl">ik snap het wel.. maar dan wil ik mogelijk ook nog andere coins gaan promoten haha xD</p>
+      
+    </li>
+    
+    <li class="msg" id="m-288" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T08:29:20+00:00">2026-09-10 08:29 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/288" rel="noopener" title="Open on Telegram">#288 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Sheldon ⛛ψ Cooper</b>: I get that you&#39;re also a big fan of alph, but I&#39;m guessing the idea here is actually to keep the main focus on nexa 👀</p>
+      
+      <p class="en">My focus has been 100% Nexa for years. And besides that I&#39;m also a big believer of $ALPH, that&#39;s why I like to share them both on my X ❤️</p>
+      <p class="zh" lang="nl">Mijn focus is 100% Nexa al jaren. en daarnaast ben ik ook een big believer of $ALPH daarom deel ik ze graag alle 2 op mijn X ❤️</p>
+      
+    </li>
+    
+    <li class="msg" id="m-287" data-sent="mixed" data-topics="2">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T08:14:46+00:00">2026-09-10 08:14 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/287" rel="noopener" title="Open on Telegram">#287 ↗</a>
+      </div>
+      
+      <p class="en">I get that you&#39;re also a big fan of alph, but I&#39;m guessing the idea here is actually to keep the main focus on nexa 👀</p>
+      <p class="zh" lang="nl">Ik snap dat je ook dol bent op alph, maar ik gok dat het eigenlijk de bedoeling is om de main focus op nexa te hebben hier 👀</p>
+      
+    </li>
+    
+    <li class="msg" id="m-286" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T08:10:11+00:00">2026-09-10 08:10 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/286" rel="noopener" title="Open on Telegram">#286 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>ZYDEXN</b>: https://x.com/zydexn/status/2097959809093935450?s=46</p>
+      
+      <p class="en">Like, share and spread the word friends! ❤️</p>
+      <p class="zh" lang="nl">Like share en deel vrienden! ❤️</p>
+      
+    </li>
+    
+    <li class="msg" id="m-285" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T08:09:58+00:00">2026-09-10 08:09 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/285" rel="noopener" title="Open on Telegram">#285 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/zydexn/status/2097959809093935450?s=46</p>
+      <p class="zh" lang="nl">https://x.com/zydexn/status/2097959809093935450?s=46</p>
+      
+    </li>
+    
+    <li class="msg" id="m-284" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T07:54:14+00:00">2026-09-10 07:54 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/284" rel="noopener" title="Open on Telegram">#284 ↗</a>
+      </div>
+      
+      <p class="en">Time to push back up to 0.00017 ✅💥</p>
+      <p class="zh" lang="nl">Tijd om te pushen weer naar de 0.00017 ✅💥</p>
+      
+    </li>
+    
+    <li class="msg" id="m-283" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-10T07:54:02+00:00">2026-09-10 07:54 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/283" rel="noopener" title="Open on Telegram">#283 ↗</a>
+      </div>
+      
+      <p class="en">Lets go!&#39;</p>
+      <p class="zh" lang="nl">Lets go!’</p>
+      
+    </li>
+    
+    <li class="msg" id="m-282" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T07:45:32+00:00">2026-09-10 07:45 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/282" rel="noopener" title="Open on Telegram">#282 ↗</a>
+      </div>
+      
+      <p class="en">he may have already shared it in his community and he also has social media where he tips projects</p>
+      <p class="zh" lang="nl">mogelijk heeft hij het al gedeeld in zijn community en hij heeft ook sociale media waarin hij projecten tipt</p>
+      
+    </li>
+    
+    <li class="msg" id="m-281" data-sent="positive" data-topics="">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T07:41:18+00:00">2026-09-10 07:41 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/281" rel="noopener" title="Open on Telegram">#281 ↗</a>
+      </div>
+      
+      <p class="en">And Good Morning 🙂</p>
+      <p class="zh" lang="nl">En Goede Morgen 🙂</p>
+      
+    </li>
+    
+    <li class="msg" id="m-280" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T07:41:10+00:00">2026-09-10 07:41 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/280" rel="noopener" title="Open on Telegram">#280 ↗</a>
+      </div>
+      
+      <p class="en">congrats 🫡👍😎</p>
+      <p class="zh" lang="nl">gefeliciteerd 🫡👍😎</p>
+      
+    </li>
+    
+    <li class="msg" id="m-279" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-10T07:40:51+00:00">2026-09-10 07:40 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/279" rel="noopener" title="Open on Telegram">#279 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Lenn Treve</b>: My new strategy is working well</p>
+      
+      <p class="en">Holy Cow! This guy is serious. If he likes your post then a storm might be starting haha 👀😎</p>
+      <p class="zh" lang="nl">Heilige Koe! Deze gast is serieus. als hij je post liked dan begint er mogelijk een storm haha 👀😎</p>
+      <p class="note">&#34;Heilige Koe!&#34; is a literal Dutch rendering of the English exclamation &#34;Holy Cow!&#34;</p>
+    </li>
+    
+    <li class="msg" id="m-278" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-09T20:23:37+00:00">2026-09-09 20:23 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/278" rel="noopener" title="Open on Telegram">#278 ↗</a>
+      </div>
+      
+      <p class="en">My new strategy is working well</p>
+      <p class="zh" lang="nl">Mijn nieuwe strategie werkt goed</p>
+      
+    </li>
+    
+    <li class="msg" id="m-277" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-09-09T20:04:22+00:00">2026-09-09 20:04 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/277" rel="noopener" title="Open on Telegram">#277 ↗</a>
+      </div>
+      
+      <p class="en">Hardware acceleration: Scaling via circuits
+
+In the second article of this series, Nexa&#39;s validation engine was built up out of six components, a tape and a read/write head; it was then shown how this handled a payment from Alice to Bob, entirely without any software involvement.
+
+Because the tape moved only in the forward direction, the engine met the first of the four criteria an improved Bitcoin must satisfy: it was suitable for pipelining.
+
+This article covers the remaining criteria. As dr. Peter Rizun (@PeterRizun), Chief Scientist of Nexa, demonstrated in Sydney, we can improve Satoshi&#39;s Bitcoin and make it meet all these requirements by making just three simple changes. In doing so the engine gains — almost for free — two more properties: extensibility and compressibility.
+
+https://forum.nexa.org/t/scaling-by-circuit/1749</p>
+      <p class="zh" lang="nl">Hardwareversnelling: Schalen via circuits
+
+In het tweede artikel van deze reeks werd de validatie-engine van Nexa opgebouwd uit zes componenten, een tape en een lees-/schrijfkop; vervolgens werd getoond hoe deze een betaling van Alice naar Bob afhandelde, volledig zonder tussenkomst van software.
+
+Omdat de tape zich uitsluitend in voorwaartse richting bewoog, voldeed de engine aan het eerste van de vier criteria waaraan een verbeterde Bitcoin moet voldoen: hij was geschikt voor pipelining.
+
+Dit artikel behandelt de resterende criteria. Zoals dr. Peter Rizun (@PeterRizun), Chief Scientist van Nexa, in Sydney aantoonde, kunnen we Satoshi&#39;s Bitcoin verbeteren en aan al deze eisen laten voldoen door slechts drie eenvoudige aanpassingen door te voeren. Daarbij krijgt de engine er – bijna gratis – nog twee eigenschappen bij: uitbreidbaarheid en comprimeerbaarheid.
+
+https://forum.nexa.org/t/scaling-by-circuit/1749</p>
+      
+    </li>
+    
+    <li class="msg" id="m-276" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-09T17:27:01+00:00">2026-09-09 17:27 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/276" rel="noopener" title="Open on Telegram">#276 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Blacktea ▽</b>: Lenn is it good ? ☝🏻</p>
+      
+      <p class="en">Perfect 👌</p>
+      <p class="zh" lang="nl">Perfect 👌</p>
+      
+    </li>
+    
+    <li class="msg" id="m-275" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-09-09T16:34:55+00:00">2026-09-09 16:34 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/275" rel="noopener" title="Open on Telegram">#275 ↗</a>
+      </div>
+      
+      <p class="en">Lenn is it good ? ☝🏻</p>
+      <p class="zh" lang="nl">Lenn is it good ? ☝🏻</p>
+      
+    </li>
+    
+    <li class="msg" id="m-274" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-09T16:34:31+00:00">2026-09-09 16:34 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/274" rel="noopener" title="Open on Telegram">#274 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Blacktea ▽</b>: /buy</p>
+      
+      <p class="en">Most popular exchanges to buy and trade Nexa:
+
+🔸MEXC: https://www.mexc.com/exchange/NEXA_USDT
+🔸BingX: https://bingx.com/en-us/spot/NEXAUSDT/
+🔸Biconomy: https://www.biconomy.com/exchange/NEXA_USDT
+🔸Coinstash: https://coinstash.com.au/nexa/buy
+🔸CoinEx: https://www.coinex.com/exchange/NEXA-USDT
+🔸NonKyc: https://nonkyc.io/market/NEXA_USDT
+
+Always move your Nexa coins into self-custody – not your keys, not your coins!</p>
+      <p class="zh" lang="nl">Populairste exchanges om Nexa te kopen en te verhandelen:
+
+🔸MEXC: https://www.mexc.com/exchange/NEXA_USDT
+🔸BingX: https://bingx.com/en-us/spot/NEXAUSDT/
+🔸Biconomy: https://www.biconomy.com/exchange/NEXA_USDT
+🔸Coinstash: https://coinstash.com.au/nexa/buy
+🔸CoinEx: https://www.coinex.com/exchange/NEXA-USDT
+🔸NonKyc: https://nonkyc.io/market/NEXA_USDT
+
+Verplaats je Nexa-coins altijd naar eigen beheer (self-custody) – niet jouw keys, niet jouw coins!</p>
+      
+    </li>
+    
+    <li class="msg" id="m-273" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-09-09T16:34:31+00:00">2026-09-09 16:34 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/273" rel="noopener" title="Open on Telegram">#273 ↗</a>
+      </div>
+      
+      <p class="en">/buy</p>
+      <p class="zh" lang="nl">/buy</p>
+      
+    </li>
+    
+    <li class="msg" id="m-270" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-09-09T16:33:26+00:00">2026-09-09 16:33 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/270" rel="noopener" title="Open on Telegram">#270 ↗</a>
+      </div>
+      
+      <p class="en">/buy</p>
+      <p class="zh" lang="nl">/buy</p>
+      <p class="note">Bot command that makes the group bot post exchange links.</p>
+    </li>
+    
+    <li class="msg" id="m-266" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-09T13:28:52+00:00">2026-09-09 13:28 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/266" rel="noopener" title="Open on Telegram">#266 ↗</a>
+      </div>
+      
+      <p class="en">👍🏼 good quality accounts are coming to it</p>
+      <p class="zh" lang="nl">👍🏼 goede kwaliteit accounts komen erop af</p>
+      
+    </li>
+    
+    <li class="msg" id="m-265" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-09T12:51:38+00:00">2026-09-09 12:51 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/265" rel="noopener" title="Open on Telegram">#265 ↗</a>
+      </div>
+      
+      <p class="en">9. Finally someone who explains that this isn&#39;t a &#34;we&#39;re becoming IOTA&#34; thing. Hybrid is the whole point: DAG for the pulse, chain for the truth.
+10. 2.2.0.0 as the last checkpoint feels exactly right. Consensus code that&#39;s &#34;almost done&#34; shouldn&#39;t be pushed live during an AMA.
+11. That figure with d=1 → r=1/3 is the whole incentive story in one picture. Sharing pays off, hammering on the same parent doesn&#39;t.
+12. As a miner: lower variance over 2 minutes is worth more than yet another new ticker story. Pools hate long tails, and so do solo miners.</p>
+      <p class="zh" lang="nl">9.  Eindelijk iemand die uitlegt dat dit geen “we worden IOTA” is. Hybrid is het hele punt: DAG voor de pulse, keten voor de waarheid.
+10.  2.2.0.0 als laatste checkpoint voelt precies goed. Consensus-code die “bijna klaar” is, moet je niet in een AMA live zetten.
+11.  Die figuur met d=1 → r=1/3 is het hele incentive-verhaal in één plaatje. Delen loont, hameren op dezelfde ouder niet.
+12.  Als miner: lagere variantie op 2 minuten is meer waard dan weer een nieuw ticker-verhaal. Pools haten lange staarten, solo-miners ook.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-264" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-09T12:50:41+00:00">2026-09-09 12:50 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/264" rel="noopener" title="Open on Telegram">#264 ↗</a>
+      </div>
+      
+      <p class="en">1. So if I understand correctly: my transaction will soon already be in a sub-block of ~3 seconds, but it&#39;s only truly final with the summary of ~2 minutes?
+2. In the paper a summary is PoW-less. Nexa turns the last sub-block into the summary. Doesn&#39;t that lose exactly the &#34;every node assembles the summary itself&#34; advantage, or is that actually smarter against forks?
+3. Reward discount based on tree depth sounds good against selfish mining. Does Nexa apply that discount one-to-one from the paper, or only the DAG structure and Bobtail variance?
+4. If sub-blocks live in RAM and are then trimmed: how do I prove in 5 years that tx X was in sub-block Y? Does the summary remain enough for an SPV wallet?
+5. 40 sub-blocks per summary, target 3 seconds. What happens if the network is slow for a bit and 60 come in? Who decides which 40 win — the miner of the summary?
+6. Rolling checkpoints at 200 blocks: at 2 minutes per summary that&#39;s almost 7 hours. Isn&#39;t that late for exchanges, or is it precisely the intention so that Tailstorm is allowed to reorg first?
+7. Will light wallets need extra logic soon, or do they just see the same Nexa chain and users notice nothing until the confirmation counter ticks faster?
+8. The paper punishes withholding via depth. Nexa counts uncles towards the work. Don&#39;t those somewhat contradict each other? Rewarding uncles = rewarding a flat tree?</p>
+      <p class="zh" lang="nl">1.  Dus als ik het goed begrijp: mijn transactie zit straks al in een subblok van ~3 seconden, maar écht final is pas de summary van ~2 minuten?
+2.  In de paper is een summary PoW-loos. Nexa maakt van het laatste subblok de summary. Verlies je daarmee niet juist het “iedere node plakt zelf de summary”-voordeel, of is dat juist slimmer tegen forks?
+3.  Reward-korting op boomdiepte klinkt goed tegen selfish mining. Doet Nexa die korting 1-op-1 uit de paper, of alleen de DAG-structuur en Bobtail-variantie?
+4.  Als subblokken in RAM leven en daarna getrimd worden: hoe bewijs ik over 5 jaar dat tx X in subblok Y zat? Blijft de summary genoeg voor een SPV-wallet?
+5.  40 subblokken per summary, target 3 seconden. Wat gebeurt er als het netwerk even traag is en er 60 binnenkomen? Wie bepaalt welke 40 winnen — miner van de summary?
+6.  Rolling checkpoints op 200 blokken: bij 2 minuten per summary is dat bijna 7 uur. Is dat niet laat voor exchanges, of juist de bedoeling zodat Tailstorm eerst mag reorgen?
+7.  Hebben light wallets straks extra logic nodig, of zien ze gewoon dezelfde Nexa-keten en merken gebruikers niks tot de confirmatieteller sneller tikt?
+8.  De paper straft withholding via diepte. Nexa telt uncles mee in het werk. Sluit dat elkaar niet een beetje uit? Uncle belonen = platte boom belonen?</p>
+      <p class="note">These are pre-written suggested comments for supporters to post under the X article.</p>
+    </li>
+    
+    <li class="msg" id="m-263" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-09T12:50:34+00:00">2026-09-09 12:50 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.30">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/263" rel="noopener" title="Open on Telegram">#263 ↗</a>
+      </div>
+      
+      <p class="en">It would help enormously if you:
+
+1. paste a question / comment under this article within 30 minutes
+2. Click the copy link 🔗 of the article for a 40x algorithm boost</p>
+      <p class="zh" lang="nl">Het zou enorm helpen als je:
+
+1. binnen 30 minuten even een vraag / opmerking onder dit artikel plakt
+2. Op de copy link 🔗 klikt van het artikel voor 40x algoritme boots</p>
+      <p class="note">&#34;boots&#34; is a typo for &#34;boost&#34;; this is an engagement-farming request to game the X algorithm.</p>
+    </li>
+    
+    <li class="msg" id="m-262" data-sent="neutral" data-topics="0 1">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-09T12:50:06+00:00">2026-09-09 12:50 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/262" rel="noopener" title="Open on Telegram">#262 ↗</a>
+      </div>
+      
+      <p class="en">Article for the Dutch
+
+https://x.com/lenntreve/status/2097667989336211657?s=46</p>
+      <p class="zh" lang="nl">Article for the Dutch
+
+https://x.com/lenntreve/status/2097667989336211657?s=46</p>
+      
+    </li>
+    
+    <li class="msg" id="m-261" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-09T12:20:10+00:00">2026-09-09 12:20 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/261" rel="noopener" title="Open on Telegram">#261 ↗</a>
+      </div>
+      
+      <p class="en">https://arxiv.org/pdf/2306.12206</p>
+      <p class="zh" lang="nl">https://arxiv.org/pdf/2306.12206</p>
+      
+    </li>
+    
+    <li class="msg" id="m-260" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Sheldon ⛛ψ Cooper</span>
+        <time datetime="2026-09-09T12:19:39+00:00">2026-09-09 12:19 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/260" rel="noopener" title="Open on Telegram">#260 ↗</a>
+      </div>
+      
+      <p class="en">source?</p>
+      <p class="zh" lang="nl">bron?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-259" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-09T12:19:27+00:00">2026-09-09 12:19 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/259" rel="noopener" title="Open on Telegram">#259 ↗</a>
+      </div>
+      
+      <p class="en">Accessible Dutch-language article about Tailstorm</p>
+      <p class="zh" lang="nl">Toegankelijk Nederlands artikel over Tailstorm</p>
+      
+    </li>
+    
+    <li class="msg" id="m-257" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-09T09:43:11+00:00">2026-09-09 09:43 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/257" rel="noopener" title="Open on Telegram">#257 ↗</a>
+      </div>
+      
+      <p class="en">Hey there F|x|FIRE, and welcome to Nexa_Netherlands! How are you?</p>
+      <p class="zh" lang="nl">Hey there F|x|FIRE, and welcome to Nexa_Netherlands! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-255" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-09T06:50:27+00:00">2026-09-09 06:50 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/255" rel="noopener" title="Open on Telegram">#255 ↗</a>
+      </div>
+      
+      <p class="en">This guy likes my posts about Nexa</p>
+      <p class="zh" lang="nl">Deze liked mijn posts over Nexa</p>
+      
+    </li>
+    
+    <li class="msg" id="m-254" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-08T21:20:33+00:00">2026-09-08 21:20 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/254" rel="noopener" title="Open on Telegram">#254 ↗</a>
+      </div>
+      
+      <p class="en">Hey there C, and welcome to Nexa_Netherlands! How are you?</p>
+      <p class="zh" lang="nl">Hey there C, and welcome to Nexa_Netherlands! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-252" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-08T15:22:58+00:00">2026-09-08 15:22 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/252" rel="noopener" title="Open on Telegram">#252 ↗</a>
+      </div>
+      
+      <p class="en">Hey there jQrgen, and welcome to Nexa_Netherlands! How are you?</p>
+      <p class="zh" lang="nl">Hey there jQrgen, and welcome to Nexa_Netherlands! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-250" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-08T14:26:19+00:00">2026-09-08 14:26 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/250" rel="noopener" title="Open on Telegram">#250 ↗</a>
+      </div>
+      
+      <p class="en">Welcome 🤗</p>
+      <p class="zh" lang="nl">Welkom 🤗</p>
+      
+    </li>
+    
+    <li class="msg" id="m-249" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-08T14:03:50+00:00">2026-09-08 14:03 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/249" rel="noopener" title="Open on Telegram">#249 ↗</a>
+      </div>
+      
+      <p class="en">Welcome!</p>
+      <p class="zh" lang="nl">Welkom!</p>
+      
+    </li>
+    
+    <li class="msg" id="m-248" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Krishan Chand</span>
+        <time datetime="2026-09-08T14:02:45+00:00">2026-09-08 14:02 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/248" rel="noopener" title="Open on Telegram">#248 ↗</a>
+      </div>
+      
+      <p class="en">Fine</p>
+      <p class="zh" lang="nl">Fine</p>
+      
+    </li>
+    
+    <li class="msg" id="m-247" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-08T14:02:25+00:00">2026-09-08 14:02 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/247" rel="noopener" title="Open on Telegram">#247 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Krishan, and welcome to Nexa_Netherlands! How are you?</p>
+      <p class="zh" lang="nl">Hey there Krishan, and welcome to Nexa_Netherlands! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-245" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-08T13:16:10+00:00">2026-09-08 13:16 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/245" rel="noopener" title="Open on Telegram">#245 ↗</a>
+      </div>
+      
+      <p class="en">Once the masses catch on we&#39;ll be back at ATH in no time</p>
+      <p class="zh" lang="nl">Zodra de massa het door heeft dan zitten we zo weer op ATH</p>
+      
+    </li>
+    
+    <li class="msg" id="m-244" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-08T13:15:26+00:00">2026-09-08 13:15 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/244" rel="noopener" title="Open on Telegram">#244 ↗</a>
+      </div>
+      
+      <p class="en">Order book is also super thin on MEXC at the moment</p>
+      <p class="zh" lang="nl">Orderboek ook mega dun op mexc momenteel</p>
+      <p class="note">Thin order book is often read bullishly here, i.e. little supply to absorb buying.</p>
+    </li>
+    
+    <li class="msg" id="m-243" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-08T13:14:53+00:00">2026-09-08 13:14 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/243" rel="noopener" title="Open on Telegram">#243 ↗</a>
+      </div>
+      
+      <p class="en">Yeah, easily</p>
+      <p class="zh" lang="nl">Ja makkelijk</p>
+      
+    </li>
+    
+    <li class="msg" id="m-242" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-08T13:14:46+00:00">2026-09-08 13:14 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.80">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/242" rel="noopener" title="Open on Telegram">#242 ↗</a>
+      </div>
+      
+      <p class="en">I really see this reaching a few B market cap within a couple of years</p>
+      <p class="zh" lang="nl">Zie dit echt in een paar jaar wel paar B marketcap worden</p>
+      
+    </li>
+    
+    <li class="msg" id="m-241" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-08T13:14:25+00:00">2026-09-08 13:14 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.80">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/241" rel="noopener" title="Open on Telegram">#241 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Lenn Treve</b>: Almost Tailstorm hardfork 🔥 Hybrid DAG</p>
+      
+      <p class="en">Damm, can&#39;t wait! ✅</p>
+      <p class="zh" lang="nl">Damm, kan niet wachten! ✅</p>
+      
+    </li>
+    
+    <li class="msg" id="m-240" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Lenn Treve</span>
+        <time datetime="2026-09-08T13:14:11+00:00">2026-09-08 13:14 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/240" rel="noopener" title="Open on Telegram">#240 ↗</a>
+      </div>
+      
+      <p class="en">Almost Tailstorm hardfork 🔥 Hybrid DAG</p>
+      <p class="zh" lang="nl">Bijna Tailstorm hardfork 🔥 Hybride DAG</p>
+      
+    </li>
+    
+    <li class="msg" id="m-236" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-08T13:09:38+00:00">2026-09-08 13:09 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.80">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/236" rel="noopener" title="Open on Telegram">#236 ↗</a>
+      </div>
+      
+      <p class="en">So invite people, and let&#39;s make $NEXA big</p>
+      <p class="zh" lang="nl">Dus nodig mensen uit, en laten we $NEXA groot maken</p>
+      
+    </li>
+    
+    <li class="msg" id="m-235" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-08T13:09:26+00:00">2026-09-08 13:09 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/235" rel="noopener" title="Open on Telegram">#235 ↗</a>
+      </div>
+      
+      <p class="en">Haha we just started this one about a week ago</p>
+      <p class="zh" lang="nl">Haha deze zijn we net gestart weekje terug</p>
+      
+    </li>
+    
+    <li class="msg" id="m-234" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Jaxxx</span>
+        <time datetime="2026-09-08T13:07:51+00:00">2026-09-08 13:07 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/234" rel="noopener" title="Open on Telegram">#234 ↗</a>
+      </div>
+      
+      <p class="en">I&#39;d just lost track of this group</p>
+      <p class="zh" lang="nl">Ik was alleen deze groep kwijt</p>
+      
+    </li>
+    
+    <li class="msg" id="m-233" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Jaxxx</span>
+        <time datetime="2026-09-08T13:07:36+00:00">2026-09-08 13:07 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/233" rel="noopener" title="Open on Telegram">#233 ↗</a>
+      </div>
+      
+      <p class="en">Both</p>
+      <p class="zh" lang="nl">Allebei</p>
+      
+    </li>
+    
+    <li class="msg" id="m-232" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-08T13:07:34+00:00">2026-09-08 13:07 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/232" rel="noopener" title="Open on Telegram">#232 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Jaxxx</b>: Still buying more now and then, right</p>
+      
+      <p class="en">Yess I do man! 🔥</p>
+      <p class="zh" lang="nl">Yess ik wel man! 🔥</p>
+      
+    </li>
+    
+    <li class="msg" id="m-231" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Jaxxx</span>
+        <time datetime="2026-09-08T13:07:33+00:00">2026-09-08 13:07 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/231" rel="noopener" title="Open on Telegram">#231 ↗</a>
+      </div>
+      
+      <p class="en">I&#39;m already in that one</p>
+      <p class="zh" lang="nl">Die heb ik al hoor</p>
+      
+    </li>
+    
+    <li class="msg" id="m-230" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-08T13:07:24+00:00">2026-09-08 13:07 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/230" rel="noopener" title="Open on Telegram">#230 ↗</a>
+      </div>
+      
+      <p class="en">You should join the real official group</p>
+      <p class="zh" lang="nl">Je moet de echte officele groep joinen</p>
+      
+    </li>
+    
+    <li class="msg" id="m-229" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">Jaxxx</span>
+        <time datetime="2026-09-08T13:07:21+00:00">2026-09-08 13:07 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/229" rel="noopener" title="Open on Telegram">#229 ↗</a>
+      </div>
+      
+      <p class="en">Still buying more now and then, right</p>
+      <p class="zh" lang="nl">Nog steeds af en toe bijkopen hè</p>
+      
+    </li>
+    
+    <li class="msg" id="m-228" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Jaxxx</span>
+        <time datetime="2026-09-08T13:07:11+00:00">2026-09-08 13:07 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/228" rel="noopener" title="Open on Telegram">#228 ↗</a>
+      </div>
+      
+      <p class="en">Yeah, we&#39;ll see</p>
+      <p class="zh" lang="nl">Ja we gaan het zien</p>
+      
+    </li>
+    
+    <li class="msg" id="m-227" data-sent="negative" data-topics="5">
+      <div class="head">
+        <span class="who">Jaxxx</span>
+        <time datetime="2026-09-08T13:07:00+00:00">2026-09-08 13:07 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/227" rel="noopener" title="Open on Telegram">#227 ↗</a>
+      </div>
+      
+      <p class="en">Nothing was happening here at all</p>
+      <p class="zh" lang="nl">Gebeurde helemaal niks hier</p>
+      
+    </li>
+    
+    <li class="msg" id="m-226" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-08T13:06:52+00:00">2026-09-08 13:06 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.80">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/226" rel="noopener" title="Open on Telegram">#226 ↗</a>
+      </div>
+      
+      <p class="en">Long term I see it hitting 1B easy</p>
+      <p class="zh" lang="nl">Long term zie ik het 1B gaan easy</p>
+      <p class="note">1B = $1 billion market cap.</p>
+    </li>
+    
+    <li class="msg" id="m-225" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Jaxxx</span>
+        <time datetime="2026-09-08T13:06:38+00:00">2026-09-08 13:06 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/225" rel="noopener" title="Open on Telegram">#225 ↗</a>
+      </div>
+      
+      <p class="en">No, but this group was</p>
+      <p class="zh" lang="nl">Nee maar deze groep wel</p>
+      
+    </li>
+    
+    <li class="msg" id="m-224" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-08T13:06:36+00:00">2026-09-08 13:06 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/224" rel="noopener" title="Open on Telegram">#224 ↗</a>
+      </div>
+      
+      <p class="en">$BCH team, eh</p>
+      <p class="zh" lang="nl">$BCH team hea</p>
+      <p class="note">Nexa was founded by ex-Bitcoin Cash ($BCH) developers.</p>
+    </li>
+    
+    <li class="msg" id="m-223" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-08T13:06:29+00:00">2026-09-08 13:06 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/223" rel="noopener" title="Open on Telegram">#223 ↗</a>
+      </div>
+      
+      <p class="en">But it was never dead</p>
+      <p class="zh" lang="nl">Maar het is nooit dood geweest</p>
+      
+    </li>
+    
+    <li class="msg" id="m-222" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">Jaxxx</span>
+        <time datetime="2026-09-08T13:06:25+00:00">2026-09-08 13:06 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/222" rel="noopener" title="Open on Telegram">#222 ↗</a>
+      </div>
+      
+      <p class="en">Yeah, going well</p>
+      <p class="zh" lang="nl">Ja gaat lekker</p>
+      
+    </li>
+    
+    <li class="msg" id="m-221" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-08T13:06:16+00:00">2026-09-08 13:06 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/221" rel="noopener" title="Open on Telegram">#221 ↗</a>
+      </div>
+      
+      <p class="en">Looks like it, eh! ✈️🔥</p>
+      <p class="zh" lang="nl">Zo te zien wel hea! ✈️🔥</p>
+      
+    </li>
+    
+    <li class="msg" id="m-220" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">Jaxxx</span>
+        <time datetime="2026-09-08T13:06:15+00:00">2026-09-08 13:06 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.20">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/220" rel="noopener" title="Open on Telegram">#220 ↗</a>
+      </div>
+      
+      <p class="en">Thanks</p>
+      <p class="zh" lang="nl">Thanks</p>
+      
+    </li>
+    
+    <li class="msg" id="m-219" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-08T13:06:08+00:00">2026-09-08 13:06 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/219" rel="noopener" title="Open on Telegram">#219 ↗</a>
+      </div>
+      
+      <p class="en">Yooo Jaxxx man</p>
+      <p class="zh" lang="nl">Yooo Jaxxx man</p>
+      
+    </li>
+    
+    <li class="msg" id="m-218" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Jaxxx</span>
+        <time datetime="2026-09-08T13:06:01+00:00">2026-09-08 13:06 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/218" rel="noopener" title="Open on Telegram">#218 ↗</a>
+      </div>
+      
+      <p class="en">Is there life here again?</p>
+      <p class="zh" lang="nl">Leeft het weer hier</p>
+      
+    </li>
+    
+    <li class="msg" id="m-217" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-08T13:05:45+00:00">2026-09-08 13:05 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/217" rel="noopener" title="Open on Telegram">#217 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Jaxxx, and welcome to Nexa_Netherlands! How are you?</p>
+      <p class="zh" lang="nl">Hey there Jaxxx, and welcome to Nexa_Netherlands! How are you?</p>
+      <p class="note">Automated welcome message from the group bot &#39;Rose&#39;.</p>
+    </li>
+    
+    <li class="msg" id="m-215" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">ZYDEXN</span>
+        <time datetime="2026-09-08T11:10:56+00:00">2026-09-08 11:10 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Netherlands/215" rel="noopener" title="Open on Telegram">#215 ↗</a>
+      </div>
+      
+      <p class="en">If you are dutch or belgium feel free to join the telegram! $NEXA 🇳🇱🇧🇪 GROUP
+
+https://t.me/Nexa_Netherlands
+
+@NexaMoney</p>
+      <p class="zh" lang="nl">If you are dutch or belgium feel free to join the telegram! $NEXA 🇳🇱🇧🇪 GROUP
+
+https://t.me/Nexa_Netherlands
+
+@NexaMoney</p>
+      
+    </li>
+    
+  </ol>
+  <p class="empty" id="empty">No messages match these filters.</p>
+</section>
+
+<footer>
+  <p>Translations, sentiment scores and the summary are generated automatically by claude-opus-5 and may contain mistakes. Original messages belong to their authors on Telegram.</p>
+  <p><a href="data.json">Raw data (JSON)</a></p>
+</footer>
+
+</div>
+<script>
+(function () {
+  var msgs = Array.prototype.slice.call(document.querySelectorAll('.msg'));
+  var sent = 'all', topic = null;
+  var topicNames = ["Tailstorm hardfork and technical deep-dive", "X promotion and algorithm boosting", "ALPH cross-promotion friction", "Price and market cap expectations", "Memecoins vs building on Nexa", "Group revival and new members", "Community evangelism"];
+
+  function apply() {
+    var shown = 0;
+    msgs.forEach(function (m) {
+      var ok = (sent === 'all' || m.dataset.sent === sent) &&
+               (topic === null || (' ' + m.dataset.topics + ' ').indexOf(' ' + topic + ' ') !== -1);
+      m.hidden = !ok; if (ok) shown++;
+    });
+    document.getElementById('empty').classList.toggle('on', shown === 0);
+    var bar = document.getElementById('active-topic');
+    bar.classList.toggle('on', topic !== null);
+    if (topic !== null) document.getElementById('active-topic-name').textContent = topicNames[topic] + ' (' + shown + ')';
+    document.querySelectorAll('.topic').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.topic === String(topic))); });
+  }
+  document.querySelectorAll('.fbtn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      sent = b.dataset.sent;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      apply();
+    });
+  });
+  document.querySelectorAll('.topic').forEach(function (b) {
+    b.addEventListener('click', function () {
+      topic = (String(topic) === b.dataset.topic) ? null : Number(b.dataset.topic);
+      apply();
+      if (topic !== null) document.getElementById('messages').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  document.getElementById('clear-topic').addEventListener('click', function () { topic = null; apply(); });
+
+  var zh = document.getElementById('show-zh');
+  try { if (localStorage.getItem('showZh') === '0') zh.checked = false; } catch (e) {}
+  function syncZh() {
+    document.body.classList.toggle('hide-zh', !zh.checked);
+    try { localStorage.setItem('showZh', zh.checked ? '1' : '0'); } catch (e) {}
+  }
+  zh.addEventListener('change', syncZh); syncZh();
+
+  // Show timestamps in the viewer's local time zone.
+  var fmt = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+  document.querySelectorAll('time[datetime]').forEach(function (t) {
+    var d = new Date(t.getAttribute('datetime'));
+    if (!isNaN(d)) { t.title = t.textContent; t.textContent = fmt.format(d); }
+  });
+
+  // Highlight links: reveal the target even if filtered out, then flash it.
+  document.querySelectorAll('.hl a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      sent = 'all'; topic = null;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.sent === 'all')); });
+      apply();
+      var el = document.querySelector(a.getAttribute('href'));
+      if (el) { el.classList.add('flash'); setTimeout(function () { el.classList.remove('flash'); }, 1600); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

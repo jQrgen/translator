@@ -1,0 +1,2586 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexa Germany — English</title>
+<meta name="description" content="Near-silent German group: an automated news feed of Nexa dev updates, with one brief 2025 skepticism exchange">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --line: #e1e0d9; --ring: rgba(11,11,11,.10); --wash: rgba(11,11,11,.04);
+  --accent: #2a78d6; --accent-ink: #1c5cab;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #c98500; --neu: #898781; --mid: #f0efec;
+  --zh: #52514e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+    --accent: #3987e5; --accent-ink: #86b6ef;
+    --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+    --zh: #c3c2b7;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+  --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+  --accent: #3987e5; --accent-ink: #86b6ef;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+  --zh: #c3c2b7;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--page); color: var(--ink);
+  font: 15px/1.55 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  padding-inline: clamp(16px, 4vw, 32px); padding-block: 0 64px;
+}
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 900px; margin: 0 auto; }
+header.top { padding-block: 40px 24px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+h1 { font-size: clamp(24px, 4vw, 34px); line-height: 1.15; margin: 0 0 10px; letter-spacing: -.01em; }
+.meta { color: var(--ink-2); font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; }
+.meta span::before { content: ""; }
+h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; font-weight: 600; }
+section { padding-block: 32px; }
+h2 .sub { font-weight: 400; letter-spacing: 0; text-transform: none; }
+section + section { border-top: 1px solid var(--line); }
+.headline { font-size: clamp(19px, 2.6vw, 24px); line-height: 1.3; font-weight: 600; margin: 0 0 12px; letter-spacing: -.01em; }
+.lede { font-size: 16px; color: var(--ink-2); margin: 0; max-width: 70ch; }
+.grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.topics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.topic { width: 100%; text-align: left; background: transparent; border: 1px solid transparent; border-radius: 10px; padding: 12px 14px; color: inherit; font: inherit; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; }
+.topic:hover { background: var(--wash); }
+.topic[aria-pressed="true"] { border-color: var(--accent); background: var(--wash); }
+.topic .t { font-weight: 600; }
+.topic .n { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.topic .s { grid-column: 1 / -1; color: var(--ink-2); font-size: 14px; }
+.mood-label { font-size: 26px; font-weight: 700; letter-spacing: -.01em; margin: 0 0 4px; }
+.mood-score { color: var(--muted); font-size: 13px; margin: 0 0 12px; font-variant-numeric: tabular-nums; }
+.meter { position: relative; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--neg), var(--mid) 50%, var(--pos)); margin: 6px 0 4px; }
+.meter i { position: absolute; top: 50%; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 3px solid var(--ink); transform: translate(-50%, -50%); box-shadow: 0 0 0 2px var(--surface); }
+.meter-ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+.mood-desc { margin: 0 0 20px; color: var(--ink-2); font-size: 14px; }
+.dist { display: flex; height: 12px; border-radius: 4px; overflow: hidden; gap: 2px; background: var(--surface); margin-bottom: 10px; }
+.dist b { display: block; height: 100%; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 13px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend .n { margin-left: auto; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.positive { --c: var(--pos); } .negative { --c: var(--neg); } .mixed { --c: var(--mix); } .neutral { --c: var(--neu); }
+.dot, .dist b { background: var(--c); }
+.chip { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--ink-2); padding: 2px 8px 2px 6px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); white-space: nowrap; }
+.chip::before { content: attr(data-glyph); width: 14px; height: 14px; border-radius: 50%; background: var(--c); color: #fff; display: inline-grid; place-items: center; font-size: 11px; line-height: 1; }
+.hl { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hl a { display: block; color: inherit; background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 12px 14px; }
+.hl a:hover { text-decoration: none; border-color: var(--accent); }
+.hl .q { font-size: 15px; margin: 0 0 4px; }
+.hl .w { font-size: 13px; color: var(--ink-2); margin: 0; }
+.hl .w b { font-weight: 600; color: var(--ink); }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 16px; position: sticky; top: 0; background: var(--page); padding-block: 10px; z-index: 2; border-bottom: 1px solid var(--line); }
+.controls .sp { flex: 1; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.fbtn { font: inherit; font-size: 13px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.fbtn[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); cursor: pointer; user-select: none; }
+.toggle input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+.active-topic { display: none; font-size: 13px; color: var(--ink-2); padding: 8px 12px; border-radius: 8px; background: var(--wash); margin-bottom: 12px; }
+.active-topic.on { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.active-topic button { font: inherit; font-size: 13px; background: none; border: 0; color: var(--accent-ink); cursor: pointer; padding: 0; }
+.msgs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.msg { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 12px 16px; scroll-margin-top: 70px; }
+.msg[hidden] { display: none; }
+.msg.flash { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42,120,214,.25); }
+.msg .head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 6px; font-size: 13px; }
+.msg .who { font-weight: 600; color: var(--ink); font-size: 14px; }
+.msg time { color: var(--muted); font-variant-numeric: tabular-nums; }
+.msg .lnk { margin-left: auto; color: var(--muted); font-size: 12px; }
+.msg .reply { border-left: 3px solid var(--line); padding: 2px 10px; margin: 0 0 8px; color: var(--ink-2); font-size: 13px; }
+.msg .reply b { font-weight: 600; }
+.msg .en { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg .zh { margin: 6px 0 0; color: var(--zh); font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+body.hide-zh .msg .zh { display: none; }
+.msg .note { margin: 8px 0 0; font-size: 13px; color: var(--ink-2); font-style: italic; }
+.msg .note::before { content: "Note: "; font-style: normal; font-weight: 600; }
+.empty { display: none; color: var(--muted); padding: 24px 0; text-align: center; }
+.empty.on { display: block; }
+footer { color: var(--muted); font-size: 13px; padding-top: 32px; border-top: 1px solid var(--line); }
+footer p { margin: 0 0 6px; }
+@media (prefers-reduced-motion: no-preference) { .msg { transition: border-color .3s, box-shadow .3s; } }
+.nav { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; padding: 0; list-style: none; }
+.nav a { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); }
+.nav a:hover { text-decoration: none; border-color: var(--accent); }
+.nav a[aria-current="page"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.nav .lang { font-weight: 400; opacity: .75; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
+.cards > li > a { display: block; color: inherit; height: 100%; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.cards > li > a:hover { text-decoration: none; border-color: var(--accent); }
+.cards h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.cards .sub { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+.cards .hd { font-size: 15px; font-weight: 600; margin: 0 0 10px; line-height: 1.35; }
+.cards .mood { display: flex; align-items: baseline; gap: 8px; margin: 0 0 8px; }
+.cards .mood b { font-size: 20px; letter-spacing: -.01em; }
+.cards .mood span { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.cards .dist { margin: 10px 0 8px; }
+.cards .legend { grid-template-columns: repeat(4, auto); justify-content: start; gap: 4px 14px; font-size: 12px; }
+.cards .legend .n { margin-left: 4px; }
+.cards .more { color: var(--accent-ink); font-size: 13px; font-weight: 600; margin: 12px 0 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <ul class="nav" aria-label="Communities">
+  <li><a href="../">Overview</a></li>
+  
+  <li><a href="../nexa_china/"><span aria-hidden="true">🇨🇳</span> Chinese</a></li>
+  
+  <li><a href="../nexa_netherlands/"><span aria-hidden="true">🇳🇱</span> Dutch</a></li>
+  
+  <li><a href="../nexa_germany/" aria-current="page"><span aria-hidden="true">🇩🇪</span> German</a></li>
+  
+  <li><a href="../nexa_india/"><span aria-hidden="true">🇮🇳</span> Hindi</a></li>
+  
+  <li><a href="../nexa_korean/"><span aria-hidden="true">🇰🇷</span> Korean</a></li>
+  
+  <li><a href="../nexa_nor/"><span aria-hidden="true">🇳🇴</span> Norwegian</a></li>
+  
+  <li><a href="../nexa_philippines/"><span aria-hidden="true">🇵🇭</span> Filipino</a></li>
+  
+  <li><a href="../nexa_poland/"><span aria-hidden="true">🇵🇱</span> Polish</a></li>
+  
+  <li><a href="../nexa_ru/"><span aria-hidden="true">🇷🇺</span> Russian</a></li>
+  
+  <li><a href="../nexa_spanish/"><span aria-hidden="true">🇪🇸</span> Spanish</a></li>
+  
+  <li><a href="../nexatr/"><span aria-hidden="true">🇹🇷</span> Turkish</a></li>
+  
+  <li><a href="../nexa_viet/"><span aria-hidden="true">🇻🇳</span> Vietnamese</a></li>
+  
+</ul>
+  <p class="eyebrow">Telegram · German → English mirror</p>
+  <h1>Nexa Germany</h1>
+  <p class="meta">
+    <span><a href="https://t.me/Nexa_Germany" rel="noopener">t.me/Nexa_Germany</a></span>
+    <span>27 members</span>
+    <span>Last 100 messages · <time datetime="2025-05-27T16:17:54+00:00">2025-05-27 16:17 UTC</time> → <time datetime="2026-09-09T20:02:51+00:00">2026-09-09 20:02 UTC</time></span>
+    <span>Updated <time datetime="2026-09-12T16:26:35.069031+00:00">2026-09-12 16:26 UTC</time></span>
+  </p>
+</header>
+
+<section id="summary">
+  <h2>Summary</h2>
+  <p class="headline">Near-silent German group: an automated news feed of Nexa dev updates, with one brief 2025 skepticism exchange</p>
+  <p class="lede">This window spans over a year (May 2025 to September 2026) and is overwhelmingly one-directional: Blacktea ▽ posts German translations of official Nexa announcements, while the Rose bot greets new members. The only real conversation happens in July 2025, when M F asks whether Nexa is &#39;over&#39; and later jabs &#39;Devs still farming money&#39;; jQrgen ⛛ replies that work continues but the team is small and has no time to post constantly, and Kevin gently asks M F to write in German. From 2026 onward the group becomes a pure announcement channel covering the first halving (1 May 2026), the 4-year anniversary X Spaces with founder Andrew Stone, the Tailstorm DAG-hybrid hard-fork preparations, NexaPoW 2.0 and Peter Rizun&#39;s Blitz/FPGA hardware work, NexScript v1.1.0 and Playground upgrades, Explorer and Wally Wallet releases, and Full Node 2.2.0.0 as the final pre-fork checkpoint. Two exchange-risk warnings appear (Exbitron and BitMart shutting down). No German member responds to any of these 2026 posts — engagement is effectively zero.</p>
+</section>
+
+<section id="analysis">
+  <div class="grid">
+    <div class="card">
+      <h2>Topics</h2>
+      <ul class="topics">
+        
+        <li>
+          <button class="topic" type="button" data-topic="0" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Protocol upgrades: Tailstorm &amp; NexaPoW 2.0</span>
+            <span class="n">11 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">Blacktea ▽ repeatedly reports that the Tailstorm DAG-hybrid integration is the top dev priority, still in testing with no announced fork date, culminating in Full Node 2.2.0.0 as the &#39;final checkpoint before the Tailstorm&#39; and a call for all node operators to update. Related posts cover NexaPoW 2.0, the cellular-automaton mining puzzle making mining ASIC-resistant/FPGA-only, and Andrew Clifford&#39;s PoW webinar.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="1" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Developer tooling and ecosystem releases</span>
+            <span class="n">14 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">Blacktea ▽ announced NexScript v1.1.0 (regtest by default), Playground upgrades with a full code editor, LibNexaKotlin 0.5.68, Wally Wallet 3.30 beta plus patch 3.30.02 with P2P offers, Explorer updates including HODL Vaults and self-hosting, the reworked website, updated 2026–27 roadmap and an emission-schedule site.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="2" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Halving, anniversary and community events</span>
+            <span class="n">13 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">Coverage of the first halving on 1 May 2026, the 4-year anniversary X Spaces on 21 June with Andrew Stone, Andrea Suisani and David Thibodeau, anniversary NFTs for participants, the Consensus Miami meetup, and a &#39;Noisy Tuesday&#39; social-media push by Blacktea ▽.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="3" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Blitz hardware acceleration series</span>
+            <span class="n">3 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">Blacktea ▽ posted a multi-part article series on why Nexa builds hardware, describing Peter Rizun&#39;s FPGA-based signature-verification node (&#39;a node made of wires&#39;, &#39;scaling by circuit&#39;) as removing the main scaling bottleneck.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="4" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Doubts about project activity (2025)</span>
+            <span class="n">13 msgs · <span class="chip mixed" data-glyph="±">Mixed</span></span>
+            <span class="s">M F asked in July 2025 whether Nexa was &#39;over&#39; and later accused devs of &#39;still farming money&#39;; jQrgen ⛛ said work continues but is hard because they try to build real utility and the team is too small to post constantly, and Kevin asked M F to stick to German in the German chat.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="5" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Exchange delistings and buying options</span>
+            <span class="n">4 msgs · <span class="chip negative" data-glyph="−">Negative</span></span>
+            <span class="s">Blacktea ▽ flagged the permanent shutdown of Exbitron and BitMart&#39;s announced closure; a /buy command triggered Rose&#39;s list of remaining exchanges with a self-custody reminder.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="6" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Gaming, NFTs and digital identity</span>
+            <span class="n">5 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">Blacktea ▽ shared Steven van den Meiracker&#39;s webinar on decentralised gaming and the on-chain card game &#39;Nexa Warriors&#39;, NiftyArt NFT statistics, and a post framing Nexa as infrastructure for self-owned digital identity.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="7" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Bot greetings and off-topic posts</span>
+            <span class="n">31 msgs · <span class="chip neutral" data-glyph="·">Neutral</span></span>
+            <span class="s">Rose welcomed a steady stream of new (often spam-looking) accounts and posted &#39;Nice knowing you!&#39; on departures; Alex ▼ dropped an unrelated prediction-league link.</span>
+          </button>
+        </li>
+        
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Mood</h2>
+      <p class="mood-label">Flat and one-sided</p>
+      <p class="mood-score">Mood score +0.15 on a −1 … +1 scale</p>
+      <div class="meter" role="img" aria-label="Mood score +0.15 of 1"><i style="left: 57.5%"></i></div>
+      <div class="meter-ticks"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
+      <p class="mood-desc">The tone of the official posts is consistently upbeat and technical, but there is almost no human reaction to them — the group reads like a broadcast feed. The only emotional friction comes from the 2025 exchange, where M F&#39;s impatience (&#39;Is it over?&#39;, &#39;Devs still farming money&#39;) meets jQrgen ⛛&#39;s slightly defensive explanation about a small, busy team. After mid-2025 the mood flattens entirely into announcement mode, with mildly sobering notes when Exbitron and BitMart shutdowns are flagged.</p>
+      <h2>Sentiment by message</h2>
+      <div class="dist" role="img" aria-label="Positive 63, Mixed 2, Neutral 34, Negative 1">
+        <b class="positive" style="flex: 63" title="Positive: 63"></b><b class="mixed" style="flex: 2" title="Mixed: 2"></b><b class="neutral" style="flex: 34" title="Neutral: 34"></b><b class="negative" style="flex: 1" title="Negative: 1"></b>
+      </div>
+      <ul class="legend">
+        
+        <li><span class="dot positive"></span>Positive<span class="n">63 · 63.0%</span></li>
+        
+        <li><span class="dot mixed"></span>Mixed<span class="n">2 · 2.0%</span></li>
+        
+        <li><span class="dot neutral"></span>Neutral<span class="n">34 · 34.0%</span></li>
+        
+        <li><span class="dot negative"></span>Negative<span class="n">1 · 1.0%</span></li>
+        
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section id="highlights">
+  <h2>Worth reading first</h2>
+  <ul class="hl">
+    
+    <li><a href="#m-350">
+      <p class="q">“Devs still farming money”</p>
+      <p class="w"><b>M F</b> · The bluntest community criticism in the window: M F accuses the devs of &#39;still farming money&#39;.</p>
+    </a></li>
+    
+    <li><a href="#m-355">
+      <p class="q">“The team is small”</p>
+      <p class="w"><b>jQrgen ⛛</b> · jQrgen ⛛&#39;s candid reply that the team is small and lacks time to communicate — the core tension of this group.</p>
+    </a></li>
+    
+    <li><a href="#m-460">
+      <p class="q">“Nexa Full Node 2.2.0.0: The Final Checkpoint Before the Tailstorm
+
+We&#39;re pleased to present Nexa Full Node 2.2.0.0 – an important milestone and the last checkpoint before the upcoming hard fork that brings the Tailstorm integration to mainnet.
+
+This release is a preparatory version and contains the new Tailstorm source code for the major protocol upgrade. It prepares the network for the next release.
+
+All users of a Nexa full node – whether standalone, integrated into a service, or as a wallet backend – please update your client to the latest version.
+
+If you hold assets in your full node wallet, we strongly recommend backing up your wallet.dat file before installing an upgrade.
+
+All details and the download link can be found on the Nexa forum below. 👇
+
+https://forum.nexa.org/t/nexa-full-node-2-2-0-0-the-final-checkpoint-before-the-tailstorm/1742”</p>
+      <p class="w"><b>Blacktea ▽</b> · Most operationally important post: Full Node 2.2.0.0 is the final checkpoint before the Tailstorm hard fork, with an update and wallet-backup call to action.</p>
+    </a></li>
+    
+    <li><a href="#m-452">
+      <p class="q">“The Cellular Automaton: A Look Inside Nexa&#39;s New Proof-of-Work Algorithm
+
+Changes to the Nexa proof-of-work algorithm are already planned and in progress. A cellular automaton has already been announced as an upcoming upgrade for the new NexaPoW 2.0 version.
+
+The President of Bitcoin Unlimited, Andrew Clifford, also briefly presented part of the new Nexa algorithm, and Chief Scientist Dr. Peter Rizun published an article explaining the reasons for reworking the mining algorithm.
+
+The new NexaPoW 2.0 algorithm introduces a cellular automaton whose configuration can change too frequently and unpredictably for dedicated ASICs to be suitable. This change to the mining algorithm effectively makes mining ASIC-resistant and limits it to FPGAs.
+
+https://forum.nexa.org/t/the-cellular-automaton-inside-nexas-next-proof-of-work/1733”</p>
+      <p class="w"><b>Blacktea ▽</b> · Explains the NexaPoW 2.0 cellular-automaton change that would make mining ASIC-resistant and FPGA-only — a major protocol shift for miners.</p>
+    </a></li>
+    
+    <li><a href="#m-430">
+      <p class="q">“⚠️ Attention, community! Bitmart has published an announcement warning about the upcoming closure of the exchange.
+
+More information at the following link: 👇
+
+https://x.com/BitMartExchange/status/2081197305491845201”</p>
+      <p class="w"><b>Blacktea ▽</b> · Warning that BitMart is closing, one of two exchange shutdowns affecting NEXA holders in this window.</p>
+    </a></li>
+    
+  </ul>
+</section>
+
+
+<section id="messages">
+  <h2>Messages <span class="sub">· newest first</span></h2>
+  <div class="controls">
+    <div class="filters" role="group" aria-label="Filter by sentiment">
+      <button class="fbtn" type="button" data-sent="all" aria-pressed="true">All</button>
+      <button class="fbtn" type="button" data-sent="positive" aria-pressed="false">Positive (63)</button><button class="fbtn" type="button" data-sent="mixed" aria-pressed="false">Mixed (2)</button><button class="fbtn" type="button" data-sent="neutral" aria-pressed="false">Neutral (34)</button><button class="fbtn" type="button" data-sent="negative" aria-pressed="false">Negative (1)</button>
+    </div>
+    <span class="sp"></span>
+    <label class="toggle"><input type="checkbox" id="show-zh" checked> Show original German</label>
+  </div>
+  <div class="active-topic" id="active-topic"><span>Topic: <b id="active-topic-name"></b></span><button type="button" id="clear-topic">Show all messages</button></div>
+  <ol class="msgs" id="msg-list" reversed>
+    
+    <li class="msg" id="m-474" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-09-09T20:02:51+00:00">2026-09-09 20:02 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/474" rel="noopener" title="Open on Telegram">#474 ↗</a>
+      </div>
+      
+      <p class="en">Hardware Acceleration: Scaling by Circuit
+
+In the second article of this series, Nexa&#39;s validation engine was constructed from six components, a tape and a read/write head; it showed how it processed a payment from Alice to Bob without a single piece of software running.
+
+Since the tape only ever moved forward, the engine satisfied the first of the four criteria a &#34;better Bitcoin&#34; must meet: it was pipelineable.
+
+This article covers the remaining points. As Dr. Peter Rizun (@PeterRizun), Nexa&#39;s Chief Scientist, laid out in Sydney, Satoshi&#39;s Bitcoin can be optimized to meet all of these requirements – with just three simple changes. As a nice side effect, the engine also gains two further properties: extensibility and compressibility.
+
+https://forum.nexa.org/t/scaling-by-circuit/1749</p>
+      <p class="zh" lang="de">Hardware-Beschleunigung: Skalierung durch Schaltkreise
+
+Im zweiten Artikel dieser Reihe wurde die Validierungs-Engine von Nexa aus sechs Komponenten, einem Band und einem Schreib-/Lesekopf konstruiert; dabei wurde gezeigt, wie sie eine Zahlung von Alice an Bob abwickelte, ohne dass auch nur ein Stück Software lief.
+
+Da sich das Band stets nur vorwärts bewegte, erfüllte die Engine das erste der vier Kriterien, die ein „besserer Bitcoin“ erfüllen muss: Sie war für Pipelining geeignet.
+
+Dieser Artikel behandelt die verbleibenden Punkte. Wie Dr. Peter Rizun (@PeterRizun), der leitende Wissenschaftler von Nexa, in Sydney darlegte, lässt sich Satoshis Bitcoin so optimieren, dass er all diese Anforderungen erfüllt – und zwar mit nur drei einfachen Änderungen. Ganz nebenbei erhält die Engine zudem zwei weitere Eigenschaften: Erweiterbarkeit und Komprimierbarkeit.
+
+https://forum.nexa.org/t/scaling-by-circuit/1749</p>
+      
+    </li>
+    
+    <li class="msg" id="m-473" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-09T16:35:53+00:00">2026-09-09 16:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/473" rel="noopener" title="Open on Telegram">#473 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Blacktea ▽</b>: /buy</p>
+      
+      <p class="en">The most popular exchanges for buying and trading Nexa:
+
+🔸MEXC: https://www.mexc.com/exchange/NEXA_USDT
+🔸BingX: https://bingx.com/en-us/spot/NEXAUSDT/
+🔸Biconomy: https://www.biconomy.com/exchange/NEXA_USDT
+🔸Coinstash: https://coinstash.com.au/nexa/buy
+🔸CoinEx: https://www.coinex.com/exchange/NEXA-USDT
+🔸NonKyc: https://nonkyc.io/market/NEXA_USDT
+
+Always move your Nexa coins into self-custody – &#34;Not your keys, not your coins&#34;!</p>
+      <p class="zh" lang="de">Die beliebtesten Börsen für den Kauf und Handel von Nexa:
+
+🔸MEXC: https://www.mexc.com/exchange/NEXA_USDT
+🔸BingX: https://bingx.com/en-us/spot/NEXAUSDT/
+🔸Biconomy: https://www.biconomy.com/exchange/NEXA_USDT
+🔸Coinstash: https://coinstash.com.au/nexa/buy
+🔸CoinEx: https://www.coinex.com/exchange/NEXA-USDT
+🔸NonKyc: https://nonkyc.io/market/NEXA_USDT
+
+Übertrage deine Nexa-Coins immer in die eigene Verwahrung – „Not your keys, not your coins“!</p>
+      
+    </li>
+    
+    <li class="msg" id="m-472" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-09-09T16:35:53+00:00">2026-09-09 16:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/472" rel="noopener" title="Open on Telegram">#472 ↗</a>
+      </div>
+      
+      <p class="en">/buy</p>
+      <p class="zh" lang="de">/buy</p>
+      <p class="note">Bot command that triggers the exchange list.</p>
+    </li>
+    
+    <li class="msg" id="m-467" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">mac Mim</span>
+        <time datetime="2026-09-09T15:37:47+00:00">2026-09-09 15:37 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/467" rel="noopener" title="Open on Telegram">#467 ↗</a>
+      </div>
+      
+      <p class="en">Article for the Dutch
+
+https://x.com/lenntreve/status/2097667989336211657?s=46</p>
+      <p class="zh" lang="de">Article for the Dutch
+
+https://x.com/lenntreve/status/2097667989336211657?s=46</p>
+      
+    </li>
+    
+    <li class="msg" id="m-466" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-09-07T21:33:22+00:00">2026-09-07 21:33 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.30">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/466" rel="noopener" title="Open on Telegram">#466 ↗</a>
+      </div>
+      
+      <p class="en">Stay on consensus: Update to Nexa Full Node 2.2.0.0
+
+Nexa is steadily evolving its protocol. We recommend that all users update their node clients to the latest version.
+
+This version includes rolling checkpoints. Once a block reaches 200 confirmations in the blockchain, the node marks it as finalized. From that depth onward it is immutable, and any reorganization beyond that is rejected.
+
+For exchanges and services this means concretely: after 200 confirmations, a transaction can no longer be reversed.
+
+This is also the last release before the upcoming hard fork and the activation of the Tailstorm protocol. It&#39;s important to stay on consensus and update your clients. 👇
+
+https://nexa.org/node</p>
+      <p class="zh" lang="de">Bleiben Sie beim Konsens: Aktualisieren Sie auf Nexa Full-Node 2.2.0.0
+
+Nexa entwickelt sein Protokoll stetig weiter. Wir empfehlen allen Nutzern, ihre Node-Clients auf die neueste Version zu aktualisieren.
+
+Diese Version beinhaltet Rolling Checkpoints. Sobald ein Block 200 Bestätigungen in der Blockchain erreicht hat, markiert der Node ihn als abgeschlossen. Ab dieser Tiefe ist er unveränderlich, und jede Reorganisation darüber hinaus wird abgelehnt.
+
+Für Börsen und Dienste bedeutet dies konkret: Nach 200 Bestätigungen kann eine Transaktion nicht mehr rückgängig gemacht werden.
+
+Dies ist außerdem die letzte Version vor dem bevorstehenden Hard Fork und der Aktivierung des Tailstorm-Protokolls. Es ist wichtig, beim Konsens zu bleiben und Ihre Clients zu aktualisieren. 👇
+
+https://nexa.org/node</p>
+      
+    </li>
+    
+    <li class="msg" id="m-465" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-07T07:52:39+00:00">2026-09-07 07:52 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/465" rel="noopener" title="Open on Telegram">#465 ↗</a>
+      </div>
+      
+      <p class="en">Nice knowing you!</p>
+      <p class="zh" lang="de">Nice knowing you!</p>
+      <p class="note">Bot message when a user leaves/is removed.</p>
+    </li>
+    
+    <li class="msg" id="m-463" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-07T00:19:27+00:00">2026-09-07 00:19 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/463" rel="noopener" title="Open on Telegram">#463 ↗</a>
+      </div>
+      
+      <p class="en">Hey there DataService.​ Просторы Для Вашего Бизнеса ⚙️ Детали В Профиле, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there DataService.​ Просторы Для Вашего Бизнеса ⚙️ Детали В Профиле, and welcome to Nexa Germany! How are you?</p>
+      <p class="note">Automated welcome for a Russian-language spam account (&#34;Horizons for your business ⚙️ details in profile&#34;).</p>
+    </li>
+    
+    <li class="msg" id="m-461" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">Alex ▼</span>
+        <time datetime="2026-09-04T18:22:40+00:00">2026-09-04 18:22 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/461" rel="noopener" title="Open on Telegram">#461 ↗</a>
+      </div>
+      
+      <p class="en">https://prognoseliga-clubhaus.good-map-1085.chatgpt.site/ league starts in 30 min. 50 Euro get the winner.</p>
+      <p class="zh" lang="de">https://prognoseliga-clubhaus.good-map-1085.chatgpt.site/ league starts in 30 min. 50 Euro get the winner.</p>
+      <p class="note">Looks like off-topic/spam promo for a prediction league.</p>
+    </li>
+    
+    <li class="msg" id="m-460" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-09-02T13:44:12+00:00">2026-09-02 13:44 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/460" rel="noopener" title="Open on Telegram">#460 ↗</a>
+      </div>
+      
+      <p class="en">Nexa Full Node 2.2.0.0: The Final Checkpoint Before the Tailstorm
+
+We&#39;re pleased to present Nexa Full Node 2.2.0.0 – an important milestone and the last checkpoint before the upcoming hard fork that brings the Tailstorm integration to mainnet.
+
+This release is a preparatory version and contains the new Tailstorm source code for the major protocol upgrade. It prepares the network for the next release.
+
+All users of a Nexa full node – whether standalone, integrated into a service, or as a wallet backend – please update your client to the latest version.
+
+If you hold assets in your full node wallet, we strongly recommend backing up your wallet.dat file before installing an upgrade.
+
+All details and the download link can be found on the Nexa forum below. 👇
+
+https://forum.nexa.org/t/nexa-full-node-2-2-0-0-the-final-checkpoint-before-the-tailstorm/1742</p>
+      <p class="zh" lang="de">Nexa Full-Node 2.2.0.0: Der letzte Checkpoint vor dem Tailstorm
+
+Wir freuen uns, Ihnen Nexa Full-Node 2.2.0.0 präsentieren zu können – einen wichtigen Meilenstein und den letzten Checkpoint vor dem bevorstehenden Hard Fork, der die Tailstorm-Integration ins Mainnet bringt.
+
+Dieses Release ist eine Vorbereitungsversion und enthält den neuen Tailstorm-Quellcode für das große Protokoll-Upgrade. Es bereitet das Netzwerk auf die nächste Version vor.
+
+Alle Nutzer eines Nexa Full-Nodes – ob als Standalone-Lösung, integriert in einen Dienst oder als Wallet-Backend – aktualisieren bitte ihren Client auf die neueste Version.
+
+Wenn Sie Assets in Ihrer Full-Node-Wallet halten, empfehlen wir Ihnen dringend, vor der Installation eines Upgrades Ihre wallet.dat-Datei zu sichern.
+
+Alle Details und den Download-Link finden Sie im Nexa-Forum weiter unten. 👇
+
+https://forum.nexa.org/t/nexa-full-node-2-2-0-0-the-final-checkpoint-before-the-tailstorm/1742</p>
+      
+    </li>
+    
+    <li class="msg" id="m-459" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-09-01T21:13:07+00:00">2026-09-01 21:13 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/459" rel="noopener" title="Open on Telegram">#459 ↗</a>
+      </div>
+      
+      <p class="en">Nexa Monthly Newsletter August 2026: Redesign of the Mining Puzzle
+
+The team keeps delivering, and August brought us news about important upcoming network changes and new algorithms. NexaPoW 2.0 was introduced to the community, and the President of Bitcoin Unlimited personally explained Nexa&#39;s architecture. The network is being prepared for the next major protocol upgrade through ongoing development.
+
+One of the biggest challenges for the protocol right now is developing a hardware node. Nexa is building the first fully functional hardware node capable of validating digital signatures to verify transactions. The chip is currently in development and is being continuously tested, adjusted and improved.
+
+https://forum.nexa.org/t/nexa-monthly-newsletter-august-2026-redesign-of-the-mining-puzzle/1740</p>
+      <p class="zh" lang="de">Nexa Monatsnewsletter August 2026: Neugestaltung des Mining-Puzzles
+
+Das Team liefert weiterhin ab, und der August brachte uns Neuigkeiten zu wichtigen bevorstehenden Netzwerkänderungen und neuen Algorithmen. NexaPoW 2.0 wurde der Community vorgestellt, und der Präsident von Bitcoin Unlimited erläuterte persönlich die Architektur von Nexa. Das Netzwerk wird durch laufende Entwicklungen auf das nächste große Protokoll-Upgrade vorbereitet.
+
+Eine der größten Herausforderungen für das Protokoll ist derzeit die Entwicklung eines Hardware-Nodes. Nexa entwickelt den ersten voll funktionsfähigen Hardware-Node, der digitale Signaturen zur Verifizierung von Transaktionen validieren kann. Der Chip befindet sich aktuell in der Entwicklung und wird laufend getestet, angepasst und verbessert.
+
+https://forum.nexa.org/t/nexa-monthly-newsletter-august-2026-redesign-of-the-mining-puzzle/1740</p>
+      
+    </li>
+    
+    <li class="msg" id="m-458" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-08-31T08:02:49+00:00">2026-08-31 08:02 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/458" rel="noopener" title="Open on Telegram">#458 ↗</a>
+      </div>
+      
+      <p class="en">Nexa: The Art of Building a Blockchain
+
+This time we want to shine a light on the ideology, the goals and the history of the Nexa blockchain and the Bitcoin Unlimited team behind it.
+
+The journey began over a decade ago, when a small group of passionate and enthusiastic people met on the BitcoinTalk forum.
+
+A lot has happened since then, a long road has been travelled and valuable experience gained.
+
+This article isn&#39;t technical, and some industry veterans will already know the story.
+
+Everyone else can make themselves a cup of tea and take a look with us at Nexa&#39;s beginnings and the people behind it. 👇
+
+https://forum.nexa.org/t/nexa-the-art-of-building-a-blockchain/1739</p>
+      <p class="zh" lang="de">Nexa: Die Kunst des Blockchain-Aufbaus
+
+Dieses Mal möchten wir die Ideologie, die Ziele und die Geschichte der Nexa-Blockchain und des dahinterstehenden Bitcoin Unlimited-Teams beleuchten.
+
+Die Reise begann vor über einem Jahrzehnt, als sich eine kleine Gruppe leidenschaftlicher und enthusiastischer Menschen im BitcoinTalk-Forum traf.
+
+Seitdem ist viel passiert, ein langer Weg wurde zurückgelegt und wertvolle Erfahrungen gesammelt.
+
+Dieser Artikel ist nicht technisch, und einigen Branchenveteranen ist die Geschichte bereits bekannt.
+
+Alle anderen können sich eine Tasse Tee machen und gemeinsam die Anfänge von Nexa und die Menschen dahinter betrachten. 👇
+
+https://forum.nexa.org/t/nexa-the-art-of-building-a-blockchain/1739</p>
+      
+    </li>
+    
+    <li class="msg" id="m-457" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-08-25T05:58:39+00:00">2026-08-25 05:58 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/457" rel="noopener" title="Open on Telegram">#457 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Raffa, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there Raffa, and welcome to Nexa Germany! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-455" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-08-24T20:05:12+00:00">2026-08-24 20:05 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/455" rel="noopener" title="Open on Telegram">#455 ↗</a>
+      </div>
+      
+      <p class="en">Nexa&#39;s Cash Register: The Token Economy Explained
+
+Most people already know this model, but not everyone knows that Nexa&#39;s till is the same as Bitcoin&#39;s.
+
+Ever wondered why 21 trillion and not 21 million? Because the decimal point was moved six places, turning fractions of a coin into whole units.
+
+The total number of satoshis is exactly the same as Bitcoin&#39;s: 2.1 quadrillion. Nexa simply uses two decimal places instead of eight, which is much more practical in everyday use, just as we&#39;re used to when dealing with fiat money.
+
+21 trillion NEXA is the maximum supply, and by consensus it will only be fully mined in the year 2138.
+
+Every 1,050,000 blocks, i.e. roughly every four years, the mining reward halves.
+
+The first halving of the Nexa reward took place on 1 May 2026. The block reward dropped from 10,000,000 to 5,000,000 NEXA.
+
+You can find the Nexa emission website in the comments below. 👇
+
+https://emission.nexa.org/</p>
+      <p class="zh" lang="de">Nexa-Kasse: Die Token-Ökonomie erklärt
+
+Die meisten kennen dieses Modell bereits, aber nicht jeder weiß, dass die Nexa-Kasse dieselbe ist wie die von Bitcoin.
+
+Haben Sie sich jemals gefragt, warum 21 Billionen und nicht 21 Millionen? Weil das Komma um sechs Stellen verschoben wurde, wodurch Bruchteile einer Münze zu ganzen Einheiten werden.
+
+Die Gesamtzahl der Satoshis ist exakt dieselbe wie bei Bitcoin: 2,1 Billiarden. Nexa verwendet einfach zwei Dezimalstellen statt acht, was im Alltag viel praktischer ist, genau wie wir es vom Umgang mit Fiatgeld gewohnt sind.
+
+21 Billionen NEXA ist das maximale Angebot, und laut Konsens wird es erst im Jahr 2138 vollständig geschürft sein.
+
+Alle 1.050.000 Blöcke, also etwa alle vier Jahre, halbiert sich die Mining-Belohnung.
+
+Die erste Halbierung der Nexa-Belohnung fand am 1. Mai 2026 statt. Dabei sank die Blockbelohnung von 10.000.000 auf 5.000.000 NEXA.
+
+Die Website für die Nexa-Emission finden Sie in den Kommentaren unten. 👇
+
+https://emission.nexa.org/</p>
+      
+    </li>
+    
+    <li class="msg" id="m-454" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-08-22T11:38:14+00:00">2026-08-22 11:38 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/454" rel="noopener" title="Open on Telegram">#454 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Базы, Скрипты, Услуги, Разработка 💻 Подробнее По Ссылке, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there Базы, Скрипты, Услуги, Разработка 💻 Подробнее По Ссылке, and welcome to Nexa Germany! How are you?</p>
+      <p class="note">Automated welcome for an obvious spam account (Russian: &#34;Databases, Scripts, Services, Development – details at the link&#34;).</p>
+    </li>
+    
+    <li class="msg" id="m-452" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-08-21T20:21:13+00:00">2026-08-21 20:21 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/452" rel="noopener" title="Open on Telegram">#452 ↗</a>
+      </div>
+      
+      <p class="en">The Cellular Automaton: A Look Inside Nexa&#39;s New Proof-of-Work Algorithm
+
+Changes to the Nexa proof-of-work algorithm are already planned and in progress. A cellular automaton has already been announced as an upcoming upgrade for the new NexaPoW 2.0 version.
+
+The President of Bitcoin Unlimited, Andrew Clifford, also briefly presented part of the new Nexa algorithm, and Chief Scientist Dr. Peter Rizun published an article explaining the reasons for reworking the mining algorithm.
+
+The new NexaPoW 2.0 algorithm introduces a cellular automaton whose configuration can change too frequently and unpredictably for dedicated ASICs to be suitable. This change to the mining algorithm effectively makes mining ASIC-resistant and limits it to FPGAs.
+
+https://forum.nexa.org/t/the-cellular-automaton-inside-nexas-next-proof-of-work/1733</p>
+      <p class="zh" lang="de">Der zelluläre Automat: Einblick in Nexas neuen Proof-of-Work-Algorithmus
+
+Änderungen am Nexa-Proof-of-Work-Algorithmus sind bereits geplant und in Arbeit. Ein zellulärer Automat wurde bereits als kommendes Upgrade für die neue Version NexaPoW 2.0 angekündigt.
+
+Der Präsident von Bitcoin Unlimited, Andrew Clifford, stellte ebenfalls kurz einen Teil des neuen Nexa-Algorithmus vor, und der leitende Wissenschaftler Dr. Peter Rizun veröffentlichte einen Artikel, in dem er die Gründe für die Überarbeitung des Mining-Algorithmus erläuterte.
+
+Mit dem neuen NexaPoW-2.0-Algorithmus wird ein zellulärer Automat eingeführt, dessen Konfiguration sich zu häufig und unvorhersehbar ändern kann, als dass dedizierte ASICs dafür geeignet wären. Diese Änderung des Mining-Algorithmus macht das Mining effektiv ASIC-resistent und beschränkt es auf FPGAs.
+
+https://forum.nexa.org/t/the-cellular-automaton-inside-nexas-next-proof-of-work/1733</p>
+      
+    </li>
+    
+    <li class="msg" id="m-451" data-sent="positive" data-topics="">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-08-18T08:06:47+00:00">2026-08-18 08:06 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/451" rel="noopener" title="Open on Telegram">#451 ↗</a>
+      </div>
+      
+      <p class="en">Monthly Development Updates: July 2026
+
+The most important development is the hardening of the Tailstorm protocol, which is still in extensive testing. Tailstorm is approaching the final phases before mainnet integration.
+
+Work on the block explorer, the integration of HODL vaults into LibNexaKotlin, as well as numerous updates for wallets and the SDK infrastructure are ongoing. The NexScript playground is also progressing toward the planned updates and releases according to the roadmap.
+
+There are notable developments in the area of AI-assisted development. The team is gathering skills and tools for AI agents. The ongoing work has already been announced publicly, and we will shortly discuss David Thibodeau&#39;s presentation on AI skills.
+
+Read the full monthly development update below. 👇
+
+https://forum.nexa.org/t/monthly-development-updates-july-2026/1732</p>
+      <p class="zh" lang="de">Monatliche Entwicklungs-Updates: Juli 2026
+
+Die wichtigste Neuerung ist die Härtung des Tailstorm-Protokolls, das sich noch in der umfassenden Testphase befindet. Tailstorm nähert sich den letzten Phasen vor der Mainnet-Integration.
+
+Die Arbeiten am Block-Explorer, der Integration von Hodl-Vaults in LibNexaKotlin sowie zahlreiche Updates für Wallets und die SDK-Infrastruktur laufen kontinuierlich. Auch die NexScript-Spielwiese entwickelt sich in Richtung der geplanten Updates und Releases gemäß Roadmap.
+
+Bemerkenswerte Entwicklungen gibt es im Bereich der KI-gestützten Entwicklung. Das Team sammelt Kompetenzen und Tools für KI-Agenten. Die laufenden Arbeiten wurden bereits öffentlich angekündigt, und wir werden in Kürze die Präsentation von David Thibodeau zu KI-Kompetenzen besprechen.
+
+Lesen Sie das vollständige monatliche Entwicklungs-Update unten. 👇
+
+https://forum.nexa.org/t/monthly-development-updates-july-2026/1732</p>
+      
+    </li>
+    
+    <li class="msg" id="m-450" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-08-13T08:10:13+00:00">2026-08-13 08:10 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/450" rel="noopener" title="Open on Telegram">#450 ↗</a>
+      </div>
+      
+      <p class="en">📒 Nexa August Highlights: NexaPoW 2.0 Introduced
+
+This August is exciting and brings lots of positive news. Andrew Clifford, President of Bitcoin Unlimited, has introduced the new version 2.0 of the NexaPoW algorithm – a fundamental improvement to the Nexa blockchain.
+
+Dr. Peter Rizun, Chief Scientist at Nexa, and Lead Developer Andrew Stone are driving NexaPoW&#39;s development from two directions.
+Peter Rizun is developing the FPGA-based hardware solution for mining and signature verification, eliminating the biggest bottleneck for full nodes.
+Andrew Stone is in charge of the software development, integrating Tailstorm and evolving Nexa toward a hybrid DAG and blockchain architecture.
+
+This hybrid model enables faster block mining, a fairer distribution of block rewards and faster transaction verification.
+
+More on this:
+https://forum.nexa.org/t/nexa-august-highlights-nexapow-2-0-introduced/1731</p>
+      <p class="zh" lang="de">📒 Nexa-Highlights im August: NexaPoW 2.0 vorgestellt
+
+Dieser August ist spannend und bringt viele positive Neuigkeiten. Andrew Clifford, Präsident von Bitcoin Unlimited, hat die neue Version 2.0 des NexaPoW-Algorithmus vorgestellt – eine grundlegende Verbesserung der Nexa-Blockchain.
+
+Dr. Peter Rizun, Chief Scientist bei Nexa, und Lead Developer Andrew Stone treiben die Entwicklung von NexaPoW aus zwei Richtungen voran.
+Peter Rizun entwickelt die FPGA-basierte Hardwarelösung für Mining und Signaturverifizierung und beseitigt damit den größten Engpass bei Full-Nodes.
+Andrew Stone verantwortet die Softwareentwicklung, integriert Tailstorm und entwickelt Nexa hin zu einer hybriden DAG- und Blockchain-Architektur.
+
+Dieses Hybridmodell ermöglicht ein schnelleres Mining von Blöcken, eine fairere Verteilung der Blockbelohnungen und eine schnellere Transaktionsverifizierung.
+
+Mehr dazu:
+https://forum.nexa.org/t/nexa-august-highlights-nexapow-2-0-introduced/1731</p>
+      
+    </li>
+    
+    <li class="msg" id="m-449" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-08-11T08:12:35+00:00">2026-08-11 08:12 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/449" rel="noopener" title="Open on Telegram">#449 ↗</a>
+      </div>
+      
+      <p class="en">📒 A Node Made of Wires
+
+In the first article of this series we explained why Nexa is building hardware. For seventeen years, proof-of-work has been speeding up computations that don&#39;t increase network capacity. Nexa now wants to put that power to work on the tasks a money network actually needs.
+
+This article shows what that hardware looks like: a money-validation machine built from the simplest electronic components.
+
+Nexa&#39;s Chief Scientist, Dr. Peter Rizun, is designing a node as a circuit made of digital logic gates. To understand how a circuit can validate a money transaction without any additional software, six components are all you need.
+
+Read the full article on the Nexa forum (see below). 👇
+
+https://forum.nexa.org/t/a-node-made-of-wires/1730</p>
+      <p class="zh" lang="de">📒 Ein Knoten aus Drähten
+
+Im ersten Artikel dieser Reihe haben wir erklärt, warum Nexa Hardware entwickelt. Proof-of-Work hat siebzehn Jahre lang Berechnungen beschleunigt, die die Netzwerkkapazität nicht erhöhen. Nexa möchte diese Leistung nun für die Aufgaben nutzen, die ein Geldnetzwerk tatsächlich benötigt.
+
+Dieser Artikel zeigt, wie diese Hardware aussieht: eine Maschine zur Geldvalidierung, die aus einfachsten elektronischen Bauteilen besteht.
+
+Nexas leitender Wissenschaftler, Dr. Peter Rizun, entwickelt einen Knoten als Schaltkreis aus digitalen Logikgattern. Um zu verstehen, wie ein Schaltkreis eine Geldtransaktion ohne zusätzliche Software validieren kann, genügen sechs Komponenten.
+
+Lesen Sie den vollständigen Artikel im Nexa-Forum (siehe unten). 👇
+
+https://forum.nexa.org/t/a-node-made-of-wires/1730</p>
+      
+    </li>
+    
+    <li class="msg" id="m-448" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-08-11T06:38:07+00:00">2026-08-11 06:38 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/448" rel="noopener" title="Open on Telegram">#448 ↗</a>
+      </div>
+      
+      <p class="en">Good morning, Nexians 💛
+
+It&#39;s &#34;Noisy Tuesday&#34; and you can share your enthusiasm for NEXA on social media.
+
+Share your link with us at https://t.me/Nexa_Socials/11889 and the community will like and share it.
+
+Let&#39;s get our project out there 😎</p>
+      <p class="zh" lang="de">Guten Morgen, Nexians 💛
+
+Es ist „Noisy Tuesday“ und ihr könnt eure Begeisterung für NEXA in den sozialen Medien teilen.
+
+Teilt euren Link mit uns auf https://t.me/Nexa_Socials/11889 und die Community wird ihn liken und teilen.
+
+Lasst uns unser Projekt bekannt machen 😎</p>
+      
+    </li>
+    
+    <li class="msg" id="m-447" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-08-07T20:04:24+00:00">2026-08-07 20:04 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/447" rel="noopener" title="Open on Telegram">#447 ↗</a>
+      </div>
+      
+      <p class="en">NiftyArt On-Chain Statistics
+
+Thousands of digital art pieces have been created on the NEXA blockchain.
+
+246 collections
+8,025 NFTs
+8,429 holders
+
+Each item is a native NEXA token and represents real digital ownership.
+
+Learn more: https://niftyart.cash</p>
+      <p class="zh" lang="de">NiftyArt On-Chain-Statistiken
+
+Tausende digitale Kunstobjekte wurden auf der NEXA-Blockchain erstellt.
+
+246 Kollektionen
+8.025 NFTs
+8.429 Inhaber
+
+Jedes Objekt ist ein nativer NEXA-Token und repräsentiert echtes digitales Eigentum.
+
+Mehr erfahren: https://niftyart.cash</p>
+      
+    </li>
+    
+    <li class="msg" id="m-446" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-08-06T13:35:30+00:00">2026-08-06 13:35 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/446" rel="noopener" title="Open on Telegram">#446 ↗</a>
+      </div>
+      
+      <p class="en">Hey there 零六, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there 零六, and welcome to Nexa Germany! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-444" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-08-06T08:31:27+00:00">2026-08-06 08:31 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/444" rel="noopener" title="Open on Telegram">#444 ↗</a>
+      </div>
+      
+      <p class="en">Hey there BENJAMIN, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there BENJAMIN, and welcome to Nexa Germany! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-438" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-08-05T20:35:33+00:00">2026-08-05 20:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/438" rel="noopener" title="Open on Telegram">#438 ↗</a>
+      </div>
+      
+      <p class="en">Nice knowing you!</p>
+      <p class="zh" lang="de">Nice knowing you!</p>
+      <p class="note">Automated bot message posted when a user leaves the group.</p>
+    </li>
+    
+    <li class="msg" id="m-436" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-08-05T20:35:23+00:00">2026-08-05 20:35 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/436" rel="noopener" title="Open on Telegram">#436 ↗</a>
+      </div>
+      
+      <p class="en">Hey there XxBbAa, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there XxBbAa, and welcome to Nexa Germany! How are you?</p>
+      <p class="note">Automated greeting bot message.</p>
+    </li>
+    
+    <li class="msg" id="m-434" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-08-03T08:28:58+00:00">2026-08-03 08:28 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/434" rel="noopener" title="Open on Telegram">#434 ↗</a>
+      </div>
+      
+      <p class="en">Rethinking Proof-of-Work: Nexa&#39;s Architecture with Andrew Clifford
+
+Andrew Clifford, President of Bitcoin Unlimited, spoke with Danielle Marie of EvolveH3r in a webinar about proof-of-work, its origins and how Nexa has developed it further.
+
+After Danielle&#39;s introduction to the basics of blockchain, layer 1, UTXOs, decentralization and the blockchain trilemma, Andrew Clifford explained these concepts using a working cryptocurrency. He covered the beginnings of proof-of-work as an anti-spam mechanism in the early 1990s, its role in Bitcoin mining and security, as well as NexaPoW and the key information users need for mining Nexa after the next algorithm upgrade.
+
+The full recording and a summary of his presentation can be found on the Nexa forum (see below). 👇
+
+https://forum.nexa.org/t/rethinking-proof-of-work-understanding-nexas-architecture-with-andrew-clifford/1729</p>
+      <p class="zh" lang="de">Proof-of-Work neu gedacht: Die Architektur von Nexa mit Andrew Clifford
+
+Andrew Clifford, Präsident von Bitcoin Unlimited, sprach mit Danielle Marie von EvolveH3r in einem Webinar über Proof-of-Work, seine Ursprünge und die Weiterentwicklung durch Nexa.
+
+Nach Danielles Einführung in die Grundlagen der Blockchain, Layer 1, UTXOs, Dezentralisierung und das Blockchain-Trilemma erläuterte Andrew Clifford diese Konzepte anhand einer funktionierenden Kryptowährung. Er ging dabei auf die Anfänge von Proof-of-Work als Anti-Spam-Mechanismus in den frühen 1990er-Jahren, seine Rolle beim Bitcoin-Mining und der Sicherheit sowie auf NexaPoW und die wichtigsten Informationen für Nutzer zum Mining von Nexa nach dem nächsten Algorithmus-Upgrade ein.
+
+Die vollständige Aufzeichnung und eine Zusammenfassung seiner Präsentation finden Sie im Nexa-Forum (siehe unten). 👇
+
+https://forum.nexa.org/t/rethinking-proof-of-work-understanding-nexas-architecture-with-andrew-clifford/1729</p>
+      
+    </li>
+    
+    <li class="msg" id="m-433" data-sent="positive" data-topics="">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-08-01T20:05:29+00:00">2026-08-01 20:05 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/433" rel="noopener" title="Open on Telegram">#433 ↗</a>
+      </div>
+      
+      <p class="en">Nexa Monthly Newsletter July 2026: Hardware acceleration
+
+July was all about hardware acceleration – a particularly exciting topic! After long research, testing and development, the Blitz project is taking shape, and the team is looking forward to publishing a series of articles explaining the technology behind it and making the motivation clear. This month we kicked off the series with an article on why Nexa builds hardware.
+
+Just as important was the release of the recap of Nexa&#39;s 4th anniversary Spaces. In it the lead developer gave insights into the project&#39;s future direction, the progress of important blockchain improvements such as Tailstorm, and much more.
+
+Beyond that there is much more to report: an updated Nexa roadmap for 2026 and 2027, newly released features, the updated Explorer, the Wally Wallet patch and everything else summarised below.
+
+You can find the full newsletter</p>
+      <p class="zh" lang="de">Nexa Monatsnewsletter Juli 2026: Hardwarebeschleunigung
+
+Der Juli steht ganz im Zeichen der Hardwarebeschleunigung – ein besonders spannendes Thema! Nach langer Forschung, Tests und Entwicklung nimmt das Blitz-Projekt Gestalt an, und das Team freut sich darauf, eine Artikelserie zu veröffentlichen, die die dahinterstehende Technologie erläutert und die Motivation dahinter verdeutlicht. Diesen Monat starteten wir die Serie mit einem Artikel darüber, warum Nexa Hardware entwickelt.
+
+Ebenso wichtig war die Veröffentlichung des Rückblicks auf Nexas Spaces zum 4. Jubiläum. Darin gab der leitende Entwickler Einblicke in die zukünftige Ausrichtung des Projekts, den Fortschritt wichtiger Blockchain-Verbesserungen wie Tailstorm und vieles mehr.
+
+Darüber hinaus gibt es noch viel mehr zu berichten: eine aktualisierte Nexa-Roadmap für 2026 und 2027, neu veröffentlichte Funktionen, den aktualisierten Explorer, den Wally-Wallet-Patch und alles Weitere, was unten zusammengefasst ist.
+
+Den vollständigen Newsletter finden Sie</p>
+      <p class="note">The message appears to be cut off mid-sentence at the end (&#34;You can find the full newsletter&#34;).</p>
+    </li>
+    
+    <li class="msg" id="m-432" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-07-30T20:04:17+00:00">2026-07-30 20:04 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.35">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/432" rel="noopener" title="Open on Telegram">#432 ↗</a>
+      </div>
+      
+      <p class="en">Wally Wallet: Peer-to-peer offers
+
+The Wally Wallet has had a special feature for quite a while now that we&#39;d like to present in more detail. Peer-to-peer transactions are now possible directly in the Wally Wallet. Swap Nexa coins for tokens or NFTs.
+
+More on this:
+
+https://forum.nexa.org/t/wally-wallet-peer-to-peer-offers/1726</p>
+      <p class="zh" lang="de">Wally Wallet: Peer-to-Peer-Angebote
+
+Die Wally Wallet bietet schon seit Längerem eine besondere Funktion, die wir Ihnen nun genauer vorstellen möchten. Peer-to-Peer-Transaktionen sind jetzt direkt in der Wally Wallet möglich. Tauschen Sie Nexa-Coins gegen Token oder NFTs.
+
+Mehr dazu:
+
+https://forum.nexa.org/t/wally-wallet-peer-to-peer-offers/1726</p>
+      
+    </li>
+    
+    <li class="msg" id="m-431" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-07-27T20:11:45+00:00">2026-07-27 20:11 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/431" rel="noopener" title="Open on Telegram">#431 ↗</a>
+      </div>
+      
+      <p class="en">Why Nexa builds hardware
+
+Imagine a microchip that can do the same as your software nodes, but faster, more reliably and more energy-efficiently, and can be manufactured at a fraction of the cost. That&#39;s not pie in the sky, it&#39;s the goal Nexa has been working towards for years.
+
+Dr. Peter Rizun, chief scientist at Nexa, developed Blitz, a piece of hardware that verifies digital signatures and removes the biggest computational bottleneck in scaling cryptocurrencies.
+
+To understand the advantage of hardware acceleration, we first have to look back to the time of the first Bitcoin block. Since then technology has improved more than a millionfold, and the same improvement can be achieved in scaling cryptocurrencies.
+
+Read the full article on the Nexa forum below. 👇
+
+https://forum.nexa.org/t/why-nexa-builds-hardware/1723</p>
+      <p class="zh" lang="de">Warum Nexa Hardware entwickelt
+
+Stellen Sie sich einen Mikrochip vor, der dasselbe kann wie Ihre Software-Knoten, aber schneller, zuverlässiger und energieeffizienter ist und zu einem Bruchteil der Kosten hergestellt werden kann. Das ist keine Zukunftsmusik, sondern das Ziel, auf das Nexa seit Jahren hinarbeitet.
+
+Dr. Peter Rizun, leitender Wissenschaftler bei Nexa, entwickelte Blitz, eine Hardware, die digitale Signaturen verifiziert und den größten Rechenengpass bei der Skalierung von Kryptowährungen beseitigt.
+
+Um den Vorteil der Hardwarebeschleunigung zu verstehen, müssen wir uns zunächst die Zeit des ersten Bitcoin-Blocks ansehen. Seitdem hat sich die Technologie um mehr als das Millionenfache verbessert, und dieselbe Verbesserung lässt sich auch bei der Skalierung von Kryptowährungen erzielen.
+
+Lesen Sie den vollständigen Artikel im Nexa-Forum unten. 👇
+
+https://forum.nexa.org/t/why-nexa-builds-hardware/1723</p>
+      
+    </li>
+    
+    <li class="msg" id="m-430" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-07-26T09:32:55+00:00">2026-07-26 09:32 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.15">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/430" rel="noopener" title="Open on Telegram">#430 ↗</a>
+      </div>
+      
+      <p class="en">⚠️ Attention, community! Bitmart has published an announcement warning about the upcoming closure of the exchange.
+
+More information at the following link: 👇
+
+https://x.com/BitMartExchange/status/2081197305491845201</p>
+      <p class="zh" lang="de">⚠️ Achtung, Community! Bitmart hat eine Ankündigung veröffentlicht, die vor der bevorstehenden Schließung der Börse warnt.
+
+Weitere Informationen finden Sie unter dem folgenden Link: 👇
+
+https://x.com/BitMartExchange/status/2081197305491845201</p>
+      
+    </li>
+    
+    <li class="msg" id="m-429" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-07-25T20:20:26+00:00">2026-07-25 20:20 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.55">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/429" rel="noopener" title="Open on Telegram">#429 ↗</a>
+      </div>
+      
+      <p class="en">Nexa looks to the future and is building tomorrow&#39;s solutions – the foundation for a secure internet that everyone deserves. Blockchains are far more than just money; they enable digital identities that represent you online and belong to you, not to third parties.
+
+https://x.com/NexaMoney/status/2081107219932975266</p>
+      <p class="zh" lang="de">Nexa blickt in die Zukunft und entwickelt die Lösungen von morgen – die Grundlage für ein sicheres Internet, das jeder verdient. Blockchains sind weit mehr als nur Geld; sie ermöglichen digitale Identitäten, die Sie online repräsentieren und Ihnen gehören, nicht Dritten.
+
+https://x.com/NexaMoney/status/2081107219932975266</p>
+      
+    </li>
+    
+    <li class="msg" id="m-428" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-07-23T09:11:19+00:00">2026-07-23 09:11 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/428" rel="noopener" title="Open on Telegram">#428 ↗</a>
+      </div>
+      
+      <p class="en">Nexa anniversary Spaces for the 4th anniversary with Andrew Stone, Andrea Suisani and David Thibodeau
+
+Four years ago Nexa started out with a small team, an ambitious technical vision and the conviction that a scalable peer-to-peer payment system still has a lot of potential.
+
+Four years is a significant milestone, especially in an industry where projects, technologies and entire narratives can appear and disappear quickly.
+
+To mark the anniversary, the team got together for a live Space to look back on the journey so far, discuss the lessons learned, present the current projects and reflect on Nexa&#39;s future direction in its fifth year. Special thanks to Don Alucard for moderating the event.
+
+https://forum.nexa.org/t/nexa-4th-anniversary-spaces-with-andrew-stone-andrea-suisani-and-david-thibodeau/1722</p>
+      <p class="zh" lang="de">Nexa-Jubiläums-Spaces zum 4. Jahrestag mit Andrew Stone, Andrea Suisani und David Thibodeau
+
+Vor vier Jahren startete Nexa mit einem kleinen Team, einer ambitionierten technischen Vision und der Überzeugung, dass skalierbares Peer-to-Peer-Zahlungssystem noch viel Potenzial hat.
+
+Vier Jahre sind ein bedeutender Meilenstein, insbesondere in einer Branche, in der Projekte, Technologien und ganze Narrative schnell entstehen und wieder verschwinden können.
+
+Anlässlich des Jubiläums traf sich das Team zu einem Live-Space, um auf die bisherige Entwicklung zurückzublicken, die gewonnenen Erkenntnisse zu diskutieren, die aktuellen Projekte vorzustellen und über die zukünftige Ausrichtung von Nexa im fünften Jahr nachzudenken. Ein besonderer Dank gilt Don Alucard für die Moderation der Veranstaltung.
+
+https://forum.nexa.org/t/nexa-4th-anniversary-spaces-with-andrew-stone-andrea-suisani-and-david-thibodeau/1722</p>
+      
+    </li>
+    
+    <li class="msg" id="m-427" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-07-21T20:03:22+00:00">2026-07-21 20:03 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.35">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/427" rel="noopener" title="Open on Telegram">#427 ↗</a>
+      </div>
+      
+      <p class="en">Monthly Development Updates: June 2026
+
+June was all about consolidation and further development. The biggest task remains the second hard fork with a comprehensive overhaul of the locking and validation mechanisms. This is being broken down into smaller, reviewable sections that will be implemented one after another.
+
+In addition, the block explorer had its most active month so far, the smart contract tools were pushed to their limits with the Nexa Warriors Contract Suite, and the time-lock vaults are close to completion.
+
+All of these updates, plus more detailed information, can be found below in the monthly development update for June. 👇
+
+https://forum.nexa.org/t/monthly-development-updates-june-2026/1721</p>
+      <p class="zh" lang="de">Monatliche Entwicklungs-Updates: Juni 2026
+
+Der Juni stand ganz im Zeichen von Konsolidierung und Weiterentwicklung. Die größte Aufgabe ist nach wie vor der zweite Hard Fork mit einer umfassenden Überarbeitung der Sperr- und Validierungsmechanismen. Dieser wird in kleinere, überprüfbare Abschnitte unterteilt, die nacheinander implementiert werden.
+
+Darüber hinaus verzeichnete der Block-Explorer seinen bisher aktivsten Monat, die Smart-Contract-Tools wurden mit der Nexa Warriors Contract Suite an ihre Grenzen gebracht, und die Time-Lock-Vaults stehen kurz vor der Fertigstellung.
+
+Alle diese Updates sowie detailliertere Informationen finden Sie unten im monatlichen Entwicklungs-Update für Juni. 👇
+
+https://forum.nexa.org/t/monthly-development-updates-june-2026/1721</p>
+      
+    </li>
+    
+    <li class="msg" id="m-426" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-07-21T07:11:43+00:00">2026-07-21 07:11 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/426" rel="noopener" title="Open on Telegram">#426 ↗</a>
+      </div>
+      
+      <p class="en">Hey there oliver, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there oliver, and welcome to Nexa Germany! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-424" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-07-19T20:03:36+00:00">2026-07-19 20:03 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.45">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/424" rel="noopener" title="Open on Telegram">#424 ↗</a>
+      </div>
+      
+      <p class="en">Nexa Explorer: New features
+
+The Nexa Explorer has been improved once again. The home page has been updated and the transaction view optimised for smartphones, so inputs and outputs are now clearly displayed on any device.
+
+Another important new feature is self-hosting. Anyone with a bit of technical know-how can now run the Explorer on their own machine. A single command is enough to set up a local instance.
+
+On top of that there are smaller improvements that make everyday use easier: optimisations in the “Token Authorities” tab, improved visualisation, and Nexa Fun, the page with historical and interesting events from the blockchain.
+
+The full update can be found on the Nexa forum (see below). 👇
+
+https://forum.nexa.org/t/nexa-explorer-new-features/1719</p>
+      <p class="zh" lang="de">Nexa Explorer: Neue Funktionen
+
+Der Nexa Explorer wurde erneut verbessert. Die Startseite wurde aktualisiert und die Transaktionsansicht für Smartphones optimiert, sodass Eingaben und Ausgaben nun auf jedem Gerät übersichtlich dargestellt werden.
+
+Eine weitere wichtige Neuerung ist das Self-Hosting. Jeder mit etwas technischem Know-how kann den Explorer jetzt auf dem eigenen Rechner ausführen. Ein einziger Befehl genügt, um eine lokale Instanz einzurichten.
+
+Darüber hinaus gibt es kleinere Verbesserungen, die den täglichen Gebrauch erleichtern: Optimierungen im Tab „Token Authorities“, eine verbesserte Visualisierung und Nexa Fun, die Seite mit historischen und interessanten Ereignissen der Blockchain.
+
+Das vollständige Update finden Sie im Nexa-Forum (siehe unten). 👇
+
+https://forum.nexa.org/t/nexa-explorer-new-features/1719</p>
+      
+    </li>
+    
+    <li class="msg" id="m-423" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-07-17T20:32:33+00:00">2026-07-17 20:32 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.45">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/423" rel="noopener" title="Open on Telegram">#423 ↗</a>
+      </div>
+      
+      <p class="en">NexScript Playground upgrades
+
+We&#39;re pleased to announce that the NexScript Playground has been substantially improved.
+
+A full code editor with five example contracts has been added to make it easier for developers to get started programming advanced transactions.
+
+The Playground is connected to the network, so you can write, test and interact with the contracts directly on the website.
+
+More information can be found on the Nexa forum (see below). 👇
+
+https://forum.nexa.org/t/nexscript-playground-upgrades/1716</p>
+      <p class="zh" lang="de">NexScript Playground-Upgrades
+
+Wir freuen uns, Ihnen mitteilen zu können, dass der NexScript Playground umfassend verbessert wurde.
+
+Ein vollständiger Code-Editor mit fünf Beispielverträgen wurde hinzugefügt, um Entwicklern den Einstieg in die Programmierung fortgeschrittener Transaktionen zu erleichtern.
+
+Der Playground ist mit dem Netzwerk verbunden, sodass Sie die Verträge direkt auf der Website schreiben, testen und mit ihnen interagieren können.
+
+Weitere Informationen finden Sie im Nexa-Forum (siehe unten). 👇
+
+https://forum.nexa.org/t/nexscript-playground-upgrades/1716</p>
+      
+    </li>
+    
+    <li class="msg" id="m-422" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-07-15T20:07:15+00:00">2026-07-15 20:07 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.45">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/422" rel="noopener" title="Open on Telegram">#422 ↗</a>
+      </div>
+      
+      <p class="en">Nexa Highlights in July: More control over in-game content
+
+This month Nexa opened a new chapter in decentralised gaming. Steven van den Meiracker, Senior Development and Solution Architect, explained how the blockchain can improve the gaming ecosystem and enable control over game items even outside the game. Given new technologies and use cases, there is a gap that blockchain technology can close.
+
+Besides gaming, the team presented an updated NEXA development roadmap for 2026 and part of 2027. Cards can now be expanded to show more detailed information on each goal.
+
+The 4-year anniversary celebration has been wrapped up. All eligible participants received limited NFTs. In addition, the Wally Wallet was updated and is now available in version 3.30.02.
+
+https://forum.nexa.org/t/nexa-july-highlights-a-layer-of-ownership/1713</p>
+      <p class="zh" lang="de">Nexa-Highlights im Juli: Mehr Kontrolle über Spielinhalte
+
+Diesen Monat schlug Nexa ein neues Kapitel im dezentralen Gaming auf. Steven van den Meiracker, Senior Development and Solution Architect, erläuterte, wie die Blockchain das Spiele-Ökosystem verbessern und die Kontrolle über Spielgegenstände auch außerhalb des Spiels ermöglichen kann. Angesichts neuer Technologien und Anwendungsfälle besteht eine Lücke, die die Blockchain-Technologie schließen kann.
+
+Neben dem Gaming präsentierte das Team eine aktualisierte NEXA-Entwicklungs-Roadmap für 2026 und einen Teil von 2027. Karten lassen sich nun erweitern, um detailliertere Informationen zu jedem Ziel anzuzeigen.
+
+Die Feier zum 4-jährigen Jubiläum wurde abgeschlossen. Alle Teilnehmer, die teilnahmeberechtigt waren, erhielten limitierte NFTs. Außerdem wurde die Wally Wallet aktualisiert und ist nun in Version 3.30.02 verfügbar.
+
+https://forum.nexa.org/t/nexa-july-highlights-a-layer-of-ownership/1713</p>
+      
+    </li>
+    
+    <li class="msg" id="m-421" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-07-14T04:46:22+00:00">2026-07-14 04:46 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.35">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/421" rel="noopener" title="Open on Telegram">#421 ↗</a>
+      </div>
+      
+      <p class="en">Updated NEXA development roadmap 2026–27
+
+The Nexa development roadmap has been updated. For each goal there is now an interactive card with the key points and more detailed information on the upcoming developments.
+
+The roadmap includes long-awaited blockchain improvements and important infrastructure projects. However, it is not limited to these developments; numerous other projects and ongoing work are running in parallel.
+
+It gives a clear overview of Nexa&#39;s strategic direction for this year and early next year. Blockchain projects and ecosystem applications are divided into separate sections depending on whether they focus on the blockchain protocol or on business-oriented use cases.
+
+https://forum.nexa.org/t/nexa-development-roadmap-2026-27/1655</p>
+      <p class="zh" lang="de">Aktualisierte NEXA-Entwicklungs-Roadmap 2026–27
+
+Die Nexa-Entwicklungs-Roadmap wurde aktualisiert. Für jedes Ziel steht Ihnen nun eine interaktive Karte mit den wichtigsten Punkten und detaillierteren Informationen zu den anstehenden Entwicklungen zur Verfügung.
+
+Die Roadmap umfasst lang erwartete Blockchain-Verbesserungen und wichtige Infrastrukturprojekte. Sie beschränkt sich jedoch nicht auf diese Entwicklungen; zahlreiche weitere Projekte und laufende Arbeiten laufen parallel.
+
+Sie gibt einen klaren Überblick über die strategische Ausrichtung von Nexa in diesem und im frühen nächsten Jahr. Blockchain-Projekte und Ökosystemanwendungen sind in separate Bereiche unterteilt, je nachdem, ob sie sich auf das Blockchain-Protokoll oder auf geschäftsorientierte Anwendungsfälle konzentrieren.
+
+https://forum.nexa.org/t/nexa-development-roadmap-2026-27/1655</p>
+      
+    </li>
+    
+    <li class="msg" id="m-420" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-07-10T10:17:51+00:00">2026-07-10 10:17 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/420" rel="noopener" title="Open on Telegram">#420 ↗</a>
+      </div>
+      
+      <p class="en">Beyond centralised gaming platforms: Nexa Blockchain with Steven van den Meiracker
+
+In a recent webinar on gaming with Evolvher (https://x.com/EvolvH3R), Steven van den Meiracker, Senior Development and Solution Architect at Nexa, presented the Nexa blockchain, its architecture and strengths. He highlighted how it can be integrated into the gaming ecosystem and used as infrastructure to explore digital assets beyond gaming.
+
+In-game assets can now actually be owned by the players – and that&#39;s more than just a promise. Steven showed a demo of the new on-chain card game “Nexa Warriors”, which is currently in development.
+
+Besides the gaming experience, users can trade game cards on marketplaces and use them in further ways yet to be explored.
+
+More on this on the Nexa forum (see below).
+
+https://forum.nexa.org/t/moving-beyond-centralized-gaming-nexa-blockchain-with-steven-van-den-meiracker/1712</p>
+      <p class="zh" lang="de">Jenseits zentralisierter Gaming-Plattformen: Nexa Blockchain mit Steven van den Meiracker
+
+In einem kürzlich abgehaltenen Webinar zum Thema Gaming mit Evolvher (https://x.com/EvolvH3R) präsentierte Steven van den Meiracker, Senior Development and Solution Architect bei Nexa, die Nexa Blockchain, ihre Architektur und Stärken. Er hob hervor, wie sie sich in das Gaming-Ökosystem integrieren und als Infrastruktur nutzen lässt, um digitale Assets jenseits des Gamings zu erforschen.
+
+In-Game-Assets können nun tatsächlich den Spielern gehören – und das ist mehr als nur ein Versprechen. Steven präsentierte eine Demo des neuen On-Chain-Kartenspiels „Nexa Warriors“, das sich aktuell in Entwicklung befindet.
+
+Neben dem Spielerlebnis können Nutzer Spielkarten auf Marktplätzen handeln und sie auf weitere, noch zu erforschende Weise einsetzen.
+
+Mehr dazu finden Sie im Nexa-Forum (siehe unten).
+
+https://forum.nexa.org/t/moving-beyond-centralized-gaming-nexa-blockchain-with-steven-van-den-meiracker/1712</p>
+      
+    </li>
+    
+    <li class="msg" id="m-419" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-07-07T20:04:58+00:00">2026-07-07 20:04 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/419" rel="noopener" title="Open on Telegram">#419 ↗</a>
+      </div>
+      
+      <p class="en">An artifact of the 4th Nexa anniversary
+
+Nexa was released on 21 June 2022. On 21 June 2026 the team celebrated its 4-year anniversary with a Space on X, attended by founder and lead developer Andrew Stone.
+
+All participants had the opportunity to post their Nexa address and thereby receive an anniversary NFT.
+
+These limited-edition tokens were distributed this morning. Many thanks to everyone who took part in the Nexa anniversary Space.
+
+More on this on the Nexa forum (link below).
+
+https://forum.nexa.org/t/an-artifact-of-the-4th-nexa-anniversary/1711</p>
+      <p class="zh" lang="de">Ein Artefakt zum 4. Nexa-Jubiläum
+
+Nexa wurde am 21. Juni 2022 veröffentlicht. Am 21. Juni 2026 feierte das Team sein 4-jähriges Bestehen mit einem Space on X, an dem Gründer und leitender Entwickler Andrew Stone teilnahm.
+
+Alle Teilnehmer hatten die Möglichkeit, ihre Nexa-Adresse zu posten und so ein Jubiläums-NFT zu erhalten.
+
+Diese Token in limitierter Auflage wurden heute Morgen verteilt. Vielen Dank an alle, die am Nexa-Jubiläums-Space teilgenommen haben.
+
+Mehr dazu im Nexa-Forum (Link unten).
+
+https://forum.nexa.org/t/an-artifact-of-the-4th-nexa-anniversary/1711</p>
+      
+    </li>
+    
+    <li class="msg" id="m-418" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-07-03T20:05:20+00:00">2026-07-03 20:05 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.35">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/418" rel="noopener" title="Open on Telegram">#418 ↗</a>
+      </div>
+      
+      <p class="en">Wally Wallet: New patch 3.30.02
+
+Thanks to the beta testers and the developers at Nexa (https://x.com/NexaMoney), a new stability patch has been released. It is available now in the Google Play Store and the App Store.
+
+More on this:
+
+https://forum.nexa.org/t/wally-wallet-new-patch-3-30-02/1710</p>
+      <p class="zh" lang="de">Wally Wallet: Neuer Patch 3.30.02
+
+Dank der Beta-Tester und der Entwickler von Nexa (https://x.com/NexaMoney) wurde ein neuer Stabilitäts-Patch veröffentlicht. Er ist ab sofort im Google Play Store und im App Store verfügbar.
+
+Mehr dazu:
+
+https://forum.nexa.org/t/wally-wallet-new-patch-3-30-02/1710</p>
+      
+    </li>
+    
+    <li class="msg" id="m-417" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-07-01T20:07:15+00:00">2026-07-01 20:07 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.45">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/417" rel="noopener" title="Open on Telegram">#417 ↗</a>
+      </div>
+      
+      <p class="en">Nexa Monthly Newsletter June 2026: Four Years On
+
+This June was a special month, as on 21 June 2026 the Nexa blockchain celebrated its four-year anniversary. After the recent first halving event and the completion of a four-year development phase, it is now clear that Nexa is entering its second phase.
+
+To mark the anniversary, Nexa hosted the “Spaces on X” series with founder and lead developer Andrew Stone.
+
+While the team prepares the release of the “Spaces” on the Nexa forum and other social media platforms, you can already listen to the recording on X. The link to it can be found in the monthly newsletter below.
+
+Important protocol improvements planned on the roadmap, such as Tailstorm and the integration of quantum-safe cryptography, are in development and undergoing intensive testing.
+
+https://forum.nexa.org/t/nexa-monthly-newsletter-june-2026-four-years-on/1709</p>
+      <p class="zh" lang="de">Nexa Monatsnewsletter Juni 2026: Vier Jahre später
+
+Dieser Juni war ein besonderer Monat, denn am 21. Juni 2026 feierte die Nexa-Blockchain ihr vierjähriges Bestehen. Nach dem kürzlich erfolgten ersten Halving-Event und dem Abschluss einer vierjährigen Entwicklungsphase ist nun klar, dass Nexa in die zweite Phase eintritt.
+
+Anlässlich dieses Jubiläums veranstaltete Nexa die Reihe „Spaces on X“ mit dem Gründer und leitenden Entwickler Andrew Stone.
+
+Während das Team die Veröffentlichung der „Spaces“ im Nexa-Forum und auf anderen Social-Media-Plattformen vorbereitet, können Sie die Aufzeichnung bereits jetzt auf X anhören. Den Link dazu finden Sie im untenstehenden Monatsnewsletter.
+
+Wichtige Protokollverbesserungen, die für die Roadmap geplant sind, wie beispielsweise Tailstorm und die Integration quantensicherer Kryptografie, befinden sich in der Entwicklung und werden intensiv getestet.
+
+https://forum.nexa.org/t/nexa-monthly-newsletter-june-2026-four-years-on/1709</p>
+      
+    </li>
+    
+    <li class="msg" id="m-416" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-06-30T20:07:06+00:00">2026-06-30 20:07 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.35">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/416" rel="noopener" title="Open on Telegram">#416 ↗</a>
+      </div>
+      
+      <p class="en">PoW rethought and Nexa&#39;s architecture made understandable – with President Andrew Clifford
+
+Join the Nexa and EvolvH3R webinar on the topic of proof-of-work. President Andrew Clifford explains the protocol&#39;s strengths and gives deeper insights into Nexa&#39;s architecture. 1 July 2026, 9:00 UTC. More information below.
+
+https://x.com/evolvh3r/status/2068847073923912190</p>
+      <p class="zh" lang="de">PoW neu gedacht und die Architektur von Nexa verständlich gemacht – mit Präsident Andrew Clifford
+
+Nehmen Sie am Webinar von Nexa und EvolvH3R zum Thema Proof-of-Work teil. Präsident Andrew Clifford erläutert die Stärken des Protokolls und gibt tiefere Einblicke in die Architektur von Nexa. 1. Juli 2026, 9:00 Uhr UTC. Weitere Informationen finden Sie unten.
+
+https://x.com/evolvh3r/status/2068847073923912190</p>
+      
+    </li>
+    
+    <li class="msg" id="m-415" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-06-29T08:48:47+00:00">2026-06-29 08:48 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.45">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/415" rel="noopener" title="Open on Telegram">#415 ↗</a>
+      </div>
+      
+      <p class="en">📒 Nexa Explorer: HODL Vaults
+
+We&#39;re pleased to present the updated Nexa Block Explorer with the long-awaited integration of HODL Vaults.
+
+Since the introduction of the HODL Vaults in the Otoplo Wallet there has been great interest and many questions about their availability and statistics.
+
+The vaults are now available in the Nexa Explorer and integrated into the tools.
+
+The link to the HODL Vaults in the Nexa Explorer is below. 👇
+
+https://explorer.nexa.org/hodl-vaults</p>
+      <p class="zh" lang="de">📒 Nexa Explorer: HODL Vaults
+
+Wir freuen uns, Ihnen den aktualisierten Nexa Block Explorer mit der lang erwarteten Integration der HODL Vaults vorstellen zu können.
+
+Seit der Einführung der HODL Vaults in der Otoplo Wallet gab es großes Interesse und viele Fragen zu ihrer Verfügbarkeit und den Statistiken.
+
+Die Vaults sind jetzt im Nexa Explorer verfügbar und in die Tools integriert.
+
+Den Link zu den HODL Vaults im Nexa Explorer finden Sie unten. 👇
+
+https://explorer.nexa.org/hodl-vaults</p>
+      
+    </li>
+    
+    <li class="msg" id="m-414" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-06-27T18:51:42+00:00">2026-06-27 18:51 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.35">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/414" rel="noopener" title="Open on Telegram">#414 ↗</a>
+      </div>
+      
+      <p class="en">The Nexa team&#39;s core developers are integrating Tailstorm, a block-DAG-based design built on the Tailstorm research. The Tailstorm model represents a significant architectural advance: it moves away from a linear blockchain towards a directed acyclic graph (DAG) of subblocks while retaining the conventional chain of “summary blocks”. By merging the summary block model with the traditional chain, Nexa can leverage the advantages of both approaches while at the same time employing more advanced mining and block propagation mechanisms.
+
+The link to the article is below 👇
+
+https://x.com/NexaMoney/status/2070771625239200024</p>
+      <p class="zh" lang="de">Die Kernentwickler des Nexa-Teams integrieren Tailstorm, ein Block-DAG-basiertes Design, das auf der Tailstorm-Forschung basiert. Das Tailstorm-Modell stellt eine bedeutende architektonische Weiterentwicklung dar: Es entfernt sich von einer linearen Blockchain hin zu einem gerichteten azyklischen Graphen (DAG) aus Subblöcken und behält gleichzeitig die herkömmliche Kette von „Summary Blocks“ bei. Durch die Verschmelzung des Summary-Block-Modells mit der traditionellen Kette kann Nexa die Vorteile beider Ansätze nutzen und gleichzeitig fortschrittlichere Mining- und Blockpropagationsmechanismen einsetzen.
+
+Den Link zum Artikel finden Sie unten 👇
+
+https://x.com/NexaMoney/status/2070771625239200024</p>
+      
+    </li>
+    
+    <li class="msg" id="m-413" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-06-25T20:08:22+00:00">2026-06-25 20:08 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/413" rel="noopener" title="Open on Telegram">#413 ↗</a>
+      </div>
+      
+      <p class="en">📒 LibNexaKotlin 0.5.68: Stability update for the wallet
+
+A new version of LibNexaKotlin (0.5.68) with wallet stability improvements has been released. Developers are asked to update to the new version.
+
+A lot of work has gone into this library recently to simplify interaction with the Nexa blockchain.
+
+Since the last update, two more versions have been released: 0.5.67 and 0.5.68. These improved the user experience on iOS devices.
+
+More information and all the details can be found on the Nexa forum (see below). 👇
+
+https://forum.nexa.org/t/libnexakotlin-0-5-68-wallet-stability-release/1707</p>
+      <p class="zh" lang="de">📒 LibNexaKotlin 0.5.68: Stabilitätsupdate für die Wallet
+
+Eine neue Version von LibNexaKotlin (0.5.68) mit Verbesserungen der Wallet-Stabilität ist erschienen. Entwickler werden gebeten, auf die neue Version zu aktualisieren.
+
+In letzter Zeit wurde intensiv an dieser Bibliothek gearbeitet, um die Interaktion mit der Nexa-Blockchain zu vereinfachen.
+
+Seit dem letzten Update wurden zwei weitere Versionen veröffentlicht: 0.5.67 und 0.5.68. Diese verbesserten die Benutzererfahrung auf iOS-Geräten.
+
+Weitere Informationen und alle Details finden Sie im Nexa-Forum (siehe unten). 👇
+
+https://forum.nexa.org/t/libnexakotlin-0-5-68-wallet-stability-release/1707</p>
+      
+    </li>
+    
+    <li class="msg" id="m-412" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-06-23T20:06:52+00:00">2026-06-23 20:06 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/412" rel="noopener" title="Open on Telegram">#412 ↗</a>
+      </div>
+      
+      <p class="en">📒 Nexa Emission Schedule: The Journey to 21 Trillion NEXA
+
+Explore the Nexa emission schedule with a simple, interactive interface built specifically for the community.
+
+On the site you&#39;ll find details on coin supply, network statistics, live market data, block and era visualisations, halving summaries and much more.
+
+The emission schedule site was presented to the community as part of the Nexa 4-year anniversary “Spaces” event on 21 June 2026.
+
+The link to the new Nexa emission schedule site is below. 👇
+
+https://forum.nexa.org/t/nexa-emission-schedule-the-journey-to-21-trillion-nexa/1706</p>
+      <p class="zh" lang="de">📒 Nexa-Emissionsplan: Der Weg zu 21 Billionen NEXA
+
+Erkunden Sie den Nexa-Emissionsplan mit einer einfachen, interaktiven Benutzeroberfläche, die speziell für die Community entwickelt wurde.
+
+Auf der Website finden Sie Details zum Coin-Angebot, Netzwerkstatistiken, Live-Marktdaten, Block- und Ära-Visualisierungen, Zusammenfassungen der Halbierungen und vieles mehr.
+
+Die Website zum Emissionsplan wurde der Community im Rahmen der Nexa-Jubiläumsveranstaltung „Spaces“ zum 4-jährigen Bestehen am 21. Juni 2026 vorgestellt.
+
+Den Link zur neuen Website des Nexa-Emissionsplans finden Sie unten. 👇
+
+https://forum.nexa.org/t/nexa-emission-schedule-the-journey-to-21-trillion-nexa/1706</p>
+      
+    </li>
+    
+    <li class="msg" id="m-411" data-sent="neutral" data-topics="">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-06-23T17:01:57+00:00">2026-06-23 17:01 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/411" rel="noopener" title="Open on Telegram">#411 ↗</a>
+      </div>
+      
+      <p class="en">Nice knowing you!</p>
+      <p class="zh" lang="de">Nice knowing you!</p>
+      <p class="note">Automated bot message posted when a user leaves or is removed from the group.</p>
+    </li>
+    
+    <li class="msg" id="m-407" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-06-21T05:27:26+00:00">2026-06-21 05:27 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/407" rel="noopener" title="Open on Telegram">#407 ↗</a>
+      </div>
+      
+      <p class="en">📒 Nexa celebrates its 4-year anniversary on X Spaces
+
+Save the date and celebrate with founder and lead developer Andrew Stone (https://x.com/GAndrewStone) live on X.
+
+⌛️ 21 June 2026 – 20:00 UTC
+
+Set a reminder:
+https://x.com/i/spaces/1vJpPPnkqyaJE</p>
+      <p class="zh" lang="de">📒 Nexa feiert 4-jähriges Jubiläum auf X Spaces
+
+Halten Sie sich den Termin frei und feiern Sie mit Gründer und Chefentwickler Andrew Stone (https://x.com/GAndrewStone) live auf X.
+
+⌛️ 21. Juni 2026 – 20:00 Uhr UTC
+
+Erinnerung einstellen:
+https://x.com/i/spaces/1vJpPPnkqyaJE</p>
+      
+    </li>
+    
+    <li class="msg" id="m-405" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-06-19T08:44:22+00:00">2026-06-19 08:44 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.45">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/405" rel="noopener" title="Open on Telegram">#405 ↗</a>
+      </div>
+      
+      <p class="en">📒 Nexa Halving: The New Baseline
+
+On the occasion of the first Nexa halving, the team hosted a Spaces on X on the same day. The focus was on a look back at the past four years and an outlook on a year that could be decisive since launch.
+
+Many important developments lie ahead, including hardware acceleration with Blitz, improved fairness and the transition to a DAG hybrid with Tailstorm, as well as insights into eagerly awaited topics such as quantum resistance.
+
+For everyone who prefers reading text, a short summary follows below. Anyone who missed the event can find the recording here. 👇
+
+https://forum.nexa.org/t/nexa-halving-the-new-baseline-spaces-on-x/1705
+
+https://x.com/NexaMoney/status/2067880164298473792?s=20</p>
+      <p class="zh" lang="de">📒 Nexa-Halving: Die neue Basis
+
+Anlässlich des ersten Nexa-Halvings veranstaltete das Team am selben Tag Spaces on X. Im Mittelpunkt standen ein Rückblick auf die vergangenen vier Jahre und ein Ausblick auf ein Jahr, das seit dem Launch von entscheidender Bedeutung sein könnte.
+
+Viele wichtige Entwicklungen stehen bevor, darunter Hardwarebeschleunigung mit Blitz, verbesserte Fairness und der Übergang zu einem DAG-Hybrid mit Tailstorm sowie Einblicke in mit Spannung erwartete Themen wie Quantenresistenz.
+
+Für alle, die lieber Text lesen, folgt unten eine kurze Zusammenfassung. Wer die Veranstaltung verpasst hat, findet hier die Aufzeichnung. 👇
+
+https://forum.nexa.org/t/nexa-halving-the-new-baseline-spaces-on-x/1705
+
+https://x.com/NexaMoney/status/2067880164298473792?s=20</p>
+      
+    </li>
+    
+    <li class="msg" id="m-404" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-06-18T09:06:58+00:00">2026-06-18 09:06 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/404" rel="noopener" title="Open on Telegram">#404 ↗</a>
+      </div>
+      
+      <p class="en">📒 Nexa Highlights in June: Strengthening the Foundations
+
+June is a special month for Nexa, because in a few days the company celebrates its 4-year anniversary. On 21 June 2026 at 20:00 UTC the team is hosting a live broadcast called “Spaces on X” with Nexa&#39;s founder and lead developer Andrew Stone.
+
+Earlier this month, Steven, solutions architect at Nexa, spoke with EvolvH3R in the webinar “Moving beyond decentralized gaming with Nexa blockchain” about Nexa&#39;s architecture and gaming concept.
+
+The team is pleased to highlight the community activities at @Nexa_India. Recently the team shared on social media the event “Nexa Bharat Yatra: Bihar Chapter”, organised by the Indian-Nepalese ambassador Kashish Gupta. The event “Shaping the Future of Digital Payments in Bihar” takes place on 21 June 2026 at The Great Mithila in Madhubani.
+
+https://forum.nexa.org/t/nexa-june-highlights-strengthening-the-foundations/1704</p>
+      <p class="zh" lang="de">📒 Nexa-Highlights im Juni: Stärkung der Grundlagen
+
+Der Juni ist ein besonderer Monat für Nexa, denn in wenigen Tagen feiert das Unternehmen sein 4-jähriges Jubiläum. Am 21. Juni 2026 um 20:00 Uhr UTC veranstaltet das Team eine Live-Sendung namens „Spaces on X“ mit Nexas Gründer und leitendem Entwickler Andrew Stone.
+
+Anfang des Monats sprach Steven, Lösungsarchitekt bei Nexa, im Webinar „Moving beyond decentralized gaming with Nexa blockchain“ mit EvolvH3R über die Architektur und das Gaming-Konzept von Nexa.
+
+Das Team freut sich, die Aktivitäten der Community unter @Nexa_India hervorzuheben. Kürzlich teilte das Team in den sozialen Medien die Veranstaltung „Nexa Bharat Yatra: Bihar Chapter“, die vom indisch-nepalesischen Botschafter Kashish Gupta organisiert wurde. Die Veranstaltung „Die Zukunft des digitalen Zahlungsverkehrs in Bihar gestalten“ findet am 21. Juni 2026 im The Great Mithila in Madhubani statt.
+
+https://forum.nexa.org/t/nexa-june-highlights-strengthening-the-foundations/1704</p>
+      
+    </li>
+    
+    <li class="msg" id="m-403" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-06-16T20:06:53+00:00">2026-06-16 20:06 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/403" rel="noopener" title="Open on Telegram">#403 ↗</a>
+      </div>
+      
+      <p class="en">Nexa celebrates its 4-year anniversary with X Spaces. To mark the occasion, the team is hosting an X Spaces event with Nexa founder and chief developer Andrew Stone (https://x.com/GAndrewStone). The date is set: 21 June 2026, 20:00 UTC. Set a reminder:
+
+https://x.com/i/spaces/1vJpPPnkqyaJE</p>
+      <p class="zh" lang="de">Nexa feiert 4-jähriges Jubiläum mit X Spaces. Anlässlich des Jubiläums veranstaltet das Team ein X Spaces-Event mit Nexa-Gründer und -Chefentwickler
+ Andrew  Stone (https://x.com/GAndrewStone)
+. Der Termin steht fest: 21. Juni 2026, 20:00 Uhr UTC. Erinnerung einstellen:
+
+https://x.com/i/spaces/1vJpPPnkqyaJE</p>
+      
+    </li>
+    
+    <li class="msg" id="m-402" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-06-15T20:31:18+00:00">2026-06-15 20:31 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/402" rel="noopener" title="Open on Telegram">#402 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/i/status/2066611798854549822</p>
+      <p class="zh" lang="de">https://x.com/i/status/2066611798854549822</p>
+      
+    </li>
+    
+    <li class="msg" id="m-401" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-06-15T20:04:10+00:00">2026-06-15 20:04 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/401" rel="noopener" title="Open on Telegram">#401 ↗</a>
+      </div>
+      
+      <p class="en">📒 Monthly development updates: May 2026
+
+There are plenty of developments from May 2026 to report on. The focus remains on preparations for the upcoming hard fork, testing and cleanup work.
+
+The Tailstorm integration is currently the most important task and requires time, patience and testing. In parallel, NexScript v1.1.0 was released. Work also continues on LibNexaKotlin and wallet updates, and further developments are running in parallel.
+
+You can find the full development updates for May 2026, with details on the preparations for the protocol upgrade, work on the Nexa Explorer, the ecosystem and more, here: 👇
+
+https://forum.nexa.org/t/monthly-development-updates-may-2026/1703</p>
+      <p class="zh" lang="de">📒 Monatliche Entwicklungs-Updates: Mai 2026
+
+Es gibt viele Entwicklungen aus dem Mai 2026, über die wir berichten können. Der Fokus liegt weiterhin auf den Vorbereitungen für den bevorstehenden Hard Fork, Tests und Aufräumarbeiten.
+
+Die Tailstorm-Integration ist aktuell die wichtigste Aufgabe und erfordert Zeit, Geduld und Tests. Parallel dazu wurde NexScript v1.1.0 veröffentlicht. Außerdem wird weiter an LibNexaKotlin und Wallet-Updates gearbeitet, und weitere Entwicklungen laufen parallel.
+
+Die vollständigen Entwicklungs-Updates für Mai 2026 mit Details zu den Vorbereitungen für das Protokoll-Upgrade, den Arbeiten am Nexa Explorer, dem Ökosystem und mehr finden Sie hier: 👇
+
+https://forum.nexa.org/t/monthly-development-updates-may-2026/1703</p>
+      
+    </li>
+    
+    <li class="msg" id="m-400" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-06-13T14:51:53+00:00">2026-06-13 14:51 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/400" rel="noopener" title="Open on Telegram">#400 ↗</a>
+      </div>
+      
+      <p class="en">Beta test: Wally Wallet 3.30
+
+Wally NEXA Wallet version 3.30.00 has been released and offers numerous improvements over the last update. Wally is in an intensive development phase, and we warmly invite everyone to take part in the beta test. More on this:
+
+https://forum.nexa.org/t/beta-testing-wally-wallet-3-30/1702</p>
+      <p class="zh" lang="de">Beta-Test: Wally Wallet 3.30
+
+Die Wally NEXA Wallet Version 3.30.00 ist erschienen und bietet zahlreiche Verbesserungen gegenüber dem letzten Update. Wally befindet sich in einer intensiven Entwicklungsphase, und wir laden alle herzlich zur Teilnahme am Beta-Test ein. Mehr dazu:
+
+https://forum.nexa.org/t/beta-testing-wally-wallet-3-30/1702</p>
+      
+    </li>
+    
+    <li class="msg" id="m-399" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-06-10T08:04:57+00:00">2026-06-10 08:04 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/399" rel="noopener" title="Open on Telegram">#399 ↗</a>
+      </div>
+      
+      <p class="en">https://forum.nexa.org/t/important-notice-exbitron-is-shutting-down-permanently/1699</p>
+      <p class="zh" lang="de">https://forum.nexa.org/t/important-notice-exbitron-is-shutting-down-permanently/1699</p>
+      <p class="note">Bare link; the linked topic is about the Exbitron exchange shutting down permanently.</p>
+    </li>
+    
+    <li class="msg" id="m-398" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-06-09T08:00:28+00:00">2026-06-09 08:00 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/398" rel="noopener" title="Open on Telegram">#398 ↗</a>
+      </div>
+      
+      <p class="en">Nexa 4-year anniversary – X Spaces
+
+Time flies, and Nexa&#39;s 4th anniversary is already less than two weeks away. A lot has happened over the past year, including the first Nexa halving, conferences and events, and of course numerous further developments of the core protocol infrastructure and the ecosystem.
+
+To celebrate the anniversary properly, the team is hosting an X Spaces event on 21 June 2026. The exact time is yet to be announced.
+
+We are very pleased that this time we will be joined on X Spaces by Nexa founder and lead developer Andrew Stone. He will give us insights into Nexa&#39;s development so far, the ongoing and future developments in the blockchain core layer, and the ecosystem.
+
+As the date approaches, the exact time will be announced. More on this on the Nexa forum (see below). 👇
+
+https://forum.nexa.org/t/nexa-4-year-anniversary-x-spaces/1698</p>
+      <p class="zh" lang="de">Nexa 4-jähriges Jubiläum – X Spaces
+
+Die Zeit vergeht wie im Flug, und der 4. Jahrestag von Nexa steht bereits in weniger als zwei Wochen an. Im vergangenen Jahr ist viel passiert, darunter das erste Nexa-Halving, Konferenzen und Events sowie natürlich zahlreiche Weiterentwicklungen der Kernprotokollinfrastruktur und des Ökosystems.
+
+Um den Jahrestag gebührend zu feiern, veranstaltet das Team am 21. Juni 2026 ein X Spaces-Event. Die genaue Uhrzeit wird noch bekannt gegeben.
+
+Wir freuen uns sehr, dass wir dieses Mal Nexa-Gründer und leitender Entwickler Andrew Stone bei X Spaces begrüßen dürfen. Er wird uns Einblicke in die bisherige Entwicklung von Nexa, die laufenden und zukünftigen Entwicklungen in der Blockchain-Kernschicht und das Ökosystem geben.
+
+Sobald der Termin näher rückt, wird die genaue Uhrzeit bekannt gegeben. Mehr dazu im Nexa-Forum (siehe unten). 👇
+
+https://forum.nexa.org/t/nexa-4-year-anniversary-x-spaces/1698</p>
+      
+    </li>
+    
+    <li class="msg" id="m-397" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-06-06T04:54:57+00:00">2026-06-06 04:54 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/397" rel="noopener" title="Open on Telegram">#397 ↗</a>
+      </div>
+      
+      <p class="en">📒 Answering community questions
+
+Over time the community has asked many questions about future plans, projects and marketing details, and continues to ask them regularly. Some community members took the opportunity and sent an official letter – a good opportunity to answer these questions.
+
+The team received a letter with a number of questions from the community and will take the opportunity to answer them. All news and developments are announced publicly, and the team welcomes feedback and suggestions through all communication channels.
+
+You can find the community&#39;s questions and answers on the Nexa forum below. 👇
+
+https://forum.nexa.org/t/answering-community-questions/1697</p>
+      <p class="zh" lang="de">📒 Beantwortung von Community-Fragen
+
+Im Laufe der Zeit hat die Community viele Fragen zu zukünftigen Plänen, Projekten und Marketing-Details gestellt und stellt diese auch weiterhin regelmäßig. Einige Community-Mitglieder haben die Gelegenheit genutzt und einen offiziellen Brief geschickt – eine gute Gelegenheit, diese Fragen zu beantworten.
+
+Das Team hat einen Brief mit einigen Fragen aus der Community erhalten und wird die Gelegenheit nutzen, diese zu beantworten. Alle Neuigkeiten und Entwicklungen werden öffentlich bekannt gegeben, und das Team freut sich über Feedback und Anregungen über alle Kommunikationskanäle.
+
+Fragen und Antworten der Community finden Sie im Nexa-Forum unten. 👇
+
+https://forum.nexa.org/t/answering-community-questions/1697</p>
+      
+    </li>
+    
+    <li class="msg" id="m-396" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-06-03T20:35:49+00:00">2026-06-03 20:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/396" rel="noopener" title="Open on Telegram">#396 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/i/status/2062263078809473097</p>
+      <p class="zh" lang="de">https://x.com/i/status/2062263078809473097</p>
+      
+    </li>
+    
+    <li class="msg" id="m-395" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-06-03T20:10:19+00:00">2026-06-03 20:10 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/395" rel="noopener" title="Open on Telegram">#395 ↗</a>
+      </div>
+      
+      <p class="en">📒 Nexa Monthly Newsletter May 2026: NexScript in transition
+
+May was full of activity and development. It started with the halving event on 1 May 2026 at 01:36 UTC, followed by a halving Space on X.
+
+The most important release in May was NexScript v1.1.0, which brought a significant improvement through the migration of the core library. Developers should note that NexScript now runs a local regtest by default instead of connecting to a live network.
+
+The highlight of the media content is David&#39;s webinar on Nexa smart contracts, featured at the top of the newsletter. More news, the updated Nexa website, a mining guide and the announcement of the community event winner can be found further below. 👇
+
+https://forum.nexa.org/t/nexa-monthly-newsletter-may-2026-nexscript-unleashed/1696</p>
+      <p class="zh" lang="de">📒 Nexa Monatsnewsletter Mai 2026: NexScript im Wandel
+
+Der Mai war voller Aktivitäten und Entwicklungen. Er begann mit dem Halving-Event am 1. Mai 2026 um 01:36 UTC, gefolgt von einem Halving-Space auf X.
+
+Die wichtigste Veröffentlichung im Mai war NexScript v1.1.0, das durch die Migration der Kernbibliothek eine bedeutende Verbesserung mit sich brachte. Entwickler sollten beachten, dass NexScript nun standardmäßig einen lokalen Regtest durchführt, anstatt sich mit einem Live-Netzwerk zu verbinden.
+
+Das Highlight der Medieninhalte ist Davids Webinar zu Nexa Smart Contracts, das ganz oben im Newsletter vorgestellt wird. Weitere Neuigkeiten, die aktualisierte Nexa-Website, eine Mining-Anleitung und die Bekanntgabe des Gewinners des Community-Events finden Sie weiter unten. 👇
+
+https://forum.nexa.org/t/nexa-monthly-newsletter-may-2026-nexscript-unleashed/1696</p>
+      
+    </li>
+    
+    <li class="msg" id="m-394" data-sent="neutral" data-topics="">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-06-01T06:35:44+00:00">2026-06-01 06:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/394" rel="noopener" title="Open on Telegram">#394 ↗</a>
+      </div>
+      
+      <p class="en">Nice knowing you!</p>
+      <p class="zh" lang="de">Nice knowing you!</p>
+      
+    </li>
+    
+    <li class="msg" id="m-392" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-06-01T06:22:13+00:00">2026-06-01 06:22 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/392" rel="noopener" title="Open on Telegram">#392 ↗</a>
+      </div>
+      
+      <p class="en">Smart Contracts and Native Token Services with David Thibodeau
+
+Blockchains are highly valued for their decentralised, permissionless structure and programmability. Smart contracts are among their most important features, but are currently not supported by all major blockchains.
+
+In a webinar with EvolvH3R, Nexa developer @DPTib explained how smart contracts work on Nexa and how they function within the UTXO model. This significantly improves the protocol&#39;s utility and usability.
+
+The full webinar video and a transcribed article are attached below.
+
+https://forum.nexa.org/t/smart-contracts-and-native-token-services-with-david-thibodeau/1695</p>
+      <p class="zh" lang="de">Smart Contracts und Native Token Services mit David Thibodeau
+
+Blockchains werden aufgrund ihrer dezentralen, erlaubnisfreien Struktur und Programmierbarkeit sehr geschätzt. Smart Contracts zählen zu ihren wichtigsten Funktionen, werden aber derzeit nicht von allen großen Blockchains unterstützt.
+
+In einem Webinar mit EvolvH3R erläuterte Nexa-Entwickler @DPTib die Funktionsweise von Smart Contracts auf Nexa und erklärte, wie diese im Rahmen des UTXO-Modells funktionieren. Dadurch werden die Nützlichkeit und Benutzerfreundlichkeit des Protokolls deutlich verbessert.
+
+Das vollständige Webinar-Video und ein transkribierter Artikel sind unten angehängt.
+
+https://forum.nexa.org/t/smart-contracts-and-native-token-services-with-david-thibodeau/1695</p>
+      
+    </li>
+    
+    <li class="msg" id="m-391" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-05-29T13:53:18+00:00">2026-05-29 13:53 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/391" rel="noopener" title="Open on Telegram">#391 ↗</a>
+      </div>
+      
+      <p class="en">The team has reviewed the community&#39;s feedback and would like to thank you for your ideas, suggestions and your engagement on this special occasion. Now we&#39;re getting back to planning and we look forward to announcing the next Nexa birthday event.</p>
+      <p class="zh" lang="de">Das Team hat das Feedback der Community ausgewertet und möchte sich für eure Ideen, Vorschläge und euer Engagement zu diesem besonderen Anlass bedanken. Jetzt machen wir uns wieder an die Planung und freuen uns darauf, das nächste Nexa-Geburtstagsevent anzukündigen.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-390" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-05-27T20:05:46+00:00">2026-05-27 20:05 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/390" rel="noopener" title="Open on Telegram">#390 ↗</a>
+      </div>
+      
+      <p class="en">Nexa news: website upgrade
+
+The Nexa website has been comprehensively reworked and improved in many respects. It comes with a new design and is continuously updated with the latest Nexa developments.
+
+The team warmly invites the community to visit the new website and give us feedback on which features should be added, changed or improved. We welcome all suggestions.
+
+Visit the official Nexa website or read more on the Nexa forum.
+
+https://forum.nexa.org/t/nexa-news-website-upgrade/1694</p>
+      <p class="zh" lang="de">Nexa-News: Website-Upgrade
+
+Die Nexa-Website wurde umfassend überarbeitet und in vielerlei Hinsicht verbessert. Sie präsentiert sich in neuem Design und wird laufend mit den neuesten Nexa-Entwicklungen aktualisiert.
+
+Das Team lädt die Community herzlich ein, die neue Website zu besuchen und uns Feedback zu geben, welche Funktionen hinzugefügt, geändert oder verbessert werden sollen. Wir freuen uns über alle Vorschläge.
+
+Besuchen Sie die offizielle Nexa-Website oder lesen Sie mehr im Nexa-Forum.
+
+https://forum.nexa.org/t/nexa-news-website-upgrade/1694</p>
+      
+    </li>
+    
+    <li class="msg" id="m-388" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-05-25T08:23:30+00:00">2026-05-25 08:23 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/388" rel="noopener" title="Open on Telegram">#388 ↗</a>
+      </div>
+      
+      <p class="en">Build with NexScript on Nexa
+
+Important note for developers: NexScript v1.1.0 uses a local registration test (regtest) by default instead of establishing a connection to the live network. All network operators must now specify an environment type in order to connect to the mainnet.
+
+With the release of NexScript, upgrades and improvements to the NexScript Playground are up next. These updates will significantly improve the accessibility and usability of Nexa smart contracts.
+
+Visit the official Nexa website in the “Build” section to find all available tools, including the Script Debugger for testing and debugging Nexa smart contracts.
+
+https://nexa.org/build</p>
+      <p class="zh" lang="de">Entwickeln Sie mit NexScript auf Nexa
+
+Wichtiger Hinweis für Entwickler: NexScript v1.1.0 verwendet standardmäßig einen lokalen Registrierungstest (regtest) anstatt eine Verbindung zum Live-Netzwerk herzustellen. Alle Netzwerkbetreiber müssen nun einen Umgebungstyp angeben, um eine Verbindung zum Hauptnetz herzustellen.
+
+Mit der Veröffentlichung von NexScript stehen als nächstes Upgrades und Verbesserungen für den NexScript Playground an. Diese Updates werden die Zugänglichkeit und Benutzerfreundlichkeit von Nexa Smart Contracts deutlich verbessern.
+
+Besuchen Sie die offizielle Nexa-Website im Bereich „Build“, um alle verfügbaren Tools zu finden, einschließlich des Script Debuggers zum Testen und Debuggen von Nexa Smart Contracts.
+
+https://nexa.org/build</p>
+      
+    </li>
+    
+    <li class="msg" id="m-387" data-sent="neutral" data-topics="">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-05-23T22:28:41+00:00">2026-05-23 22:28 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/387" rel="noopener" title="Open on Telegram">#387 ↗</a>
+      </div>
+      
+      <p class="en">Nice knowing you!</p>
+      <p class="zh" lang="de">Nice knowing you!</p>
+      <p class="note">Bot message posted when a user leaves/is removed from the group.</p>
+    </li>
+    
+    <li class="msg" id="m-385" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-05-23T20:10:20+00:00">2026-05-23 20:10 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/385" rel="noopener" title="Open on Telegram">#385 ↗</a>
+      </div>
+      
+      <p class="en">New release: NexScript v1.1.0
+
+We&#39;re pleased to present the new NexScript v1.1.0 release. This important update optimises Nexa scripting on the backend.
+
+A lot of work has gone into making NexScript clearer and more reliable and aligning it with the bulk of the Nexa ecosystem. On-chain interactions are now consolidated and compatible with the Nexa TypeScript library.
+
+For developers there is one important change: NexScript now uses a local regtest by default instead of connecting to a live network. All network providers must now specify an environment type.
+
+For a more detailed description, please visit the Nexa forum linked below.
+
+https://forum.nexa.org/t/new-release-nexscript-v1-1-0/1691</p>
+      <p class="zh" lang="de">Neue Version: NexScript v1.1.0
+
+Wir freuen uns, Ihnen die neue Version NexScript v1.1.0 vorstellen zu dürfen. Dieses wichtige Update optimiert die Nexa-Skripterstellung im Backend.
+
+Es wurde viel Arbeit investiert, um NexScript übersichtlicher und zuverlässiger zu gestalten und es an den Großteil des Nexa-Ökosystems anzupassen. On-Chain-Interaktionen sind nun konsolidiert und mit der Nexa TypeScript-Bibliothek kompatibel.
+
+Für Entwickler gibt es eine wichtige Änderung: NexScript verwendet jetzt standardmäßig einen lokalen Regtest anstelle einer Verbindung zu einem Live-Netzwerk. Alle Netzwerkanbieter müssen nun einen Umgebungstyp angeben.
+
+Für eine detailliertere Beschreibung besuchen Sie bitte das unten verlinkte Nexa-Forum.
+
+https://forum.nexa.org/t/new-release-nexscript-v1-1-0/1691</p>
+      
+    </li>
+    
+    <li class="msg" id="m-384" data-sent="neutral" data-topics="">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-05-19T20:04:34+00:00">2026-05-19 20:04 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/384" rel="noopener" title="Open on Telegram">#384 ↗</a>
+      </div>
+      
+      <p class="en">Guide: How to Mine Nexa
+
+Most blockchains are open and decentralized, and anyone can participate in mining. In a Proof-of-Work blockchain, the network is secured by solving mathematical problems and finding blocks.
+
+In return, miners who find a block receive coins that represent the energy spent mining. In other words, you are getting rewarded by the protocol itself for securing it.
+
+Mining cryptocurrency requires an internet connection, hardware, and dedicated software (or ASICs).
+
+This guide walks through mining Nexa on Linux and Windows with a GPU.
+
+https://forum.nexa.org/t/guide-how-to-mine-nexa/1689</p>
+      <p class="zh" lang="de">Guide: How to Mine Nexa
+
+Most blockchains are open and decentralized, and anyone can participate in mining. In a Proof-of-Work blockchain, the network is secured by solving mathematical problems and finding blocks.
+
+In return, miners who find a block receive coins that represent the energy spent mining. In other words, you are getting rewarded by the protocol itself for securing it.
+
+Mining cryptocurrency requires an internet connection, hardware, and dedicated software (or ASICs).
+
+This guide walks through mining Nexa on Linux and Windows with a GPU.
+
+https://forum.nexa.org/t/guide-how-to-mine-nexa/1689</p>
+      
+    </li>
+    
+    <li class="msg" id="m-382" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">mac Mim</span>
+        <time datetime="2026-05-15T09:09:44+00:00">2026-05-15 09:09 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/382" rel="noopener" title="Open on Telegram">#382 ↗</a>
+      </div>
+      
+      <p class="en">Nexa May Highlights: Innovation in Motion
+
+The first Nexa halving occurred as the calendar transitioned from April to May worldwide. Officially, in Coordinated Universal Time (UTC), blockchain rewards were halved on 1 May 2026 at 01:36 UTC. 
+
+In addition, at the beginning of the month, the team’s delegation attended Consensus in Miami and, together with partners, showcased Nexa’s smart-contract capabilities in an educational webinar.
+​
+A lot of attention and development effort is going into preparations for the upcoming hard fork and the integration of the Tailstorm protocol. 
+
+The team is testing the new DAG-hybrid architecture and is looking forward to the first-of-its-kind model going live. While the testing of the protocol is underway, the official hard fork date has yet to be announced.
+​
+Find this month’s highlights and recap of the news below.
+
+https://forum.nexa.org/t/nexa-may-highlights-innovation-in-motion/1687</p>
+      <p class="zh" lang="de">Nexa May Highlights: Innovation in Motion
+
+The first Nexa halving occurred as the calendar transitioned from April to May worldwide. Officially, in Coordinated Universal Time (UTC), blockchain rewards were halved on 1 May 2026 at 01:36 UTC. 
+
+In addition, at the beginning of the month, the team’s delegation attended Consensus in Miami and, together with partners, showcased Nexa’s smart-contract capabilities in an educational webinar.
+​
+A lot of attention and development effort is going into preparations for the upcoming hard fork and the integration of the Tailstorm protocol. 
+
+The team is testing the new DAG-hybrid architecture and is looking forward to the first-of-its-kind model going live. While the testing of the protocol is underway, the official hard fork date has yet to be announced.
+​
+Find this month’s highlights and recap of the news below.
+
+https://forum.nexa.org/t/nexa-may-highlights-innovation-in-motion/1687</p>
+      
+    </li>
+    
+    <li class="msg" id="m-381" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">mac Mim</span>
+        <time datetime="2026-05-05T17:26:05+00:00">2026-05-05 17:26 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/381" rel="noopener" title="Open on Telegram">#381 ↗</a>
+      </div>
+      
+      <p class="en">Two hours left until the networking meetup in Miami, where the Nexa team will be connecting with the community and the cryptocurrency industry.
+
+Meet the team and connect at our co-sponsored “Miami Edition” networking event, or at @Consensus2026
+ during the main conference.
+
+The team will be there presenting the Nexa blockchain, sharing its innovative vision, and looking to build valuable connections.
+
+If you’re at Consensus, let’s meet and connect! This could be the start of something big.
+
+Find more information below in our partner’s post. 👇
+
+https://x.com/evolvh3r/status/2051089943980564601</p>
+      <p class="zh" lang="de">Two hours left until the networking meetup in Miami, where the Nexa team will be connecting with the community and the cryptocurrency industry.
+
+Meet the team and connect at our co-sponsored “Miami Edition” networking event, or at @Consensus2026
+ during the main conference.
+
+The team will be there presenting the Nexa blockchain, sharing its innovative vision, and looking to build valuable connections.
+
+If you’re at Consensus, let’s meet and connect! This could be the start of something big.
+
+Find more information below in our partner’s post. 👇
+
+https://x.com/evolvh3r/status/2051089943980564601</p>
+      
+    </li>
+    
+    <li class="msg" id="m-376" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-04-25T06:50:38+00:00">2026-04-25 06:50 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/376" rel="noopener" title="Open on Telegram">#376 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Услуги, Базы, Разработка, Скрипты.​ Детали В Описании Профиля, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there Услуги, Базы, Разработка, Скрипты.​ Детали В Описании Профиля, and welcome to Nexa Germany! How are you?</p>
+      <p class="note">The &#39;user&#39; being welcomed is a Russian spam account: &#39;Services, Databases, Development, Scripts. Details in profile description&#39;.</p>
+    </li>
+    
+    <li class="msg" id="m-374" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">MLM RAJA</span>
+        <time datetime="2026-04-20T06:54:27+00:00">2026-04-20 06:54 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/374" rel="noopener" title="Open on Telegram">#374 ↗</a>
+      </div>
+      
+      <p class="en">Hii</p>
+      <p class="zh" lang="de">Hii</p>
+      
+    </li>
+    
+    <li class="msg" id="m-373" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-04-20T06:46:58+00:00">2026-04-20 06:46 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/373" rel="noopener" title="Open on Telegram">#373 ↗</a>
+      </div>
+      
+      <p class="en">Hey there MLM RAJA, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there MLM RAJA, and welcome to Nexa Germany! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-371" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">mac Mim</span>
+        <time datetime="2026-04-18T07:10:27+00:00">2026-04-18 07:10 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/371" rel="noopener" title="Open on Telegram">#371 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/i/status/2044838380047905028</p>
+      <p class="zh" lang="de">https://x.com/i/status/2044838380047905028</p>
+      
+    </li>
+    
+    <li class="msg" id="m-370" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-04-03T18:38:41+00:00">2026-04-03 18:38 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/370" rel="noopener" title="Open on Telegram">#370 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Blacktea ▽ NEXA, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there Blacktea ▽ NEXA, and welcome to Nexa Germany! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-368" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-03-25T15:59:47+00:00">2026-03-25 15:59 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/368" rel="noopener" title="Open on Telegram">#368 ↗</a>
+      </div>
+      
+      <p class="en">Hey there mac, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there mac, and welcome to Nexa Germany! How are you?</p>
+      <p class="note">Automated welcome bot message, already in English.</p>
+    </li>
+    
+    <li class="msg" id="m-366" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-02-26T15:12:03+00:00">2026-02-26 15:12 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/366" rel="noopener" title="Open on Telegram">#366 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Лиана, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there Лиана, and welcome to Nexa Germany! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-364" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-01-02T14:41:44+00:00">2026-01-02 14:41 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/364" rel="noopener" title="Open on Telegram">#364 ↗</a>
+      </div>
+      
+      <p class="en">Nice knowing you!</p>
+      <p class="zh" lang="de">Nice knowing you!</p>
+      <p class="note">Bot&#39;s automated farewell when someone leaves the group.</p>
+    </li>
+    
+    <li class="msg" id="m-361" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">M F</span>
+        <time datetime="2025-12-13T19:54:50+00:00">2025-12-13 19:54 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/361" rel="noopener" title="Open on Telegram">#361 ↗</a>
+      </div>
+      
+      <p class="en">Morning</p>
+      <p class="zh" lang="de">Moin</p>
+      <p class="note">&#39;Moin&#39; — northern German all-purpose greeting.</p>
+    </li>
+    
+    <li class="msg" id="m-360" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">VISHAL Chawla</span>
+        <time datetime="2025-12-12T18:19:49+00:00">2025-12-12 18:19 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/360" rel="noopener" title="Open on Telegram">#360 ↗</a>
+      </div>
+      
+      <p class="en">Fantastic &amp; you</p>
+      <p class="zh" lang="de">Fantastic &amp; you</p>
+      
+    </li>
+    
+    <li class="msg" id="m-359" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-11-25T08:07:38+00:00">2025-11-25 08:07 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/359" rel="noopener" title="Open on Telegram">#359 ↗</a>
+      </div>
+      
+      <p class="en">Hey there VISHAL, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there VISHAL, and welcome to Nexa Germany! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-357" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2025-07-31T07:45:29+00:00">2025-07-31 07:45 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/357" rel="noopener" title="Open on Telegram">#357 ↗</a>
+      </div>
+      
+      <p class="en">believe that you have an authentic connection</p>
+      <p class="zh" lang="de">glauben, dass Sie eine authentische Verbindung haben</p>
+      <p class="note">Fragmentary, awkward German — looks machine-translated; the intended sense is roughly &#39;trust that the connection here is genuine&#39;.</p>
+    </li>
+    
+    <li class="msg" id="m-356" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2025-07-31T07:44:49+00:00">2025-07-31 07:44 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/356" rel="noopener" title="Open on Telegram">#356 ↗</a>
+      </div>
+      
+      <p class="en">we don&#39;t have the time to be posting here constantly</p>
+      <p class="zh" lang="de">wir haben nicht die Zeit, hier ständig zu schreiben</p>
+      
+    </li>
+    
+    <li class="msg" id="m-355" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2025-07-31T07:44:21+00:00">2025-07-31 07:44 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/355" rel="noopener" title="Open on Telegram">#355 ↗</a>
+      </div>
+      
+      <p class="en">The team is small</p>
+      <p class="zh" lang="de">Das team ist klein</p>
+      
+    </li>
+    
+    <li class="msg" id="m-354" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">M F</span>
+        <time datetime="2025-07-30T20:08:04+00:00">2025-07-30 20:08 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/354" rel="noopener" title="Open on Telegram">#354 ↗</a>
+      </div>
+      
+      <p class="en">But everyone understood it</p>
+      <p class="zh" lang="de">Aber alle haben es verstanden</p>
+      
+    </li>
+    
+    <li class="msg" id="m-353" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">M F</span>
+        <time datetime="2025-07-30T20:07:37+00:00">2025-07-30 20:07 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/353" rel="noopener" title="Open on Telegram">#353 ↗</a>
+      </div>
+      
+      <p class="en">True</p>
+      <p class="zh" lang="de">Stimmt</p>
+      
+    </li>
+    
+    <li class="msg" id="m-352" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Kevin</span>
+        <time datetime="2025-07-30T16:38:17+00:00">2025-07-30 16:38 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/352" rel="noopener" title="Open on Telegram">#352 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>M F</b>: Devs still farming money</p>
+      
+      <p class="en">What? This is the German chat, why not write in German :)</p>
+      <p class="zh" lang="de">Was ? Das ist der Deutsche chat, schreib doch in deutsch :)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-351" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2025-07-29T20:06:40+00:00">2025-07-29 20:06 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/351" rel="noopener" title="Open on Telegram">#351 ↗</a>
+      </div>
+      
+      <p class="en">Really?</p>
+      <p class="zh" lang="de">Wirklich?</p>
+      <p class="note">Terse, slightly defensive comeback to the &#39;devs farming money&#39; jab.</p>
+    </li>
+    
+    <li class="msg" id="m-350" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">M F</span>
+        <time datetime="2025-07-29T18:54:45+00:00">2025-07-29 18:54 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.60">Negative</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/350" rel="noopener" title="Open on Telegram">#350 ↗</a>
+      </div>
+      
+      <p class="en">Devs still farming money</p>
+      <p class="zh" lang="de">Devs still farming money</p>
+      <p class="note">Already in English in the original; &#39;farming money&#39; = accusing the devs of milking the project for cash.</p>
+    </li>
+    
+    <li class="msg" id="m-349" data-sent="mixed" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2025-07-16T07:45:30+00:00">2025-07-16 07:45 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/349" rel="noopener" title="Open on Telegram">#349 ↗</a>
+      </div>
+      
+      <p class="en">It&#39;s hard, because we&#39;re actually trying to use Nexa for useful things</p>
+      <p class="zh" lang="de">Es ist schwierig, weil wir vercuchen Nexa tatsächlich fü nützliche dinge zu verwenden</p>
+      <p class="note">Original has several typos (&#39;vercuchen&#39;, &#39;fü&#39;), written by a non-native German speaker.</p>
+    </li>
+    
+    <li class="msg" id="m-348" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">Kevin</span>
+        <time datetime="2025-07-16T06:34:28+00:00">2025-07-16 06:34 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/348" rel="noopener" title="Open on Telegram">#348 ↗</a>
+      </div>
+      
+      <p class="en">Morning everyone 👍</p>
+      <p class="zh" lang="de">Moin an alle 👍</p>
+      <p class="note">&#39;Moin&#39; is a northern German greeting used at any time of day.</p>
+    </li>
+    
+    <li class="msg" id="m-347" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">👁️⃤ Valve</span>
+        <time datetime="2025-07-16T05:46:42+00:00">2025-07-16 05:46 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/347" rel="noopener" title="Open on Telegram">#347 ↗</a>
+      </div>
+      
+      <p class="en">https://www.nexa.org/de/roadmap</p>
+      <p class="zh" lang="de">https://www.nexa.org/de/roadmap</p>
+      
+    </li>
+    
+    <li class="msg" id="m-346" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">M F</span>
+        <time datetime="2025-07-15T22:26:55+00:00">2025-07-15 22:26 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/346" rel="noopener" title="Open on Telegram">#346 ↗</a>
+      </div>
+      
+      <p class="en">What&#39;s being worked on?</p>
+      <p class="zh" lang="de">An was wird gearbeitet</p>
+      
+    </li>
+    
+    <li class="msg" id="m-345" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2025-07-15T11:44:38+00:00">2025-07-15 11:44 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/345" rel="noopener" title="Open on Telegram">#345 ↗</a>
+      </div>
+      
+      <p class="en">It&#39;s not over, we&#39;re working.</p>
+      <p class="zh" lang="de">Es ist nicht vorbei, wir arbeiten</p>
+      
+    </li>
+    
+    <li class="msg" id="m-344" data-sent="mixed" data-topics="4">
+      <div class="head">
+        <span class="who">M F</span>
+        <time datetime="2025-07-15T07:18:00+00:00">2025-07-15 07:18 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.25">Mixed</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/344" rel="noopener" title="Open on Telegram">#344 ↗</a>
+      </div>
+      
+      <p class="en">What&#39;s up with Nexa? Is anything still happening or is it over?</p>
+      <p class="zh" lang="de">Was geht mit Nexa? Geht da noch was oder ist es vorbei</p>
+      
+    </li>
+    
+    <li class="msg" id="m-343" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">jQrgen ⛛</span>
+        <time datetime="2025-07-15T05:25:29+00:00">2025-07-15 05:25 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.15">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/343" rel="noopener" title="Open on Telegram">#343 ↗</a>
+      </div>
+      
+      <p class="en">Good day</p>
+      <p class="zh" lang="de">Guten tag</p>
+      <p class="note">Written in German (&#39;Guten tag&#39;) by a non-native speaker.</p>
+    </li>
+    
+    <li class="msg" id="m-342" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-07-15T05:25:14+00:00">2025-07-15 05:25 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/342" rel="noopener" title="Open on Telegram">#342 ↗</a>
+      </div>
+      
+      <p class="en">Hey there jQrgen, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there jQrgen, and welcome to Nexa Germany! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-340" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-06-24T07:37:16+00:00">2025-06-24 07:37 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/340" rel="noopener" title="Open on Telegram">#340 ↗</a>
+      </div>
+      
+      <p class="en">Hey there H, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there H, and welcome to Nexa Germany! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-338" data-sent="neutral" data-topics="7">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2025-06-12T17:36:39+00:00">2025-06-12 17:36 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/338" rel="noopener" title="Open on Telegram">#338 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/TheVladCostea/status/1933211447884157350?t=d3RYdHjjxziruRAQHkR1ZQ&amp;s=35</p>
+      <p class="zh" lang="de">https://x.com/TheVladCostea/status/1933211447884157350?t=d3RYdHjjxziruRAQHkR1ZQ&amp;s=35</p>
+      
+    </li>
+    
+    <li class="msg" id="m-337" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-06-09T20:46:13+00:00">2025-06-09 20:46 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/337" rel="noopener" title="Open on Telegram">#337 ↗</a>
+      </div>
+      
+      <p class="en">Hey there CryptographerWorld, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there CryptographerWorld, and welcome to Nexa Germany! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-335" data-sent="positive" data-topics="7">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-05-27T16:17:54+00:00">2025-05-27 16:17 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/Nexa_Germany/335" rel="noopener" title="Open on Telegram">#335 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Edward Barner, and welcome to Nexa Germany! How are you?</p>
+      <p class="zh" lang="de">Hey there Edward Barner, and welcome to Nexa Germany! How are you?</p>
+      <p class="note">Automated welcome message from the group bot &#39;Rose&#39;.</p>
+    </li>
+    
+  </ol>
+  <p class="empty" id="empty">No messages match these filters.</p>
+</section>
+
+<footer>
+  <p>Translations, sentiment scores and the summary are generated automatically by claude-opus-5 and may contain mistakes. Original messages belong to their authors on Telegram.</p>
+  <p><a href="data.json">Raw data (JSON)</a></p>
+</footer>
+
+</div>
+<script>
+(function () {
+  var msgs = Array.prototype.slice.call(document.querySelectorAll('.msg'));
+  var sent = 'all', topic = null;
+  var topicNames = ["Protocol upgrades: Tailstorm \u0026 NexaPoW 2.0", "Developer tooling and ecosystem releases", "Halving, anniversary and community events", "Blitz hardware acceleration series", "Doubts about project activity (2025)", "Exchange delistings and buying options", "Gaming, NFTs and digital identity", "Bot greetings and off-topic posts"];
+
+  function apply() {
+    var shown = 0;
+    msgs.forEach(function (m) {
+      var ok = (sent === 'all' || m.dataset.sent === sent) &&
+               (topic === null || (' ' + m.dataset.topics + ' ').indexOf(' ' + topic + ' ') !== -1);
+      m.hidden = !ok; if (ok) shown++;
+    });
+    document.getElementById('empty').classList.toggle('on', shown === 0);
+    var bar = document.getElementById('active-topic');
+    bar.classList.toggle('on', topic !== null);
+    if (topic !== null) document.getElementById('active-topic-name').textContent = topicNames[topic] + ' (' + shown + ')';
+    document.querySelectorAll('.topic').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.topic === String(topic))); });
+  }
+  document.querySelectorAll('.fbtn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      sent = b.dataset.sent;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      apply();
+    });
+  });
+  document.querySelectorAll('.topic').forEach(function (b) {
+    b.addEventListener('click', function () {
+      topic = (String(topic) === b.dataset.topic) ? null : Number(b.dataset.topic);
+      apply();
+      if (topic !== null) document.getElementById('messages').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  document.getElementById('clear-topic').addEventListener('click', function () { topic = null; apply(); });
+
+  var zh = document.getElementById('show-zh');
+  try { if (localStorage.getItem('showZh') === '0') zh.checked = false; } catch (e) {}
+  function syncZh() {
+    document.body.classList.toggle('hide-zh', !zh.checked);
+    try { localStorage.setItem('showZh', zh.checked ? '1' : '0'); } catch (e) {}
+  }
+  zh.addEventListener('change', syncZh); syncZh();
+
+  // Show timestamps in the viewer's local time zone.
+  var fmt = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+  document.querySelectorAll('time[datetime]').forEach(function (t) {
+    var d = new Date(t.getAttribute('datetime'));
+    if (!isNaN(d)) { t.title = t.textContent; t.textContent = fmt.format(d); }
+  });
+
+  // Highlight links: reveal the target even if filtered out, then flash it.
+  document.querySelectorAll('.hl a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      sent = 'all'; topic = null;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.sent === 'all')); });
+      apply();
+      var el = document.querySelector(a.getAttribute('href'));
+      if (el) { el.classList.add('flash'); setTimeout(function () { el.classList.remove('flash'); }, 1600); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

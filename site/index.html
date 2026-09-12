@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexa community chats — English</title>
+<meta name="description" content="English mirror of Nexa's regional Telegram groups with translation, sentiment and topic summaries.">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --line: #e1e0d9; --ring: rgba(11,11,11,.10); --wash: rgba(11,11,11,.04);
+  --accent: #2a78d6; --accent-ink: #1c5cab;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #c98500; --neu: #898781; --mid: #f0efec;
+  --zh: #52514e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+    --accent: #3987e5; --accent-ink: #86b6ef;
+    --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+    --zh: #c3c2b7;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+  --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+  --accent: #3987e5; --accent-ink: #86b6ef;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+  --zh: #c3c2b7;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--page); color: var(--ink);
+  font: 15px/1.55 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  padding-inline: clamp(16px, 4vw, 32px); padding-block: 0 64px;
+}
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 900px; margin: 0 auto; }
+header.top { padding-block: 40px 24px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+h1 { font-size: clamp(24px, 4vw, 34px); line-height: 1.15; margin: 0 0 10px; letter-spacing: -.01em; }
+.meta { color: var(--ink-2); font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; }
+.meta span::before { content: ""; }
+h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; font-weight: 600; }
+section { padding-block: 32px; }
+h2 .sub { font-weight: 400; letter-spacing: 0; text-transform: none; }
+section + section { border-top: 1px solid var(--line); }
+.headline { font-size: clamp(19px, 2.6vw, 24px); line-height: 1.3; font-weight: 600; margin: 0 0 12px; letter-spacing: -.01em; }
+.lede { font-size: 16px; color: var(--ink-2); margin: 0; max-width: 70ch; }
+.grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.topics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.topic { width: 100%; text-align: left; background: transparent; border: 1px solid transparent; border-radius: 10px; padding: 12px 14px; color: inherit; font: inherit; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; }
+.topic:hover { background: var(--wash); }
+.topic[aria-pressed="true"] { border-color: var(--accent); background: var(--wash); }
+.topic .t { font-weight: 600; }
+.topic .n { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.topic .s { grid-column: 1 / -1; color: var(--ink-2); font-size: 14px; }
+.mood-label { font-size: 26px; font-weight: 700; letter-spacing: -.01em; margin: 0 0 4px; }
+.mood-score { color: var(--muted); font-size: 13px; margin: 0 0 12px; font-variant-numeric: tabular-nums; }
+.meter { position: relative; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--neg), var(--mid) 50%, var(--pos)); margin: 6px 0 4px; }
+.meter i { position: absolute; top: 50%; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 3px solid var(--ink); transform: translate(-50%, -50%); box-shadow: 0 0 0 2px var(--surface); }
+.meter-ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+.mood-desc { margin: 0 0 20px; color: var(--ink-2); font-size: 14px; }
+.dist { display: flex; height: 12px; border-radius: 4px; overflow: hidden; gap: 2px; background: var(--surface); margin-bottom: 10px; }
+.dist b { display: block; height: 100%; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 13px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend .n { margin-left: auto; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.positive { --c: var(--pos); } .negative { --c: var(--neg); } .mixed { --c: var(--mix); } .neutral { --c: var(--neu); }
+.dot, .dist b { background: var(--c); }
+.chip { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--ink-2); padding: 2px 8px 2px 6px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); white-space: nowrap; }
+.chip::before { content: attr(data-glyph); width: 14px; height: 14px; border-radius: 50%; background: var(--c); color: #fff; display: inline-grid; place-items: center; font-size: 11px; line-height: 1; }
+.hl { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hl a { display: block; color: inherit; background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 12px 14px; }
+.hl a:hover { text-decoration: none; border-color: var(--accent); }
+.hl .q { font-size: 15px; margin: 0 0 4px; }
+.hl .w { font-size: 13px; color: var(--ink-2); margin: 0; }
+.hl .w b { font-weight: 600; color: var(--ink); }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 16px; position: sticky; top: 0; background: var(--page); padding-block: 10px; z-index: 2; border-bottom: 1px solid var(--line); }
+.controls .sp { flex: 1; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.fbtn { font: inherit; font-size: 13px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.fbtn[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); cursor: pointer; user-select: none; }
+.toggle input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+.active-topic { display: none; font-size: 13px; color: var(--ink-2); padding: 8px 12px; border-radius: 8px; background: var(--wash); margin-bottom: 12px; }
+.active-topic.on { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.active-topic button { font: inherit; font-size: 13px; background: none; border: 0; color: var(--accent-ink); cursor: pointer; padding: 0; }
+.msgs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.msg { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 12px 16px; scroll-margin-top: 70px; }
+.msg[hidden] { display: none; }
+.msg.flash { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42,120,214,.25); }
+.msg .head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 6px; font-size: 13px; }
+.msg .who { font-weight: 600; color: var(--ink); font-size: 14px; }
+.msg time { color: var(--muted); font-variant-numeric: tabular-nums; }
+.msg .lnk { margin-left: auto; color: var(--muted); font-size: 12px; }
+.msg .reply { border-left: 3px solid var(--line); padding: 2px 10px; margin: 0 0 8px; color: var(--ink-2); font-size: 13px; }
+.msg .reply b { font-weight: 600; }
+.msg .en { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg .zh { margin: 6px 0 0; color: var(--zh); font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+body.hide-zh .msg .zh { display: none; }
+.msg .note { margin: 8px 0 0; font-size: 13px; color: var(--ink-2); font-style: italic; }
+.msg .note::before { content: "Note: "; font-style: normal; font-weight: 600; }
+.empty { display: none; color: var(--muted); padding: 24px 0; text-align: center; }
+.empty.on { display: block; }
+footer { color: var(--muted); font-size: 13px; padding-top: 32px; border-top: 1px solid var(--line); }
+footer p { margin: 0 0 6px; }
+@media (prefers-reduced-motion: no-preference) { .msg { transition: border-color .3s, box-shadow .3s; } }
+.nav { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; padding: 0; list-style: none; }
+.nav a { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); }
+.nav a:hover { text-decoration: none; border-color: var(--accent); }
+.nav a[aria-current="page"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.nav .lang { font-weight: 400; opacity: .75; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
+.cards > li > a { display: block; color: inherit; height: 100%; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.cards > li > a:hover { text-decoration: none; border-color: var(--accent); }
+.cards h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.cards .sub { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+.cards .hd { font-size: 15px; font-weight: 600; margin: 0 0 10px; line-height: 1.35; }
+.cards .mood { display: flex; align-items: baseline; gap: 8px; margin: 0 0 8px; }
+.cards .mood b { font-size: 20px; letter-spacing: -.01em; }
+.cards .mood span { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.cards .dist { margin: 10px 0 8px; }
+.cards .legend { grid-template-columns: repeat(4, auto); justify-content: start; gap: 4px 14px; font-size: 12px; }
+.cards .legend .n { margin-left: 4px; }
+.cards .more { color: var(--accent-ink); font-size: 13px; font-weight: 600; margin: 12px 0 0; }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <ul class="nav" aria-label="Communities">
+  <li><a href="./" aria-current="page">Overview</a></li>
+  
+  <li><a href="./nexa_china/"><span aria-hidden="true">🇨🇳</span> Chinese</a></li>
+  
+  <li><a href="./nexa_netherlands/"><span aria-hidden="true">🇳🇱</span> Dutch</a></li>
+  
+  <li><a href="./nexa_germany/"><span aria-hidden="true">🇩🇪</span> German</a></li>
+  
+  <li><a href="./nexa_india/"><span aria-hidden="true">🇮🇳</span> Hindi</a></li>
+  
+  <li><a href="./nexa_korean/"><span aria-hidden="true">🇰🇷</span> Korean</a></li>
+  
+  <li><a href="./nexa_nor/"><span aria-hidden="true">🇳🇴</span> Norwegian</a></li>
+  
+  <li><a href="./nexa_philippines/"><span aria-hidden="true">🇵🇭</span> Filipino</a></li>
+  
+  <li><a href="./nexa_poland/"><span aria-hidden="true">🇵🇱</span> Polish</a></li>
+  
+  <li><a href="./nexa_ru/"><span aria-hidden="true">🇷🇺</span> Russian</a></li>
+  
+  <li><a href="./nexa_spanish/"><span aria-hidden="true">🇪🇸</span> Spanish</a></li>
+  
+  <li><a href="./nexatr/"><span aria-hidden="true">🇹🇷</span> Turkish</a></li>
+  
+  <li><a href="./nexa_viet/"><span aria-hidden="true">🇻🇳</span> Vietnamese</a></li>
+  
+</ul>
+  <p class="eyebrow">Telegram · English mirror</p>
+  <h1>Nexa community chats</h1>
+  <p class="meta">
+    <span>12 groups · last 100 messages each</span>
+    <span>Updated <time datetime="2026-09-12T16:38:22.800275+00:00">2026-09-12 16:38 UTC</time></span>
+  </p>
+</header>
+
+<section>
+  <ul class="cards">
+    
+    <li><a href="nexa_china/">
+      <h3><span aria-hidden="true">🇨🇳</span> NEXA 🇨🇳 中文</h3>
+      <p class="sub">Chinese · 265 members · <time datetime="2026-09-04T01:37:12+00:00">2026-09-04 01:37 UTC</time> → <time datetime="2026-09-12T16:17:19+00:00">2026-09-12 16:17 UTC</time></p>
+      <p class="hd">Node 2.2.0.0 update guidance, wallet questions, low group activity, and candid price talk dominate a quiet window.</p>
+      <p class="mood"><b>Quiet but loyal</b><span>+0.10</span></p>
+      <div class="meter" role="img" aria-label="Mood score +0.10 of 1"><i style="left: 55.0%"></i></div>
+      <div class="dist" role="img" aria-label="Positive 22, Mixed 9, Neutral 55, Negative 14">
+        <b class="positive" style="flex: 22" title="Positive: 22"></b><b class="mixed" style="flex: 9" title="Mixed: 9"></b><b class="neutral" style="flex: 55" title="Neutral: 55"></b><b class="negative" style="flex: 14" title="Negative: 14"></b>
+      </div>
+      <ul class="legend">
+        <li><span class="dot positive"></span>Positive<span class="n">22</span></li><li><span class="dot mixed"></span>Mixed<span class="n">9</span></li><li><span class="dot neutral"></span>Neutral<span class="n">55</span></li><li><span class="dot negative"></span>Negative<span class="n">14</span></li>
+      </ul>
+      <p class="more">Read the 100 messages →</p>
+    </a></li>
+    
+    <li><a href="nexa_netherlands/">
+      <h3><span aria-hidden="true">🇳🇱</span> Nexa_Netherlands</h3>
+      <p class="sub">Dutch · 21 members · <time datetime="2026-09-08T11:10:56+00:00">2026-09-08 11:10 UTC</time> → <time datetime="2026-09-12T06:35:03+00:00">2026-09-12 06:35 UTC</time></p>
+      <p class="hd">Revived Dutch Nexa group talks Tailstorm hardfork, X-promotion tactics, price hopes and memecoin disdain</p>
+      <p class="mood"><b>Enthusiastic and bullish</b><span>+0.60</span></p>
+      <div class="meter" role="img" aria-label="Mood score +0.60 of 1"><i style="left: 80.0%"></i></div>
+      <div class="dist" role="img" aria-label="Positive 62, Mixed 5, Neutral 28, Negative 5">
+        <b class="positive" style="flex: 62" title="Positive: 62"></b><b class="mixed" style="flex: 5" title="Mixed: 5"></b><b class="neutral" style="flex: 28" title="Neutral: 28"></b><b class="negative" style="flex: 5" title="Negative: 5"></b>
+      </div>
+      <ul class="legend">
+        <li><span class="dot positive"></span>Positive<span class="n">62</span></li><li><span class="dot mixed"></span>Mixed<span class="n">5</span></li><li><span class="dot neutral"></span>Neutral<span class="n">28</span></li><li><span class="dot negative"></span>Negative<span class="n">5</span></li>
+      </ul>
+      <p class="more">Read the 100 messages →</p>
+    </a></li>
+    
+    <li><a href="nexa_germany/">
+      <h3><span aria-hidden="true">🇩🇪</span> Nexa Germany</h3>
+      <p class="sub">German · 27 members · <time datetime="2025-05-27T16:17:54+00:00">2025-05-27 16:17 UTC</time> → <time datetime="2026-09-09T20:02:51+00:00">2026-09-09 20:02 UTC</time></p>
+      <p class="hd">Near-silent German group: an automated news feed of Nexa dev updates, with one brief 2025 skepticism exchange</p>
+      <p class="mood"><b>Flat and one-sided</b><span>+0.15</span></p>
+      <div class="meter" role="img" aria-label="Mood score +0.15 of 1"><i style="left: 57.5%"></i></div>
+      <div class="dist" role="img" aria-label="Positive 63, Mixed 2, Neutral 34, Negative 1">
+        <b class="positive" style="flex: 63" title="Positive: 63"></b><b class="mixed" style="flex: 2" title="Mixed: 2"></b><b class="neutral" style="flex: 34" title="Neutral: 34"></b><b class="negative" style="flex: 1" title="Negative: 1"></b>
+      </div>
+      <ul class="legend">
+        <li><span class="dot positive"></span>Positive<span class="n">63</span></li><li><span class="dot mixed"></span>Mixed<span class="n">2</span></li><li><span class="dot neutral"></span>Neutral<span class="n">34</span></li><li><span class="dot negative"></span>Negative<span class="n">1</span></li>
+      </ul>
+      <p class="more">Read the 100 messages →</p>
+    </a></li>
+    
+    <li><a href="nexa_india/">
+      <h3><span aria-hidden="true">🇮🇳</span> NEXA INDIA 🇮🇳</h3>
+      <p class="sub">Hindi · 352 members · <time datetime="2026-03-26T14:04:04+00:00">2026-03-26 14:04 UTC</time> → <time datetime="2026-09-10T15:09:52+00:00">2026-09-10 15:09 UTC</time></p>
+      <p class="hd">Six months of Nexa announcements: first halving, Tailstorm hard-fork prep, NexaPoW 2.0, plus grassroots India adoption talk</p>
+      <p class="mood"><b>Upbeat but quiet</b><span>+0.45</span></p>
+      <div class="meter" role="img" aria-label="Mood score +0.45 of 1"><i style="left: 72.5%"></i></div>
+      <div class="dist" role="img" aria-label="Positive 58, Mixed 0, Neutral 40, Negative 2">
+        <b class="positive" style="flex: 58" title="Positive: 58"></b><b class="neutral" style="flex: 40" title="Neutral: 40"></b><b class="negative" style="flex: 2" title="Negative: 2"></b>
+      </div>
+      <ul class="legend">
+        <li><span class="dot positive"></span>Positive<span class="n">58</span></li><li><span class="dot mixed"></span>Mixed<span class="n">0</span></li><li><span class="dot neutral"></span>Neutral<span class="n">40</span></li><li><span class="dot negative"></span>Negative<span class="n">2</span></li>
+      </ul>
+      <p class="more">Read the 100 messages →</p>
+    </a></li>
+    
+    <li><a href="nexa_korean/">
+      <h3><span aria-hidden="true">🇰🇷</span> Nexa Korean</h3>
+      <p class="sub">Korean · 29 members · <time datetime="2023-11-30T14:18:35+00:00">2023-11-30 14:18 UTC</time> → <time datetime="2026-04-28T16:02:23+00:00">2026-04-28 16:02 UTC</time></p>
+      <p class="hd">A slow-dying Korean Nexa group: price despair, mining-vs-buying advice, wallet headaches, and two flare-ups</p>
+      <p class="mood"><b>Resigned with flare-ups</b><span>+0.00</span></p>
+      <div class="meter" role="img" aria-label="Mood score +0.00 of 1"><i style="left: 50.0%"></i></div>
+      <div class="dist" role="img" aria-label="Positive 19, Mixed 5, Neutral 50, Negative 26">
+        <b class="positive" style="flex: 19" title="Positive: 19"></b><b class="mixed" style="flex: 5" title="Mixed: 5"></b><b class="neutral" style="flex: 50" title="Neutral: 50"></b><b class="negative" style="flex: 26" title="Negative: 26"></b>
+      </div>
+      <ul class="legend">
+        <li><span class="dot positive"></span>Positive<span class="n">19</span></li><li><span class="dot mixed"></span>Mixed<span class="n">5</span></li><li><span class="dot neutral"></span>Neutral<span class="n">50</span></li><li><span class="dot negative"></span>Negative<span class="n">26</span></li>
+      </ul>
+      <p class="more">Read the 100 messages →</p>
+    </a></li>
+    
+    <li><a href="nexa_nor/">
+      <h3><span aria-hidden="true">🇳🇴</span> Nexa Norge</h3>
+      <p class="sub">Norwegian · 37 members · <time datetime="2024-04-05T13:47:30+00:00">2024-04-05 13:47 UTC</time> → <time datetime="2026-09-08T02:21:19+00:00">2026-09-08 02:21 UTC</time></p>
+      <p class="hd">A quiet Norwegian Nexa channel: troll bans, wallet and event news, and complaints about crypto-hostile banks.</p>
+      <p class="mood"><b>Quiet and friendly</b><span>+0.20</span></p>
+      <div class="meter" role="img" aria-label="Mood score +0.20 of 1"><i style="left: 60.0%"></i></div>
+      <div class="dist" role="img" aria-label="Positive 30, Mixed 7, Neutral 53, Negative 10">
+        <b class="positive" style="flex: 30" title="Positive: 30"></b><b class="mixed" style="flex: 7" title="Mixed: 7"></b><b class="neutral" style="flex: 53" title="Neutral: 53"></b><b class="negative" style="flex: 10" title="Negative: 10"></b>
+      </div>
+      <ul class="legend">
+        <li><span class="dot positive"></span>Positive<span class="n">30</span></li><li><span class="dot mixed"></span>Mixed<span class="n">7</span></li><li><span class="dot neutral"></span>Neutral<span class="n">53</span></li><li><span class="dot negative"></span>Negative<span class="n">10</span></li>
+      </ul>
+      <p class="more">Read the 100 messages →</p>
+    </a></li>
+    
+    <li><a href="nexa_philippines/">
+      <h3><span aria-hidden="true">🇵🇭</span> Nexa 🇵🇭 Philippines</h3>
+      <p class="sub">Filipino · 21 members · <time datetime="2024-12-12T09:51:42+00:00">2024-12-12 09:51 UTC</time> → <time datetime="2026-06-15T20:31:19+00:00">2026-06-15 20:31 UTC</time></p>
+      <p class="hd">A quiet Filipino Nexa group: launch-day onboarding, newcomer Q&amp;A, then sporadic price, wallet and halving chatter.</p>
+      <p class="mood"><b>Friendly but sleepy</b><span>+0.40</span></p>
+      <div class="meter" role="img" aria-label="Mood score +0.40 of 1"><i style="left: 70.0%"></i></div>
+      <div class="dist" role="img" aria-label="Positive 18, Mixed 2, Neutral 27, Negative 1">
+        <b class="positive" style="flex: 18" title="Positive: 18"></b><b class="mixed" style="flex: 2" title="Mixed: 2"></b><b class="neutral" style="flex: 27" title="Neutral: 27"></b><b class="negative" style="flex: 1" title="Negative: 1"></b>
+      </div>
+      <ul class="legend">
+        <li><span class="dot positive"></span>Positive<span class="n">18</span></li><li><span class="dot mixed"></span>Mixed<span class="n">2</span></li><li><span class="dot neutral"></span>Neutral<span class="n">27</span></li><li><span class="dot negative"></span>Negative<span class="n">1</span></li>
+      </ul>
+      <p class="more">Read the 48 messages →</p>
+    </a></li>
+    
+    <li><a href="nexa_poland/">
+      <h3><span aria-hidden="true">🇵🇱</span> Nexa Polska</h3>
+      <p class="sub">Polish · 63 members · <time datetime="2026-09-10T16:53:12+00:00">2026-09-10 16:53 UTC</time> → <time datetime="2026-09-11T18:57:11+00:00">2026-09-11 18:57 UTC</time></p>
+      <p class="hd">Off-topic rants about surveillance and the EU give way to AI-driven project audits of Firo, Xelis and Nexa</p>
+      <p class="mood"><b>Opinionated and bullish</b><span>+0.25</span></p>
+      <div class="meter" role="img" aria-label="Mood score +0.25 of 1"><i style="left: 62.5%"></i></div>
+      <div class="dist" role="img" aria-label="Positive 23, Mixed 11, Neutral 39, Negative 27">
+        <b class="positive" style="flex: 23" title="Positive: 23"></b><b class="mixed" style="flex: 11" title="Mixed: 11"></b><b class="neutral" style="flex: 39" title="Neutral: 39"></b><b class="negative" style="flex: 27" title="Negative: 27"></b>
+      </div>
+      <ul class="legend">
+        <li><span class="dot positive"></span>Positive<span class="n">23</span></li><li><span class="dot mixed"></span>Mixed<span class="n">11</span></li><li><span class="dot neutral"></span>Neutral<span class="n">39</span></li><li><span class="dot negative"></span>Negative<span class="n">27</span></li>
+      </ul>
+      <p class="more">Read the 100 messages →</p>
+    </a></li>
+    
+    <li><a href="nexa_ru/">
+      <h3><span aria-hidden="true">🇷🇺</span> Nexa - RU - Official</h3>
+      <p class="sub">Russian · 691 members · <time datetime="2026-09-02T19:11:08+00:00">2026-09-02 19:11 UTC</time> → <time datetime="2026-09-12T03:37:35+00:00">2026-09-12 03:37 UTC</time></p>
+      <p class="hd">Community-built prediction site, a modest NEXA price rally, and node 2.2.0.0 / Tailstorm fork talk</p>
+      <p class="mood"><b>Cautiously hopeful, joking</b><span>+0.30</span></p>
+      <div class="meter" role="img" aria-label="Mood score +0.30 of 1"><i style="left: 65.0%"></i></div>
+      <div class="dist" role="img" aria-label="Positive 25, Mixed 12, Neutral 52, Negative 11">
+        <b class="positive" style="flex: 25" title="Positive: 25"></b><b class="mixed" style="flex: 12" title="Mixed: 12"></b><b class="neutral" style="flex: 52" title="Neutral: 52"></b><b class="negative" style="flex: 11" title="Negative: 11"></b>
+      </div>
+      <ul class="legend">
+        <li><span class="dot positive"></span>Positive<span class="n">25</span></li><li><span class="dot mixed"></span>Mixed<span class="n">12</span></li><li><span class="dot neutral"></span>Neutral<span class="n">52</span></li><li><span class="dot negative"></span>Negative<span class="n">11</span></li>
+      </ul>
+      <p class="more">Read the 100 messages →</p>
+    </a></li>
+    
+    <li><a href="nexa_spanish/">
+      <h3><span aria-hidden="true">🇪🇸</span> Nexa 🇪🇸 Spanish</h3>
+      <p class="sub">Spanish · 16 members · <time datetime="2026-04-03T23:06:17+00:00">2026-04-03 23:06 UTC</time> → <time datetime="2026-09-10T15:23:32+00:00">2026-09-10 15:23 UTC</time></p>
+      <p class="hd">Near-pure announcement feed: Nexa&#39;s first halving, NexScript/wallet releases, Tailstorm and hardware work, with rare member questions.</p>
+      <p class="mood"><b>Quietly upbeat, low engagement</b><span>+0.45</span></p>
+      <div class="meter" role="img" aria-label="Mood score +0.45 of 1"><i style="left: 72.5%"></i></div>
+      <div class="dist" role="img" aria-label="Positive 60, Mixed 2, Neutral 36, Negative 2">
+        <b class="positive" style="flex: 60" title="Positive: 60"></b><b class="mixed" style="flex: 2" title="Mixed: 2"></b><b class="neutral" style="flex: 36" title="Neutral: 36"></b><b class="negative" style="flex: 2" title="Negative: 2"></b>
+      </div>
+      <ul class="legend">
+        <li><span class="dot positive"></span>Positive<span class="n">60</span></li><li><span class="dot mixed"></span>Mixed<span class="n">2</span></li><li><span class="dot neutral"></span>Neutral<span class="n">36</span></li><li><span class="dot negative"></span>Negative<span class="n">2</span></li>
+      </ul>
+      <p class="more">Read the 100 messages →</p>
+    </a></li>
+    
+    <li><a href="nexatr/">
+      <h3><span aria-hidden="true">🇹🇷</span> NEXA TÜRKİYE 🇹🇷(Resmi)</h3>
+      <p class="sub">Turkish · 631 members · <time datetime="2026-09-03T10:50:03+00:00">2026-09-03 10:50 UTC</time> → <time datetime="2026-09-11T22:19:21+00:00">2026-09-11 22:19 UTC</time></p>
+      <p class="hd">Turkish Nexa community awaits the Tailstorm hard fork, cheers a price uptick, and debates macro and Trump</p>
+      <p class="mood"><b>Hopeful and impatient</b><span>+0.45</span></p>
+      <div class="meter" role="img" aria-label="Mood score +0.45 of 1"><i style="left: 72.5%"></i></div>
+      <div class="dist" role="img" aria-label="Positive 35, Mixed 8, Neutral 53, Negative 4">
+        <b class="positive" style="flex: 35" title="Positive: 35"></b><b class="mixed" style="flex: 8" title="Mixed: 8"></b><b class="neutral" style="flex: 53" title="Neutral: 53"></b><b class="negative" style="flex: 4" title="Negative: 4"></b>
+      </div>
+      <ul class="legend">
+        <li><span class="dot positive"></span>Positive<span class="n">35</span></li><li><span class="dot mixed"></span>Mixed<span class="n">8</span></li><li><span class="dot neutral"></span>Neutral<span class="n">53</span></li><li><span class="dot negative"></span>Negative<span class="n">4</span></li>
+      </ul>
+      <p class="more">Read the 100 messages →</p>
+    </a></li>
+    
+    <li><a href="nexa_viet/">
+      <h3><span aria-hidden="true">🇻🇳</span> Nexa Vietnam</h3>
+      <p class="sub">Vietnamese · 28 members · <time datetime="2024-11-04T02:36:49+00:00">2024-11-04 02:36 UTC</time> → <time datetime="2026-09-06T20:13:18+00:00">2026-09-06 20:13 UTC</time></p>
+      <p class="hd">A near-dormant group: bot welcomes, occasional price gripes, one real mining chat and a moderation spat.</p>
+      <p class="mood"><b>Flat and skeptical</b><span>-0.15</span></p>
+      <div class="meter" role="img" aria-label="Mood score -0.15 of 1"><i style="left: 42.5%"></i></div>
+      <div class="dist" role="img" aria-label="Positive 43, Mixed 1, Neutral 44, Negative 12">
+        <b class="positive" style="flex: 43" title="Positive: 43"></b><b class="mixed" style="flex: 1" title="Mixed: 1"></b><b class="neutral" style="flex: 44" title="Neutral: 44"></b><b class="negative" style="flex: 12" title="Negative: 12"></b>
+      </div>
+      <ul class="legend">
+        <li><span class="dot positive"></span>Positive<span class="n">43</span></li><li><span class="dot mixed"></span>Mixed<span class="n">1</span></li><li><span class="dot neutral"></span>Neutral<span class="n">44</span></li><li><span class="dot negative"></span>Negative<span class="n">12</span></li>
+      </ul>
+      <p class="more">Read the 100 messages →</p>
+    </a></li>
+    
+  </ul>
+</section>
+
+<footer>
+  <p>Translations, sentiment scores and summaries are generated automatically by claude-opus-5 and may contain mistakes. Original messages belong to their authors on Telegram.</p>
+</footer>
+
+</div>
+<script>
+(function () {
+  var fmt = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+  document.querySelectorAll('time[datetime]').forEach(function (t) {
+    var d = new Date(t.getAttribute('datetime'));
+    if (!isNaN(d)) { t.title = t.textContent; t.textContent = fmt.format(d); }
+  });
+})();
+</script>
+</body>
+</html>

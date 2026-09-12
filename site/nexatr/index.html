@@ -1,0 +1,1838 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEXA TÜRKİYE 🇹🇷(Resmi) — English</title>
+<meta name="description" content="Turkish Nexa community awaits the Tailstorm hard fork, cheers a price uptick, and debates macro and Trump">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --line: #e1e0d9; --ring: rgba(11,11,11,.10); --wash: rgba(11,11,11,.04);
+  --accent: #2a78d6; --accent-ink: #1c5cab;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #c98500; --neu: #898781; --mid: #f0efec;
+  --zh: #52514e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+    --accent: #3987e5; --accent-ink: #86b6ef;
+    --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+    --zh: #c3c2b7;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+  --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+  --accent: #3987e5; --accent-ink: #86b6ef;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+  --zh: #c3c2b7;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--page); color: var(--ink);
+  font: 15px/1.55 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  padding-inline: clamp(16px, 4vw, 32px); padding-block: 0 64px;
+}
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 900px; margin: 0 auto; }
+header.top { padding-block: 40px 24px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+h1 { font-size: clamp(24px, 4vw, 34px); line-height: 1.15; margin: 0 0 10px; letter-spacing: -.01em; }
+.meta { color: var(--ink-2); font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; }
+.meta span::before { content: ""; }
+h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; font-weight: 600; }
+section { padding-block: 32px; }
+h2 .sub { font-weight: 400; letter-spacing: 0; text-transform: none; }
+section + section { border-top: 1px solid var(--line); }
+.headline { font-size: clamp(19px, 2.6vw, 24px); line-height: 1.3; font-weight: 600; margin: 0 0 12px; letter-spacing: -.01em; }
+.lede { font-size: 16px; color: var(--ink-2); margin: 0; max-width: 70ch; }
+.grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.topics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.topic { width: 100%; text-align: left; background: transparent; border: 1px solid transparent; border-radius: 10px; padding: 12px 14px; color: inherit; font: inherit; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; }
+.topic:hover { background: var(--wash); }
+.topic[aria-pressed="true"] { border-color: var(--accent); background: var(--wash); }
+.topic .t { font-weight: 600; }
+.topic .n { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.topic .s { grid-column: 1 / -1; color: var(--ink-2); font-size: 14px; }
+.mood-label { font-size: 26px; font-weight: 700; letter-spacing: -.01em; margin: 0 0 4px; }
+.mood-score { color: var(--muted); font-size: 13px; margin: 0 0 12px; font-variant-numeric: tabular-nums; }
+.meter { position: relative; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--neg), var(--mid) 50%, var(--pos)); margin: 6px 0 4px; }
+.meter i { position: absolute; top: 50%; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 3px solid var(--ink); transform: translate(-50%, -50%); box-shadow: 0 0 0 2px var(--surface); }
+.meter-ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+.mood-desc { margin: 0 0 20px; color: var(--ink-2); font-size: 14px; }
+.dist { display: flex; height: 12px; border-radius: 4px; overflow: hidden; gap: 2px; background: var(--surface); margin-bottom: 10px; }
+.dist b { display: block; height: 100%; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 13px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend .n { margin-left: auto; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.positive { --c: var(--pos); } .negative { --c: var(--neg); } .mixed { --c: var(--mix); } .neutral { --c: var(--neu); }
+.dot, .dist b { background: var(--c); }
+.chip { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--ink-2); padding: 2px 8px 2px 6px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); white-space: nowrap; }
+.chip::before { content: attr(data-glyph); width: 14px; height: 14px; border-radius: 50%; background: var(--c); color: #fff; display: inline-grid; place-items: center; font-size: 11px; line-height: 1; }
+.hl { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hl a { display: block; color: inherit; background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 12px 14px; }
+.hl a:hover { text-decoration: none; border-color: var(--accent); }
+.hl .q { font-size: 15px; margin: 0 0 4px; }
+.hl .w { font-size: 13px; color: var(--ink-2); margin: 0; }
+.hl .w b { font-weight: 600; color: var(--ink); }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 16px; position: sticky; top: 0; background: var(--page); padding-block: 10px; z-index: 2; border-bottom: 1px solid var(--line); }
+.controls .sp { flex: 1; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.fbtn { font: inherit; font-size: 13px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.fbtn[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); cursor: pointer; user-select: none; }
+.toggle input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+.active-topic { display: none; font-size: 13px; color: var(--ink-2); padding: 8px 12px; border-radius: 8px; background: var(--wash); margin-bottom: 12px; }
+.active-topic.on { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.active-topic button { font: inherit; font-size: 13px; background: none; border: 0; color: var(--accent-ink); cursor: pointer; padding: 0; }
+.msgs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.msg { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 12px 16px; scroll-margin-top: 70px; }
+.msg[hidden] { display: none; }
+.msg.flash { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42,120,214,.25); }
+.msg .head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 6px; font-size: 13px; }
+.msg .who { font-weight: 600; color: var(--ink); font-size: 14px; }
+.msg time { color: var(--muted); font-variant-numeric: tabular-nums; }
+.msg .lnk { margin-left: auto; color: var(--muted); font-size: 12px; }
+.msg .reply { border-left: 3px solid var(--line); padding: 2px 10px; margin: 0 0 8px; color: var(--ink-2); font-size: 13px; }
+.msg .reply b { font-weight: 600; }
+.msg .en { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg .zh { margin: 6px 0 0; color: var(--zh); font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+body.hide-zh .msg .zh { display: none; }
+.msg .note { margin: 8px 0 0; font-size: 13px; color: var(--ink-2); font-style: italic; }
+.msg .note::before { content: "Note: "; font-style: normal; font-weight: 600; }
+.empty { display: none; color: var(--muted); padding: 24px 0; text-align: center; }
+.empty.on { display: block; }
+footer { color: var(--muted); font-size: 13px; padding-top: 32px; border-top: 1px solid var(--line); }
+footer p { margin: 0 0 6px; }
+@media (prefers-reduced-motion: no-preference) { .msg { transition: border-color .3s, box-shadow .3s; } }
+.nav { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; padding: 0; list-style: none; }
+.nav a { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); }
+.nav a:hover { text-decoration: none; border-color: var(--accent); }
+.nav a[aria-current="page"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.nav .lang { font-weight: 400; opacity: .75; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
+.cards > li > a { display: block; color: inherit; height: 100%; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.cards > li > a:hover { text-decoration: none; border-color: var(--accent); }
+.cards h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.cards .sub { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+.cards .hd { font-size: 15px; font-weight: 600; margin: 0 0 10px; line-height: 1.35; }
+.cards .mood { display: flex; align-items: baseline; gap: 8px; margin: 0 0 8px; }
+.cards .mood b { font-size: 20px; letter-spacing: -.01em; }
+.cards .mood span { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.cards .dist { margin: 10px 0 8px; }
+.cards .legend { grid-template-columns: repeat(4, auto); justify-content: start; gap: 4px 14px; font-size: 12px; }
+.cards .legend .n { margin-left: 4px; }
+.cards .more { color: var(--accent-ink); font-size: 13px; font-weight: 600; margin: 12px 0 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <ul class="nav" aria-label="Communities">
+  <li><a href="../">Overview</a></li>
+  
+  <li><a href="../nexa_china/"><span aria-hidden="true">🇨🇳</span> Chinese</a></li>
+  
+  <li><a href="../nexa_netherlands/"><span aria-hidden="true">🇳🇱</span> Dutch</a></li>
+  
+  <li><a href="../nexa_germany/"><span aria-hidden="true">🇩🇪</span> German</a></li>
+  
+  <li><a href="../nexa_india/"><span aria-hidden="true">🇮🇳</span> Hindi</a></li>
+  
+  <li><a href="../nexa_korean/"><span aria-hidden="true">🇰🇷</span> Korean</a></li>
+  
+  <li><a href="../nexa_nor/"><span aria-hidden="true">🇳🇴</span> Norwegian</a></li>
+  
+  <li><a href="../nexa_philippines/"><span aria-hidden="true">🇵🇭</span> Filipino</a></li>
+  
+  <li><a href="../nexa_poland/"><span aria-hidden="true">🇵🇱</span> Polish</a></li>
+  
+  <li><a href="../nexa_ru/"><span aria-hidden="true">🇷🇺</span> Russian</a></li>
+  
+  <li><a href="../nexa_spanish/"><span aria-hidden="true">🇪🇸</span> Spanish</a></li>
+  
+  <li><a href="../nexatr/" aria-current="page"><span aria-hidden="true">🇹🇷</span> Turkish</a></li>
+  
+  <li><a href="../nexa_viet/"><span aria-hidden="true">🇻🇳</span> Vietnamese</a></li>
+  
+</ul>
+  <p class="eyebrow">Telegram · Turkish → English mirror</p>
+  <h1>NEXA TÜRKİYE 🇹🇷(Resmi)</h1>
+  <p class="meta">
+    <span><a href="https://t.me/nexatr" rel="noopener">t.me/nexatr</a></span>
+    <span>631 members</span>
+    <span>Last 100 messages · <time datetime="2026-09-03T10:50:03+00:00">2026-09-03 10:50 UTC</time> → <time datetime="2026-09-11T22:19:21+00:00">2026-09-11 22:19 UTC</time></span>
+    <span>Updated <time datetime="2026-09-12T16:20:12.336547+00:00">2026-09-12 16:20 UTC</time></span>
+  </p>
+</header>
+
+<section id="summary">
+  <h2>Summary</h2>
+  <p class="headline">Turkish Nexa community awaits the Tailstorm hard fork, cheers a price uptick, and debates macro and Trump</p>
+  <p class="lede">Over roughly a week, the Turkish Nexa group centred on the upcoming Tailstorm protocol upgrade and the hard fork it requires. Moderator Onur_Chinaski confirmed the hard fork is coming but said no date can be given, while X relayed that Andrew Stone considers Blitz and the Tokadex DEX essentially finished pending a hard-fork feature; Blacktea posted the official call to update nodes to Full-Node 2.2.0.0 (rolling checkpoints, last release before the fork). Price talk was frequent and repeatedly redirected by the Rose bot to the unofficial trade channel: a stubborn 14B sell wall, hopes of breaking &#39;130&#39;, and a Monday pump that Green Zenci and Hakan greeted enthusiastically. Several members (X in particular) pushed the group to be more active on X/Twitter, complaining that only 30 of 631 members are online. The window closes with a macro/politics debate between Onur_Chinaski and X about US rate hikes, Houthi attacks on Saudi refineries pushing Brent to $109, and whether Trump staying or going would help or delay a bull run. Minor housekeeping included CAS bans, scam accounts being removed, and help joining the trade channel.</p>
+</section>
+
+<section id="analysis">
+  <div class="grid">
+    <div class="card">
+      <h2>Topics</h2>
+      <ul class="topics">
+        
+        <li>
+          <button class="topic" type="button" data-topic="0" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Tailstorm and the hard fork</span>
+            <span class="n">15 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">Hüseyin, Ariel Ortega and T. YAMAÇ asked about Tailstorm&#39;s timing and scope; Onur_Chinaski said testing is going well but refused to name a date and confirmed a mining-algorithm hard fork. X relayed Andrew Stone&#39;s note that Blitz and Tokadex are done but waiting on a hard-fork feature, and Green Zenci shared an explainer brochure.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="1" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Price action, sell wall and market outlook</span>
+            <span class="n">20 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">X predicted the &#39;130&#39; level would break and that the 14B sell order would vanish once Tailstorm lands; Uğur and Hydraa noted the wall has sat untouched for a week. Ariel Ortega and Hakan drew bullish parallels to previous bull cycles, while the Rose bot kept redirecting price talk to the unofficial trade channel.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="2" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Macro, oil war and Trump debate</span>
+            <span class="n">12 msgs · <span class="chip mixed" data-glyph="±">Mixed</span></span>
+            <span class="s">Onur_Chinaski blamed a US rate hike for capping upside; X countered that Houthi strikes on Saudi refineries and Brent at $109 are the real drag, then argued Trump must stay and hand out $5,000 cheques to fuel a bull run, which Onur_Chinaski called implausible.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="3" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Node 2.2.0.0 update and wallets</span>
+            <span class="n">7 msgs · <span class="chip neutral" data-glyph="·">Neutral</span></span>
+            <span class="s">Blacktea posted the official notice to update to Nexa Full-Node 2.2.0.0 with rolling checkpoints, the last release before the fork; Devrim Yılmaz reposted it and asked whether Otoplo wallet holders must act, and Onur_Chinaski reassured him no action is needed.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="4" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Push for X/Twitter activity</span>
+            <span class="n">8 msgs · <span class="chip mixed" data-glyph="±">Mixed</span></span>
+            <span class="s">X urged members to amplify Nexa on X, pointing out only 30 of 631 members are online; Green Zenci and Umut shared posts and Umut thanked people for likes, while Green Zenci argued the community must understand and explain the product to grow organically.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="5" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Moderation, scammers and newcomers</span>
+            <span class="n">17 msgs · <span class="chip neutral" data-glyph="·">Neutral</span></span>
+            <span class="s">Combot logged two CAS bans and Onur_Chinaski removed scam accounts (Hydraa joked about crypto scammers), helped Mehmet Aslan join the trade channel via Rose, and answered newcomer İrfan&#39;s &#39;is Nexa worth buying?&#39; by pointing to the Turkish-translated pinned updates.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="6" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Tech content, NFTs and dev pride</span>
+            <span class="n">11 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">Blacktea shared Peter Rizun&#39;s &#39;Scaling by Circuit&#39; article on hardware-accelerated validation; Green Zenci boasted that Nexa&#39;s lead developer said in 2022 what Ethereum&#39;s architect is saying now, and X praised Gidra&#39;s NFTs after Andrew Stone received one.</span>
+          </button>
+        </li>
+        
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Mood</h2>
+      <p class="mood-label">Hopeful and impatient</p>
+      <p class="mood-score">Mood score +0.45 on a −1 … +1 scale</p>
+      <div class="meter" role="img" aria-label="Mood score +0.45 of 1"><i style="left: 72.5%"></i></div>
+      <div class="meter-ticks"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
+      <p class="mood-desc">The dominant tone is optimistic anticipation: members believe Tailstorm, the DEX and the hard fork will re-rate the coin, and a Monday price move produced open celebration. Underneath runs impatience — calls not to drag the Tailstorm announcement out any longer, frustration that only a fraction of the 631 members are active on X, and grumbling about a 14B sell wall. Late in the window the mood turns more sober and argumentative as macro risks (rate hikes, Middle East war, oil at $109) and a Trump disagreement take over, though even that stays friendly.</p>
+      <h2>Sentiment by message</h2>
+      <div class="dist" role="img" aria-label="Positive 35, Mixed 8, Neutral 53, Negative 4">
+        <b class="positive" style="flex: 35" title="Positive: 35"></b><b class="mixed" style="flex: 8" title="Mixed: 8"></b><b class="neutral" style="flex: 53" title="Neutral: 53"></b><b class="negative" style="flex: 4" title="Negative: 4"></b>
+      </div>
+      <ul class="legend">
+        
+        <li><span class="dot positive"></span>Positive<span class="n">35 · 35.0%</span></li>
+        
+        <li><span class="dot mixed"></span>Mixed<span class="n">8 · 8.0%</span></li>
+        
+        <li><span class="dot neutral"></span>Neutral<span class="n">53 · 53.0%</span></li>
+        
+        <li><span class="dot negative"></span>Negative<span class="n">4 · 4.0%</span></li>
+        
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section id="highlights">
+  <h2>Worth reading first</h2>
+  <ul class="hl">
+    
+    <li><a href="#m-204184">
+      <p class="q">“Stay with Consensus: Update to Nexa Full Node version 2.2.0.0
+
+Nexa is moving forward with protocol improvements, and we recommend that everyone update their node clients to the latest version.
+
+This release includes rolling checkpoints. Once a block reaches a depth of 200 in the chain, the node marks it as settled. From that depth on, the transaction is final, and any reorganization past that point is rejected.
+
+For exchanges and services the implication is concrete: after 200 confirmations, a transaction cannot be reversed.
+
+This is also the last release before the upcoming hard fork and the activation of the Tailstorm protocol. It is important to stay with consensus and update your clients. 👇
+
+https://nexa.org/node”</p>
+      <p class="w"><b>Blacktea ▽</b> · The concrete operational news: official call to update to Full-Node 2.2.0.0, the last release before the hard fork and Tailstorm activation.</p>
+    </a></li>
+    
+    <li><a href="#m-204131">
+      <p class="q">“No exact date has been given, but the tests and the work are going really well (: but I can&#39;t say &#39;on the Yth of month X&#39;”</p>
+      <p class="w"><b>Onur_Chinaski Nexa mod</b> · Moderator Onur_Chinaski&#39;s direct answer on Tailstorm timing — work going well, but explicitly no date.</p>
+    </a></li>
+    
+    <li><a href="#m-204139">
+      <p class="q">“1 and 2.  Tokadex is basically finished but we are waiting for a feature coming in in the next hard fork”</p>
+      <p class="w"><b>X</b> · Relays Andrew Stone&#39;s statement that Tokadex is basically finished and only waiting on a hard-fork feature.</p>
+    </a></li>
+    
+    <li><a href="#m-204179">
+      <p class="q">“There are 631 people. 30 people online. If every single one posted on X, the place would go wild.”</p>
+      <p class="w"><b>X</b> · Captures the community&#39;s self-criticism about low engagement: 631 members, 30 online.</p>
+    </a></li>
+    
+    <li><a href="#m-204235">
+      <p class="q">“I don&#39;t agree, Trump leaving would delay the bull run by 4 years. Trump should stay. He just needs to stop being Israel&#39;s puppet. If he consolidates his power and wins the election in November, he&#39;ll hand out 5 thousand dollars to his people. That will be the fuel of the bull run. Easy money always flows into risky assets. It&#39;d be a legendary bull run.”</p>
+      <p class="w"><b>X</b> · The most heated stretch: X argues Trump must stay and hand out $5,000 to ignite a legendary bull run, which the moderator flatly doubts.</p>
+    </a></li>
+    
+  </ul>
+</section>
+
+
+<section id="messages">
+  <h2>Messages <span class="sub">· newest first</span></h2>
+  <div class="controls">
+    <div class="filters" role="group" aria-label="Filter by sentiment">
+      <button class="fbtn" type="button" data-sent="all" aria-pressed="true">All</button>
+      <button class="fbtn" type="button" data-sent="positive" aria-pressed="false">Positive (35)</button><button class="fbtn" type="button" data-sent="mixed" aria-pressed="false">Mixed (8)</button><button class="fbtn" type="button" data-sent="neutral" aria-pressed="false">Neutral (53)</button><button class="fbtn" type="button" data-sent="negative" aria-pressed="false">Negative (4)</button>
+    </div>
+    <span class="sp"></span>
+    <label class="toggle"><input type="checkbox" id="show-zh" checked> Show original Turkish</label>
+  </div>
+  <div class="active-topic" id="active-topic"><span>Topic: <b id="active-topic-name"></b></span><button type="button" id="clear-topic">Show all messages</button></div>
+  <ol class="msgs" id="msg-list" reversed>
+    
+    <li class="msg" id="m-204242" data-sent="neutral" data-topics="6">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-11T22:19:21+00:00">2026-09-11 22:19 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204242" rel="noopener" title="Open on Telegram">#204242 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/NexaMoney/status/2098501837145972770</p>
+      <p class="zh" lang="tr">https://x.com/NexaMoney/status/2098501837145972770</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204241" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Hamit Kara</span>
+        <time datetime="2026-09-11T14:48:28+00:00">2026-09-11 14:48 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204241" rel="noopener" title="Open on Telegram">#204241 ↗</a>
+      </div>
+      
+      <p class="en">I did the math wrong. If each person put 3k dollars into crypto, that comes out to 780 billion dollars 🙊😁</p>
+      <p class="zh" lang="tr">Yanlış hesap yapmışım. Kişi başı 3 k dolar kriptoya girse 780 milyar dolar yapıyormuş 🙊😁</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204240" data-sent="mixed" data-topics="2">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-11T14:28:28+00:00">2026-09-11 14:28 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.20">Mixed</span>
+        <a class="lnk" href="https://t.me/nexatr/204240" rel="noopener" title="Open on Telegram">#204240 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>X</b>: I think it&#39;s possible, this guy isn&#39;t a normal guy. He&#39;d do it. In fact this kind of money handout will come from...</p>
+      
+      <p class="en">I listened to a broadcast today, they call this statement madness, but if we really do see such craziness I&#39;d expect the effect you describe too. (:</p>
+      <p class="zh" lang="tr">Bugün bir yayın dinledim delilik diyor bu cümle için ama gerçekten böyle bir manyaklık yaşarsak dediğin gibi etki ben de beklerim. (:</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204239" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-11T14:15:08+00:00">2026-09-11 14:15 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204239" rel="noopener" title="Open on Telegram">#204239 ↗</a>
+      </div>
+      
+      <p class="en">I think it&#39;s possible, this guy isn&#39;t a normal guy. He&#39;d do it. In fact this kind of money handout will come from Taiwan too. If it coincides with the same period, we&#39;d see an unbelievable bull run.</p>
+      <p class="zh" lang="tr">Bence mümkün bu adam normal bir adam değil. Yapar . Hatta bu tarz bir para dağıtma Tayvan dan gelecek. Aynı döneme denk gelirse inanılmaz bir boğa yaşarız.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204237" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-11T14:08:41+00:00">2026-09-11 14:08 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204237" rel="noopener" title="Open on Telegram">#204237 ↗</a>
+      </div>
+      
+      <p class="en">Handing out 5000 usd, I mean (:</p>
+      <p class="zh" lang="tr">5000 usd dağıtmak yani (:</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204236" data-sent="negative" data-topics="2">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-11T14:08:33+00:00">2026-09-11 14:08 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.20">Negative</span>
+        <a class="lnk" href="https://t.me/nexatr/204236" rel="noopener" title="Open on Telegram">#204236 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>X</b>: I don&#39;t agree, Trump leaving would delay the bull run by 4 years. Trump should stay. He just needs to stop being...</p>
+      
+      <p class="en">I don&#39;t think that&#39;s possible</p>
+      <p class="zh" lang="tr">Bence o mümkün değil</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204235" data-sent="mixed" data-topics="2">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-11T14:07:09+00:00">2026-09-11 14:07 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.20">Mixed</span>
+        <a class="lnk" href="https://t.me/nexatr/204235" rel="noopener" title="Open on Telegram">#204235 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Onur_Chinaski Nexa mod</b>: Hopefully man, I think if Trump goes we&#39;ll breathe even easier, the guy hasn&#39;t done anything except stir up the...</p>
+      
+      <p class="en">I don&#39;t agree, Trump leaving would delay the bull run by 4 years. Trump should stay. He just needs to stop being Israel&#39;s puppet. If he consolidates his power and wins the election in November, he&#39;ll hand out 5 thousand dollars to his people. That will be the fuel of the bull run. Easy money always flows into risky assets. It&#39;d be a legendary bull run.</p>
+      <p class="zh" lang="tr">Ben aynı düşüncede değilim Trump in gidişi boğayı 4 sene erteler. Trump kalmalı. Sadece İsrail&#39;in maşası olmaktan çıkmalı. Eğer Kasım&#39;da tekrar gücünü pekiştirir seçimi kazanırsa halkına 5 bin dolar dağıtacak. İşte boğanın ateşi bu olacak. Kolay gelen para herzaman riskli varlıklara girer. Efsane bir boğa olur.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204234" data-sent="mixed" data-topics="2">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-11T14:03:27+00:00">2026-09-11 14:03 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexatr/204234" rel="noopener" title="Open on Telegram">#204234 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>X</b>: No, I think the data is positive. The reason for this morning&#39;s drop is the oil wars. US data is positive, the major...</p>
+      
+      <p class="en">Hopefully man, I think if Trump goes we&#39;ll breathe even easier, the guy hasn&#39;t done anything except stir up the world; and if they&#39;d also pass the law for crypto it&#39;d be truly sweet</p>
+      <p class="zh" lang="tr">İnşallah ya trump giderse daha da rahatlarız sanırım adam dünyayı karıştırmak dışında bir şey yapmadj bir de kanunu çıkarsınlar kripto için mis gerçektrn</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204232" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-11T13:55:59+00:00">2026-09-11 13:55 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204232" rel="noopener" title="Open on Telegram">#204232 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Onur_Chinaski Nexa mod</b>: I think there&#39;ll be a rate hike in the US, the sector is pricing it in negatively; even though it doesn&#39;t seem to...</p>
+      
+      <p class="en">No, I think the data is positive. The reason for this morning&#39;s drop is the oil wars. US data is positive, the major coins have gone green. There&#39;s no escaping it, this is the year. Our turn will come too. If only these war games would end.</p>
+      <p class="zh" lang="tr">Yok bence veriler olumlu. Sabah ki düşüşün sebebi petrol savaşları. ABD veriler olumlu majör coinler yeşillendi. O sene bu sene kaçarı yok. Sıra bize de gelecek. Yeter ki şu savaş oyunları bitsin.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204231" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-11T06:18:02+00:00">2026-09-11 06:18 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204231" rel="noopener" title="Open on Telegram">#204231 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>X</b>: I don&#39;t think it&#39;s related to that. Or rather, its turn hasn&#39;t come yet. The Houthis in Yemen are doing serious...</p>
+      
+      <p class="en">Yes you&#39;re right, that&#39;s a factor too</p>
+      <p class="zh" lang="tr">Evet haklısın o da var</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204230" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-11T06:17:21+00:00">2026-09-11 06:17 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204230" rel="noopener" title="Open on Telegram">#204230 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>X</b>: I don&#39;t think it&#39;s related to that. Or rather, its turn hasn&#39;t come yet. The Houthis in Yemen are doing serious...</p>
+      
+      <p class="en">For your price talk, the unofficial trade channel https://t.me/NexaTrTrade</p>
+      <p class="zh" lang="tr">Fiyat sohbetleriniz için resmi olmayan trade kanalı https://t.me/NexaTrTrade</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204229" data-sent="negative" data-topics="2">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-11T06:17:21+00:00">2026-09-11 06:17 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexatr/204229" rel="noopener" title="Open on Telegram">#204229 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Onur_Chinaski Nexa mod</b>: I think there&#39;ll be a rate hike in the US, the sector is pricing it in negatively; even though it doesn&#39;t seem to...</p>
+      
+      <p class="en">I don&#39;t think it&#39;s related to that. Or rather, its turn hasn&#39;t come yet. The Houthis in Yemen are doing serious damage to the oil refineries in Saudi Arabia. Brent crude hit 109 usdt. That affects BTC too. There&#39;s a serious problem there. The course of the war could change. Plus there&#39;s still an ongoing war between Iran and the US. In such a situation nobody wants to keep their money in risky assets.</p>
+      <p class="zh" lang="tr">Bence onunla alakalı bir durum değil. Daha doğrusu sıra ona gelmedi. Yemen deki husiler Arabistan daki petrol rafinerilerine ciddi zararlar veriyor. Brent petrol 109 usdt oldu. Buda BTC yi etkiliyor. Orada ciddi bir sıkıntı var. Savaşın seyri değişebilir. Ayrıca hala İran ve ABD arasında süren bir savaş var. Böyle bir durumda kimse parasını riskli varlıklarda tutmak istemiyor.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204228" data-sent="mixed" data-topics="2">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-11T06:13:29+00:00">2026-09-11 06:13 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.20">Mixed</span>
+        <a class="lnk" href="https://t.me/nexatr/204228" rel="noopener" title="Open on Telegram">#204228 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Hakan</b>: BTC is falling and Nexa is holding up solid, so if BTC greens up a bit all hell will break loose 💪</p>
+      
+      <p class="en">I think there&#39;ll be a rate hike in the US, the sector is pricing it in negatively; even though it doesn&#39;t seem to affect us much, it may actually be capping a bigger potential rise</p>
+      <p class="zh" lang="tr">Abd de faiz artışı olacak sanırım sektör olumsuz fiyatlıyor bunu bizi pek etkilemiş görünmese de aslında daha büyük potansiyel bir artışı sınırlandırıyor olabilir</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204227" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-10T23:16:07+00:00">2026-09-10 23:16 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204227" rel="noopener" title="Open on Telegram">#204227 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Hakan</b>: BTC is falling and Nexa is holding up solid, so if BTC greens up a bit all hell will break loose 💪</p>
+      
+      <p class="en">For your price talk, the unofficial trade channel https://t.me/NexaTrTrade</p>
+      <p class="zh" lang="tr">Fiyat sohbetleriniz için resmi olmayan trade kanalı https://t.me/NexaTrTrade</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204226" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Hakan</span>
+        <time datetime="2026-09-10T23:16:06+00:00">2026-09-10 23:16 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204226" rel="noopener" title="Open on Telegram">#204226 ↗</a>
+      </div>
+      
+      <p class="en">BTC is falling and Nexa is holding up solid, so if BTC greens up a bit all hell will break loose 💪</p>
+      <p class="zh" lang="tr">BTC düsüyor nexa sağlam duruyor demek ki biraz yesilllense BTC kıyamet kopacak 💪</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204225" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Combot</span>
+        <time datetime="2026-09-10T19:30:06+00:00">2026-09-10 19:30 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204225" rel="noopener" title="Open on Telegram">#204225 ↗</a>
+      </div>
+      
+      <p class="en">Yasmeen has been banned! Reason: CAS ban.</p>
+      <p class="zh" lang="tr">Yasmeen has been banned! Reason: CAS ban.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204224" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">Devrim Yılmaz</span>
+        <time datetime="2026-09-10T12:50:01+00:00">2026-09-10 12:50 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204224" rel="noopener" title="Open on Telegram">#204224 ↗</a>
+      </div>
+      
+      <p class="en">Thank you.</p>
+      <p class="zh" lang="tr">Teşekkür ederim.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204223" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-10T12:49:48+00:00">2026-09-10 12:49 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204223" rel="noopener" title="Open on Telegram">#204223 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Devrim Yılmaz</b>: I have coins I&#39;ve been holding in the Otoplo wallet since 2023, do we need to do anything or does this not concern us?</p>
+      
+      <p class="en">You don&#39;t need to do anything, mine are the same; but if we did need to do something the team would inform us beforehand anyway</p>
+      <p class="zh" lang="tr">Yapmanıza gerek yok bende de öyle ama bir şey yapmamız gerekse ekip öncesinde bilgilendirme de yapar</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204222" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Devrim Yılmaz</span>
+        <time datetime="2026-09-10T12:49:41+00:00">2026-09-10 12:49 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204222" rel="noopener" title="Open on Telegram">#204222 ↗</a>
+      </div>
+      
+      <p class="en">I posted it for that purpose, in case sharing links is forbidden.</p>
+      <p class="zh" lang="tr">o amaçla atmıştım belki link paylaşmak yasaktır diye.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204221" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Devrim Yılmaz</span>
+        <time datetime="2026-09-10T12:49:19+00:00">2026-09-10 12:49 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204221" rel="noopener" title="Open on Telegram">#204221 ↗</a>
+      </div>
+      
+      <p class="en">I have coins I&#39;ve been holding in the Otoplo wallet since 2023, do we need to do anything or does this not concern us?</p>
+      <p class="zh" lang="tr">otoplo wallette 2023ten beri tuttuğum coinler var, bir işlem yapmamız gerekiyor mu yoksa bizimle alakalı değil mi?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204220" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-10T12:49:10+00:00">2026-09-10 12:49 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204220" rel="noopener" title="Open on Telegram">#204220 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Blacktea ▽</b>: Stay with Consensus: Update to Nexa Full Node version 2.2.0.0
+
+Nexa is moving forward with protocol improvements,...</p>
+      
+      <p class="en">I guess you posted this one</p>
+      <p class="zh" lang="tr">Bunu attınız sanırım</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204219" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Devrim Yılmaz</span>
+        <time datetime="2026-09-10T12:48:24+00:00">2026-09-10 12:48 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204219" rel="noopener" title="Open on Telegram">#204219 ↗</a>
+      </div>
+      
+      <p class="en">&#34;📒 Stay with Consensus: Update to Nexa Full-Node 2.2.0.0
+
+Nexa is moving forward with protocol advancements, and we advise everyone to update their node clients to the most recent version.
+
+This version includes rolling checkpoints. Once a block sits 200 deep in the chain, the node marks it as settled. From that depth it is set in stone, and any reorganization past that point is rejected.
+
+For exchanges and services the implication is concrete: after 200 confirmations, a transaction cannot be reversed.
+
+This is also the final release before the upcoming hard-fork and Tailstorm protocol activation. It is important to stay with consensus and update your clients. 👇&#34;</p>
+      <p class="zh" lang="tr">&#34;📒 Stay with Consensus: Update to Nexa Full-Node 2.2.0.0
+
+Nexa is moving forward with protocol advancements, and we advise everyone to update their node clients to the most recent version.
+
+This version includes rolling checkpoints. Once a block sits 200 deep in the chain, the node marks it as settled. From that depth it is set in stone, and any reorganization past that point is rejected.
+
+For exchanges and services the implication is concrete: after 200 confirmations, a transaction cannot be reversed.
+
+This is also the final release before the upcoming hard-fork and Tailstorm protocol activation. It is important to stay with consensus and update your clients. 👇&#34;</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204216" data-sent="neutral" data-topics="6">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-09T20:03:56+00:00">2026-09-09 20:03 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204216" rel="noopener" title="Open on Telegram">#204216 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/NexaMoney/status/2097777116133597187</p>
+      <p class="zh" lang="tr">https://x.com/NexaMoney/status/2097777116133597187</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204215" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-09-09T20:03:55+00:00">2026-09-09 20:03 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204215" rel="noopener" title="Open on Telegram">#204215 ↗</a>
+      </div>
+      
+      <p class="en">Hardware Acceleration: Scaling by Circuit
+
+In the second article of this series, Nexa&#39;s validation engine was built using six components, a tape and a read head, and was made to execute a payment from Alice to Bob without running any software.
+
+Since the tape only moves forward, the engine satisfied the first of the four conditions a better Bitcoin must meet: namely, compatibility with a pipeline architecture.
+
+This article addresses the remaining conditions. As Nexa Chief Scientist Dr. Peter Rizun (@PeterRizun) demonstrated in Sydney, we can improve Satoshi&#39;s Bitcoin and make it satisfy all these conditions with just three simple changes; and in the process the engine also gains two features, extensibility and compressibility, at almost no additional cost.
+
+https://forum.nexa.org/t/scaling-by-circuit/1749</p>
+      <p class="zh" lang="tr">Donanım Hızlandırma: Devre Yoluyla Ölçeklendirme
+
+Bu serinin ikinci makalesinde, Nexa&#39;nın doğrulama motoru; altı bileşen, bir bant ve bir okuma kafası kullanılarak oluşturulmuş ve herhangi bir yazılım çalıştırılmaksızın Alice&#39;ten Bob&#39;a yapılan bir ödemeyi gerçekleştirmesi sağlanmıştı.
+
+Bant yalnızca ileri yönde hareket ettiği için, motor daha iyi bir Bitcoin&#39;in karşılaması gereken dört koşuldan ilkini yerine getirmiş oldu: yani işlem hattı (pipeline) mimarisine uygunluk.
+
+Bu makale ise geriye kalan koşulları ele alıyor. Nexa Baş Bilim İnsanı Dr. Peter Rizun&#39;un (@PeterRizun) Sidney&#39;de gösterdiği üzere, Satoshi&#39;nin Bitcoin&#39;ini iyileştirip yalnızca üç basit değişiklikle tüm bu koşulları sağlamasını mümkün kılabiliriz; üstelik bu süreçte motor, genişletilebilirlik ve sıkıştırılabilirlik gibi iki özelliği de neredeyse hiçbir ek maliyet olmaksızın kazanıyor.
+
+https://forum.nexa.org/t/scaling-by-circuit/1749</p>
+      <p class="note">Official project announcement translated into Turkish for the local group.</p>
+    </li>
+    
+    <li class="msg" id="m-204213" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-09T17:22:17+00:00">2026-09-09 17:22 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204213" rel="noopener" title="Open on Telegram">#204213 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Blacktea ▽</b>: @Onur_Nexa maybe you can add /buy command?</p>
+      
+      <p class="en">Yes ok👍</p>
+      <p class="zh" lang="tr">Yes ok👍</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204211" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Green Zenci</span>
+        <time datetime="2026-09-09T16:40:33+00:00">2026-09-09 16:40 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204211" rel="noopener" title="Open on Telegram">#204211 ↗</a>
+      </div>
+      
+      <p class="en">Vitalik should mind his own business, Peter (our lead developer) was already saying back in 2022 what ETH&#39;s chief architect is saying in 2026. Guys, we&#39;re in a really good project, it&#39;s been 3.5 years since I got to know Nexa, I hope down the road we&#39;ll be saying &#39;glad we bought it&#39; 💪💪💪</p>
+      <p class="zh" lang="tr">Vitalik işine baksın peter (baş geliştiricimiz)onun 2026 da  eth baş mimarının sölediklerini 2022 zaten söylüyordu arkadaşlar çok iyi bir projedeyiz ben 3.5 sene oldu nexa ile tanışalı umarım ilerde iyki almışız diyeceğiz💪💪💪</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204210" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-09-09T16:37:08+00:00">2026-09-09 16:37 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204210" rel="noopener" title="Open on Telegram">#204210 ↗</a>
+      </div>
+      
+      <p class="en">@Onur_Nexa maybe you can add /buy command?</p>
+      <p class="zh" lang="tr">@Onur_Nexa maybe you can add /buy command?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204209" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-09T16:36:38+00:00">2026-09-09 16:36 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204209" rel="noopener" title="Open on Telegram">#204209 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Blacktea ▽</b>: /filter prefix:/buy The most popular exchanges where you can buy and sell Nexa:
+
+🔸MEXC:...</p>
+      
+      <p class="en">Failed to check connection admin: unable to getChatMember: Bad Request: CHAT_ADMIN_REQUIRED</p>
+      <p class="zh" lang="tr">Failed to check connection admin: unable to getChatMember: Bad Request: CHAT_ADMIN_REQUIRED</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204208" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-09-09T16:36:38+00:00">2026-09-09 16:36 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204208" rel="noopener" title="Open on Telegram">#204208 ↗</a>
+      </div>
+      
+      <p class="en">/filter prefix:/buy The most popular exchanges where you can buy and sell Nexa:
+
+🔸MEXC: https://www.mexc.com/exchange/NEXA_USDT
+🔸BingX: https://bingx.com/en-us/spot/NEXAUSDT/
+🔸Biconomy: https://www.biconomy.com/exchange/NEXA_USDT
+🔸Coinstash: https://coinstash.com.au/nexa/buy
+🔸CoinEx: https://www.coinex.com/exchange/NEXA-USDT
+🔸NonKyc: https://nonkyc.io/market/NEXA_USDT
+
+Always withdraw your Nexa coins to a wallet under your own control (self-custody); not your keys, not your coins!</p>
+      <p class="zh" lang="tr">/filter prefix:/buy Nexa alıp satabileceğiniz en popüler borsalar:
+
+🔸MEXC: https://www.mexc.com/exchange/NEXA_USDT
+🔸BingX: https://bingx.com/en-us/spot/NEXAUSDT/
+🔸Biconomy: https://www.biconomy.com/exchange/NEXA_USDT
+🔸Coinstash: https://coinstash.com.au/nexa/buy
+🔸CoinEx: https://www.coinex.com/exchange/NEXA-USDT
+🔸NonKyc: https://nonkyc.io/market/NEXA_USDT
+
+Nexa coin&#39;lerinizi her zaman kendi kontrolünüzdeki bir cüzdana (self-custody) çekin; anahtarlarınız sizde değilse, coin&#39;leriniz de sizin değildir!</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204204" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-09T16:16:43+00:00">2026-09-09 16:16 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204204" rel="noopener" title="Open on Telegram">#204204 ↗</a>
+      </div>
+      
+      <p class="en">And he promotes them well too.</p>
+      <p class="zh" lang="tr">Reklamını da iyi yapıyor.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204203" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-09T16:16:32+00:00">2026-09-09 16:16 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204203" rel="noopener" title="Open on Telegram">#204203 ↗</a>
+      </div>
+      
+      <p class="en">Gidra&#39;s NFTs are nice.</p>
+      <p class="zh" lang="tr">Gidra nin nft leri güzel.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204202" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-09T16:14:12+00:00">2026-09-09 16:14 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204202" rel="noopener" title="Open on Telegram">#204202 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>X</b>: Andrew is online in the global group.</p>
+      
+      <p class="en">They gave him an NFT reward 😁</p>
+      <p class="zh" lang="tr">Nft ödülü verdiler ona 😁</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204201" data-sent="neutral" data-topics="6">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-09T16:05:04+00:00">2026-09-09 16:05 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204201" rel="noopener" title="Open on Telegram">#204201 ↗</a>
+      </div>
+      
+      <p class="en">Andrew is online in the global group.</p>
+      <p class="zh" lang="tr">Andrew online globalde.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204200" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-09T13:21:21+00:00">2026-09-09 13:21 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204200" rel="noopener" title="Open on Telegram">#204200 ↗</a>
+      </div>
+      
+      <p class="en">You can go through them at your leisure, and if there&#39;s anything you&#39;re curious about, just ask again</p>
+      <p class="zh" lang="tr">Rahat rahat inceleyebilirsin merak ettiğin bir konu olursa sor yine</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204199" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-09T13:21:09+00:00">2026-09-09 13:21 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204199" rel="noopener" title="Open on Telegram">#204199 ↗</a>
+      </div>
+      
+      <p class="en">They&#39;ve all been translated into Turkish</p>
+      <p class="zh" lang="tr">Hepsi türkçeye çevrildi</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204198" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-09T13:21:05+00:00">2026-09-09 13:21 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.15">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204198" rel="noopener" title="Open on Telegram">#204198 ↗</a>
+      </div>
+      
+      <p class="en">But if you want more detailed info, all the updates are in the pinned messages</p>
+      <p class="zh" lang="tr">Ama daha detay bilgi istiyordan sabit mesajlarda tüm güncellemeler var</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204197" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-09T13:20:52+00:00">2026-09-09 13:20 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204197" rel="noopener" title="Open on Telegram">#204197 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>İrfan</b>: What is this Nexa coin project, is it worth buying?</p>
+      
+      <p class="en">Everyone here is an investor 😊 if we thought it wasn&#39;t worth buying, we wouldn&#39;t have bought it</p>
+      <p class="zh" lang="tr">Burdaki herkes yatırımcı 😊 alınmayacağını düşünsek almazdık</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204196" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">İrfan</span>
+        <time datetime="2026-09-09T13:14:21+00:00">2026-09-09 13:14 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204196" rel="noopener" title="Open on Telegram">#204196 ↗</a>
+      </div>
+      
+      <p class="en">What is this Nexa coin project, is it worth buying?</p>
+      <p class="zh" lang="tr">Bu nexa bin projesi nedir alinirmi</p>
+      <p class="note">&#39;nexa bin&#39; is likely a typo for &#39;nexa coin&#39;.</p>
+    </li>
+    
+    <li class="msg" id="m-204195" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-09T13:13:14+00:00">2026-09-09 13:13 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204195" rel="noopener" title="Open on Telegram">#204195 ↗</a>
+      </div>
+      
+      <p class="en">And Rose doesn&#39;t let you in</p>
+      <p class="zh" lang="tr">Ve Rose içeri almaz</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204194" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-09T13:13:07+00:00">2026-09-09 13:13 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204194" rel="noopener" title="Open on Telegram">#204194 ↗</a>
+      </div>
+      
+      <p class="en">Otherwise the system flags you as a bot</p>
+      <p class="zh" lang="tr">Sistem bot olarak flagler yoksa</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204193" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-09T13:13:00+00:00">2026-09-09 13:13 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204193" rel="noopener" title="Open on Telegram">#204193 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Mehmet Aslan</b>: Peace be upon you, I can&#39;t join the trade channel, any idea why?</p>
+      
+      <p class="en">You need to click the bottom button in the warning that pops up</p>
+      <p class="zh" lang="tr">Çıkan uyarıdaki en alt butonu tıklamanız gerekiyor</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204192" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Mehmet Aslan</span>
+        <time datetime="2026-09-09T12:57:55+00:00">2026-09-09 12:57 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204192" rel="noopener" title="Open on Telegram">#204192 ↗</a>
+      </div>
+      
+      <p class="en">Peace be upon you, I can&#39;t join the trade channel, any idea why?</p>
+      <p class="zh" lang="tr">Selamın aleyküm trade kanalına katılamıyorum neden acaba</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204191" data-sent="negative" data-topics="5">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-09T11:55:59+00:00">2026-09-09 11:55 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexatr/204191" rel="noopener" title="Open on Telegram">#204191 ↗</a>
+      </div>
+      
+      <p class="en">They&#39;re scammers, I kicked them from the group</p>
+      <p class="zh" lang="tr">Dolandırıcı bunlar attım gruptan</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204190" data-sent="negative" data-topics="5">
+      <div class="head">
+        <span class="who">Hydraa</span>
+        <time datetime="2026-09-09T11:54:24+00:00">2026-09-09 11:54 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexatr/204190" rel="noopener" title="Open on Telegram">#204190 ↗</a>
+      </div>
+      
+      <p class="en">Careful, don&#39;t get involved — the women around here are even more of a black hole in crypto, I swear they&#39;ll just scam you 🤣</p>
+      <p class="zh" lang="tr">Aman bulaşma buradaki kadınlar kriptoda daha kara delik valla dolandirir dururlar 🤣</p>
+      <p class="note">Warning about scam accounts (often posing as women) in the group; &#39;kara delik&#39; (black hole) = money pit.</p>
+    </li>
+    
+    <li class="msg" id="m-204187" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Green Zenci</span>
+        <time datetime="2026-09-09T07:16:03+00:00">2026-09-09 07:16 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204187" rel="noopener" title="Open on Telegram">#204187 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/hakangnan316710/status/2097580015676260529?s=52</p>
+      <p class="zh" lang="tr">https://x.com/hakangnan316710/status/2097580015676260529?s=52</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204186" data-sent="neutral" data-topics="">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-08T05:20:06+00:00">2026-09-08 05:20 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204186" rel="noopener" title="Open on Telegram">#204186 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/NexaMoney/status/2097052288745451940</p>
+      <p class="zh" lang="tr">https://x.com/NexaMoney/status/2097052288745451940</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204184" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-09-07T21:35:59+00:00">2026-09-07 21:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.15">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204184" rel="noopener" title="Open on Telegram">#204184 ↗</a>
+      </div>
+      
+      <p class="en">Stay with Consensus: Update to Nexa Full Node version 2.2.0.0
+
+Nexa is moving forward with protocol improvements, and we recommend that everyone update their node clients to the latest version.
+
+This release includes rolling checkpoints. Once a block reaches a depth of 200 in the chain, the node marks it as settled. From that depth on, the transaction is final, and any reorganization past that point is rejected.
+
+For exchanges and services the implication is concrete: after 200 confirmations, a transaction cannot be reversed.
+
+This is also the last release before the upcoming hard fork and the activation of the Tailstorm protocol. It is important to stay with consensus and update your clients. 👇
+
+https://nexa.org/node</p>
+      <p class="zh" lang="tr">Konsensüse Uygun Kalın: Nexa Tam Düğüm 2.2.0.0 Sürümüne Güncelleyin
+
+Nexa, protokol geliştirmeleriyle ilerliyor ve herkesin düğüm istemcilerini en son sürüme güncellemesini tavsiye ediyoruz.
+
+Bu sürüm, kayan kontrol noktalarını içerir. Bir blok zincirde 200 derinliğe ulaştığında, düğüm onu ​​​​yerleşik olarak işaretler. Bu derinlikten itibaren işlem kesinleşir ve bu noktadan sonraki herhangi bir yeniden düzenleme reddedilir.
+
+Borsalar ve hizmetler için bunun anlamı somuttur: 200 onaydan sonra bir işlem geri alınamaz.
+
+Bu aynı zamanda yaklaşan hard-fork ve Tailstorm protokolünün etkinleştirilmesinden önceki son sürümdür. Konsensüse uygun kalmak ve istemcilerinizi güncellemek önemlidir. 👇
+
+https://nexa.org/node</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204183" data-sent="positive" data-topics="">
+      <div class="head">
+        <span class="who">Ariel Ortega</span>
+        <time datetime="2026-09-07T21:30:40+00:00">2026-09-07 21:30 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204183" rel="noopener" title="Open on Telegram">#204183 ↗</a>
+      </div>
+      
+      <p class="en">If it does, it would act as a catalyst for the price</p>
+      <p class="zh" lang="tr">Girerse fiyata  katalizör etki yapar</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204182" data-sent="neutral" data-topics="">
+      <div class="head">
+        <span class="who">Ariel Ortega</span>
+        <time datetime="2026-09-07T21:29:51+00:00">2026-09-07 21:29 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204182" rel="noopener" title="Open on Telegram">#204182 ↗</a>
+      </div>
+      
+      <p class="en">Do you think Nexa will get listed on good exchanges? Is there such a roadmap/goal?</p>
+      <p class="zh" lang="tr">Nexa iyi borsalara girer mi sizce öyle bir yol haritası hedefleri var mı</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204180" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Umut</span>
+        <time datetime="2026-09-07T17:46:17+00:00">2026-09-07 17:46 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204180" rel="noopener" title="Open on Telegram">#204180 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Umut</b>: https://x.com/vandayf41534/status/2096996406854615236</p>
+      
+      <p class="en">Thanks for the likes on X, guys</p>
+      <p class="zh" lang="tr">X deki likelar için teşekkürler arkadaşlar</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204179" data-sent="mixed" data-topics="4">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-07T17:38:11+00:00">2026-09-07 17:38 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.00">Mixed</span>
+        <a class="lnk" href="https://t.me/nexatr/204179" rel="noopener" title="Open on Telegram">#204179 ↗</a>
+      </div>
+      
+      <p class="en">There are 631 people. 30 people online. If every single one posted on X, the place would go wild.</p>
+      <p class="zh" lang="tr">631 kişi var. 30 kişi online . Her bir kişi X te paylaşım yapsa ortalık yıkılır.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204178" data-sent="positive" data-topics="">
+      <div class="head">
+        <span class="who">Hydraa</span>
+        <time datetime="2026-09-07T17:37:01+00:00">2026-09-07 17:37 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204178" rel="noopener" title="Open on Telegram">#204178 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>X</b>: Hey ward, wake up. My Nexa has reared up. Everybody hold on tight to your goods.</p>
+      
+      <p class="en">Keep on buying</p>
+      <p class="zh" lang="tr">Devam basmaya</p>
+      <p class="note">&#34;basmak&#34; here = to load up / buy aggressively.</p>
+    </li>
+    
+    <li class="msg" id="m-204176" data-sent="positive" data-topics="">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-07T17:35:11+00:00">2026-09-07 17:35 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204176" rel="noopener" title="Open on Telegram">#204176 ↗</a>
+      </div>
+      
+      <p class="en">Hey ward, wake up. My Nexa has reared up. Everybody hold on tight to your goods.</p>
+      <p class="zh" lang="tr">Hey koğuş kalk. Nexa m şaha kalktı. Herkes malına sahip çıksın.</p>
+      <p class="note">&#34;koğuş&#34; (prison ward/dorm) is a joking way of addressing the sleepy group; &#34;şaha kalkmak&#34; = a horse rearing up, i.e. a sharp price surge.</p>
+    </li>
+    
+    <li class="msg" id="m-204175" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Umut</span>
+        <time datetime="2026-09-07T16:18:37+00:00">2026-09-07 16:18 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204175" rel="noopener" title="Open on Telegram">#204175 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/vandayf41534/status/2096996406854615236</p>
+      <p class="zh" lang="tr">https://x.com/vandayf41534/status/2096996406854615236</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204174" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Green Zenci</span>
+        <time datetime="2026-09-07T15:37:52+00:00">2026-09-07 15:37 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204174" rel="noopener" title="Open on Telegram">#204174 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/hakangnan316710/status/2096986146689495184?s=46</p>
+      <p class="zh" lang="tr">https://x.com/hakangnan316710/status/2096986146689495184?s=46</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204172" data-sent="mixed" data-topics="4">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-07T14:18:34+00:00">2026-09-07 14:18 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexatr/204172" rel="noopener" title="Open on Telegram">#204172 ↗</a>
+      </div>
+      
+      <p class="en">Guys, a bit of action. What more can Nexa do. Come on, let&#39;s liven up a little. We need to shake things up on X.</p>
+      <p class="zh" lang="tr">Arkadaşlar biraz hareket. Nexa daha ne yapsın. Hadi canlanalım biraz. X i sallamamız lazım.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204171" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-07T11:51:22+00:00">2026-09-07 11:51 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204171" rel="noopener" title="Open on Telegram">#204171 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/Onur0Vatansever/status/2096928573634314540</p>
+      <p class="zh" lang="tr">https://x.com/Onur0Vatansever/status/2096928573634314540</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204170" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-07T10:57:25+00:00">2026-09-07 10:57 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204170" rel="noopener" title="Open on Telegram">#204170 ↗</a>
+      </div>
+      
+      <p class="en">God willing, my friend 🙏</p>
+      <p class="zh" lang="tr">İnşallah dostum 🙏</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204169" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Ariel Ortega</span>
+        <time datetime="2026-09-07T10:53:29+00:00">2026-09-07 10:53 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204169" rel="noopener" title="Open on Telegram">#204169 ↗</a>
+      </div>
+      
+      <p class="en">The general situation in crypto looks just like the start of previous bulls; it feels like the bull is finally going to start, technically everything is the same and God willing one of the stars of the bull will be Nexa and we&#39;ll see the benefit of waiting for years. NFA</p>
+      <p class="zh" lang="tr">Genel kriptodaki durum önceki boğa başlangıclarıyla aynı sanki bi sefer boğa başlayacak gibi teknik açıdan her şey aynı ve inşallah boğanın yıldızlarından biri nexa olur yıllarca beklemenin faydasını görürüz ytd</p>
+      <p class="note">&#34;ytd&#34; = &#34;not investment advice&#34;.</p>
+    </li>
+    
+    <li class="msg" id="m-204168" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-07T07:32:09+00:00">2026-09-07 07:32 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204168" rel="noopener" title="Open on Telegram">#204168 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>X</b>: The order book is empty, with a 10K usdt buy the price goes to unbelievable levels. But most importantly, we&#39;ve got...</p>
+      
+      <p class="en">Unofficial trade channel for your price talk https://t.me/NexaTrTrade</p>
+      <p class="zh" lang="tr">Fiyat sohbetleriniz için resmi olmayan trade kanalı https://t.me/NexaTrTrade</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204167" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-07T07:32:09+00:00">2026-09-07 07:32 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204167" rel="noopener" title="Open on Telegram">#204167 ↗</a>
+      </div>
+      
+      <p class="en">The order book is empty, with a 10K usdt buy the price goes to unbelievable levels. But most importantly, we&#39;ve got the wind at our backs, hopefully the team doesn&#39;t stop. Tailstorm, dex, minting tokens and NFTs with AI, Nexa warriors — may they all come one after another.</p>
+      <p class="zh" lang="tr">Tahta boş 10K usdt alımı ile fiyat inanılmaz yerlere geliyor. Ama en önemlisi rüzgârı arkamıza aldık umarım ekip durmaz. Tailstorm, dex, yapay zeka ile tiken ve nft basma , Nexa warriors ardı ardına gelir.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204166" data-sent="neutral" data-topics="">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-07T07:31:56+00:00">2026-09-07 07:31 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204166" rel="noopener" title="Open on Telegram">#204166 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/GAndrewStone/status/2096580817120002375</p>
+      <p class="zh" lang="tr">https://x.com/GAndrewStone/status/2096580817120002375</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204164" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-07T07:11:14+00:00">2026-09-07 07:11 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204164" rel="noopener" title="Open on Telegram">#204164 ↗</a>
+      </div>
+      
+      <p class="en">May we have a great week 😊💸</p>
+      <p class="zh" lang="tr">Haftamız güzel geçsin 😊💸</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204163" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Green Zenci</span>
+        <time datetime="2026-09-07T06:05:48+00:00">2026-09-07 06:05 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204163" rel="noopener" title="Open on Telegram">#204163 ↗</a>
+      </div>
+      
+      <p class="en">🔥🔥🔥</p>
+      <p class="zh" lang="tr">🔥🔥🔥</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204162" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Green Zenci</span>
+        <time datetime="2026-09-07T06:05:36+00:00">2026-09-07 06:05 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.80">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204162" rel="noopener" title="Open on Telegram">#204162 ↗</a>
+      </div>
+      
+      <p class="en">A good week couldn&#39;t have started any better than this</p>
+      <p class="zh" lang="tr">Güzel hafta bu kadar güzel başlıyamazdı</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204158" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-05T12:14:47+00:00">2026-09-05 12:14 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204158" rel="noopener" title="Open on Telegram">#204158 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/NexaMoney/status/2096206732175282383</p>
+      <p class="zh" lang="tr">https://x.com/NexaMoney/status/2096206732175282383</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204157" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-05T10:59:05+00:00">2026-09-05 10:59 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204157" rel="noopener" title="Open on Telegram">#204157 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Ariel Ortega</b>: Can you give some info about Tailstorm?</p>
+      
+      <p class="en">https://x.com/NexaMoney/status/2070771625239200024</p>
+      <p class="zh" lang="tr">https://x.com/NexaMoney/status/2070771625239200024</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204156" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-05T10:57:03+00:00">2026-09-05 10:57 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204156" rel="noopener" title="Open on Telegram">#204156 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Ariel Ortega</b>: Right now there&#39;s a market very similar to previous bull periods; technically speaking BTC is slowly climbing, the...</p>
+      
+      <p class="en">Unofficial trade channel for your price talk https://t.me/NexaTrTrade</p>
+      <p class="zh" lang="tr">Fiyat sohbetleriniz için resmi olmayan trade kanalı https://t.me/NexaTrTrade</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204155" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Ariel Ortega</span>
+        <time datetime="2026-09-05T10:57:03+00:00">2026-09-05 10:57 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204155" rel="noopener" title="Open on Telegram">#204155 ↗</a>
+      </div>
+      
+      <p class="en">Right now there&#39;s a market very similar to previous bull periods; technically speaking BTC is slowly climbing, the alts bottomed out at the very bottom and have started to slightly revive along with BTC. If BTC keeps making sharp moves up, then goes into stagnant mode and slowly drifts down, the alts have come into position to explode like in the previous bull seasons, technically speaking. NFA</p>
+      <p class="zh" lang="tr">Önceki boğa dönemlerine cok benzer bir piyasa var su anda teknik acıdan btc yavas yavas çıkıyor altlar dibin dibi yaptın btc ile birlikte hafif canlanmaya başladı btc sert çıkışlarda yapıp durağan moda geçerse ve yavas yavas düşerse altlar bir önceki boğa sezonları gibi patlayacak pozisyona geldi teknik açıdan ytd</p>
+      <p class="note">&#34;ytd&#34; = &#34;yorum tavsiye değildir&#34;, the Turkish equivalent of &#34;not financial advice&#34;.</p>
+    </li>
+    
+    <li class="msg" id="m-204154" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-05T10:56:22+00:00">2026-09-05 10:56 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204154" rel="noopener" title="Open on Telegram">#204154 ↗</a>
+      </div>
+      
+      <p class="en">Unofficial trade channel for your price talk https://t.me/NexaTrTrade</p>
+      <p class="zh" lang="tr">Fiyat sohbetleriniz için resmi olmayan trade kanalı https://t.me/NexaTrTrade</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204152" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Ariel Ortega</span>
+        <time datetime="2026-09-05T10:54:26+00:00">2026-09-05 10:54 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204152" rel="noopener" title="Open on Telegram">#204152 ↗</a>
+      </div>
+      
+      <p class="en">It&#39;s about bringing the confirmation time below a second, I think.</p>
+      <p class="zh" lang="tr">Onay süresini saniyenin altına indirme mevzusu galiba</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204150" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Ariel Ortega</span>
+        <time datetime="2026-09-05T10:52:48+00:00">2026-09-05 10:52 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204150" rel="noopener" title="Open on Telegram">#204150 ↗</a>
+      </div>
+      
+      <p class="en">Can you give some info about Tailstorm?</p>
+      <p class="zh" lang="tr">Talistrom hakkında bilgi verebilir misiniz</p>
+      <p class="note">&#34;Talistrom&#34; is a common misspelling of Tailstorm.</p>
+    </li>
+    
+    <li class="msg" id="m-204149" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-05T06:44:05+00:00">2026-09-05 06:44 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204149" rel="noopener" title="Open on Telegram">#204149 ↗</a>
+      </div>
+      
+      <p class="en">If the organization is done well, the community promotes it properly and the market reacts positively, we&#39;ll settle in at 0.0000030.</p>
+      <p class="zh" lang="tr">Organizasyon güzel yapılır topluluk reklamını iyi yapar piyasa olumlu tepki verirse 0000030 da yer tutarız.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204148" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-05T06:42:38+00:00">2026-09-05 06:42 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204148" rel="noopener" title="Open on Telegram">#204148 ↗</a>
+      </div>
+      
+      <p class="en">Tailstorm is right around the corner. Don said a video was being prepared. Soon there won&#39;t be a trace left of that 14b.</p>
+      <p class="zh" lang="tr">Tailstorm un eli kulağında. Don video hazırlanıyordu diyordu. Yakında 14b nin esamesi okunmaz.</p>
+      <p class="note">&#34;14b&#34; = the 14 billion NEXA sell wall; &#34;esamesi okunmaz&#34; is an idiom meaning it won&#39;t even be worth mentioning anymore.</p>
+    </li>
+    
+    <li class="msg" id="m-204147" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Uğur</span>
+        <time datetime="2026-09-05T06:40:39+00:00">2026-09-05 06:40 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204147" rel="noopener" title="Open on Telegram">#204147 ↗</a>
+      </div>
+      
+      <p class="en">There&#39;s a sell order at that level, it&#39;s been sitting there for a week, the guy hasn&#39;t pulled it at all.</p>
+      <p class="zh" lang="tr">Satış var o seviyede 1 haftadır duruyor adam çekmedi hiç</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204146" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Hydraa</span>
+        <time datetime="2026-09-05T06:35:46+00:00">2026-09-05 06:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204146" rel="noopener" title="Open on Telegram">#204146 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Uğur</b>: If you&#39;ve got 14 B, sure it&#39;ll break 😀</p>
+      
+      <p class="en">There&#39;s a 14 B sell order at these levels, right?</p>
+      <p class="zh" lang="tr">14 b satis var dmi bu seviyelerde</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204145" data-sent="mixed" data-topics="1">
+      <div class="head">
+        <span class="who">Uğur</span>
+        <time datetime="2026-09-05T05:47:05+00:00">2026-09-05 05:47 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexatr/204145" rel="noopener" title="Open on Telegram">#204145 ↗</a>
+      </div>
+      
+      <p class="en">If you&#39;ve got 14 B, sure it&#39;ll break 😀</p>
+      <p class="zh" lang="tr">14 b varsa kırılır tabi 😀</p>
+      <p class="note">Refers to a big sell wall of ~14 billion NEXA sitting at that level.</p>
+    </li>
+    
+    <li class="msg" id="m-204144" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-05T05:30:16+00:00">2026-09-05 05:30 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.45">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204144" rel="noopener" title="Open on Telegram">#204144 ↗</a>
+      </div>
+      
+      <p class="en">This time that 130 is going to break, there&#39;s no other way.</p>
+      <p class="zh" lang="tr">Bu sefer o 130 kırılacak başka yolu yok.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204143" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-04T11:29:03+00:00">2026-09-04 11:29 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204143" rel="noopener" title="Open on Telegram">#204143 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Hamit Kara</b>: Price</p>
+      
+      <p class="en">For your price chats, the unofficial trade channel https://t.me/NexaTrTrade</p>
+      <p class="zh" lang="tr">Fiyat sohbetleriniz için resmi olmayan trade kanalı https://t.me/NexaTrTrade</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204142" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Hamit Kara</span>
+        <time datetime="2026-09-04T11:29:03+00:00">2026-09-04 11:29 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204142" rel="noopener" title="Open on Telegram">#204142 ↗</a>
+      </div>
+      
+      <p class="en">Price</p>
+      <p class="zh" lang="tr">Fiyat</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204141" data-sent="neutral" data-topics="6">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-03T21:01:54+00:00">2026-09-03 21:01 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204141" rel="noopener" title="Open on Telegram">#204141 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Umut</b>: Projects that focus on mining and put out dedicated mining rigs usually catch nice rallies, we&#39;ll be looking back at...</p>
+      
+      <p class="en">Turkish Mining Group: https://t.me/nexatr_mining</p>
+      <p class="zh" lang="tr">Türkçe Madencilik Grubu: https://t.me/nexatr_mining</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204140" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Umut</span>
+        <time datetime="2026-09-03T21:01:54+00:00">2026-09-03 21:01 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204140" rel="noopener" title="Open on Telegram">#204140 ↗</a>
+      </div>
+      
+      <p class="en">Projects that focus on mining and put out dedicated mining rigs usually catch nice rallies, we&#39;ll be looking back at these levels with longing, nice development 👏🏼 most people here know the similar projects that have mining</p>
+      <p class="zh" lang="tr">Madencilik üzerine yoğunlaşıp özel kazım cihazları çıkaran projeler genelde güzel yükselişler yakalıyor, buraları mumla aratır , güzel gelişme 👏🏼 kazımı olan benzer projeleri burda çoğu kişi biliyor</p>
+      <p class="note">&#39;mumla aratır&#39; = idiom, &#39;you&#39;ll search for it with a candle&#39;, i.e. you&#39;ll miss these (cheap) levels once they&#39;re gone.</p>
+    </li>
+    
+    <li class="msg" id="m-204139" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-03T20:29:40+00:00">2026-09-03 20:29 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.15">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204139" rel="noopener" title="Open on Telegram">#204139 ↗</a>
+      </div>
+      
+      <p class="en">1 and 2.  Tokadex is basically finished but we are waiting for a feature coming in in the next hard fork</p>
+      <p class="zh" lang="tr">1 and 2.  Tokadex is basically finished but we are waiting for a feature coming in in the next hard fork</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204138" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-03T20:26:02+00:00">2026-09-03 20:26 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.15">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204138" rel="noopener" title="Open on Telegram">#204138 ↗</a>
+      </div>
+      
+      <p class="en">Andrew wrote that Blitz and the DEX are finished, and that he&#39;s waiting for the hard fork for some fixes</p>
+      <p class="zh" lang="tr">Andrew blitz ve dex in tamamlandığını bazı düzeltmeler için hard forku beklediğini yazdı</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204137" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-03T20:17:19+00:00">2026-09-03 20:17 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204137" rel="noopener" title="Open on Telegram">#204137 ↗</a>
+      </div>
+      
+      <p class="en">There is a hard fork</p>
+      <p class="zh" lang="tr">Hard fork var</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204136" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">T. YAMAÇ .⛛</span>
+        <time datetime="2026-09-03T20:16:56+00:00">2026-09-03 20:16 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204136" rel="noopener" title="Open on Telegram">#204136 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Onur_Chinaski Nexa mod</b>: Correct 👍</p>
+      
+      <p class="en">Was it in the 2026 roadmap?</p>
+      <p class="zh" lang="tr">2026 roadmapte miydi</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204134" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-03T18:30:59+00:00">2026-09-03 18:30 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204134" rel="noopener" title="Open on Telegram">#204134 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>T. YAMAÇ .⛛</b>: There was also going to be a hard fork for the mining algorithm I think, Onur hocam, is that right?</p>
+      
+      <p class="en">Correct 👍</p>
+      <p class="zh" lang="tr">Doğru 👍</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204133" data-sent="neutral" data-topics="6">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-03T17:40:05+00:00">2026-09-03 17:40 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204133" rel="noopener" title="Open on Telegram">#204133 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>T. YAMAÇ .⛛</b>: There was also going to be a hard fork for the mining algorithm I think, Onur hocam, is that right?</p>
+      
+      <p class="en">Turkish Mining Group: https://t.me/nexatr_mining</p>
+      <p class="zh" lang="tr">Türkçe Madencilik Grubu: https://t.me/nexatr_mining</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204132" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">T. YAMAÇ .⛛</span>
+        <time datetime="2026-09-03T17:40:05+00:00">2026-09-03 17:40 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204132" rel="noopener" title="Open on Telegram">#204132 ↗</a>
+      </div>
+      
+      <p class="en">There was also going to be a hard fork for the mining algorithm I think, Onur hocam, is that right?</p>
+      <p class="zh" lang="tr">Madencilik algoritması için de bir hard fork olacaktı sanırım onur hocam doğru mu</p>
+      <p class="note">&#39;hocam&#39; = literally &#39;my teacher&#39;, used as a friendly, respectful address.</p>
+    </li>
+    
+    <li class="msg" id="m-204131" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-09-03T17:38:10+00:00">2026-09-03 17:38 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204131" rel="noopener" title="Open on Telegram">#204131 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Hüseyin</b>: Is the Tailstorm date known? @Onur_Nexa</p>
+      
+      <p class="en">No exact date has been given, but the tests and the work are going really well (: but I can&#39;t say &#39;on the Yth of month X&#39;</p>
+      <p class="zh" lang="tr">Şu tarih denmedi ama testler ve çalışmalar çok iyi gidiyor (: fakat x ayın y sinde diyemiyorum</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204130" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Green Zenci</span>
+        <time datetime="2026-09-03T17:33:53+00:00">2026-09-03 17:33 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.45">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204130" rel="noopener" title="Open on Telegram">#204130 ↗</a>
+      </div>
+      
+      <p class="en">We need to push every button — if we know what we&#39;re buying and explain its benefits, we&#39;ll grow organically</p>
+      <p class="zh" lang="tr">Tüm düğmelere basmamız lazım neyi satın aldığımızı bilirsek ve faydalarını  anlatırsal organik büyürüz</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204129" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Hydraa</span>
+        <time datetime="2026-09-03T17:32:19+00:00">2026-09-03 17:32 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204129" rel="noopener" title="Open on Telegram">#204129 ↗</a>
+      </div>
+      
+      <p class="en">It turned out to be a nice brochure</p>
+      <p class="zh" lang="tr">Güzel bir broşür olmuş</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204128" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Green Zenci</span>
+        <time datetime="2026-09-03T17:31:52+00:00">2026-09-03 17:31 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204128" rel="noopener" title="Open on Telegram">#204128 ↗</a>
+      </div>
+      
+      <p class="en">For those who want to look into Tailstorm 💪</p>
+      <p class="zh" lang="tr">Talistrom hakkında incelemek isteyenlere 💪</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204126" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Hüseyin</span>
+        <time datetime="2026-09-03T16:58:50+00:00">2026-09-03 16:58 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204126" rel="noopener" title="Open on Telegram">#204126 ↗</a>
+      </div>
+      
+      <p class="en">Is the Tailstorm date known? @Onur_Nexa</p>
+      <p class="zh" lang="tr">Talistrom tarihi belli mi? @Onur_Nexa</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204125" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-03T16:45:47+00:00">2026-09-03 16:45 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexatr/204125" rel="noopener" title="Open on Telegram">#204125 ↗</a>
+      </div>
+      
+      <p class="en">A Tailstorm announcement should be dropping around now. It shouldn&#39;t be dragged out any longer.</p>
+      <p class="zh" lang="tr">Bu sıralar tailstorm paylaşımı gelmeli. Daha fazla uzatilmamali.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204124" data-sent="positive" data-topics="">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-03T16:44:03+00:00">2026-09-03 16:44 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.35">Positive</span>
+        <a class="lnk" href="https://t.me/nexatr/204124" rel="noopener" title="Open on Telegram">#204124 ↗</a>
+      </div>
+      
+      <p class="en">Resist, Nexa.</p>
+      <p class="zh" lang="tr">Diren Nexa.</p>
+      <p class="note">&#39;Diren X&#39; echoes the Turkish protest slogan style (&#39;Diren Gezi&#39;) — a rallying cry to hold the line.</p>
+    </li>
+    
+    <li class="msg" id="m-204123" data-sent="neutral" data-topics="">
+      <div class="head">
+        <span class="who">X</span>
+        <time datetime="2026-09-03T16:43:52+00:00">2026-09-03 16:43 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204123" rel="noopener" title="Open on Telegram">#204123 ↗</a>
+      </div>
+      
+      <p class="en">We shouldn&#39;t add a 0.</p>
+      <p class="zh" lang="tr">0 eklememeliyiz.</p>
+      <p class="note">Refers to the price having another zero after the decimal point, i.e. dropping another 10x.</p>
+    </li>
+    
+    <li class="msg" id="m-204122" data-sent="neutral" data-topics="">
+      <div class="head">
+        <span class="who">Pollux</span>
+        <time datetime="2026-09-03T16:43:19+00:00">2026-09-03 16:43 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204122" rel="noopener" title="Open on Telegram">#204122 ↗</a>
+      </div>
+      
+      <p class="en">I agree, that&#39;s enough.</p>
+      <p class="zh" lang="tr">Bence de yeter.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204121" data-sent="neutral" data-topics="">
+      <div class="head">
+        <span class="who">Onur Akman</span>
+        <time datetime="2026-09-03T16:40:47+00:00">2026-09-03 16:40 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204121" rel="noopener" title="Open on Telegram">#204121 ↗</a>
+      </div>
+      
+      <p class="en">You just need to fix it a bit more, that&#39;s all ☺️☺️</p>
+      <p class="zh" lang="tr">Tam daha duzeltmen yeter bu kadar ☺️☺️</p>
+      
+    </li>
+    
+    <li class="msg" id="m-204120" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Combot</span>
+        <time datetime="2026-09-03T10:50:03+00:00">2026-09-03 10:50 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexatr/204120" rel="noopener" title="Open on Telegram">#204120 ↗</a>
+      </div>
+      
+      <p class="en">Savaşş has been banned! Reason: CAS ban.</p>
+      <p class="zh" lang="tr">Savaşş has been banned! Reason: CAS ban.</p>
+      
+    </li>
+    
+  </ol>
+  <p class="empty" id="empty">No messages match these filters.</p>
+</section>
+
+<footer>
+  <p>Translations, sentiment scores and the summary are generated automatically by claude-opus-5 and may contain mistakes. Original messages belong to their authors on Telegram.</p>
+  <p><a href="data.json">Raw data (JSON)</a></p>
+</footer>
+
+</div>
+<script>
+(function () {
+  var msgs = Array.prototype.slice.call(document.querySelectorAll('.msg'));
+  var sent = 'all', topic = null;
+  var topicNames = ["Tailstorm and the hard fork", "Price action, sell wall and market outlook", "Macro, oil war and Trump debate", "Node 2.2.0.0 update and wallets", "Push for X/Twitter activity", "Moderation, scammers and newcomers", "Tech content, NFTs and dev pride"];
+
+  function apply() {
+    var shown = 0;
+    msgs.forEach(function (m) {
+      var ok = (sent === 'all' || m.dataset.sent === sent) &&
+               (topic === null || (' ' + m.dataset.topics + ' ').indexOf(' ' + topic + ' ') !== -1);
+      m.hidden = !ok; if (ok) shown++;
+    });
+    document.getElementById('empty').classList.toggle('on', shown === 0);
+    var bar = document.getElementById('active-topic');
+    bar.classList.toggle('on', topic !== null);
+    if (topic !== null) document.getElementById('active-topic-name').textContent = topicNames[topic] + ' (' + shown + ')';
+    document.querySelectorAll('.topic').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.topic === String(topic))); });
+  }
+  document.querySelectorAll('.fbtn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      sent = b.dataset.sent;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      apply();
+    });
+  });
+  document.querySelectorAll('.topic').forEach(function (b) {
+    b.addEventListener('click', function () {
+      topic = (String(topic) === b.dataset.topic) ? null : Number(b.dataset.topic);
+      apply();
+      if (topic !== null) document.getElementById('messages').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  document.getElementById('clear-topic').addEventListener('click', function () { topic = null; apply(); });
+
+  var zh = document.getElementById('show-zh');
+  try { if (localStorage.getItem('showZh') === '0') zh.checked = false; } catch (e) {}
+  function syncZh() {
+    document.body.classList.toggle('hide-zh', !zh.checked);
+    try { localStorage.setItem('showZh', zh.checked ? '1' : '0'); } catch (e) {}
+  }
+  zh.addEventListener('change', syncZh); syncZh();
+
+  // Show timestamps in the viewer's local time zone.
+  var fmt = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+  document.querySelectorAll('time[datetime]').forEach(function (t) {
+    var d = new Date(t.getAttribute('datetime'));
+    if (!isNaN(d)) { t.title = t.textContent; t.textContent = fmt.format(d); }
+  });
+
+  // Highlight links: reveal the target even if filtered out, then flash it.
+  document.querySelectorAll('.hl a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      sent = 'all'; topic = null;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.sent === 'all')); });
+      apply();
+      var el = document.querySelector(a.getAttribute('href'));
+      if (el) { el.classList.add('flash'); setTimeout(function () { el.classList.remove('flash'); }, 1600); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,4966 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexa Polska — English</title>
+<meta name="description" content="Off-topic rants about surveillance and the EU give way to AI-driven project audits of Firo, Xelis and Nexa">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --line: #e1e0d9; --ring: rgba(11,11,11,.10); --wash: rgba(11,11,11,.04);
+  --accent: #2a78d6; --accent-ink: #1c5cab;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #c98500; --neu: #898781; --mid: #f0efec;
+  --zh: #52514e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+    --accent: #3987e5; --accent-ink: #86b6ef;
+    --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+    --zh: #c3c2b7;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+  --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+  --accent: #3987e5; --accent-ink: #86b6ef;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+  --zh: #c3c2b7;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--page); color: var(--ink);
+  font: 15px/1.55 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  padding-inline: clamp(16px, 4vw, 32px); padding-block: 0 64px;
+}
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 900px; margin: 0 auto; }
+header.top { padding-block: 40px 24px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+h1 { font-size: clamp(24px, 4vw, 34px); line-height: 1.15; margin: 0 0 10px; letter-spacing: -.01em; }
+.meta { color: var(--ink-2); font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; }
+.meta span::before { content: ""; }
+h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; font-weight: 600; }
+section { padding-block: 32px; }
+h2 .sub { font-weight: 400; letter-spacing: 0; text-transform: none; }
+section + section { border-top: 1px solid var(--line); }
+.headline { font-size: clamp(19px, 2.6vw, 24px); line-height: 1.3; font-weight: 600; margin: 0 0 12px; letter-spacing: -.01em; }
+.lede { font-size: 16px; color: var(--ink-2); margin: 0; max-width: 70ch; }
+.grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.topics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.topic { width: 100%; text-align: left; background: transparent; border: 1px solid transparent; border-radius: 10px; padding: 12px 14px; color: inherit; font: inherit; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; }
+.topic:hover { background: var(--wash); }
+.topic[aria-pressed="true"] { border-color: var(--accent); background: var(--wash); }
+.topic .t { font-weight: 600; }
+.topic .n { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.topic .s { grid-column: 1 / -1; color: var(--ink-2); font-size: 14px; }
+.mood-label { font-size: 26px; font-weight: 700; letter-spacing: -.01em; margin: 0 0 4px; }
+.mood-score { color: var(--muted); font-size: 13px; margin: 0 0 12px; font-variant-numeric: tabular-nums; }
+.meter { position: relative; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--neg), var(--mid) 50%, var(--pos)); margin: 6px 0 4px; }
+.meter i { position: absolute; top: 50%; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 3px solid var(--ink); transform: translate(-50%, -50%); box-shadow: 0 0 0 2px var(--surface); }
+.meter-ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+.mood-desc { margin: 0 0 20px; color: var(--ink-2); font-size: 14px; }
+.dist { display: flex; height: 12px; border-radius: 4px; overflow: hidden; gap: 2px; background: var(--surface); margin-bottom: 10px; }
+.dist b { display: block; height: 100%; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 13px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend .n { margin-left: auto; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.positive { --c: var(--pos); } .negative { --c: var(--neg); } .mixed { --c: var(--mix); } .neutral { --c: var(--neu); }
+.dot, .dist b { background: var(--c); }
+.chip { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--ink-2); padding: 2px 8px 2px 6px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); white-space: nowrap; }
+.chip::before { content: attr(data-glyph); width: 14px; height: 14px; border-radius: 50%; background: var(--c); color: #fff; display: inline-grid; place-items: center; font-size: 11px; line-height: 1; }
+.hl { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hl a { display: block; color: inherit; background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 12px 14px; }
+.hl a:hover { text-decoration: none; border-color: var(--accent); }
+.hl .q { font-size: 15px; margin: 0 0 4px; }
+.hl .w { font-size: 13px; color: var(--ink-2); margin: 0; }
+.hl .w b { font-weight: 600; color: var(--ink); }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 16px; position: sticky; top: 0; background: var(--page); padding-block: 10px; z-index: 2; border-bottom: 1px solid var(--line); }
+.controls .sp { flex: 1; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.fbtn { font: inherit; font-size: 13px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.fbtn[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); cursor: pointer; user-select: none; }
+.toggle input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+.active-topic { display: none; font-size: 13px; color: var(--ink-2); padding: 8px 12px; border-radius: 8px; background: var(--wash); margin-bottom: 12px; }
+.active-topic.on { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.active-topic button { font: inherit; font-size: 13px; background: none; border: 0; color: var(--accent-ink); cursor: pointer; padding: 0; }
+.msgs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.msg { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 12px 16px; scroll-margin-top: 70px; }
+.msg[hidden] { display: none; }
+.msg.flash { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42,120,214,.25); }
+.msg .head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 6px; font-size: 13px; }
+.msg .who { font-weight: 600; color: var(--ink); font-size: 14px; }
+.msg time { color: var(--muted); font-variant-numeric: tabular-nums; }
+.msg .lnk { margin-left: auto; color: var(--muted); font-size: 12px; }
+.msg .reply { border-left: 3px solid var(--line); padding: 2px 10px; margin: 0 0 8px; color: var(--ink-2); font-size: 13px; }
+.msg .reply b { font-weight: 600; }
+.msg .en { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg .zh { margin: 6px 0 0; color: var(--zh); font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+body.hide-zh .msg .zh { display: none; }
+.msg .note { margin: 8px 0 0; font-size: 13px; color: var(--ink-2); font-style: italic; }
+.msg .note::before { content: "Note: "; font-style: normal; font-weight: 600; }
+.empty { display: none; color: var(--muted); padding: 24px 0; text-align: center; }
+.empty.on { display: block; }
+footer { color: var(--muted); font-size: 13px; padding-top: 32px; border-top: 1px solid var(--line); }
+footer p { margin: 0 0 6px; }
+@media (prefers-reduced-motion: no-preference) { .msg { transition: border-color .3s, box-shadow .3s; } }
+.nav { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; padding: 0; list-style: none; }
+.nav a { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); }
+.nav a:hover { text-decoration: none; border-color: var(--accent); }
+.nav a[aria-current="page"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.nav .lang { font-weight: 400; opacity: .75; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
+.cards > li > a { display: block; color: inherit; height: 100%; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.cards > li > a:hover { text-decoration: none; border-color: var(--accent); }
+.cards h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.cards .sub { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+.cards .hd { font-size: 15px; font-weight: 600; margin: 0 0 10px; line-height: 1.35; }
+.cards .mood { display: flex; align-items: baseline; gap: 8px; margin: 0 0 8px; }
+.cards .mood b { font-size: 20px; letter-spacing: -.01em; }
+.cards .mood span { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.cards .dist { margin: 10px 0 8px; }
+.cards .legend { grid-template-columns: repeat(4, auto); justify-content: start; gap: 4px 14px; font-size: 12px; }
+.cards .legend .n { margin-left: 4px; }
+.cards .more { color: var(--accent-ink); font-size: 13px; font-weight: 600; margin: 12px 0 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <ul class="nav" aria-label="Communities">
+  <li><a href="../">Overview</a></li>
+  
+  <li><a href="../nexa_china/"><span aria-hidden="true">🇨🇳</span> Chinese</a></li>
+  
+  <li><a href="../nexa_netherlands/"><span aria-hidden="true">🇳🇱</span> Dutch</a></li>
+  
+  <li><a href="../nexa_germany/"><span aria-hidden="true">🇩🇪</span> German</a></li>
+  
+  <li><a href="../nexa_india/"><span aria-hidden="true">🇮🇳</span> Hindi</a></li>
+  
+  <li><a href="../nexa_korean/"><span aria-hidden="true">🇰🇷</span> Korean</a></li>
+  
+  <li><a href="../nexa_nor/"><span aria-hidden="true">🇳🇴</span> Norwegian</a></li>
+  
+  <li><a href="../nexa_philippines/"><span aria-hidden="true">🇵🇭</span> Filipino</a></li>
+  
+  <li><a href="../nexa_poland/" aria-current="page"><span aria-hidden="true">🇵🇱</span> Polish</a></li>
+  
+  <li><a href="../nexa_ru/"><span aria-hidden="true">🇷🇺</span> Russian</a></li>
+  
+  <li><a href="../nexa_spanish/"><span aria-hidden="true">🇪🇸</span> Spanish</a></li>
+  
+  <li><a href="../nexatr/"><span aria-hidden="true">🇹🇷</span> Turkish</a></li>
+  
+  <li><a href="../nexa_viet/"><span aria-hidden="true">🇻🇳</span> Vietnamese</a></li>
+  
+</ul>
+  <p class="eyebrow">Telegram · Polish → English mirror</p>
+  <h1>Nexa Polska</h1>
+  <p class="meta">
+    <span><a href="https://t.me/nexa_poland" rel="noopener">t.me/nexa_poland</a></span>
+    <span>63 members</span>
+    <span>Last 100 messages · <time datetime="2026-09-10T16:53:12+00:00">2026-09-10 16:53 UTC</time> → <time datetime="2026-09-11T18:57:11+00:00">2026-09-11 18:57 UTC</time></span>
+    <span>Updated <time datetime="2026-09-12T16:34:50.506182+00:00">2026-09-12 16:34 UTC</time></span>
+  </p>
+</header>
+
+<section id="summary">
+  <h2>Summary</h2>
+  <p class="headline">Off-topic rants about surveillance and the EU give way to AI-driven project audits of Firo, Xelis and Nexa</p>
+  <p class="lede">The window opens with AVERON&#39;s extended metaphor comparing Kaspa (a fast armoured train) with Nexa (a ten-storey hypermarket on wheels that does everything on L1), and a warning not to disclose holdings publicly because of scammers posing as &#39;official support&#39;. That slides into a long off-topic political thread between AVERON and Kaczi Kaczi about MiCA, Monero, Dutch unrealised-gains tax, surveillance, cash limits and the EU&#39;s decline versus China and Vietnam, until AVERON himself calls the group back to Nexa. The next morning _DKD, Kaczi Kaczi and mac Mim note that marketing is picking up and that NEXA is holding up unusually well against BTC&#39;s corrections, with Kaczi Kaczi sensing &#39;engines warming up&#39; before a pump and mac Mim planning to reduce his group activity if it moons, due to scammers. The final and longest section is technical: prompted by Atol asking how AVERON produces his technical posts, AVERON shares his full AI audit prompt template and then posts two enormous AI-generated audits — Firo (84/100, praised for real development but marked down for the August 2026 Lelantus Spark supply-integrity vulnerability) and Xelis (technological potential raised to 98/100 after Slixe confirmed confidential in-contract transactions via Pedersen commitments). AVERON closes by arguing Nexa will also be a leading L1 thanks to its throughput.</p>
+</section>
+
+<section id="analysis">
+  <div class="grid">
+    <div class="card">
+      <h2>Topics</h2>
+      <ul class="topics">
+        
+        <li>
+          <button class="topic" type="button" data-topic="0" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">AI-generated project audits (Firo, Xelis)</span>
+            <span class="n">19 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">AVERON shared his detailed audit prompt and then posted long AI analyses of Firo (score 84/100, strong dev activity but a serious Spark vulnerability that slipped past audits, weak adoption, ~$15m mcap) and Xelis (confidential smart-contract transactions, 98/100 technological potential). Kaczi Kaczi, who requested the Firo analysis, argued Firo&#39;s security still beats most of the top 100 and that Xelis&#39;s risk is its youth and anonymous team.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="1" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Surveillance, MiCA and EU decline</span>
+            <span class="n">52 msgs · <span class="chip negative" data-glyph="−">Negative</span></span>
+            <span class="s">AVERON and Kaczi Kaczi ranted at length about creeping financial surveillance, face-recognition cameras, cash limits, the Dutch unrealised-gains tax (which Kaczi Kaczi said was actually blocked), MiCA and privacy coins, and the EU&#39;s poor patent and infrastructure record versus China and Vietnam; Grzegorz added that comfortable consumers won&#39;t protest.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="2" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">NEXA price strength and marketing</span>
+            <span class="n">9 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">_DKD said Nexa&#39;s marketing is slowly ramping up; Kaczi Kaczi and mac Mim agreed NEXA is holding up notably well despite BTC corrections, with Kaczi Kaczi feeling a big pump may be imminent and mac Mim saying dips aren&#39;t being allowed.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="3" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Nexa vs Kaspa architecture</span>
+            <span class="n">3 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">AVERON explained the difference with an analogy — Kaspa/Silverscript as a fast armoured train that offloads complex logic to L2, Nexa as a monolithic L1 &#39;hypermarket on wheels&#39; doing everything on-chain — and later repeated that Nexa&#39;s huge throughput will make it a major L1. KLl TRER agreed it&#39;s speed versus scale.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="4" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Scammers and opsec in the group</span>
+            <span class="n">11 msgs · <span class="chip mixed" data-glyph="±">Mixed</span></span>
+            <span class="s">AVERON warned members not to disclose how much they hold and mocked the fake &#39;official support&#39; helpers who appear whenever someone mentions a wallet problem; mac Mim said he&#39;d limit group activity if Nexa pumps, and Kaczi Kaczi advised restricting Telegram DMs in the advanced settings.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="5" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Cashing out and Monero mixing</span>
+            <span class="n">4 msgs · <span class="chip mixed" data-glyph="±">Mixed</span></span>
+            <span class="s">AVERON warned about accepting USDT from strangers that may be criminal proceeds and getting frozen at fiat off-ramps; Kaczi Kaczi half-jokingly proposed mixing via Monero to a no-KYC exchange, and AVERON countered that Monero exposure may itself become a fiat ban in a couple of years.</span>
+          </button>
+        </li>
+        
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Mood</h2>
+      <p class="mood-label">Opinionated and bullish</p>
+      <p class="mood-score">Mood score +0.25 on a −1 … +1 scale</p>
+      <div class="meter" role="img" aria-label="Mood score +0.25 of 1"><i style="left: 62.5%"></i></div>
+      <div class="meter-ticks"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
+      <p class="mood-desc">The tone is confident and conversational, with two long-standing regulars (AVERON and Kaczi Kaczi) dominating. The middle of the window is bleak and angry — surveillance, taxes, EU stagnation and a general contempt for politics and social-media culture — before shifting to genuine optimism the next morning about NEXA&#39;s relative strength and the technical potential of Xelis and Firo. Nobody argues seriously; disagreements (e.g. whether the Dutch tax passed) are settled politely. The dominant drivers are distrust of institutions and enthusiasm for privacy/throughput tech.</p>
+      <h2>Sentiment by message</h2>
+      <div class="dist" role="img" aria-label="Positive 23, Mixed 11, Neutral 39, Negative 27">
+        <b class="positive" style="flex: 23" title="Positive: 23"></b><b class="mixed" style="flex: 11" title="Mixed: 11"></b><b class="neutral" style="flex: 39" title="Neutral: 39"></b><b class="negative" style="flex: 27" title="Negative: 27"></b>
+      </div>
+      <ul class="legend">
+        
+        <li><span class="dot positive"></span>Positive<span class="n">23 · 23.0%</span></li>
+        
+        <li><span class="dot mixed"></span>Mixed<span class="n">11 · 11.0%</span></li>
+        
+        <li><span class="dot neutral"></span>Neutral<span class="n">39 · 39.0%</span></li>
+        
+        <li><span class="dot negative"></span>Negative<span class="n">27 · 27.0%</span></li>
+        
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section id="highlights">
+  <h2>Worth reading first</h2>
+  <ul class="hl">
+    
+    <li><a href="#m-4179">
+      <p class="q">“Imagine a highway and shipping goods:
+ * Kaspa with Silverscript is a TGV / Maglev train with armoured safes.
+   It runs at an insane speed of dozens of runs per second. In every carriage you have special safes (Silverscript) that you can program: &#34;open in 2 days&#34;, &#34;spend only 100 zł per day&#34; or &#34;require the signature of the CEO and the accountant&#34;. That train has no factory or commodity exchange on board, because that would slow it down. If you want complicated trading, the train instantly delivers the cargo to an external logistics centre (L2).
+ * Nexa is a gigantic, 10-storey hypermarket on wheels (the Monolith L1).
+   It moves at a traditional pace (sped up by the Tailstorm &#34;jet engine&#34;), but inside it holds absolutely everything. On the ground floor you have currency exchanges, on the next floor lending machines, and in the aisles factories producing their own tokens (Wise Contracts / NexScript). All the complicated operations and exchanges happen directly inside that one vehicle, with no need to step outside.”</p>
+      <p class="w"><b>AVERON</b> · AVERON&#39;s vivid train-vs-hypermarket analogy is the clearest explanation of Nexa&#39;s monolithic L1 positioning versus Kaspa in the whole window.</p>
+    </a></li>
+    
+    <li><a href="#m-4181">
+      <p class="q">“Better not to say on forums how much of a given asset you hold. There can be scammers sitting here too. Besides, the other thing is that if Nexa does x100 or x500 then 90% of the people on this forum&#39;s list could be millionaires if they don&#39;t sell too early. On average once a week somebody writes to me from the USA, India, Nigeria, the Netherlands, the UK, the Caymans, etc.”</p>
+      <p class="w"><b>AVERON</b> · Opsec warning plus the group&#39;s core thesis stated plainly: if Nexa does x100–x500, most members could be millionaires if they don&#39;t sell early.</p>
+    </a></li>
+    
+    <li><a href="#m-4268">
+      <p class="q">“Yes. I analysed Firo in terms of exactly what you asked about: the team&#39;s real work, repository activity, code quality, security, roadmap, development pace, tokenomics and project risk. I especially take into account the events of 2026, including the fresh Spark vulnerability.
+
+Firo — audit as of 11 September 2026
+
+Verdict in brief
+
+Firo is not a ghost project. Quite the opposite — the development is real and technically advanced.
+
+At the same time, this year&#39;s vulnerability in Lelantus Spark is a serious warning: two earlier cryptographic audits and a code audit failed to detect a bug that potentially allowed extra FIRO to be generated. The team reacted quickly and carried out a hard fork with a fix. 
+
+My current assessment:
+
+Area Score
+
+Development activity 93/100
+Number/activity of developers 88/100
+Architecture quality 87/100
+Implementation quality 84/100
+Security 72/100
+Response to critical bugs 96/100
+Roadmap 82/100
+Roadmap delivery 78/100
+Technology 93/100
+Tokenomics 80/100
+Ecosystem/adoption 60/100
+Transparency 90/100
+
+
+Total: 84/100
+
+To me this is a serious technological project with real development, but not yet a project with ecosystem strength comparable to the biggest blockchains.
+
+
+---
+
+1. Is anyone really working on Firo?
+
+Yes — and very clearly so.
+
+The main repository firoorg/firo currently has about 792 forks, 369 stars, 18 open issues and 23 open PRs; the repository was also updated in 2026. 
+
+More importantly, the activity isn&#39;t limited to simple documentation changes.
+
+In 2026 there appeared, among others:
+
+changes in Spark,
+
+optimisations of ZK proof verification,
+
+wallet changes,
+
+RPC changes,
+
+P2P/Tor fixes,
+
+consensus fixes,
+
+Spark Names,
+
+Spark Coinbase,
+
+removal of old Lelantus,
+
+changes concerning LLMQ,
+
+security fixes,
+
+fixes related to hard forks.
+
+
+Among the PRs we see e.g. a big &#34;Lelantus strip&#34; PR, covering 500–999 changes, as well as work on Spark Coinbase and other wallet elements. 
+
+This is important, because it shows that the team isn&#39;t just maintaining the existing blockchain, but rebuilding its components.
+
+
+---
+
+2. The most important evidence of activity: the last few months
+
+Here Firo does very well.
+
+In 2026 successive versions were released:
+
+v0.14.15.x
+
+v0.14.16.x
+
+v0.14.17.x
+
+v0.14.18.0
+
+
+And these were not merely &#34;maintenance releases&#34;.
+
+For example, v0.14.16 introduced an expansion of Spark Names, and subsequent versions improved Spark, the wallet and the infrastructure. 
+
+As for v0.14.18.0, that&#39;s already a serious hard fork.
+
+
+---
+
+3. And here comes a very important problem — Spark
+
+This is Firo&#39;s biggest minus in my assessment.
+
+In August 2026 a vulnerability was discovered in Spark.
+
+It wasn&#39;t about stealing users&#39; keys.
+
+The problem was far more fundamental:
+
+&gt; under certain conditions it was possible to create forged Spark coins.
+
+
+
+So potentially this was a supply-integrity problem.
+
+The team received the report on 1 August. It then confirmed the vulnerability and introduced a restriction to single-input transactions. 
+
+According to Firo, the researcher generated about 200 FIRO on mainnet in a controlled experiment. The team found no evidence of wider inflation. 
+
+And now the most important thing:
+
+The bug was not a simple programming bug.
+
+Firo itself admitted that the problem lay in the very cryptographic construction described in the paper and was overlooked both during the cryptographic audits and during the code audit. 
+
+That&#39;s very significant.
+
+
+---
+
+4. Does that disqualify Firo?
+
+No. But it lowers the security score.
+
+Why?
+
+Because on the one hand:
+
+Spark had a cryptographic audit,
+
+it had an implementation audit,
+
+it was developed by cryptography specialists,
+
+it had been running on mainnet since 2024,
+
+and despite that the bug remained undetected. 
+
+
+That&#39;s a serious minus.
+
+On the other hand the team&#39;s reaction was very good.
+
+They didn&#39;t try to sweep the problem under the rug.
+
+First:
+
+multi-input Spark was disabled,
+then the network was secured,
+then a permanent fix was prepared,
+an additional review was carried out,
+and then a hard fork was performed.
+
+v0.14.18.0 restored full multi-input Spark functionality and at the same time introduced additional safeguards concerning, among others, transaction validation, proofs, duplicate mints, reorganisations and invalid Spark data. 
+
+This is exactly the behaviour I would expect from a mature team.
+
+
+---
+
+5. Interestingly — Firo had already had audits
+
+This isn&#39;t a project that anonymously dumped code on GitHub.
+
+Lelantus Spark went through:
+
+a HashCloak cryptographic audit,
+
+a second cryptographic audit,
+
+a code/implementation audit.
+
+
+The code audit itself was completed in December 2022 and according to the report no critical/high severity problems were found at the time. 
+
+That shows both the maturity of the process and its limitations.
+
+That&#39;s why I wouldn&#39;t give Firo 95–100/100 for security.
+
+
+---
+
+6. Code quality
+
+Here Firo looks really good.
+
+The repository is a large C++ project and has:
+
+unit tests,
+
+RPC integration tests,
+
+debug/release builds,
+
+tests for Linux,
+
+Windows,
+
+macOS,
+
+CI/CD,
+
+reproducible builds via Guix,
+
+dependency caching,
+
+an extensive module structure. 
+
+
+The architecture includes, among others:
+
+Spark
+
+libspark
+
+spark
+
+
+Legacy privacy
+
+liblelantus
+
+
+privacy networking
+
+Dandelion++
+
+
+consensus
+
+FiroPoW
+
+LLMQ ChainLocks
+
+
+wallet
+
+an extensive wallet subsystem
+
+
+This doesn&#39;t look like a project thrown together on the fly.
+
+Code score: 84/100
+
+The reduction stems above all from the fact that a fundamental bug occurred in precisely the most critical part — Spark.
+
+
+---
+
+7. A very interesting thing: removing old Lelantus
+
+In 2026 we see the PR:
+
+&#34;Lelantus strip&#34;
+
+marked as XL, with a scope of 500–999 changes. 
+
+In my opinion this is a positive signal.
+
+The team isn&#39;t trying to maintain all historical mechanisms indefinitely.
+
+It&#39;s moving towards:
+
+Spark → new architecture → less legacy code.
+
+Over time that should improve the project&#39;s maintainability.
+
+
+---
+
+8. Roadmap
+
+The official roadmap divides development into:
+
+Near-term
+
+Spark Names
+
+Human-readable addresses tied to Spark.
+
+Spark Coinbase
+
+The ability to receive miner and masternode rewards directly to private Spark addresses.
+
+View Key Tooling
+
+Mechanisms enabling selective disclosure / watch-only. 
+
+
+---
+
+Mid-term
+
+Spark Assets
+
+Private tokens using Spark.
+
+In my opinion this is one of the most important points of the whole roadmap.
+
+Firo may stop being just:
+
+&gt; &#34;a privacy coin&#34;
+
+
+
+and become:
+
+&gt; privacy infrastructure for its own assets.
+
+
+
+The roadmap currently marks this element as Design Complete. 
+
+
+---
+
+Spark Swap
+
+Private atomic swaps between Spark assets/FIRO.
+
+Status:
+
+Research.
+
+
+---
+
+Curve Trees
+
+Technologically this may be one of the most important future upgrades.
+
+Curve Trees could potentially enable much larger anonymity sets and more efficient proofs.
+
+Firo describes the possibility of scaling the set to billions of elements and batch verification. 
+
+This isn&#39;t a cosmetic feature.
+
+This could be a fundamental upgrade of Spark technology.
+
+
+---
+
+9. Long term
+
+Firo plans:
+
+quantum-resistant Spark,
+
+better light wallet infrastructure,
+
+a change of the consensus model after reaching tail emission,
+
+decentralised governance. 
+
+
+And here an interesting thing appears.
+
+Firo is already thinking about what will happen after the main emission ends.
+
+That&#39;s a sign of the project&#39;s economic maturity.
+
+
+---
+
+10. How much of the roadmap has actually been delivered?
+
+My assessment won&#39;t consist of counting every bullet point as 1 point, because that would be misleading.
+
+I&#39;d divide the roadmap by importance.
+
+Foundation:
+
+Lelantus Spark — completed and working
+
+That&#39;s the biggest element of the whole earlier roadmap.
+
+Spark Names
+
+~70–80%
+
+The basic functionality works, and in 2026 the ability to extend/transfer names without losing unused time was added. 
+
+Spark Coinbase
+
+~50–60%
+
+The code is being developed, but the functionality isn&#39;t yet a final element of the whole system.
+
+View Keys
+
+~20–30%
+
+Still rather planned/in development.
+
+Spark Assets
+
+~60–70%
+
+The technology and design are well advanced, but full practical deployment still lies ahead of them.
+
+Spark Swap
+
+~10–20%
+
+Research.
+
+Curve Trees
+
+~30–40%”</p>
+      <p class="w"><b>AVERON</b> · The full AI audit of Firo — including the August 2026 Spark supply-integrity vulnerability that passed two crypto audits — is the most substantive technical content here.</p>
+    </a></li>
+    
+    <li><a href="#m-4276">
+      <p class="q">“A few days ago I asked Slixe a question and he replied: that they&#39;ll now be working on confidential transactions carried out within contracts. It will be possible to make private deposits and withdrawals using the Pedersen commitment mechanism.....
+
+And this could be one of Xelis&#39;s key steps.
+
+What Xelis already has today
+
+Xelis is no longer an ordinary privacy coin. It&#39;s an L1 with:
+
+BlockDAG + Homomorphic Encryption + ZK proofs + Smart Contracts + Confidential Assets.
+
+Amounts and balances are encrypted, and the Twisted ElGamal mechanism uses Pedersen commitments directly in the construction of the encryption and the proofs. 
+
+At the same time a smart contract can already accept assets as a deposit and perform operations on them. The documentation shows e.g. a vault-type contract into which a user deposits XEL, and the contract books their balance. 
+
+But there&#39;s a difference between &#34;a smart contract can manage an asset&#34; and &#34;a smart contract can execute full confidential financial logic&#34;.
+
+And that&#39;s exactly where Slixe&#39;s answer is heading.
+
+
+---
+
+What will &#34;confidential transactions inside contracts&#34; change?
+
+Imagine the current type of DeFi application.
+
+You have:
+
+Alice → deposits 100 XEL → smart contract → performs an operation → Alice withdraws 110 XEL.
+
+In the classic model the contract has to operate to some extent on public values.
+
+After confidential operations are introduced, the contract can potentially work on:
+
+encrypted amount
+
+instead of:
+
+public amount.
+
+So the contract doesn&#39;t have to know:
+
+&gt; &#34;Alice deposited exactly 100 XEL&#34;.
+
+
+
+It can only verify cryptographically that:
+
+&gt; &#34;Alice deposited a correct amount and the operation satisfies the contract&#39;s conditions&#34;.
+
+
+
+That&#39;s a fundamental difference.
+
+
+---
+
+And Pedersen commitments are very important here
+
+A Pedersen commitment lets you commit to a value without revealing it.
+
+Put simply:
+
+&gt; &#34;I have a value X, but I won&#39;t show you X. I&#39;ll show you a proof that everything checks out.&#34;
+
+
+
+Xelis already uses Pedersen commitments in its Twisted ElGamal construction. 
+
+So extending that mechanism to smart-contract execution is the logical next step.
+
+
+---
+
+And that&#39;s when it starts to get really interesting
+
+Imagine a private DEX on Xelis.
+
+A normal DEX:
+
+&gt; Alice sells 10 XEL for 50 TOKEN.
+
+
+
+A public blockchain can potentially show:
+
+10 XEL → 50 TOKEN
+
+and the operation history.
+
+In the confidential model:
+
+&gt; Alice performs a swap.
+
+
+
+But:
+
+the amount of XEL is hidden
+the amount of TOKEN is hidden
+Alice&#39;s balance is hidden
+
+At the same time the blockchain can mathematically verify that:
+
+input value = output value + fee
+
+without learning the specific values.
+
+That&#39;s already private DeFi.
+
+
+---
+
+An even more interesting example: private loans
+
+You can have a contract:
+
+Private lending
+
+Alice deposits:
+
+1000 XEL
+
+Bob borrows:
+
+700 XEL
+
+But:
+
+the loan amount can be hidden,
+
+users&#39; balances can be hidden,
+
+repayments can be hidden,
+
+the collateral can be hidden.
+
+
+The contract can still check:
+
+collateral ≥ the required minimum
+
+without revealing the exact collateral.
+
+
+---
+
+Private stablecoin
+
+And here the potential is even greater.
+
+Imagine a stablecoin:
+
+pUSD
+
+on Xelis.
+
+Its balance can be confidential.
+
+You can have:
+
+1000 pUSD
+
+but a blockchain observer doesn&#39;t have to see that you have exactly 1000.
+
+Xelis is already designing Confidential Assets as a base-layer function, not as tokens that are merely entries in smart contracts. Every such asset can have private balances and confidential transfer amounts. 
+
+
+---
+
+And now put all the elements of Xelis together
+
+And this is precisely where I start to look at Xelis completely differently than at an ordinary privacy coin.
+
+We have:
+
+1. BlockDAG
+
+Scaling and parallel processing.
+
+↓
+
+2. Homomorphic Encryption
+
+Operations on encrypted data.
+
+↓
+
+3. ZK proofs
+
+Proving correctness without revealing data.
+
+↓
+
+4. Pedersen commitments
+
+Cryptographic commitments to values.
+
+↓
+
+5. Confidential Assets
+
+Private tokens at the protocol level.
+
+↓
+
+6. XVM / Silex
+
+Smart contracts.
+
+↓
+
+7. Confidential contract transactions
+
+Contracts can perform financial operations without revealing all the values.
+
+↓
+
+Private DeFi
+
+And that&#39;s a completely different category of project.
+
+
+---
+
+Then Xelis is no longer simply a &#34;privacy coin&#34;
+
+Currently you can say:
+
+&gt; Xelis = a private L1.
+
+
+
+After this direction is fully realised:
+
+&gt; Xelis = private financial infrastructure L1.
+
+
+
+And more broadly still:
+
+&gt; a privacy-first programmable blockchain.
+
+
+
+In my opinion that&#39;s a far more interesting category.
+
+
+---
+
+And this is where Xelis starts to pull away from Firo
+
+That&#39;s exactly why I gave Xelis a higher score earlier.
+
+Firo has:
+
+Spark → private transactions → Spark Assets → potentially Spark Swap.
+
+Xelis wants to have:
+
+private transactions + confidential assets + smart contracts + confidential contract execution + BlockDAG.
+
+The difference is fundamental.
+
+Firo is developing very advanced privacy.
+
+Xelis is trying to build an entire programmable financial ecosystem with privacy as a base property.
+
+
+---
+
+There&#39;s one more thing that&#39;s very important
+
+I wouldn&#39;t overrate Slixe&#39;s answer just yet, though.
+
+It doesn&#39;t mean that Xelis already has fully working private DeFi.
+
+This is precisely an area of development.
+
+The current documentation already confirms smart contracts, confidential assets, contract deposits and withdrawals, but full confidential contract operations are something that has to be judged by the specific implementation and subsequent releases. 
+
+So I&#39;d treat Slixe&#39;s statement as:
+
+a very important piece of information about the direction of the architecture
+
+and not as:
+
+&#34;the feature is already ready on mainnet&#34;.
+
+
+---
+
+What could this ultimately enable?
+
+If the team really takes this direction to completion, on Xelis you can imagine:
+
+Private DEX
+↓
+Private stablecoins
+↓
+Private lending
+↓
+Private borrowing
+↓
+Private derivatives
+↓
+Private payments
+↓
+Private payroll
+↓
+Private DAO
+↓
+Private asset issuance
+↓
+Private RWAs
+
+And most importantly:
+
+you don&#39;t have to build a separate privacy layer on Ethereum.
+
+Privacy is a property of the L1 itself.
+
+Xelis already describes its goal as combining privacy, smart contracts and confidential assets in one network. 
+
+
+---
+
+This changes my assessment of Xelis&#39;s potential
+
+After what you showed, I wouldn&#39;t yet raise the security score or the score for the project&#39;s current state, because the feature hasn&#39;t yet been proven ready.
+
+But I would raise the technological potential score.
+
+Previously:
+
+Xelis — 97/100 technological potential
+
+Taking this direction into account:
+
+98/100
+
+Because if they manage to combine:
+
+HE + ZK + Pedersen commitments + confidential assets + smart contracts + confidential contract execution + BlockDAG
+
+then Xelis starts competing not only with Monero/Firo/Zcash, but partly also with projects like Ethereum/Solana/Sui/Aptos, just with a completely different priority:
+
+&gt; programmability + privacy.
+
+
+
+And in my opinion that&#39;s a much bigger market than the privacy coin market alone.”</p>
+      <p class="w"><b>AVERON</b> · AVERON relays a direct answer from Xelis dev Slixe on confidential in-contract transactions and builds a private-DeFi thesis around it.</p>
+    </a></li>
+    
+    <li><a href="#m-4236">
+      <p class="q">“Let&#39;s get back to Nexa. Because side topics have crept in”</p>
+      <p class="w"><b>AVERON</b> · AVERON self-polices the thread: &#39;Let&#39;s get back to Nexa. Because side topics have crept in&#39; — after an hour of political ranting.</p>
+    </a></li>
+    
+  </ul>
+</section>
+
+
+<section id="messages">
+  <h2>Messages <span class="sub">· newest first</span></h2>
+  <div class="controls">
+    <div class="filters" role="group" aria-label="Filter by sentiment">
+      <button class="fbtn" type="button" data-sent="all" aria-pressed="true">All</button>
+      <button class="fbtn" type="button" data-sent="positive" aria-pressed="false">Positive (23)</button><button class="fbtn" type="button" data-sent="mixed" aria-pressed="false">Mixed (11)</button><button class="fbtn" type="button" data-sent="neutral" aria-pressed="false">Neutral (39)</button><button class="fbtn" type="button" data-sent="negative" aria-pressed="false">Negative (27)</button>
+    </div>
+    <span class="sp"></span>
+    <label class="toggle"><input type="checkbox" id="show-zh" checked> Show original Polish</label>
+  </div>
+  <div class="active-topic" id="active-topic"><span>Topic: <b id="active-topic-name"></b></span><button type="button" id="clear-topic">Show all messages</button></div>
+  <ol class="msgs" id="msg-list" reversed>
+    
+    <li class="msg" id="m-4280" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-11T18:57:11+00:00">2026-09-11 18:57 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4280" rel="noopener" title="Open on Telegram">#4280 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Kaczi Kaczi</b>: I like the direction of thinking and looking for projects through the level of technology. And picking things out...</p>
+      
+      <p class="en">That&#39;s right</p>
+      <p class="zh" lang="pl">Zgadza sie</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4279" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-11T18:56:41+00:00">2026-09-11 18:56 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4279" rel="noopener" title="Open on Telegram">#4279 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: In my view Nexa will also be one of the main L1s. Nexa is building infrastructure with gigantic throughput and that...</p>
+      
+      <p class="en">I like the direction of thinking and looking for projects through the level of technology. And picking things out and AI-scanning isn&#39;t simple either, because to a layman this information gives nothing – whereas someone who knows their stuff will get a lot out of such an analysis, because they at least understand the aspects and the meaning of what the analysis describes.</p>
+      <p class="zh" lang="pl">Podoba mi sie kierunek myslenia i szukanie projektow poprzez poziom technologii. A i dobor i scan AI tez nie jest prosty,bo laikowi ta informacja nic nie daje - a osoba znajaca sie na rzeczy wyciagnie duzo z tej analizy bo przynajmniej rozumie aspekty i znaczenie opisu tej analizy.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4278" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-11T18:39:30+00:00">2026-09-11 18:39 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4278" rel="noopener" title="Open on Telegram">#4278 ↗</a>
+      </div>
+      
+      <p class="en">In my view Nexa will also be one of the main L1s. Nexa is building infrastructure with gigantic throughput and that will be its distinguishing feature</p>
+      <p class="zh" lang="pl">Nexa też będzie wg mnie jednym z głównych L1. Nexa buduje infrastrukturę gigantycznej przepustowości i to będzie jej wyróżnikiem</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4277" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-11T18:35:50+00:00">2026-09-11 18:35 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4277" rel="noopener" title="Open on Telegram">#4277 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Kaczi Kaczi</b>: Yes, technologically it&#39;s a gem. Adoption just has to catch up with the technology level 😉</p>
+      
+      <p class="en">Sooner or later it&#39;ll happen. And if the infrastructure is ready, interesting projects will appear. And people like privacy and don&#39;t want to be tracked, so in the future it could even be eth&#39;s successor.</p>
+      <p class="zh" lang="pl">Prędzej czy później to nastąpi. Jeśli i infrastruktura będzie gotowa to pojawia się ciekawe projekty. A ludzie lubią prywatność i nie chcą być śledzeni więc może być to w przyszłości nawet następca eth.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4276" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-11T18:24:26+00:00">2026-09-11 18:24 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4276" rel="noopener" title="Open on Telegram">#4276 ↗</a>
+      </div>
+      
+      <p class="en">A few days ago I asked Slixe a question and he replied: that they&#39;ll now be working on confidential transactions carried out within contracts. It will be possible to make private deposits and withdrawals using the Pedersen commitment mechanism.....
+
+And this could be one of Xelis&#39;s key steps.
+
+What Xelis already has today
+
+Xelis is no longer an ordinary privacy coin. It&#39;s an L1 with:
+
+BlockDAG + Homomorphic Encryption + ZK proofs + Smart Contracts + Confidential Assets.
+
+Amounts and balances are encrypted, and the Twisted ElGamal mechanism uses Pedersen commitments directly in the construction of the encryption and the proofs. 
+
+At the same time a smart contract can already accept assets as a deposit and perform operations on them. The documentation shows e.g. a vault-type contract into which a user deposits XEL, and the contract books their balance. 
+
+But there&#39;s a difference between &#34;a smart contract can manage an asset&#34; and &#34;a smart contract can execute full confidential financial logic&#34;.
+
+And that&#39;s exactly where Slixe&#39;s answer is heading.
+
+
+---
+
+What will &#34;confidential transactions inside contracts&#34; change?
+
+Imagine the current type of DeFi application.
+
+You have:
+
+Alice → deposits 100 XEL → smart contract → performs an operation → Alice withdraws 110 XEL.
+
+In the classic model the contract has to operate to some extent on public values.
+
+After confidential operations are introduced, the contract can potentially work on:
+
+encrypted amount
+
+instead of:
+
+public amount.
+
+So the contract doesn&#39;t have to know:
+
+&gt; &#34;Alice deposited exactly 100 XEL&#34;.
+
+
+
+It can only verify cryptographically that:
+
+&gt; &#34;Alice deposited a correct amount and the operation satisfies the contract&#39;s conditions&#34;.
+
+
+
+That&#39;s a fundamental difference.
+
+
+---
+
+And Pedersen commitments are very important here
+
+A Pedersen commitment lets you commit to a value without revealing it.
+
+Put simply:
+
+&gt; &#34;I have a value X, but I won&#39;t show you X. I&#39;ll show you a proof that everything checks out.&#34;
+
+
+
+Xelis already uses Pedersen commitments in its Twisted ElGamal construction. 
+
+So extending that mechanism to smart-contract execution is the logical next step.
+
+
+---
+
+And that&#39;s when it starts to get really interesting
+
+Imagine a private DEX on Xelis.
+
+A normal DEX:
+
+&gt; Alice sells 10 XEL for 50 TOKEN.
+
+
+
+A public blockchain can potentially show:
+
+10 XEL → 50 TOKEN
+
+and the operation history.
+
+In the confidential model:
+
+&gt; Alice performs a swap.
+
+
+
+But:
+
+the amount of XEL is hidden
+the amount of TOKEN is hidden
+Alice&#39;s balance is hidden
+
+At the same time the blockchain can mathematically verify that:
+
+input value = output value + fee
+
+without learning the specific values.
+
+That&#39;s already private DeFi.
+
+
+---
+
+An even more interesting example: private loans
+
+You can have a contract:
+
+Private lending
+
+Alice deposits:
+
+1000 XEL
+
+Bob borrows:
+
+700 XEL
+
+But:
+
+the loan amount can be hidden,
+
+users&#39; balances can be hidden,
+
+repayments can be hidden,
+
+the collateral can be hidden.
+
+
+The contract can still check:
+
+collateral ≥ the required minimum
+
+without revealing the exact collateral.
+
+
+---
+
+Private stablecoin
+
+And here the potential is even greater.
+
+Imagine a stablecoin:
+
+pUSD
+
+on Xelis.
+
+Its balance can be confidential.
+
+You can have:
+
+1000 pUSD
+
+but a blockchain observer doesn&#39;t have to see that you have exactly 1000.
+
+Xelis is already designing Confidential Assets as a base-layer function, not as tokens that are merely entries in smart contracts. Every such asset can have private balances and confidential transfer amounts. 
+
+
+---
+
+And now put all the elements of Xelis together
+
+And this is precisely where I start to look at Xelis completely differently than at an ordinary privacy coin.
+
+We have:
+
+1. BlockDAG
+
+Scaling and parallel processing.
+
+↓
+
+2. Homomorphic Encryption
+
+Operations on encrypted data.
+
+↓
+
+3. ZK proofs
+
+Proving correctness without revealing data.
+
+↓
+
+4. Pedersen commitments
+
+Cryptographic commitments to values.
+
+↓
+
+5. Confidential Assets
+
+Private tokens at the protocol level.
+
+↓
+
+6. XVM / Silex
+
+Smart contracts.
+
+↓
+
+7. Confidential contract transactions
+
+Contracts can perform financial operations without revealing all the values.
+
+↓
+
+Private DeFi
+
+And that&#39;s a completely different category of project.
+
+
+---
+
+Then Xelis is no longer simply a &#34;privacy coin&#34;
+
+Currently you can say:
+
+&gt; Xelis = a private L1.
+
+
+
+After this direction is fully realised:
+
+&gt; Xelis = private financial infrastructure L1.
+
+
+
+And more broadly still:
+
+&gt; a privacy-first programmable blockchain.
+
+
+
+In my opinion that&#39;s a far more interesting category.
+
+
+---
+
+And this is where Xelis starts to pull away from Firo
+
+That&#39;s exactly why I gave Xelis a higher score earlier.
+
+Firo has:
+
+Spark → private transactions → Spark Assets → potentially Spark Swap.
+
+Xelis wants to have:
+
+private transactions + confidential assets + smart contracts + confidential contract execution + BlockDAG.
+
+The difference is fundamental.
+
+Firo is developing very advanced privacy.
+
+Xelis is trying to build an entire programmable financial ecosystem with privacy as a base property.
+
+
+---
+
+There&#39;s one more thing that&#39;s very important
+
+I wouldn&#39;t overrate Slixe&#39;s answer just yet, though.
+
+It doesn&#39;t mean that Xelis already has fully working private DeFi.
+
+This is precisely an area of development.
+
+The current documentation already confirms smart contracts, confidential assets, contract deposits and withdrawals, but full confidential contract operations are something that has to be judged by the specific implementation and subsequent releases. 
+
+So I&#39;d treat Slixe&#39;s statement as:
+
+a very important piece of information about the direction of the architecture
+
+and not as:
+
+&#34;the feature is already ready on mainnet&#34;.
+
+
+---
+
+What could this ultimately enable?
+
+If the team really takes this direction to completion, on Xelis you can imagine:
+
+Private DEX
+↓
+Private stablecoins
+↓
+Private lending
+↓
+Private borrowing
+↓
+Private derivatives
+↓
+Private payments
+↓
+Private payroll
+↓
+Private DAO
+↓
+Private asset issuance
+↓
+Private RWAs
+
+And most importantly:
+
+you don&#39;t have to build a separate privacy layer on Ethereum.
+
+Privacy is a property of the L1 itself.
+
+Xelis already describes its goal as combining privacy, smart contracts and confidential assets in one network. 
+
+
+---
+
+This changes my assessment of Xelis&#39;s potential
+
+After what you showed, I wouldn&#39;t yet raise the security score or the score for the project&#39;s current state, because the feature hasn&#39;t yet been proven ready.
+
+But I would raise the technological potential score.
+
+Previously:
+
+Xelis — 97/100 technological potential
+
+Taking this direction into account:
+
+98/100
+
+Because if they manage to combine:
+
+HE + ZK + Pedersen commitments + confidential assets + smart contracts + confidential contract execution + BlockDAG
+
+then Xelis starts competing not only with Monero/Firo/Zcash, but partly also with projects like Ethereum/Solana/Sui/Aptos, just with a completely different priority:
+
+&gt; programmability + privacy.
+
+
+
+And in my opinion that&#39;s a much bigger market than the privacy coin market alone.</p>
+      <p class="zh" lang="pl">Zadałem kilka dni temu pytanie Slixe i mi odpowiedział: że będą teraz pracować nad poufnymi transakcjami realizowanymi w ramach umów. Będzie można dokonywać prywatnych wpłat i wypłat wykorzystując mechanizm zobowiązań Pedersena..... 
+
+I to może być jeden z kluczowych kroków Xelis.
+
+Co Xelis ma już dzisiaj
+
+Xelis już nie jest zwykłym privacy coinem. To L1 z:
+
+BlockDAG + Homomorphic Encryption + ZK proofs + Smart Contracts + Confidential Assets.
+
+Kwoty i salda są szyfrowane, a mechanizm Twisted ElGamal wykorzystuje Pedersen commitments bezpośrednio w konstrukcji szyfrowania i proofów. 
+
+Jednocześnie smart contract może już przyjmować aktywa jako depozyt i wykonywać na nich operacje. Dokumentacja pokazuje np. kontrakt typu vault, do którego użytkownik wpłaca XEL, a kontrakt księguje jego saldo. 
+
+Ale jest różnica między „smart contract może zarządzać aktywem” a „smart contract może wykonywać pełną poufną logikę finansową”.
+
+I właśnie tutaj zmierza odpowiedź Slixe.
+
+
+---
+
+Co zmieni „confidential transactions inside contracts”?
+
+Wyobraź sobie obecny typ aplikacji DeFi.
+
+Masz:
+
+Alice → wpłaca 100 XEL → smart contract → wykonuje operację → Alice wypłaca 110 XEL.
+
+W klasycznym modelu kontrakt musi w pewnym zakresie operować na jawnych wartościach.
+
+Po wprowadzeniu poufnych operacji kontrakt może potencjalnie pracować na:
+
+encrypted amount
+
+zamiast:
+
+public amount.
+
+Czyli kontrakt nie musi wiedzieć:
+
+&gt; „Alice wpłaciła dokładnie 100 XEL”.
+
+
+
+Może jedynie zweryfikować kryptograficznie, że:
+
+&gt; „Alice wpłaciła poprawną kwotę i operacja spełnia warunki kontraktu”.
+
+
+
+To jest fundamentalna różnica.
+
+
+---
+
+A Pedersen commitments są tutaj bardzo ważne
+
+Pedersen commitment pozwala zobowiązać się do wartości bez ujawniania jej.
+
+Upraszczając:
+
+&gt; „Mam wartość X, ale nie pokażę ci X. Pokażę ci dowód, że wszystko się zgadza.”
+
+
+
+Xelis już wykorzystuje Pedersen commitments w swojej konstrukcji Twisted ElGamal. 
+
+Dlatego rozwinięcie tego mechanizmu do smart-contract execution jest logicznym kolejnym krokiem.
+
+
+---
+
+I wtedy zaczyna się robić naprawdę ciekawie
+
+Wyobraź sobie prywatny DEX na Xelis.
+
+Normalny DEX:
+
+&gt; Alice sprzedaje 10 XEL za 50 TOKEN.
+
+
+
+Publiczny blockchain może potencjalnie pokazywać:
+
+10 XEL → 50 TOKEN
+
+oraz historię operacji.
+
+W modelu confidential:
+
+&gt; Alice wykonuje swap.
+
+
+
+Ale:
+
+ilość XEL jest ukryta
+ilość TOKEN jest ukryta
+saldo Alice jest ukryte
+
+Jednocześnie blockchain może matematycznie zweryfikować, że:
+
+wartość wejściowa = wartość wyjściowa + fee
+
+bez poznania konkretnych wartości.
+
+To jest już private DeFi.
+
+
+---
+
+Jeszcze ciekawszy przykład: prywatne pożyczki
+
+Możesz mieć kontrakt:
+
+Private lending
+
+Alice wpłaca:
+
+1000 XEL
+
+Bob pożycza:
+
+700 XEL
+
+Ale:
+
+kwota pożyczki może być ukryta,
+
+saldo użytkowników może być ukryte,
+
+spłaty mogą być ukryte,
+
+collateral może być ukryty.
+
+
+Kontrakt nadal może sprawdzać:
+
+collateral ≥ wymagane minimum
+
+bez ujawniania dokładnego collateral.
+
+
+---
+
+Private stablecoin
+
+I tutaj potencjał jest jeszcze większy.
+
+Wyobraź sobie stablecoin:
+
+pUSD
+
+na Xelis.
+
+Jego saldo może być poufne.
+
+Możesz mieć:
+
+1000 pUSD
+
+ale obserwator blockchaina nie musi widzieć, że masz dokładnie 1000.
+
+Xelis już projektuje Confidential Assets jako funkcję base layer, a nie tokeny będące wyłącznie zapisami w smart contractach. Każdy taki asset może mieć prywatne salda i poufne kwoty transferów. 
+
+
+---
+
+A teraz połącz wszystkie elementy Xelis
+
+I tutaj właśnie zaczynam patrzeć na Xelis zupełnie inaczej niż na zwykłego privacy coina.
+
+Mamy:
+
+1. BlockDAG
+
+Skalowanie i równoległe przetwarzanie.
+
+↓
+
+2. Homomorphic Encryption
+
+Operacje na zaszyfrowanych danych.
+
+↓
+
+3. ZK proofs
+
+Udowadnianie poprawności bez ujawniania danych.
+
+↓
+
+4. Pedersen commitments
+
+Kryptograficzne zobowiązania do wartości.
+
+↓
+
+5. Confidential Assets
+
+Prywatne tokeny na poziomie protokołu.
+
+↓
+
+6. XVM / Silex
+
+Smart contracts.
+
+↓
+
+7. Confidential contract transactions
+
+Kontrakty mogą wykonywać operacje finansowe bez ujawniania wszystkich wartości.
+
+↓
+
+Private DeFi
+
+I to jest zupełnie inna kategoria projektu.
+
+
+---
+
+Wtedy Xelis nie jest już po prostu „privacy coinem”
+
+Obecnie można powiedzieć:
+
+&gt; Xelis = prywatny L1.
+
+
+
+Po pełnej realizacji tego kierunku:
+
+&gt; Xelis = prywatna infrastruktura finansowa L1.
+
+
+
+A jeszcze szerzej:
+
+&gt; privacy-first programmable blockchain.
+
+
+
+To jest moim zdaniem dużo bardziej interesująca kategoria.
+
+
+---
+
+I tutaj Xelis zaczyna odjeżdżać Firo
+
+To jest dokładnie powód, dla którego wcześniej dałem Xelis wyższą ocenę.
+
+Firo ma:
+
+Spark → private transactions → Spark Assets → potencjalnie Spark Swap.
+
+Xelis chce mieć:
+
+private transactions + confidential assets + smart contracts + confidential contract execution + BlockDAG.
+
+Różnica jest zasadnicza.
+
+Firo rozwija bardzo zaawansowaną prywatność.
+
+Xelis próbuje zrobić cały programowalny ekosystem finansowy z prywatnością jako właściwością bazową.
+
+
+---
+
+Jest jeszcze jedna rzecz, która jest bardzo ważna
+
+Nie przeceniałbym jednak jeszcze tej odpowiedzi Slixe.
+
+To nie oznacza, że Xelis już posiada w pełni działające private DeFi.
+
+To jest właśnie obszar developmentu.
+
+Obecna dokumentacja potwierdza już smart contracts, confidential assets, depozyty i wypłaty kontraktowe, ale pełne poufne operacje kontraktowe są czymś, co trzeba oceniać według konkretnej implementacji i kolejnych release&#39;ów. 
+
+Dlatego traktowałbym wypowiedź Slixe jako:
+
+bardzo ważną informację o kierunku architektury
+
+a nie:
+
+„funkcja jest już gotowa na mainnecie”.
+
+
+---
+
+Co to może umożliwić docelowo?
+
+Jeżeli zespół rzeczywiście doprowadzi ten kierunek do końca, na Xelis można sobie wyobrazić:
+
+Private DEX
+↓
+Private stablecoins
+↓
+Private lending
+↓
+Private borrowing
+↓
+Private derivatives
+↓
+Private payments
+↓
+Private payroll
+↓
+Private DAO
+↓
+Private asset issuance
+↓
+Private RWAs
+
+I najważniejsze:
+
+nie musisz budować osobnego privacy layer na Ethereum.
+
+Prywatność jest właściwością samego L1.
+
+Xelis już teraz opisuje swój cel jako połączenie prywatności, smart contracts i confidential assets w jednej sieci. 
+
+
+---
+
+To zmienia moją ocenę potencjału Xelis
+
+Po tym, co pokazałeś, nie podniósłbym jeszcze oceny bezpieczeństwa ani obecnego stanu projektu, ponieważ funkcja nie jest jeszcze w pełni dowiedziona jako gotowa.
+
+Ale podniósłbym ocenę potencjału technologicznego.
+
+Wcześniej:
+
+Xelis — 97/100 potencjału technologicznego
+
+Po uwzględnieniu tego kierunku:
+
+98/100
+
+Bo jeśli uda im się połączyć:
+
+HE + ZK + Pedersen commitments + confidential assets + smart contracts + confidential contract execution + BlockDAG
+
+to Xelis zaczyna konkurować nie tylko z Monero/Firo/Zcash, ale częściowo również z projektami typu Ethereum/Solana/Sui/Aptos, tyle że z zupełnie innym priorytetem:
+
+&gt; programowalność + prywatność.
+
+
+
+I to jest moim zdaniem znacznie większy rynek niż sam rynek privacy coins.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4275" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-11T18:11:44+00:00">2026-09-11 18:11 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4275" rel="noopener" title="Open on Telegram">#4275 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: That&#39;s why it&#39;s still so cheap given such an enormous premise for the project. Practically most projects aim to...</p>
+      
+      <p class="en">Yes, technologically it&#39;s a gem. Adoption just has to catch up with the technology level 😉</p>
+      <p class="zh" lang="pl">Tak,technologicznie jest to perelka. Tylka adopcja musi dogonic poziom technologiczny😉</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4274" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-11T18:07:36+00:00">2026-09-11 18:07 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4274" rel="noopener" title="Open on Telegram">#4274 ↗</a>
+      </div>
+      
+      <p class="en">That&#39;s why it&#39;s still so cheap given such an enormous premise for the project. Practically most projects aim to solve the trilemma, i.e. security, scalability and decentralisation. And Xelis raises the bar to a quadrilemma by adding privacy.</p>
+      <p class="zh" lang="pl">Dlatego jest jeszcze tak tani przy tak ogromnym założeniu projektu. Praktycznie większość projektów dąży do rozwiązania trillematu tj bezpieczeństwa, skalowalności i decentralizacji. A xelis podnosi poprzeczkę do quadrilemma dodając prywatność.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4273" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-11T18:03:13+00:00">2026-09-11 18:03 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4273" rel="noopener" title="Open on Telegram">#4273 ↗</a>
+      </div>
+      
+      <p class="en">Yes. Xelis has a flaw – it&#39;s young and ANONYMOUS. And that&#39;s the biggest risk, although I like XELIS and have a decent bag of it.</p>
+      <p class="zh" lang="pl">Tak. Xelis ma wade- jest mlody i ANONIMOWY.  I tu jest najwieksze ryzyko choc XELIS lubie i mam spora pake.</p>
+      <p class="note">&#34;spora paka&#34; = a sizeable stash/bag of coins.</p>
+    </li>
+    
+    <li class="msg" id="m-4271" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-11T17:58:46+00:00">2026-09-11 17:58 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.20">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4271" rel="noopener" title="Open on Telegram">#4271 ↗</a>
+      </div>
+      
+      <p class="en">It&#39;s an older coin, and a lot of older coins are being rediscovered.</p>
+      <p class="zh" lang="pl">To starszy coin,wiele starszych coinow jest odkrywanych na nowo.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4270" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-11T17:58:02+00:00">2026-09-11 17:58 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4270" rel="noopener" title="Open on Telegram">#4270 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: Yes. I analysed Firo in terms of exactly what you asked about: the team&#39;s real work, repository activity, code...</p>
+      
+      <p class="en">Well yeah, but look what a mcap that is and how trend-worthy it is – a privacy coin. And as for that security, with AI most of the top 100 wouldn&#39;t have the level of security that FIRO has.</p>
+      <p class="zh" lang="pl">No tak,ale zobacz jaki to mcap i trendowo nosny- privacy coin. A z tym security przy AI to wiekszosc top 100 nie mialoby tego poziomu bezpieczenstwa niz FIRO.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4269" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-11T17:52:13+00:00">2026-09-11 17:52 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.40">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4269" rel="noopener" title="Open on Telegram">#4269 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Kaczi Kaczi</b>: I&#39;ve got an interesting project – an old privacy coin, FIRO – analyse it and you&#39;ll be surprised</p>
+      
+      <p class="en">A lot of research work has been done, but full implementation still lies ahead of them.
+
+Quantum-resistant Spark
+
+~5–10%
+
+Research.
+
+Governance
+
+~30–40%
+
+Community governance mechanisms exist, but a fully decentralised structure is still a goal.
+
+
+---
+
+My assessment of delivery of the current roadmap:
+
+~60–65%
+
+That&#39;s a good figure.
+
+But you have to remember that the most important elements of the further roadmap are still ahead of them.
+
+
+---
+
+11. What do I like most about Firo?
+
+1. They have their own technology
+
+It isn&#39;t yet another Monero/Dash/Zcash fork with a few changes.
+
+Firo created its own technology line:
+
+Zcoin → Lelantus → Lelantus Spark.
+
+Spark is currently the foundation of the project. 
+
+2. The team has cryptographic competence
+
+Specialists from Cypher Stack and HashCloak, among others, have worked around the project.
+
+3. The code is public
+
+4. Development is regular
+
+5. They have a real roadmap
+
+6. They have their own PoW
+
+FiroPoW is a ProgPoW variant aimed at GPUs and resistance to ASIC/FPGA. 
+
+7. They have a hybrid PoW + masternodes + ChainLocks model
+
+That gives an interesting combination:
+
+decentralisation of emission + fast finality.
+
+
+---
+
+12. Firo&#39;s biggest problem
+
+In my opinion it isn&#39;t the technology.
+
+It is:
+
+adoption.
+
+Firo can have a very good privacy protocol, but without users, liquidity, wallets, exchanges and applications, technology alone won&#39;t create a large market cap.
+
+You can see that in the roadmap too.
+
+Firo is currently trying to move from:
+
+privacy coin
+
+→
+
+privacy platform
+
+via:
+
+Spark Assets + Spark Names + Spark Swap + Curve Trees.
+
+If that succeeds, the fundamental situation could change a great deal.
+
+
+---
+
+13. Tokenomics
+
+Here you have to watch out for one thing.
+
+Firo&#39;s official materials currently state:
+
+6.25 FIRO / block
+
+until 21.4 million FIRO is reached, and then:
+
+1 FIRO / block tail emission. 
+
+Breakdown of the current block reward:
+
+70% masternodes
+
+5% miners
+
+15% development
+
+10% community
+
+
+
+
+That&#39;s very interesting.
+
+15% of the emission goes directly to development.
+
+That means the project has a built-in source of development funding instead of relying solely on donations or token sales.
+
+
+---
+
+14. Tail emission
+
+After reaching 21.4 million there will be:
+
+1 FIRO / block.
+
+According to the project this initially gives about 0.98% annual inflation, which will fall over time. 
+
+That&#39;s more sensible than the model:
+
+&gt; &#34;21 million and then zero reward&#34;.
+
+
+
+The inflationary pressure remains a problem of course, but it&#39;s small.
+
+
+---
+
+15. Current market cap
+
+Here the situation is very interesting.
+
+CoinGecko shows about:
+
+$14.7m market cap on 10 September 2026
+
+and about $105k daily volume. 
+
+So the market currently values Firo very low relative to the range of technology it possesses.
+
+But caution is needed:
+
+low market cap ≠ automatically undervalued.
+
+It can also mean:
+
+low adoption,
+
+poor liquidity,
+
+little investor interest,
+
+regulatory risk for privacy coins,
+
+competition from Monero,
+
+historical problems of the whole privacy sector.
+
+
+
+---
+
+16. Firo vs Monero
+
+That&#39;s the most important benchmark.
+
+Monero has a huge advantage:
+
+adoption + liquidity + network effect + recognition.
+
+Firo, on the other hand, has more interesting potential in the direction of:
+
+programmable privacy / private assets.
+
+If Spark Assets + Spark Swap + Curve Trees are actually implemented, Firo will compete not only with privacy coins.
+
+It will partly enter the area of:
+
+privacy layer / private asset infrastructure.
+
+And then the project&#39;s valuation could look completely different.
+
+
+---
+
+17. Is Firo a &#34;living&#34; project?
+
+Definitely YES.
+
+My classification:
+
+🟢 Developer activity: very high
+🟢 Code: actively developed
+🟢 Roadmap: real
+🟢 Research: very strong
+🟢 Security response: very good
+🟢 Development funding: structural
+🟢 Transparency: high
+🟡 Adoption: weak/medium
+🟡 Ecosystem: small
+🟡 Privacy regulation: high risk
+🔴 The recent Spark vulnerability: a serious minus
+
+
+---
+
+18. The most important thing after analysing the code and development
+
+If I had to answer the question:
+
+&gt; &#34;Can Firo be a much bigger project in 2–3 years than it is today?&#34;
+
+
+
+I&#39;d answer:
+
+Yes — technologically it has the basis for it.
+
+But there is a very big difference between:
+
+a technologically good project
+
+and
+
+a good investment.
+
+Firo definitely belongs to the first category right now.
+
+Whether it moves into the second will depend above all on:
+
+1. Spark Assets,
+
+
+2. Curve Trees,
+
+
+3. Spark Swap,
+
+
+4. Spark adoption,
+
+
+5. wallet integrations,
+
+
+6. liquidity,
+
+
+7. privacy coin regulation,
+
+
+8. the number of real users.
+
+
+
+
+---
+
+19. My market-cap scenarios for the next big bull market
+
+Assuming today&#39;s market cap of about $15m:
+
+🔴 Weak scenario
+
+$30–70m
+
+Firo remains a niche privacy coin.
+
+🟡 Realistic
+
+$150–400m
+
+Spark develops, new integrations appear, and the privacy sector gets renewed interest.
+
+🟢 Strongly bullish
+
+$500m – $1bn
+
+Firo becomes one of the main privacy projects and starts to be seen as infrastructure for private assets.
+
+🔵 Extreme bull case
+
+$1–3bn+
+
+That would require something much bigger:
+
+Spark Assets + Curve Trees + real adoption + big liquidity + a return of the privacy narrative + a strong ecosystem.
+
+I wouldn&#39;t treat that as the base scenario, but technologically it isn&#39;t impossible.
+
+
+---
+
+20. The most important verdict
+
+If I had to place Firo next to the projects we&#39;ve analysed recently, I&#39;d say:
+
+Firo ≠ ghost project.
+
+It&#39;s one of the more technologically serious privacy projects, which is actually doing development, conducting cryptographic research and has its own technology.
+
+Its biggest weakness right now isn&#39;t a lack of developer work.
+
+The biggest question is:
+
+&gt; whether the team can turn Spark&#39;s very good technology into a used ecosystem.
+
+
+
+And Spark Assets + Curve Trees + Spark Swap are for me precisely the three elements that need to be watched especially closely now.
+
+What&#39;s more, this year&#39;s Spark bug means I wouldn&#39;t give Firo a maximum security score, despite the team&#39;s very good response. The fact that the vulnerability got through the earlier audits is a significant warning. 
+
+My final fundamental score: 84/100.
+
+Technological potential score: 92/100.
+
+Current adoption score: ~55/100.
+
+Investment potential score at the current market cap: 88/100 — but with high risk.
+
+The most interesting thing is that at a market cap of around $15m USD the market values Firo very low relative to the range of technology it already has. 
+
+If you want, as a next step I can do a much deeper audit of Firo&#39;s GitHub itself: go through the commits and PRs of the last 12 months, point out specific developers, how much they actually code, which modules they develop, which branches are active, and separate &#34;empty commits&#34; from real code changes. That will give a much more accurate picture than the roadmap alone.</p>
+      <p class="zh" lang="pl">Dużo pracy badawczej wykonano, ale pełne wdrożenie pozostaje przed nimi.
+
+Quantum-resistant Spark
+
+~5–10%
+
+Research.
+
+Governance
+
+~30–40%
+
+Istnieją mechanizmy community governance, ale pełna zdecentralizowana struktura nadal jest celem.
+
+
+---
+
+Moja ocena realizacji obecnej roadmapy:
+
+~60–65%
+
+To jest dobra wartość.
+
+Ale trzeba pamiętać, że najważniejsze elementy dalszej roadmapy są nadal przed nimi.
+
+
+---
+
+11. Co najbardziej podoba mi się w Firo?
+
+1. Mają własną technologię
+
+Nie jest to kolejny fork Monero/Dash/Zcash z kilkoma zmianami.
+
+Firo stworzyło własną linię technologii:
+
+Zcoin → Lelantus → Lelantus Spark.
+
+Spark jest obecnie podstawą projektu. 
+
+2. Zespół ma kompetencje kryptograficzne
+
+Wokół projektu pracowali m.in. specjaliści z Cypher Stack i HashCloak.
+
+3. Kod jest publiczny
+
+4. Development jest regularny
+
+5. Mają realną roadmapę
+
+6. Mają własny PoW
+
+FiroPoW jest wariantem ProgPoW nastawionym na GPU i odporność na ASIC/FPGA. 
+
+7. Mają hybrydowy model PoW + masternodes + ChainLocks
+
+To daje interesujące połączenie:
+
+decentralizacja emisji + szybka finalność.
+
+
+---
+
+12. Największy problem Firo
+
+Nie jest nim moim zdaniem technologia.
+
+Jest nim:
+
+adopcja.
+
+Firo może mieć bardzo dobry protokół privacy, ale bez użytkowników, płynności, walletów, giełd i aplikacji technologia sama nie stworzy dużej kapitalizacji.
+
+To widać również w roadmapie.
+
+Firo próbuje obecnie przejść:
+
+privacy coin
+
+→
+
+privacy platform
+
+poprzez:
+
+Spark Assets + Spark Names + Spark Swap + Curve Trees.
+
+Jeśli to się uda, sytuacja fundamentalna może się bardzo zmienić.
+
+
+---
+
+13. Tokenomika
+
+Tutaj trzeba uważać na jedną rzecz.
+
+Oficjalne materiały Firo podają obecnie:
+
+6,25 FIRO / blok
+
+aż do osiągnięcia 21,4 mln FIRO, a następnie:
+
+1 FIRO / blok tail emission. 
+
+Podział obecnego block reward:
+
+70% masternodes
+
+5% miners
+
+15% development
+
+10% community
+
+
+
+
+To jest bardzo interesujące.
+
+15% emisji trafia bezpośrednio na development.
+
+To oznacza, że projekt ma wbudowane źródło finansowania developmentu, zamiast polegać wyłącznie na dotacjach czy sprzedaży tokenów.
+
+
+---
+
+14. Tail emission
+
+Po osiągnięciu 21,4 mln nastąpi:
+
+1 FIRO / blok.
+
+Według projektu początkowo daje to około 0,98% inflacji rocznie, która z czasem będzie spadać. 
+
+To jest rozsądniejsze niż model:
+
+&gt; „21 mln i później zero nagrody”.
+
+
+
+Problemem pozostaje oczywiście presja inflacyjna, ale jest ona niewielka.
+
+
+---
+
+15. Aktualna kapitalizacja
+
+Tu sytuacja jest bardzo ciekawa.
+
+CoinGecko pokazuje około:
+
+$14,7 mln market cap 10 września 2026 r.
+
+i około $105 tys. dziennego wolumenu. 
+
+Czyli rynek obecnie wycenia Firo na bardzo niskim poziomie względem zakresu technologii, którą posiada.
+
+Ale trzeba zachować ostrożność:
+
+niska kapitalizacja ≠ automatycznie niedowartościowanie.
+
+Może również oznaczać:
+
+małą adopcję,
+
+słabą płynność,
+
+małe zainteresowanie inwestorów,
+
+ryzyko regulacyjne privacy coins,
+
+konkurencję Monero,
+
+historyczne problemy całego sektora privacy.
+
+
+
+---
+
+16. Firo vs Monero
+
+To najważniejszy benchmark.
+
+Monero ma ogromną przewagę:
+
+adopcja + płynność + efekt sieciowy + rozpoznawalność.
+
+Firo ma natomiast ciekawszy potencjał w kierunku:
+
+programmable privacy / private assets.
+
+Jeżeli Spark Assets + Spark Swap + Curve Trees faktycznie zostaną wdrożone, Firo będzie konkurować nie tylko z privacy coins.
+
+Będzie częściowo wchodzić w obszar:
+
+privacy layer / private asset infrastructure.
+
+I wtedy wycena projektu może wyglądać zupełnie inaczej.
+
+
+---
+
+17. Czy Firo jest projektem „żywym”?
+
+Zdecydowanie TAK.
+
+Moja klasyfikacja:
+
+🟢 Developer activity: bardzo wysoka
+🟢 Kod: aktywnie rozwijany
+🟢 Roadmap: realna
+🟢 Research: bardzo mocny
+🟢 Security response: bardzo dobra
+🟢 Finansowanie developmentu: strukturalne
+🟢 Transparentność: wysoka
+🟡 Adopcja: słaba/średnia
+🟡 Ekosystem: mały
+🟡 Regulacje privacy: wysokie ryzyko
+🔴 Ostatnia podatność Spark: poważny minus
+
+
+---
+
+18. Najważniejsza rzecz po analizie kodu i developmentu
+
+Gdybym miał odpowiedzieć na pytanie:
+
+&gt; „Czy Firo za 2–3 lata może być znacznie większym projektem niż dzisiaj?”
+
+
+
+odpowiedziałbym:
+
+Tak — technologicznie ma ku temu podstawy.
+
+Ale jest bardzo duża różnica pomiędzy:
+
+dobrym projektem technologicznie
+
+a
+
+dobrą inwestycją.
+
+Firo zdecydowanie należy obecnie do pierwszej kategorii.
+
+Czy przejdzie do drugiej, będzie zależało przede wszystkim od:
+
+1. Spark Assets,
+
+
+2. Curve Trees,
+
+
+3. Spark Swap,
+
+
+4. adopcji Spark,
+
+
+5. integracji z walletami,
+
+
+6. płynności,
+
+
+7. regulacji privacy coins,
+
+
+8. liczby realnych użytkowników.
+
+
+
+
+---
+
+19. Moje scenariusze kapitalizacji na kolejną dużą hossę
+
+Zakładając dzisiejszą kapitalizację około $15 mln:
+
+🔴 Słaby scenariusz
+
+$30–70 mln
+
+Firo pozostaje niszowym privacy coinem.
+
+🟡 Realistyczny
+
+$150–400 mln
+
+Spark się rozwija, pojawiają się nowe integracje, a sektor privacy dostaje ponowne zainteresowanie.
+
+🟢 Mocno byczy
+
+$500 mln – $1 mld
+
+Firo staje się jednym z głównych projektów privacy i zaczyna być postrzegane jako infrastruktura dla prywatnych aktywów.
+
+🔵 Ekstremalny bull case
+
+$1–3 mld+
+
+To wymagałoby już czegoś znacznie większego:
+
+Spark Assets + Curve Trees + realna adopcja + duża płynność + powrót privacy narrative + silny ekosystem.
+
+Nie traktowałbym tego jako bazowego scenariusza, ale technologicznie nie jest to niemożliwe.
+
+
+---
+
+20. Najważniejszy werdykt
+
+Gdybym miał umieścić Firo obok projektów, które ostatnio analizowaliśmy, powiedziałbym:
+
+Firo ≠ projekt widmo.
+
+To jest jeden z poważniejszych technologicznie projektów privacy, który faktycznie prowadzi development, prowadzi research kryptograficzny i posiada własną technologię.
+
+Największą słabością nie jest obecnie brak pracy developerów.
+
+Największym pytaniem jest:
+
+&gt; czy zespół potrafi zamienić bardzo dobrą technologię Spark w używany ekosystem.
+
+
+
+I właśnie Spark Assets + Curve Trees + Spark Swap są dla mnie trzema elementami, które trzeba teraz szczególnie obserwować.
+
+Co więcej, tegoroczny bug Spark powoduje, że nie dawałbym Firo maksymalnej oceny bezpieczeństwa, mimo bardzo dobrej reakcji zespołu. Fakt, że podatność przeszła przez wcześniejsze audyty, jest istotnym ostrzeżeniem. 
+
+Moja końcowa ocena fundamentalna: 84/100.
+
+Ocena potencjału technologicznego: 92/100.
+
+Ocena obecnej adopcji: ~55/100.
+
+Ocena potencjału inwestycyjnego przy obecnej kapitalizacji: 88/100 — ale przy wysokim ryzyku.
+
+Najbardziej interesujące jest to, że przy kapitalizacji rzędu ~15 mln USD rynek wycenia Firo bardzo nisko względem zakresu technologii, którą już posiada. 
+
+Jeżeli chcesz, mogę w następnym kroku zrobić znacznie głębszy audyt samego GitHuba Firo: przejść przez commity i PR-y z ostatnich 12 miesięcy, wskazać konkretnych developerów, ile faktycznie kodują, jakie moduły rozwijają, które branche są aktywne oraz oddzielić „puste commity” od realnych zmian w kodzie. To da znacznie dokładniejszy obraz niż sama roadmapa.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4268" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-11T17:52:13+00:00">2026-09-11 17:52 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.30">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4268" rel="noopener" title="Open on Telegram">#4268 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Kaczi Kaczi</b>: I&#39;ve got an interesting project – an old privacy coin, FIRO – analyse it and you&#39;ll be surprised</p>
+      
+      <p class="en">Yes. I analysed Firo in terms of exactly what you asked about: the team&#39;s real work, repository activity, code quality, security, roadmap, development pace, tokenomics and project risk. I especially take into account the events of 2026, including the fresh Spark vulnerability.
+
+Firo — audit as of 11 September 2026
+
+Verdict in brief
+
+Firo is not a ghost project. Quite the opposite — the development is real and technically advanced.
+
+At the same time, this year&#39;s vulnerability in Lelantus Spark is a serious warning: two earlier cryptographic audits and a code audit failed to detect a bug that potentially allowed extra FIRO to be generated. The team reacted quickly and carried out a hard fork with a fix. 
+
+My current assessment:
+
+Area Score
+
+Development activity 93/100
+Number/activity of developers 88/100
+Architecture quality 87/100
+Implementation quality 84/100
+Security 72/100
+Response to critical bugs 96/100
+Roadmap 82/100
+Roadmap delivery 78/100
+Technology 93/100
+Tokenomics 80/100
+Ecosystem/adoption 60/100
+Transparency 90/100
+
+
+Total: 84/100
+
+To me this is a serious technological project with real development, but not yet a project with ecosystem strength comparable to the biggest blockchains.
+
+
+---
+
+1. Is anyone really working on Firo?
+
+Yes — and very clearly so.
+
+The main repository firoorg/firo currently has about 792 forks, 369 stars, 18 open issues and 23 open PRs; the repository was also updated in 2026. 
+
+More importantly, the activity isn&#39;t limited to simple documentation changes.
+
+In 2026 there appeared, among others:
+
+changes in Spark,
+
+optimisations of ZK proof verification,
+
+wallet changes,
+
+RPC changes,
+
+P2P/Tor fixes,
+
+consensus fixes,
+
+Spark Names,
+
+Spark Coinbase,
+
+removal of old Lelantus,
+
+changes concerning LLMQ,
+
+security fixes,
+
+fixes related to hard forks.
+
+
+Among the PRs we see e.g. a big &#34;Lelantus strip&#34; PR, covering 500–999 changes, as well as work on Spark Coinbase and other wallet elements. 
+
+This is important, because it shows that the team isn&#39;t just maintaining the existing blockchain, but rebuilding its components.
+
+
+---
+
+2. The most important evidence of activity: the last few months
+
+Here Firo does very well.
+
+In 2026 successive versions were released:
+
+v0.14.15.x
+
+v0.14.16.x
+
+v0.14.17.x
+
+v0.14.18.0
+
+
+And these were not merely &#34;maintenance releases&#34;.
+
+For example, v0.14.16 introduced an expansion of Spark Names, and subsequent versions improved Spark, the wallet and the infrastructure. 
+
+As for v0.14.18.0, that&#39;s already a serious hard fork.
+
+
+---
+
+3. And here comes a very important problem — Spark
+
+This is Firo&#39;s biggest minus in my assessment.
+
+In August 2026 a vulnerability was discovered in Spark.
+
+It wasn&#39;t about stealing users&#39; keys.
+
+The problem was far more fundamental:
+
+&gt; under certain conditions it was possible to create forged Spark coins.
+
+
+
+So potentially this was a supply-integrity problem.
+
+The team received the report on 1 August. It then confirmed the vulnerability and introduced a restriction to single-input transactions. 
+
+According to Firo, the researcher generated about 200 FIRO on mainnet in a controlled experiment. The team found no evidence of wider inflation. 
+
+And now the most important thing:
+
+The bug was not a simple programming bug.
+
+Firo itself admitted that the problem lay in the very cryptographic construction described in the paper and was overlooked both during the cryptographic audits and during the code audit. 
+
+That&#39;s very significant.
+
+
+---
+
+4. Does that disqualify Firo?
+
+No. But it lowers the security score.
+
+Why?
+
+Because on the one hand:
+
+Spark had a cryptographic audit,
+
+it had an implementation audit,
+
+it was developed by cryptography specialists,
+
+it had been running on mainnet since 2024,
+
+and despite that the bug remained undetected. 
+
+
+That&#39;s a serious minus.
+
+On the other hand the team&#39;s reaction was very good.
+
+They didn&#39;t try to sweep the problem under the rug.
+
+First:
+
+multi-input Spark was disabled,
+then the network was secured,
+then a permanent fix was prepared,
+an additional review was carried out,
+and then a hard fork was performed.
+
+v0.14.18.0 restored full multi-input Spark functionality and at the same time introduced additional safeguards concerning, among others, transaction validation, proofs, duplicate mints, reorganisations and invalid Spark data. 
+
+This is exactly the behaviour I would expect from a mature team.
+
+
+---
+
+5. Interestingly — Firo had already had audits
+
+This isn&#39;t a project that anonymously dumped code on GitHub.
+
+Lelantus Spark went through:
+
+a HashCloak cryptographic audit,
+
+a second cryptographic audit,
+
+a code/implementation audit.
+
+
+The code audit itself was completed in December 2022 and according to the report no critical/high severity problems were found at the time. 
+
+That shows both the maturity of the process and its limitations.
+
+That&#39;s why I wouldn&#39;t give Firo 95–100/100 for security.
+
+
+---
+
+6. Code quality
+
+Here Firo looks really good.
+
+The repository is a large C++ project and has:
+
+unit tests,
+
+RPC integration tests,
+
+debug/release builds,
+
+tests for Linux,
+
+Windows,
+
+macOS,
+
+CI/CD,
+
+reproducible builds via Guix,
+
+dependency caching,
+
+an extensive module structure. 
+
+
+The architecture includes, among others:
+
+Spark
+
+libspark
+
+spark
+
+
+Legacy privacy
+
+liblelantus
+
+
+privacy networking
+
+Dandelion++
+
+
+consensus
+
+FiroPoW
+
+LLMQ ChainLocks
+
+
+wallet
+
+an extensive wallet subsystem
+
+
+This doesn&#39;t look like a project thrown together on the fly.
+
+Code score: 84/100
+
+The reduction stems above all from the fact that a fundamental bug occurred in precisely the most critical part — Spark.
+
+
+---
+
+7. A very interesting thing: removing old Lelantus
+
+In 2026 we see the PR:
+
+&#34;Lelantus strip&#34;
+
+marked as XL, with a scope of 500–999 changes. 
+
+In my opinion this is a positive signal.
+
+The team isn&#39;t trying to maintain all historical mechanisms indefinitely.
+
+It&#39;s moving towards:
+
+Spark → new architecture → less legacy code.
+
+Over time that should improve the project&#39;s maintainability.
+
+
+---
+
+8. Roadmap
+
+The official roadmap divides development into:
+
+Near-term
+
+Spark Names
+
+Human-readable addresses tied to Spark.
+
+Spark Coinbase
+
+The ability to receive miner and masternode rewards directly to private Spark addresses.
+
+View Key Tooling
+
+Mechanisms enabling selective disclosure / watch-only. 
+
+
+---
+
+Mid-term
+
+Spark Assets
+
+Private tokens using Spark.
+
+In my opinion this is one of the most important points of the whole roadmap.
+
+Firo may stop being just:
+
+&gt; &#34;a privacy coin&#34;
+
+
+
+and become:
+
+&gt; privacy infrastructure for its own assets.
+
+
+
+The roadmap currently marks this element as Design Complete. 
+
+
+---
+
+Spark Swap
+
+Private atomic swaps between Spark assets/FIRO.
+
+Status:
+
+Research.
+
+
+---
+
+Curve Trees
+
+Technologically this may be one of the most important future upgrades.
+
+Curve Trees could potentially enable much larger anonymity sets and more efficient proofs.
+
+Firo describes the possibility of scaling the set to billions of elements and batch verification. 
+
+This isn&#39;t a cosmetic feature.
+
+This could be a fundamental upgrade of Spark technology.
+
+
+---
+
+9. Long term
+
+Firo plans:
+
+quantum-resistant Spark,
+
+better light wallet infrastructure,
+
+a change of the consensus model after reaching tail emission,
+
+decentralised governance. 
+
+
+And here an interesting thing appears.
+
+Firo is already thinking about what will happen after the main emission ends.
+
+That&#39;s a sign of the project&#39;s economic maturity.
+
+
+---
+
+10. How much of the roadmap has actually been delivered?
+
+My assessment won&#39;t consist of counting every bullet point as 1 point, because that would be misleading.
+
+I&#39;d divide the roadmap by importance.
+
+Foundation:
+
+Lelantus Spark — completed and working
+
+That&#39;s the biggest element of the whole earlier roadmap.
+
+Spark Names
+
+~70–80%
+
+The basic functionality works, and in 2026 the ability to extend/transfer names without losing unused time was added. 
+
+Spark Coinbase
+
+~50–60%
+
+The code is being developed, but the functionality isn&#39;t yet a final element of the whole system.
+
+View Keys
+
+~20–30%
+
+Still rather planned/in development.
+
+Spark Assets
+
+~60–70%
+
+The technology and design are well advanced, but full practical deployment still lies ahead of them.
+
+Spark Swap
+
+~10–20%
+
+Research.
+
+Curve Trees
+
+~30–40%</p>
+      <p class="zh" lang="pl">Tak. Przeanalizowałem Firo pod kątem dokładnie tego, o co pytałeś: realnej pracy zespołu, aktywności repozytoriów, jakości kodu, bezpieczeństwa, roadmapy, tempa developmentu, tokenomiki i ryzyka projektu. Szczególnie uwzględniam wydarzenia z 2026 r., w tym świeżą podatność Spark.
+
+Firo — audyt na 11 września 2026
+
+Werdykt w skrócie
+
+Firo nie jest projektem widmo. Wręcz przeciwnie — development jest realny i technicznie zaawansowany.
+
+Jednocześnie tegoroczna podatność w Lelantus Spark jest poważnym ostrzeżeniem: dwie wcześniejsze audycje kryptograficzne i audyt kodu nie wykryły błędu, który potencjalnie pozwalał na wygenerowanie dodatkowych FIRO. Zespół zareagował szybko i przeprowadził hard fork z poprawką. 
+
+Moja obecna ocena:
+
+Obszar Ocena
+
+Aktywność developmentu 93/100
+Liczba/aktywność developerów 88/100
+Jakość architektury 87/100
+Jakość implementacji 84/100
+Bezpieczeństwo 72/100
+Reakcja na krytyczne błędy 96/100
+Roadmapa 82/100
+Realizacja roadmapy 78/100
+Technologia 93/100
+Tokenomika 80/100
+Ekosystem/adopcja 60/100
+Transparentność 90/100
+
+
+Łącznie: 84/100
+
+To jest dla mnie poważny projekt technologiczny z realnym developmentem, ale jeszcze nie projekt o sile ekosystemu porównywalnej z największymi blockchainami.
+
+
+---
+
+1. Czy nad Firo naprawdę ktoś pracuje?
+
+Tak — i to bardzo wyraźnie.
+
+Główne repozytorium firoorg/firo ma obecnie około 792 forków, 369 gwiazdek, 18 otwartych issue i 23 otwarte PR-y; repozytorium było aktualizowane również w 2026 r. 
+
+Co ważniejsze, aktywność nie ogranicza się do prostych zmian dokumentacji.
+
+W 2026 r. pojawiały się m.in.:
+
+zmiany w Spark,
+
+optymalizacje weryfikacji ZK proofów,
+
+zmiany walleta,
+
+zmiany RPC,
+
+poprawki P2P/Tor,
+
+poprawki consensus,
+
+Spark Names,
+
+Spark Coinbase,
+
+usuwanie starego Lelantus,
+
+zmiany dotyczące LLMQ,
+
+poprawki bezpieczeństwa,
+
+poprawki związane z hard forkami.
+
+
+Wśród PR-ów widzimy np. duży PR „Lelantus strip”, obejmujący 500–999 zmian, a także prace nad Spark Coinbase i innymi elementami walleta. 
+
+To jest ważne, bo pokazuje, że zespół nie tylko utrzymuje istniejący blockchain, ale przebudowuje jego komponenty.
+
+
+---
+
+2. Najważniejszy dowód aktywności: ostatnie miesiące
+
+Tutaj Firo wypada bardzo dobrze.
+
+W 2026 r. wyszły kolejne wersje:
+
+v0.14.15.x
+
+v0.14.16.x
+
+v0.14.17.x
+
+v0.14.18.0
+
+
+I nie były to wyłącznie „maintenance releases”.
+
+Przykładowo v0.14.16 wprowadziło rozwinięcie Spark Names, a kolejne wersje poprawiały Spark, wallet i infrastrukturę. 
+
+Natomiast v0.14.18.0 to już poważny hard fork.
+
+
+---
+
+3. I tutaj pojawia się bardzo ważny problem — Spark
+
+To jest największy minus Firo w mojej ocenie.
+
+W sierpniu 2026 odkryto podatność w Spark.
+
+Nie chodziło o kradzież kluczy użytkowników.
+
+Problem był znacznie bardziej fundamentalny:
+
+&gt; w określonych warunkach można było stworzyć sfałszowane Spark coins.
+
+
+
+Czyli potencjalnie był to problem integralności podaży.
+
+Zespół otrzymał zgłoszenie 1 sierpnia. Następnie potwierdził podatność i wprowadził ograniczenie do transakcji z pojedynczym inputem. 
+
+Według Firo badacz wygenerował około 200 FIRO na mainnecie w kontrolowanym eksperymencie. Zespół nie znalazł dowodów na szerszą inflację. 
+
+I teraz najważniejsza rzecz:
+
+Błąd nie był prostym bugiem programistycznym.
+
+Firo samo przyznało, że problem znajdował się w samej konstrukcji kryptograficznej opisanej w paperze i został przeoczony zarówno podczas audytów kryptograficznych, jak i audytu kodu. 
+
+To bardzo istotne.
+
+
+---
+
+4. Czy to dyskwalifikuje Firo?
+
+Nie. Ale obniża ocenę bezpieczeństwa.
+
+Dlaczego?
+
+Bo z jednej strony:
+
+Spark miał audyt kryptograficzny,
+
+miał audyt implementacji,
+
+był rozwijany przez specjalistów od kryptografii,
+
+działał na mainnecie od 2024,
+
+a błąd mimo tego pozostał niewykryty. 
+
+
+To jest poważny minus.
+
+Z drugiej strony reakcja zespołu była bardzo dobra.
+
+Nie próbowali zamiatać problemu pod dywan.
+
+Najpierw:
+
+wyłączono multi-input Spark,
+następnie zabezpieczono sieć,
+potem przygotowano permanentną poprawkę,
+przeprowadzono dodatkowy review,
+a następnie wykonano hard fork.
+
+v0.14.18.0 przywrócił pełną funkcjonalność multi-input Spark i jednocześnie wprowadził dodatkowe zabezpieczenia dotyczące m.in. walidacji transakcji, proofów, duplicate mintów, reorganizacji i nieprawidłowych danych Spark. 
+
+To jest właśnie zachowanie, którego oczekiwałbym od dojrzałego zespołu.
+
+
+---
+
+5. Co ciekawe — Firo miało już audyty
+
+To nie jest projekt, który wrzucił anonimowo kod na GitHuba.
+
+Lelantus Spark przeszedł:
+
+audyt kryptograficzny HashCloak,
+
+drugi audyt kryptograficzny,
+
+audyt kodu/implementacji.
+
+
+Sam audyt kodu został zakończony w grudniu 2022 r. i według raportu nie znaleziono wtedy problemów critical/high severity. 
+
+To pokazuje zarówno dojrzałość procesu, jak i jego ograniczenia.
+
+Dlatego nie dawałbym Firo 95–100/100 za security.
+
+
+---
+
+6. Jakość kodu
+
+Tutaj Firo wygląda naprawdę dobrze.
+
+Repozytorium jest dużym projektem C++ i posiada:
+
+unit tests,
+
+RPC integration tests,
+
+debug/release builds,
+
+testy dla Linux,
+
+Windows,
+
+macOS,
+
+CI/CD,
+
+reproducible builds przez Guix,
+
+cache&#39;owanie zależności,
+
+rozbudowaną strukturę modułów. 
+
+
+Architektura obejmuje m.in.:
+
+Spark
+
+libspark
+
+spark
+
+
+Legacy privacy
+
+liblelantus
+
+
+privacy networking
+
+Dandelion++
+
+
+consensus
+
+FiroPoW
+
+LLMQ ChainLocks
+
+
+wallet
+
+rozbudowany subsystem walleta
+
+
+To nie wygląda jak projekt zbudowany „na kolanie”.
+
+Ocena kodu: 84/100
+
+Obniżenie wynika przede wszystkim z tego, że właśnie w najbardziej krytycznej części — Spark — wystąpił błąd fundamentalny.
+
+
+---
+
+7. Bardzo ciekawa rzecz: usuwanie starego Lelantus
+
+W 2026 r. widzimy PR:
+
+„Lelantus strip”
+
+oznaczony jako XL, z zakresem 500–999 zmian. 
+
+To jest moim zdaniem pozytywny sygnał.
+
+Zespół nie próbuje bez końca utrzymywać wszystkich historycznych mechanizmów.
+
+Przechodzi w stronę:
+
+Spark → nowa architektura → mniej legacy code.
+
+To powinno z czasem poprawiać utrzymywalność projektu.
+
+
+---
+
+8. Roadmapa
+
+Oficjalna roadmapa dzieli rozwój na:
+
+Near-term
+
+Spark Names
+
+Human-readable addresses powiązane ze Spark.
+
+Spark Coinbase
+
+Możliwość otrzymywania nagród minerów i masternodów bezpośrednio na prywatne Spark addresses.
+
+View Key Tooling
+
+Mechanizmy umożliwiające selective disclosure / watch-only. 
+
+
+---
+
+Mid-term
+
+Spark Assets
+
+Prywatne tokeny wykorzystujące Spark.
+
+To jest moim zdaniem jeden z najważniejszych punktów całej roadmapy.
+
+Firo może przestać być tylko:
+
+&gt; „privacy coin”
+
+
+
+i stać się:
+
+&gt; privacy infrastructure dla własnych aktywów.
+
+
+
+Roadmapa wskazuje obecnie ten element jako Design Complete. 
+
+
+---
+
+Spark Swap
+
+Prywatne atomic swaps pomiędzy Spark assets/FIRO.
+
+Status:
+
+Research.
+
+
+---
+
+Curve Trees
+
+To może być technologicznie jeden z najważniejszych przyszłych upgrade&#39;ów.
+
+Curve Trees mają potencjalnie umożliwić znacznie większe anonymity sets i bardziej efektywne proofy.
+
+Firo opisuje możliwość skalowania zbioru do miliardów elementów oraz batch verification. 
+
+To nie jest kosmetyczny feature.
+
+To może być fundamentalny upgrade technologii Spark.
+
+
+---
+
+9. Długoterminowo
+
+Firo planuje:
+
+quantum-resistant Spark,
+
+lepszą infrastrukturę light wallet,
+
+zmianę modelu consensus po osiągnięciu tail emission,
+
+zdecentralizowane governance. 
+
+
+I tutaj pojawia się ciekawa rzecz.
+
+Firo już teraz myśli o tym, co stanie się po zakończeniu głównej emisji.
+
+To jest oznaka dojrzałości ekonomicznej projektu.
+
+
+---
+
+10. Ile roadmapy faktycznie zrealizowano?
+
+Moja ocena nie będzie polegała na liczeniu każdego bullet pointa jako 1 punkt, bo to byłoby mylące.
+
+Podzieliłbym roadmapę według znaczenia.
+
+Fundament:
+
+Lelantus Spark — ukończony i działający
+
+To największy element całej wcześniejszej roadmapy.
+
+Spark Names
+
+~70–80%
+
+Podstawowa funkcjonalność działa, a w 2026 dodano możliwość przedłużania/przenoszenia nazw bez utraty niewykorzystanego czasu. 
+
+Spark Coinbase
+
+~50–60%
+
+Kod jest rozwijany, ale funkcjonalność nie jest jeszcze finalnym elementem całego systemu.
+
+View Keys
+
+~20–30%
+
+Nadal raczej planned/development.
+
+Spark Assets
+
+~60–70%
+
+Technologia i design są mocno rozwinięte, ale pełne użytkowe wdrożenie pozostaje przed nimi.
+
+Spark Swap
+
+~10–20%
+
+Research.
+
+Curve Trees
+
+~30–40%</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4267" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-11T17:48:31+00:00">2026-09-11 17:48 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4267" rel="noopener" title="Open on Telegram">#4267 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: I couldn&#39;t write earlier.</p>
+      
+      <p class="en">I&#39;ve got an interesting project – an old privacy coin, FIRO – analyse it and you&#39;ll be surprised</p>
+      <p class="zh" lang="pl">Mam ciekawy projekt- stary coin privacy FIRO - przeanalizuj to sie zdziwisz</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4265" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-11T17:37:45+00:00">2026-09-11 17:37 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4265" rel="noopener" title="Open on Telegram">#4265 ↗</a>
+      </div>
+      
+      <p class="en">If you&#39;re interested in one specific thing, e.g. a code audit, because you already know the project, then just ask for the audit</p>
+      <p class="zh" lang="pl">Jeśli interesuje cię jakiś jeden konkret np audyt kodu bo znasz już projekt to poproś tylko o audyt</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4264" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-11T17:31:26+00:00">2026-09-11 17:31 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4264" rel="noopener" title="Open on Telegram">#4264 ↗</a>
+      </div>
+      
+      <p class="en">E.g.: Conduct a comprehensive, independent audit of the cryptocurrency project [NAME / TICKER]. Don&#39;t limit yourself to the project&#39;s official materials — verify the information in the source code, commits, branches, issues, pull requests, documentation, roadmap, team announcements, explorers, on-chain data and other credible sources.
+1. Team and organisation
+Who created the project and who currently develops it?
+Are the developers publicly known?
+What prior experience do they have?
+How many active developers actually work on the project?
+Does the activity come from several real people, or mainly from one?
+Does the team regularly communicate progress?
+Are the team&#39;s declarations confirmed in the code?
+2. Developer activity
+Analyse the GitHub/GitLab history from at least the last 12–24 months, and especially the period since the last audit.
+Check commits, PRs, branches, issues, releases and the activity of individual developers.
+Separate actual programming work from cosmetic changes, merges, automatic commits and documentation.
+Assess the frequency of work: daily, weekly, sporadic, or the project practically dead.
+Check whether activity is rising, falling or staying stable.
+Point out the most important changes in the code and explain what they actually changed in the project.
+3. Code quality
+Carry out as thorough an audit as possible of the architecture and the most important components.
+Assess the quality, readability, modularity and maintainability of the code.
+Look for potential bugs, vulnerabilities, centralisation, single points of failure, security and scalability problems.
+Assess unit/integration tests, CI/CD, code review and the process of releasing new versions.
+Check whether the most important elements of the protocol are actually implemented, or only still planned.
+If the project is a blockchain, analyse in particular consensus, networking, mempool, storage, VM/smart contracts, cryptography, wallet and scaling mechanisms.
+4. Roadmap
+Find the project&#39;s official roadmap.
+List all the most important elements of the roadmap.
+For each one determine: completed / partially completed / started / not started / delayed / abandoned.
+Verify every roadmap point in the code — don&#39;t accept the team&#39;s declarations without confirmation.
+Calculate the approximate percentage of roadmap completion.
+Assess the pace of delivery and whether the current pace realistically allows the next goals to be achieved.
+5. Technology
+What sets the project apart technologically?
+What problems does it solve?
+Is the technological advantage real, or mainly marketing?
+How does the project compare in terms of TPS, finality, decentralisation, security, costs and scalability?
+What are its biggest limitations?
+6. Competition
+Identify the most serious competitors.
+Compare technology, developer activity, adoption, funding, tokenomics and roadmap.
+Point out where the analysed project is better and where it loses.
+7. Tokenomics
+Check the total and maximum supply.
+Current circulating supply.
+Emission of new tokens.
+Mining/staking rewards.
+Vesting and unlocks.
+Projected supply in 1, 2, 3, 5 and 10 years.
+Risk of supply pressure.
+Distribution of tokens between the team, investors, the foundation, miners/stakers and the community.
+8. Ecosystem and adoption
+How many products, applications, wallets, DEXes, bridges etc. actually work?
+Which are being actively developed?
+Are there real users and transactions?
+Is the ecosystem growing?
+9. Funding and project sustainability
+Who funds the project?
+How much capital has it received?
+How long can it fund further development?
+Is there a risk of work ending due to lack of funding?
+10. Red flags Search for any signs of a &#34;ghost&#34; project:
+long periods without commits,
+faked activity,
+empty roadmaps,
+constant pushing back of deadlines,
+mismatch between declarations and code,
+abandoned modules,
+dependence on a single developer,
+security problems,
+excessive centralisation,
+unclear tokenomics.
+11. Final assessment Give the project a score of 0–100 in separate categories:
+team activity,
+code quality,
+development pace,
+roadmap delivery,
+technology,
+security,
+decentralisation,
+tokenomics,
+ecosystem,
+adoption,
+competitiveness,
+team transparency.
+Then give an overall score of 0–100.
+At the end answer unambiguously:
+Is this a genuinely developed project, a slowly developed project, or a practically dead project?
+Does the current development justify a potential rise in market cap during the next bull market?
+Also give a conservative, realistic and very optimistic market-cap scenario for the next bull market, but clearly separate facts from your own estimates.</p>
+      <p class="zh" lang="pl">Np : Przeprowadź kompleksowy, niezależny audyt projektu kryptowalutowego [NAZWA / TICKER]. Nie ograniczaj się do oficjalnych materiałów projektu — zweryfikuj informacje w kodzie źródłowym, commitach, branchach, issue, pull requestach, dokumentacji, roadmapie, komunikatach zespołu, explorerach, danych on-chain oraz innych wiarygodnych źródłach.
+1. Zespół i organizacja
+Kto stworzył projekt i kto obecnie go rozwija?
+Czy deweloperzy są publicznie znani?
+Jakie mają wcześniejsze doświadczenie?
+Ilu aktywnych developerów faktycznie pracuje nad projektem?
+Czy aktywność pochodzi od kilku realnych osób, czy głównie jednej?
+Czy zespół regularnie komunikuje postępy?
+Czy deklaracje zespołu znajdują potwierdzenie w kodzie?
+2. Aktywność deweloperska
+Przeanalizuj historię GitHub/GitLab co najmniej z ostatnich 12–24 miesięcy, a szczególnie okres od ostatniego audytu.
+Sprawdź commity, PR-y, branche, issue, release&#39;y i aktywność poszczególnych developerów.
+Oddziel rzeczywiste prace programistyczne od kosmetycznych zmian, merge&#39;ów, automatycznych commitów i dokumentacji.
+Oceń częstotliwość prac: codzienna, tygodniowa, sporadyczna czy projekt praktycznie martwy.
+Sprawdź, czy aktywność rośnie, spada czy pozostaje stabilna.
+Wskaż najważniejsze zmiany w kodzie i wyjaśnij, co faktycznie zmieniły w projekcie.
+3. Jakość kodu
+Przeprowadź możliwie dokładny audyt architektury i najważniejszych komponentów.
+Oceń jakość, czytelność, modularność i utrzymywalność kodu.
+Poszukaj potencjalnych błędów, podatności, centralizacji, single points of failure, problemów z bezpieczeństwem i skalowalnością.
+Oceń testy jednostkowe/integracyjne, CI/CD, code review i proces wydawania nowych wersji.
+Sprawdź, czy najważniejsze elementy protokołu są faktycznie zaimplementowane, czy znajdują się dopiero w planach.
+Jeżeli projekt jest blockchainem, przeanalizuj szczególnie consensus, networking, mempool, storage, VM/smart contracts, cryptography, wallet oraz mechanizmy skalowania.
+4. Roadmapa
+Znajdź oficjalną roadmapę projektu.
+Rozpisz wszystkie najważniejsze elementy roadmapy.
+Dla każdego określ: ukończone / częściowo ukończone / rozpoczęte / nie rozpoczęte / opóźnione / porzucone.
+Zweryfikuj każdy punkt roadmapy w kodzie — nie przyjmuj deklaracji zespołu bez potwierdzenia.
+Oblicz przybliżony procent realizacji roadmapy.
+Oceń tempo realizacji i czy obecne tempo pozwala realistycznie osiągnąć kolejne cele.
+5. Technologia
+Co technologicznie wyróżnia projekt?
+Jakie problemy rozwiązuje?
+Czy przewaga technologiczna jest rzeczywista, czy głównie marketingowa?
+Jak projekt wypada pod względem TPS, finalności, decentralizacji, bezpieczeństwa, kosztów i skalowalności?
+Jakie są jego największe ograniczenia?
+6. Konkurencja
+Zidentyfikuj najpoważniejszych konkurentów.
+Porównaj technologię, aktywność developerów, adopcję, finansowanie, tokenomikę i roadmapę.
+Wskaż, w czym analizowany projekt jest lepszy i w czym przegrywa.
+7. Tokenomika
+Sprawdź całkowitą i maksymalną podaż.
+Aktualną podaż w obiegu.
+Emisję nowych tokenów.
+Mining/staking rewards.
+Vesting i unlocki.
+Przewidywaną podaż za 1, 2, 3, 5 i 10 lat.
+Ryzyko presji podażowej.
+Rozkład tokenów między zespół, inwestorów, fundację, minerów/stakerów i społeczność.
+8. Ekosystem i adopcja
+Ile faktycznie działa produktów, aplikacji, walletów, DEX-ów, bridge&#39;y itd.?
+Które są aktywnie rozwijane?
+Czy są realni użytkownicy i transakcje?
+Czy ekosystem rośnie?
+9. Finansowanie i trwałość projektu
+Kto finansuje projekt?
+Ile kapitału otrzymał?
+Jak długo może finansować dalszy development?
+Czy istnieje ryzyko zakończenia prac z powodu braku finansowania?
+10. Czerwone flagi Wyszukaj wszelkie oznaki projektu „widmo”:
+długie okresy bez commitów,
+pozorowana aktywność,
+puste roadmapy,
+ciągłe przesuwanie terminów,
+niezgodność deklaracji z kodem,
+porzucone moduły,
+zależność od jednego developera,
+problemy bezpieczeństwa,
+nadmierna centralizacja,
+niejasna tokenomika.
+11. Ocena końcowa Przyznaj projektowi ocenę 0–100 w osobnych kategoriach:
+aktywność zespołu,
+jakość kodu,
+tempo developmentu,
+realizacja roadmapy,
+technologia,
+bezpieczeństwo,
+decentralizacja,
+tokenomika,
+ekosystem,
+adopcja,
+konkurencyjność,
+transparentność zespołu.
+Następnie wystaw łączną ocenę 0–100.
+Na końcu odpowiedz jednoznacznie:
+Czy jest to projekt rzeczywiście rozwijany, projekt rozwijany powoli, czy projekt praktycznie martwy?
+Czy obecny development uzasadnia potencjalny wzrost kapitalizacji podczas kolejnej hossy?
+Podaj również konserwatywny, realistyczny i bardzo optymistyczny scenariusz kapitalizacji podczas kolejnej hossy, ale wyraźnie oddziel fakty od własnych szacunków.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4263" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-11T17:31:20+00:00">2026-09-11 17:31 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4263" rel="noopener" title="Open on Telegram">#4263 ↗</a>
+      </div>
+      
+      <p class="en">And it&#39;ll compose the wording of the query</p>
+      <p class="zh" lang="pl">I ułoży treść zapytania</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4262" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-11T17:31:11+00:00">2026-09-11 17:31 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4262" rel="noopener" title="Open on Telegram">#4262 ↗</a>
+      </div>
+      
+      <p class="en">Let it come up with the best question itself</p>
+      <p class="zh" lang="pl">Sama niech sobie żąda najlepsze pytanie</p>
+      <p class="note">&#34;żąda&#34; here is a typo for &#34;zada&#34; (to pose/ask a question).</p>
+    </li>
+    
+    <li class="msg" id="m-4261" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-11T17:30:57+00:00">2026-09-11 17:30 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4261" rel="noopener" title="Open on Telegram">#4261 ↗</a>
+      </div>
+      
+      <p class="en">Very simple. Using AI.</p>
+      <p class="zh" lang="pl">Bardzo prosto. Za pomocą Ai.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4260" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-11T17:30:41+00:00">2026-09-11 17:30 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4260" rel="noopener" title="Open on Telegram">#4260 ↗</a>
+      </div>
+      
+      <p class="en">I couldn&#39;t write earlier.</p>
+      <p class="zh" lang="pl">Nie mogłem pisać wcześniej.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4259" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Atol</span>
+        <time datetime="2026-09-11T17:01:34+00:00">2026-09-11 17:01 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4259" rel="noopener" title="Open on Telegram">#4259 ↗</a>
+      </div>
+      
+      <p class="en">@NightNodeHunter I see a slight change ;)
+
+I wanted to ask how to pull out of the chats those more technical bits of info that you sometimes share?</p>
+      <p class="zh" lang="pl">@NightNodeHunter  widzę lekką zmianę ;)
+
+Chciałem dopytac jak wyciągnąc z chatow te techniczne bardziej informacje ktorymi czasem sie dzielisz ?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4258" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">mac Mim</span>
+        <time datetime="2026-09-11T08:45:41+00:00">2026-09-11 08:45 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4258" rel="noopener" title="Open on Telegram">#4258 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Kaczi Kaczi</b>: I get 1 every 2 weeks – dig around in the advanced settings so that nobody outside your contacts from the group (you...</p>
+      
+      <p class="en">Ah, I&#39;ll have to dig around like that</p>
+      <p class="zh" lang="pl">A to muszę tak poszperać</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4257" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-11T08:45:25+00:00">2026-09-11 08:45 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4257" rel="noopener" title="Open on Telegram">#4257 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>mac Mim</b>: Me too, but sometimes there are a lot of them</p>
+      
+      <p class="en">I get 1 every 2 weeks – dig around in the advanced settings so that nobody outside your contacts from the group (you can also pick that) can message you and you&#39;ll have peace</p>
+      <p class="zh" lang="pl">ja mam 1 na 2 tygodnie - w zaawansowanych poszperaj ,zeby nikt do Ciebie spoza znajomych z grupy (mozesz tez wybrac)nie pisal i masz spokoj</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4256" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">mac Mim</span>
+        <time datetime="2026-09-11T08:44:14+00:00">2026-09-11 08:44 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4256" rel="noopener" title="Open on Telegram">#4256 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Kaczi Kaczi</b>: OK – I delete PMs from strangers without reading them, so it doesn&#39;t bother me</p>
+      
+      <p class="en">Me too, but sometimes there are a lot of them</p>
+      <p class="zh" lang="pl">Ja też, ale czasami dużo ich</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4255" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-11T08:44:04+00:00">2026-09-11 08:44 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4255" rel="noopener" title="Open on Telegram">#4255 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>mac Mim</b>: Here on Telegram, I mean my activity in groups</p>
+      
+      <p class="en">OK – I delete PMs from strangers without reading them, so it doesn&#39;t bother me</p>
+      <p class="zh" lang="pl">Ok - ja pm od nieznajomych usuwam bez czytania wiec mnie to nie rusza</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4254" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">mac Mim</span>
+        <time datetime="2026-09-11T08:43:17+00:00">2026-09-11 08:43 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4254" rel="noopener" title="Open on Telegram">#4254 ↗</a>
+      </div>
+      
+      <p class="en">Here on Telegram, I mean my activity in groups</p>
+      <p class="zh" lang="pl">A tutaj na telegramu, aktywność moją na grupach</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4253" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-11T08:42:56+00:00">2026-09-11 08:42 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4253" rel="noopener" title="Open on Telegram">#4253 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>mac Mim</b>: For sure, if we really took off big, I&#39;d cut back on all the groups. Too many scammers</p>
+      
+      <p class="en">Groups? meaning?</p>
+      <p class="zh" lang="pl">Grupy? tzn?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4252" data-sent="mixed" data-topics="4">
+      <div class="head">
+        <span class="who">mac Mim</span>
+        <time datetime="2026-09-11T08:42:29+00:00">2026-09-11 08:42 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4252" rel="noopener" title="Open on Telegram">#4252 ↗</a>
+      </div>
+      
+      <p class="en">For sure, if we really took off big, I&#39;d cut back on all the groups. Too many scammers</p>
+      <p class="zh" lang="pl">Na pewno, jak byśmy grubo ruszyli, to będę ograniczał wszystkie grupy. Za dużo oszustów</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4251" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">mac Mim</span>
+        <time datetime="2026-09-11T08:41:15+00:00">2026-09-11 08:41 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.65">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4251" rel="noopener" title="Open on Telegram">#4251 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Kaczi Kaczi</b>: I&#39;ve got this feeling that we&#39;re right before a gigantic pump, the engines are warming up and we&#39;re about to take...</p>
+      
+      <p class="en">I see it too, we definitely won&#39;t drop. Because you can already see they&#39;re not allowing any dips</p>
+      <p class="zh" lang="pl">Też to widzę, na pewno nie spadniemy. Bo już widać, że nie pozwalają na spadki</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4250" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-11T08:40:37+00:00">2026-09-11 08:40 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4250" rel="noopener" title="Open on Telegram">#4250 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>mac Mim</b>: Actually very good.</p>
+      
+      <p class="en">I&#39;ve got this feeling that we&#39;re right before a gigantic pump, the engines are warming up and we&#39;re about to take off. Whether it happens, whether we take off, we&#39;ll see.</p>
+      <p class="zh" lang="pl">Mam takie uczucie,ze jestesmy tuz przed gigantyczna pompa,silniki sie rozgrzewaja i zaraz wystartujemy. Jak bedzie ,czy wystartujemy, to sie okaze.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4249" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">mac Mim</span>
+        <time datetime="2026-09-11T08:39:04+00:00">2026-09-11 08:39 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4249" rel="noopener" title="Open on Telegram">#4249 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Kaczi Kaczi</b>: But it&#39;s not bad anyway</p>
+      
+      <p class="en">Actually very good.</p>
+      <p class="zh" lang="pl">Wręcz bardzo dobrze.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4248" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-11T08:38:41+00:00">2026-09-11 08:38 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4248" rel="noopener" title="Open on Telegram">#4248 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>mac Mim</b>: The market sentiment would probably be better</p>
+      
+      <p class="en">But it&#39;s not bad anyway</p>
+      <p class="zh" lang="pl">Ale i tak nie jest zle</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4247" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">mac Mim</span>
+        <time datetime="2026-09-11T08:37:54+00:00">2026-09-11 08:37 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4247" rel="noopener" title="Open on Telegram">#4247 ↗</a>
+      </div>
+      
+      <p class="en">The market sentiment would probably be better</p>
+      <p class="zh" lang="pl">Zapewne sentyment byłby lepszy na rynku</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4246" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-11T08:36:28+00:00">2026-09-11 08:36 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.45">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4246" rel="noopener" title="Open on Telegram">#4246 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>mac Mim</b>: Yes, it&#39;s holding up really strong. You have to give it that</p>
+      
+      <p class="en">I think it would already be much higher if it weren&#39;t for the slight drops on BTC — and it&#39;s holding</p>
+      <p class="zh" lang="pl">uwazam,ze bylaby juz znacznie wyzej gdyby nie delikatne spadki na btc- a ona sie trzyma</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4245" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">mac Mim</span>
+        <time datetime="2026-09-11T08:35:17+00:00">2026-09-11 08:35 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4245" rel="noopener" title="Open on Telegram">#4245 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Kaczi Kaczi</b>: Let everyone say what they want, but with these corrections on BTC, NEXA is very strong</p>
+      
+      <p class="en">Yes, it&#39;s holding up really strong. You have to give it that</p>
+      <p class="zh" lang="pl">Tak, trzyma się bardO mocno. Trzeba to jej oddać</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4244" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-11T08:34:49+00:00">2026-09-11 08:34 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4244" rel="noopener" title="Open on Telegram">#4244 ↗</a>
+      </div>
+      
+      <p class="en">Let everyone say what they want, but with these corrections on BTC, NEXA is very strong</p>
+      <p class="zh" lang="pl">Niech kazdy mowi co chce,ale przy tych korektach na BTC to NEXA jest bardzo mocna</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4243" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">_DKD</span>
+        <time datetime="2026-09-11T08:32:22+00:00">2026-09-11 08:32 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.45">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4243" rel="noopener" title="Open on Telegram">#4243 ↗</a>
+      </div>
+      
+      <p class="en">The marketing is slowly picking up</p>
+      <p class="zh" lang="pl">Marketing powoli się rozkręca</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4242" data-sent="mixed" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T20:35:25+00:00">2026-09-10 20:35 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4242" rel="noopener" title="Open on Telegram">#4242 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Grzegorz</b>: Or about deposit-return bottles. Now that&#39;s next level 😀😀</p>
+      
+      <p class="en">Oh no, don&#39;t even get me started on that — as you say, that&#39;s next-level stuff 😂</p>
+      <p class="zh" lang="pl">A  nie, o tym mi nawet nie mow- to juz jak mowisz wyzsza szkola jazdy😂</p>
+      <p class="note">&#34;wyższa szkoła jazdy&#34; literally &#34;advanced driving school&#34; = a whole other league.</p>
+    </li>
+    
+    <li class="msg" id="m-4241" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">Grzegorz</span>
+        <time datetime="2026-09-10T20:12:57+00:00">2026-09-10 20:12 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.20">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4241" rel="noopener" title="Open on Telegram">#4241 ↗</a>
+      </div>
+      
+      <p class="en">Or about deposit-return bottles. Now that&#39;s next level 😀😀</p>
+      <p class="zh" lang="pl">Albo na butelkach kaucyjnych. To już wyższa szkoła 😀😀</p>
+      <p class="note">Refers to Poland&#39;s new bottle deposit-return scheme; &#34;wyższa szkoła&#34; = a whole other league, said sarcastically.</p>
+    </li>
+    
+    <li class="msg" id="m-4240" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T20:11:57+00:00">2026-09-10 20:11 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.35">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4240" rel="noopener" title="Open on Telegram">#4240 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Grzegorz</b>: Just like on X or YouTube, everybody&#39;s loaded with a few million in their wallet 😂 and it gets clicks</p>
+      
+      <p class="en">People even brag about who picked how many mushrooms in the forest 🤦‍♂️</p>
+      <p class="zh" lang="pl">Jak ludzie nawet lans robia kto ile grzybow zebral w lesie🤦‍♂️</p>
+      <p class="note">Mushroom picking is a hugely popular Polish pastime, and bragging about the haul on social media is a running joke.</p>
+    </li>
+    
+    <li class="msg" id="m-4239" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">Grzegorz</span>
+        <time datetime="2026-09-10T20:10:57+00:00">2026-09-10 20:10 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4239" rel="noopener" title="Open on Telegram">#4239 ↗</a>
+      </div>
+      
+      <p class="en">Just like on X or YouTube, everybody&#39;s loaded with a few million in their wallet 😂 and it gets clicks</p>
+      <p class="zh" lang="pl">Tak jak na X czy YouTube każdy zarobiony i na portfelu parę baniek 😂 i to się klika</p>
+      <p class="note">&#34;parę baniek&#34; = a few million (slang: bańka = a million PLN).</p>
+    </li>
+    
+    <li class="msg" id="m-4238" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T20:09:54+00:00">2026-09-10 20:09 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4238" rel="noopener" title="Open on Telegram">#4238 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Grzegorz</b>: Because those who have something and build the economy don&#39;t have time for protests, and the rest have just enough...</p>
+      
+      <p class="en">They want to be better than others and want to show they&#39;re doing better (like on Facebook — it&#39;s all flexing, hype and a fairytale life).</p>
+      <p class="zh" lang="pl">Chca byc lepsi od innych i chca pokazac,ze radza sobie lepiej (jak na facebooku - jest lans,pompa i zycie jak w bajce).</p>
+      <p class="note">&#34;lans&#34; = showing off/flexing, &#34;pompa&#34; = pomp/hype.</p>
+    </li>
+    
+    <li class="msg" id="m-4237" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">Grzegorz</span>
+        <time datetime="2026-09-10T19:55:57+00:00">2026-09-10 19:55 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4237" rel="noopener" title="Open on Telegram">#4237 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Kaczi Kaczi</b>: I&#39;ve been wondering about it - you know why people don&#39;t protest? Because that&#39;s what they&#39;ve learned on Facebook...</p>
+      
+      <p class="en">Because those who have something and build the economy don&#39;t have time for protests, and the rest have just enough not to complain — read: Netflix, a budget holiday once a year and a new iPhone</p>
+      <p class="zh" lang="pl">Bo ci co mają i budują gospodarkę nie mają czasu na protesty a reszta ma na tyle żeby nie narzekać, czytaj Netflix budżetowe wakacje raz do roku i nowy iphone</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4236" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T19:23:57+00:00">2026-09-10 19:23 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4236" rel="noopener" title="Open on Telegram">#4236 ↗</a>
+      </div>
+      
+      <p class="en">Let&#39;s get back to Nexa. Because side topics have crept in</p>
+      <p class="zh" lang="pl">Przejdźmy do Nexy. Bo tematy poboczne weszly</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4235" data-sent="mixed" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T19:23:18+00:00">2026-09-10 19:23 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.20">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4235" rel="noopener" title="Open on Telegram">#4235 ↗</a>
+      </div>
+      
+      <p class="en">And in China over 60 thousand in the same period, multi-lane at that, and harder terrain to build on.</p>
+      <p class="zh" lang="pl">A w Chinach ponad 60 tysiecy w tym samym czasie i to wielopasmowe i trudniejszy teren do budowy.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4234" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T19:22:35+00:00">2026-09-10 19:22 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4234" rel="noopener" title="Open on Telegram">#4234 ↗</a>
+      </div>
+      
+      <p class="en">In Poland 2000 km of motorways were built</p>
+      <p class="zh" lang="pl">W Polsce powstało 2000 km autostrad</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4233" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T19:22:14+00:00">2026-09-10 19:22 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4233" rel="noopener" title="Open on Telegram">#4233 ↗</a>
+      </div>
+      
+      <p class="en">Here roads take like 4-5 years from planning to construction.</p>
+      <p class="zh" lang="pl">U nas drogi od planowania do budowy to z 4-5 lat.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4232" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T19:21:06+00:00">2026-09-10 19:21 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4232" rel="noopener" title="Open on Telegram">#4232 ↗</a>
+      </div>
+      
+      <p class="en">That&#39;s right</p>
+      <p class="zh" lang="pl">Zgadza sie</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4231" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T19:07:32+00:00">2026-09-10 19:07 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.50">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4231" rel="noopener" title="Open on Telegram">#4231 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: No. The EU only produces idiots</p>
+      
+      <p class="en">When I showed my uncle, an EU lover, how Cambodia and Vietnam are developing, he laughed me off. Remember CPK? Poland and I think Vietnam got the project at the same moment. In Poland CPK is still on the drawing board and in Vietnam CPK has already been running for over a year, and it&#39;s even more developed than originally planned.</p>
+      <p class="zh" lang="pl">Jak pokazywalem mojemu wujowi,milosnikowi UE jak rozwija sie Kambodza i Wietnam to mnie wysmial. Pamietasz CPK? POL i chyba Wietnam  dostali projekt w tym samym momencie. W Polsce CPK dalej w projektach a w Wietnamie CPK juz hula od ponad roku i to jeszcze rozwiniety bardziej niz bylo pierwotnie w planach.</p>
+      <p class="note">CPK = Centralny Port Komunikacyjny, Poland&#39;s long-delayed mega airport/transport hub project.</p>
+    </li>
+    
+    <li class="msg" id="m-4230" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T19:03:29+00:00">2026-09-10 19:03 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.60">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4230" rel="noopener" title="Open on Telegram">#4230 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: Where you have the possibility to do what you&#39;re good at and don&#39;t have to think about 10 other things and deal with them</p>
+      
+      <p class="en">Among continents the EU is 4th division. Even South America has already overtaken it.</p>
+      <p class="zh" lang="pl">UE to wsrod kontynentow 4 liga. Juz nawet Ameryka Pd ja wyprzedzila.</p>
+      <p class="note">&#34;4 liga&#34; (4th division) is a football metaphor for being far down the rankings.</p>
+    </li>
+    
+    <li class="msg" id="m-4229" data-sent="negative" data-topics="5">
+      <div class="head">
+        <span class="who">KLl TRER</span>
+        <time datetime="2026-09-10T18:52:18+00:00">2026-09-10 18:52 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4229" rel="noopener" title="Open on Telegram">#4229 ↗</a>
+      </div>
+      
+      <p class="en">And Polish influencers shill it</p>
+      <p class="zh" lang="pl">A polscy influ reklamują</p>
+      <p class="note">&#34;influ&#34; = shorthand for influencers; implied criticism of paid promotion.</p>
+    </li>
+    
+    <li class="msg" id="m-4228" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">KLl TRER</span>
+        <time datetime="2026-09-10T18:52:06+00:00">2026-09-10 18:52 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4228" rel="noopener" title="Open on Telegram">#4228 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Kaczi Kaczi</b>: Isn&#39;t that that shit with a swarm of VCs?</p>
+      
+      <p class="en">You bet</p>
+      <p class="zh" lang="pl">A jak</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4227" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:48:58+00:00">2026-09-10 18:48 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4227" rel="noopener" title="Open on Telegram">#4227 ↗</a>
+      </div>
+      
+      <p class="en">Some BDO, SENT and other PFRONs, etc.</p>
+      <p class="zh" lang="pl">Jakieś BDO, SENT i inne Pefrony itd</p>
+      <p class="note">BDO (waste register), SENT (transport monitoring system) and PFRON (disabled persons&#39; fund levy) are Polish bureaucratic obligations businesses hate.</p>
+    </li>
+    
+    <li class="msg" id="m-4226" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:46:28+00:00">2026-09-10 18:46 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4226" rel="noopener" title="Open on Telegram">#4226 ↗</a>
+      </div>
+      
+      <p class="en">Where you have the possibility to do what you&#39;re good at and don&#39;t have to think about 10 other things and deal with them</p>
+      <p class="zh" lang="pl">Tam gdzie masz możliwości robić to co potrafisz a nie musisz się zastanawiać nad 10 innymi rzeczami i je ogarniać</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4225" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:45:49+00:00">2026-09-10 18:45 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4225" rel="noopener" title="Open on Telegram">#4225 ↗</a>
+      </div>
+      
+      <p class="en">So look at which countries are developing</p>
+      <p class="zh" lang="pl">To zobacz które kraje się rozwijaja</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4224" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:45:17+00:00">2026-09-10 18:45 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4224" rel="noopener" title="Open on Telegram">#4224 ↗</a>
+      </div>
+      
+      <p class="en">And from 2000 to 2023 there were 3.8 million patents</p>
+      <p class="zh" lang="pl">A od 2000 do 2023 powstało 3,8 mln patentow</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4223" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:44:50+00:00">2026-09-10 18:44 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4223" rel="noopener" title="Open on Telegram">#4223 ↗</a>
+      </div>
+      
+      <p class="en">I don&#39;t remember exactly anymore</p>
+      <p class="zh" lang="pl">Już nie pamiętam dokladnie</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4222" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:44:42+00:00">2026-09-10 18:44 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4222" rel="noopener" title="Open on Telegram">#4222 ↗</a>
+      </div>
+      
+      <p class="en">Or 8 each</p>
+      <p class="zh" lang="pl">Albo po 8</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4221" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:44:23+00:00">2026-09-10 18:44 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4221" rel="noopener" title="Open on Telegram">#4221 ↗</a>
+      </div>
+      
+      <p class="en">Korea and Japan 10% each</p>
+      <p class="zh" lang="pl">Korea i Japonia po 10%</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4220" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:43:55+00:00">2026-09-10 18:43 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4220" rel="noopener" title="Open on Telegram">#4220 ↗</a>
+      </div>
+      
+      <p class="en">USA 18%</p>
+      <p class="zh" lang="pl">UsA 18%</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4219" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:43:44+00:00">2026-09-10 18:43 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4219" rel="noopener" title="Open on Telegram">#4219 ↗</a>
+      </div>
+      
+      <p class="en">That came out to about 10% I think</p>
+      <p class="zh" lang="pl">To dawało chyba 10%</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4218" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:43:32+00:00">2026-09-10 18:43 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4218" rel="noopener" title="Open on Telegram">#4218 ↗</a>
+      </div>
+      
+      <p class="en">The EU as a whole, 190 thousand</p>
+      <p class="zh" lang="pl">UE w całości 190 tysiecy</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4217" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:43:19+00:00">2026-09-10 18:43 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4217" rel="noopener" title="Open on Telegram">#4217 ↗</a>
+      </div>
+      
+      <p class="en">Not long ago I analysed how many patents individual countries file. And in 2023 China filed 48% of patents, 1.6 million</p>
+      <p class="zh" lang="pl">Niedawno analizowałem ile patentów zgłaszają dane państwa. I w 2023 Chiny zgłosiły 48% patentów 1,6 mln</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4216" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:41:41+00:00">2026-09-10 18:41 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.70">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4216" rel="noopener" title="Open on Telegram">#4216 ↗</a>
+      </div>
+      
+      <p class="en">No. The EU only produces idiots</p>
+      <p class="zh" lang="pl">Nie. UE produkuje tylko idiotow</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4215" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T18:41:17+00:00">2026-09-10 18:41 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4215" rel="noopener" title="Open on Telegram">#4215 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Kaczi Kaczi</b>: Are you talking about Spain?😂</p>
+      
+      <p class="en">You wouldn&#39;t want that tax system of theirs — and above a certain amount, when you withdraw cash you have to run to their tax office and report it</p>
+      <p class="zh" lang="pl">Nie chcialbys tamtego systemu podatkowego i powyzej pewnej kwoty jak gotowke wyciagasz to musisz leciec do ichniejszej skarbowki   i to zglosic</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4214" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T18:39:51+00:00">2026-09-10 18:39 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4214" rel="noopener" title="Open on Telegram">#4214 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: Only such countries develop in the long run, and the citizens of those countries are eager to act, start businesses, etc.</p>
+      
+      <p class="en">Are you talking about Spain?😂</p>
+      <p class="zh" lang="pl">Mowisz o Hiszpanii?😂</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4213" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T18:39:33+00:00">2026-09-10 18:39 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4213" rel="noopener" title="Open on Telegram">#4213 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: I&#39;m for deregulation</p>
+      
+      <p class="en">Me too. People should learn real economics and gain skills in using financial instruments.</p>
+      <p class="zh" lang="pl">Ja tez. Ludzie powinni sie uczyc ekonomii prawdziwej i zdobywac umiejetnosci w poslugiwaniu sie instrumentami finansowymi.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4212" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:39:29+00:00">2026-09-10 18:39 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4212" rel="noopener" title="Open on Telegram">#4212 ↗</a>
+      </div>
+      
+      <p class="en">Only such countries develop in the long run, and the citizens of those countries are eager to act, start businesses, etc.</p>
+      <p class="zh" lang="pl">Tylko takie państwa się rozwijają na dłuższą metę  i obywatele tych państw są chętni do działania, zakładania działalności itd</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4211" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T18:38:50+00:00">2026-09-10 18:38 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4211" rel="noopener" title="Open on Telegram">#4211 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: He&#39;ll invest in Zondacrypto 😂</p>
+      
+      <p class="en">That&#39;s it exactly. Or in a cottage in Spain</p>
+      <p class="zh" lang="pl">O to to. Albo w chalupe w Hiszpanii</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4210" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:38:33+00:00">2026-09-10 18:38 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4210" rel="noopener" title="Open on Telegram">#4210 ↗</a>
+      </div>
+      
+      <p class="en">I&#39;m for deregulation</p>
+      <p class="zh" lang="pl">Ja jestem za deregulacją</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4209" data-sent="negative" data-topics="5">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:38:16+00:00">2026-09-10 18:38 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.20">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4209" rel="noopener" title="Open on Telegram">#4209 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Kaczi Kaczi</b>: We&#39;ll see. A millionaire with PO-PiS thinking won&#39;t manage — he&#39;ll step in shit and it&#39;ll destroy him.</p>
+      
+      <p class="en">He&#39;ll invest in Zondacrypto 😂</p>
+      <p class="zh" lang="pl">Zainwestuje w Zondacrypto 😂</p>
+      <p class="note">Zondacrypto is a Polish crypto exchange; the joke mocks it as an obvious mainstream/bad choice.</p>
+    </li>
+    
+    <li class="msg" id="m-4208" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T18:37:04+00:00">2026-09-10 18:37 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4208" rel="noopener" title="Open on Telegram">#4208 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: A millionaire will always manage. It&#39;s worse for the ordinary small savers.</p>
+      
+      <p class="en">We&#39;ll see. A millionaire with PO-PiS thinking won&#39;t manage — he&#39;ll step in shit and it&#39;ll destroy him.</p>
+      <p class="zh" lang="pl">Zobaczymy. Milioner z mysleniem popisowym sobie nie poradzi- wejdzie w gowno i go zniszcza.</p>
+      <p class="note">&#34;myślenie popisowe&#34; = thinking in line with the PO/PiS mainstream duopoly of Polish politics.</p>
+    </li>
+    
+    <li class="msg" id="m-4207" data-sent="mixed" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T18:36:19+00:00">2026-09-10 18:36 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4207" rel="noopener" title="Open on Telegram">#4207 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: Ok. I thought it had already gone through.</p>
+      
+      <p class="en">I&#39;ll tell you that just 2-3 years ago there was no hope in my thinking, but now societies are waking up — not in Poland yet, because they&#39;re fucked in the head — the smiley ones who believe in water shortages (fuck, even in primary school we were taught that the amount of water is constant) and other nonsense. But that&#39;s coming to an end — it&#39;s just a race between them and time to close the system, and that&#39;s hard. I&#39;ll tell you something — like during the pseudo-Covid — the system is indestructible against the conventional Average Joe, but the moment unconventional thinking starts, the system falls apart.</p>
+      <p class="zh" lang="pl">Powiem Ci,ze jeszcze 2-3 lata temu w moim mysleniu nie bylo nadzie ale obecnie spoleczenstwa sie budza- w Polsce jeszcze nie,bo sa pierdolnieci- usmiechnieci , ktorzy wierza w niedobor wody (kurwa,przeciez w podstawowce nawet bylo ,ze ilosc wody jest stala ) i inne bzdury . Ale to sie juz konczy- tylko jest wyscig ich z czasem by domknac suystem a tu ciezko. Powiem Ci cos- jak za pseudo Covida- system jest niezniszczalny wobec konwencjonalnego Kowalskiego,kiedy zaczyna sie myslenie niekonwencjonalne-system sie sypie.</p>
+      <p class="note">&#34;uśmiechnięci&#34; (the smiley ones) is a jab at supporters of the current Polish government, dubbed the &#34;smiling Poland&#34; camp; &#34;Kowalski&#34; is the Polish equivalent of &#34;Average Joe&#34;.</p>
+    </li>
+    
+    <li class="msg" id="m-4206" data-sent="mixed" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:35:20+00:00">2026-09-10 18:35 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.30">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4206" rel="noopener" title="Open on Telegram">#4206 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Kaczi Kaczi</b>: That&#39;s why I think crypto is the last haven of freedom</p>
+      
+      <p class="en">A millionaire will always manage. It&#39;s worse for the ordinary small savers.</p>
+      <p class="zh" lang="pl">Milioner zawsze sobie poradzi. Gorzej ze zwykłymi ciułaczami.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4205" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:33:20+00:00">2026-09-10 18:33 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4205" rel="noopener" title="Open on Telegram">#4205 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Kaczi Kaczi</b>: And it 100% didn&#39;t pass in the Netherlands, because I read that they stopped it</p>
+      
+      <p class="en">Ok. I thought it had already gone through.</p>
+      <p class="zh" lang="pl">Ok. Myślałem że to już przeszło.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4204" data-sent="negative" data-topics="">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T18:33:13+00:00">2026-09-10 18:33 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4204" rel="noopener" title="Open on Telegram">#4204 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>KLl TRER</b>: Zro 😂</p>
+      
+      <p class="en">Isn&#39;t that that shit with a swarm of VCs?</p>
+      <p class="zh" lang="pl">A to nie ten shit z chmara VC?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4203" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T18:32:32+00:00">2026-09-10 18:32 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4203" rel="noopener" title="Open on Telegram">#4203 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: And in another 10 years 90% of cameras will recognise faces using AI and you&#39;ll be under total control. There are...</p>
+      
+      <p class="en">That&#39;s why I think crypto is the last haven of freedom</p>
+      <p class="zh" lang="pl">Dlatego uwazam,ze krypto jest ostatnia przystania wolnosci</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4202" data-sent="neutral" data-topics="">
+      <div class="head">
+        <span class="who">KLl TRER</span>
+        <time datetime="2026-09-10T18:32:13+00:00">2026-09-10 18:32 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4202" rel="noopener" title="Open on Telegram">#4202 ↗</a>
+      </div>
+      
+      <p class="en">Zro 😂</p>
+      <p class="zh" lang="pl">Zro 😂</p>
+      <p class="note">Truncated/garbled word, apparently a cut-off typo; reply to a deleted message.</p>
+    </li>
+    
+    <li class="msg" id="m-4201" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T18:32:01+00:00">2026-09-10 18:32 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4201" rel="noopener" title="Open on Telegram">#4201 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: In the Netherlands?</p>
+      
+      <p class="en">And it 100% didn&#39;t pass in the Netherlands, because I read that they stopped it</p>
+      <p class="zh" lang="pl">A przeszlo na 100% w Holandii bo czytalem,ze to zatrzymali</p>
+      <p class="note">He writes &#39;a przeszło&#39; (and it passed) but clearly means it did NOT pass, as the rest of the sentence shows.</p>
+    </li>
+    
+    <li class="msg" id="m-4200" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T18:31:28+00:00">2026-09-10 18:31 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4200" rel="noopener" title="Open on Telegram">#4200 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: And I don&#39;t see anyone protesting</p>
+      
+      <p class="en">I&#39;ve been wondering about it - you know why people don&#39;t protest? Because that&#39;s what they&#39;ve learned on Facebook and Instagram, bragging to everyone, treating life as a competition. They want to show they&#39;re doing better than the neighbour or a friend and they see no reason to protest (yet)</p>
+      <p class="zh" lang="pl">Zastanawialem sie nad tym - wiesz czemu ludzie nie protestuja? bo sie tak nauczyli na facebooku, instagramie chwalic wszystkim,ze traktuja zycie jak rywalizacje. Chca pokazac,ze i sie lepiej powodzi niz sasiadowi lub znajomemu i nie widza powodu ,by protestowac (jeszcze)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4198" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:30:25+00:00">2026-09-10 18:30 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4198" rel="noopener" title="Open on Telegram">#4198 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Kaczi Kaczi</b>: But that didn&#39;t pass</p>
+      
+      <p class="en">In the Netherlands?</p>
+      <p class="zh" lang="pl">W Holandii?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4197" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T18:29:55+00:00">2026-09-10 18:29 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4197" rel="noopener" title="Open on Telegram">#4197 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: A 36% tax on unrealised capital gains from 1 January 2028</p>
+      
+      <p class="en">But that didn&#39;t pass</p>
+      <p class="zh" lang="pl">Przeciez to nie przeszlo</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4196" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:06:26+00:00">2026-09-10 18:06 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.50">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4196" rel="noopener" title="Open on Telegram">#4196 ↗</a>
+      </div>
+      
+      <p class="en">We&#39;ll yet end up envying the freedom of life in Belarus or Russia 🤣 unless people finally come to their senses and it all blows up</p>
+      <p class="zh" lang="pl">Jeszcze będziemy się cieszyć z wolnosci życia na Białorusi albo Rosji 🤣 no chyba że ludzie się w końcu opamiętają i to jebnie</p>
+      <p class="note">&#39;to jebnie&#39; = crude for &#39;it&#39;ll blow up/explode&#39;.</p>
+    </li>
+    
+    <li class="msg" id="m-4195" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:04:33+00:00">2026-09-10 18:04 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.70">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4195" rel="noopener" title="Open on Telegram">#4195 ↗</a>
+      </div>
+      
+      <p class="en">And in another 10 years 90% of cameras will recognise faces using AI and you&#39;ll be under total control. There are also proposals to limit how much cash you can keep at home, and we&#39;ll become slaves of the system. Personal account surveillance systems will analyse in detail how much you earn at work, how much you have in your account and how much you&#39;re allowed to have at home..... Such is life</p>
+      <p class="zh" lang="pl">A jeszcze 10 lat i 90% kamer będzie rozpoznawać twarze za pomocą Ai i będziesz miał kontrolę całkowitą. Pojawiają się też postulaty by ograniczyć posiadanie gotówki w domach do pewnej ilości i staniemy sie niewolnikami systemu. Systemy nadzoru kont osobistych przeanalizują dokładnie ile zarobisz w pracy a ile masz na koncie i ile możesz mieć w domu..... Takie życie</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4194" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T18:00:38+00:00">2026-09-10 18:00 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.60">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4194" rel="noopener" title="Open on Telegram">#4194 ↗</a>
+      </div>
+      
+      <p class="en">They used to laugh at the communist era and now there&#39;s 100x more censorship. Cameras everywhere, you can only pay cash up to a certain amount. Control of personal accounts, etc.</p>
+      <p class="zh" lang="pl">Śmiali się z PRL-u a teraz jest 100x większa cenzura. Wszędzie kamery, gotówka możesz płacić tylko do określonej kwoty. Kontrolę kont osobistych itd</p>
+      <p class="note">&#39;PRL&#39; = the Polish People&#39;s Republic, the communist era before 1989.</p>
+    </li>
+    
+    <li class="msg" id="m-4193" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T17:57:55+00:00">2026-09-10 17:57 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4193" rel="noopener" title="Open on Telegram">#4193 ↗</a>
+      </div>
+      
+      <p class="en">And I don&#39;t see anyone protesting</p>
+      <p class="zh" lang="pl">I nie widzę by ktoś protestowal</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4192" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T17:56:02+00:00">2026-09-10 17:56 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4192" rel="noopener" title="Open on Telegram">#4192 ↗</a>
+      </div>
+      
+      <p class="en">A 36% tax on unrealised capital gains from 1 January 2028</p>
+      <p class="zh" lang="pl">Podatek od niezrealizowanych zysków kapitałowych 36% od 1 stycznia 2028</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4191" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T17:54:35+00:00">2026-09-10 17:54 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4191" rel="noopener" title="Open on Telegram">#4191 ↗</a>
+      </div>
+      
+      <p class="en">And look at what you&#39;ve got in the Netherlands</p>
+      <p class="zh" lang="pl">I zobacz jak masz w Holandii</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4190" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T17:54:10+00:00">2026-09-10 17:54 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4190" rel="noopener" title="Open on Telegram">#4190 ↗</a>
+      </div>
+      
+      <p class="en">Except that it&#39;s the political clique that dictates the terms</p>
+      <p class="zh" lang="pl">Tylko że to polityczną sitwa dyktuje warunki</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4189" data-sent="mixed" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T17:49:44+00:00">2026-09-10 17:49 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4189" rel="noopener" title="Open on Telegram">#4189 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: Because maybe in 2 years any touch of Monero will mean a ban from fiat. Of course I&#39;m not claiming it will be like...</p>
+      
+      <p class="en">I don&#39;t think so. If you think MiCA is sinking privacy, then look at ZEC, Monero - and it&#39;s going to get even funnier, I can guarantee you that. And any moment now you&#39;ll find out that most exchanges are pulling out of MiCA because they&#39;re barely breathing and cutting corners, and it&#39;s going to get even more interesting.</p>
+      <p class="zh" lang="pl">Nie sadze. Jesli Ty myslisz ,ze te MICA pograza privacy to zobacz na ZEC,Monero - a bedzie jeszcze smieszniej,to moge CI zagwarantowac. A za chwilunie dowiesz sie,ze wiekszosc gield wychodzi z MICA bo juz ledwo dysza i robia rekawami a bedzie jeszcze ciekawiej.</p>
+      <p class="note">MiCA = the EU crypto regulation; &#39;robią rękawami&#39; is a mangled idiom suggesting they&#39;re doing things sloppily/cutting corners.</p>
+    </li>
+    
+    <li class="msg" id="m-4188" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T17:48:07+00:00">2026-09-10 17:48 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4188" rel="noopener" title="Open on Telegram">#4188 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: Well yeah, but you don&#39;t know how long they&#39;ll keep accepting that</p>
+      
+      <p class="en">They make the rules for the rabble, they&#39;ve left back doors for themselves - how could it be otherwise 😉</p>
+      <p class="zh" lang="pl">Oni robia reguly dla motłochu,dla siebie pozostawiali furtki- jak mialo by byc inaczej😉</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4187" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T17:48:02+00:00">2026-09-10 17:48 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4187" rel="noopener" title="Open on Telegram">#4187 ↗</a>
+      </div>
+      
+      <p class="en">Because maybe in 2 years any touch of Monero will mean a ban from fiat. Of course I&#39;m not claiming it will be like that, but it could be. They&#39;re clamping down on crypto more and more.</p>
+      <p class="zh" lang="pl">Bo może za 2 lata każdy dotyk monero będzie banem do fiat. Oczywiście nie twierdzę że tak będzie ale może być. Coraz bardziej dobierają się do krypto.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4186" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T17:46:50+00:00">2026-09-10 17:46 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4186" rel="noopener" title="Open on Telegram">#4186 ↗</a>
+      </div>
+      
+      <p class="en">Well yeah, but you don&#39;t know how long they&#39;ll keep accepting that</p>
+      <p class="zh" lang="pl">No tak ale nie wiesz jak długo będą to akceptować</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4185" data-sent="mixed" data-topics="5">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T17:45:38+00:00">2026-09-10 17:45 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.20">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4185" rel="noopener" title="Open on Telegram">#4185 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: Similarly you have to watch out for some people from the USA or other regions, because they tell you they can&#39;t buy...</p>
+      
+      <p class="en">you can always create a new address, mix it, swap it to Monero and move it around inside that network, you come out with nice clean Monero and onto a no-KYC exchange - sounds like a plan?😂</p>
+      <p class="zh" lang="pl">zawsze mozesz utworzyc nowy adres,przemiksowac ,wymienic na monero i wewnatrz tej sieci poprzelewac,wyjdziesz ładnym monero i na gielde bez kyc- brzmi jak plan?😂</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4184" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T17:43:53+00:00">2026-09-10 17:43 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4184" rel="noopener" title="Open on Telegram">#4184 ↗</a>
+      </div>
+      
+      <p class="en">Similarly you have to watch out for some people from the USA or other regions, because they tell you they can&#39;t buy a given asset since those exchanges don&#39;t work where they live. But he can transfer you USDT money from e.g. drug dealing, and later they&#39;ll freeze all your assets when you try to cash out to fiat</p>
+      <p class="zh" lang="pl">Podobnie trzeba uważać na niektórych z USA czy innych regionów bo mówią ci że nie mogą kupić danego aktywa bo u nich nie działają te giełdy. Ale może ci przelać pieniądze usdt z np handlu narkotykami i później zablokują ci wszystkie twoje aktywa gdy będziesz wychodził do fiat</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4183" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">Kaczi Kaczi</span>
+        <time datetime="2026-09-10T17:40:38+00:00">2026-09-10 17:40 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4183" rel="noopener" title="Open on Telegram">#4183 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: Post that you have a problem with your wallet or that you can&#39;t do something and you&#39;ll have 3 helpers from...</p>
+      
+      <p class="en">yeah, because people are so helpful - sometimes I&#39;m really moved, f.... %#@&amp;</p>
+      <p class="zh" lang="pl">tak,bo ludzie sa bardzo pomocni-czasem jestem bardzo wzruszony k.... %#@&amp;</p>
+      <p class="note">Heavy sarcasm plus censored swearing about scam &#39;helpers&#39;.</p>
+    </li>
+    
+    <li class="msg" id="m-4182" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T17:36:08+00:00">2026-09-10 17:36 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4182" rel="noopener" title="Open on Telegram">#4182 ↗</a>
+      </div>
+      
+      <p class="en">Post that you have a problem with your wallet or that you can&#39;t do something and you&#39;ll have 3 helpers from &#34;official&#34; support</p>
+      <p class="zh" lang="pl">Napisz, że masz problem z portfelem albo czegoś nie potrafisz zrobić to będziesz miał 3 pomocników z &#34;oficjalnego&#34; wsparcia</p>
+      <p class="note">Sarcastic warning about scammers posing as official support.</p>
+    </li>
+    
+    <li class="msg" id="m-4181" data-sent="mixed" data-topics="4">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T17:34:28+00:00">2026-09-10 17:34 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4181" rel="noopener" title="Open on Telegram">#4181 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>KLl TRER</b>: How much Nexa do you actually hold at the moment?</p>
+      
+      <p class="en">Better not to say on forums how much of a given asset you hold. There can be scammers sitting here too. Besides, the other thing is that if Nexa does x100 or x500 then 90% of the people on this forum&#39;s list could be millionaires if they don&#39;t sell too early. On average once a week somebody writes to me from the USA, India, Nigeria, the Netherlands, the UK, the Caymans, etc.</p>
+      <p class="zh" lang="pl">Lepiej nie mówcie na forach ile posiadacie danego aktywa. Tutaj też mogą siedzieć oszuści. Zresztą druga sprawą jest to, że jeśli nexa zrobi x100 lub x500 to 90% z listy tego forum może być milionerem jeśli nie sprzedają za szybko.  Do mnie srednio raz w tygodniu ktoś pisze z USA, Indii, Nigerii, Holandii, UK, z kajmanów itd.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4180" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">KLl TRER</span>
+        <time datetime="2026-09-10T17:01:30+00:00">2026-09-10 17:01 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4180" rel="noopener" title="Open on Telegram">#4180 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>AVERON</b>: Imagine a highway and shipping goods:
+ * Kaspa with Silverscript is a TGV / Maglev train with armoured safes.
+   It...</p>
+      
+      <p class="en">That&#39;s exactly how it is.
+Speed of reaction vs scale of operation and throughput</p>
+      <p class="zh" lang="pl">Dokładnie tak jest.
+Szybkość reakcji vs Skala działania i przepustowość</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4179" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">AVERON</span>
+        <time datetime="2026-09-10T16:56:23+00:00">2026-09-10 16:56 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4179" rel="noopener" title="Open on Telegram">#4179 ↗</a>
+      </div>
+      
+      <p class="en">Imagine a highway and shipping goods:
+ * Kaspa with Silverscript is a TGV / Maglev train with armoured safes.
+   It runs at an insane speed of dozens of runs per second. In every carriage you have special safes (Silverscript) that you can program: &#34;open in 2 days&#34;, &#34;spend only 100 zł per day&#34; or &#34;require the signature of the CEO and the accountant&#34;. That train has no factory or commodity exchange on board, because that would slow it down. If you want complicated trading, the train instantly delivers the cargo to an external logistics centre (L2).
+ * Nexa is a gigantic, 10-storey hypermarket on wheels (the Monolith L1).
+   It moves at a traditional pace (sped up by the Tailstorm &#34;jet engine&#34;), but inside it holds absolutely everything. On the ground floor you have currency exchanges, on the next floor lending machines, and in the aisles factories producing their own tokens (Wise Contracts / NexScript). All the complicated operations and exchanges happen directly inside that one vehicle, with no need to step outside.</p>
+      <p class="zh" lang="pl">Wyobraź sobie autostradę i przesyłanie towarów:
+ * Kaspa z Silverscript to pociąg TGV / Maglev z pancernymi sejfami.
+   Jeździ z obłędną prędkością kilkudziesięciu kursów na sekundę. W każdym wagonie masz specjalne sejfy (Silverscript), które możesz zaprogramować: „otwórz się za 2 dni”, „wydaj tylko 100 zł dziennie” albo „wymagaj podpisu prezesa i księgowego”. Ten pociąg nie ma na pokładzie fabryki ani giełdy towarowej, bo to by go spowolniło. Jeśli chcesz skomplikowanego handlu, pociąg błyskawicznie dowozi ładunek do zewnętrznego centrum logistycznego (L2).
+ * Nexa to gigantyczny, 10-piętrowy hipermarket na kołach (Monolit L1).
+   Jedzie tradycyjnym tempem (przyspieszanym przez „silnik odrzutowy” Tailstorm), ale w środku mieści się absolutnie wszystko. Na parterze masz kantory, na piętrze automaty do pożyczek, a w alejkach fabryki produkujące własne żetony (Wise Contracts / NexScript). Wszystkie skomplikowane operacje i wymiany dzieją się bezpośrednio w tym jednym pojeździe, bez potrzeby wysiadania na zewnątrz.</p>
+      <p class="note">An analogy comparing Kaspa&#39;s fast, minimal L1 + L2 model with Nexa&#39;s all-in-one &#39;monolithic&#39; L1.</p>
+    </li>
+    
+    <li class="msg" id="m-4178" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">KLl TRER</span>
+        <time datetime="2026-09-10T16:53:12+00:00">2026-09-10 16:53 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_poland/4178" rel="noopener" title="Open on Telegram">#4178 ↗</a>
+      </div>
+      
+      <p class="en">How much Nexa do you actually hold at the moment?</p>
+      <p class="zh" lang="pl">Ile tak Nexy posiadasz obecnie?</p>
+      
+    </li>
+    
+  </ol>
+  <p class="empty" id="empty">No messages match these filters.</p>
+</section>
+
+<footer>
+  <p>Translations, sentiment scores and the summary are generated automatically by claude-opus-5 and may contain mistakes. Original messages belong to their authors on Telegram.</p>
+  <p><a href="data.json">Raw data (JSON)</a></p>
+</footer>
+
+</div>
+<script>
+(function () {
+  var msgs = Array.prototype.slice.call(document.querySelectorAll('.msg'));
+  var sent = 'all', topic = null;
+  var topicNames = ["AI-generated project audits (Firo, Xelis)", "Surveillance, MiCA and EU decline", "NEXA price strength and marketing", "Nexa vs Kaspa architecture", "Scammers and opsec in the group", "Cashing out and Monero mixing"];
+
+  function apply() {
+    var shown = 0;
+    msgs.forEach(function (m) {
+      var ok = (sent === 'all' || m.dataset.sent === sent) &&
+               (topic === null || (' ' + m.dataset.topics + ' ').indexOf(' ' + topic + ' ') !== -1);
+      m.hidden = !ok; if (ok) shown++;
+    });
+    document.getElementById('empty').classList.toggle('on', shown === 0);
+    var bar = document.getElementById('active-topic');
+    bar.classList.toggle('on', topic !== null);
+    if (topic !== null) document.getElementById('active-topic-name').textContent = topicNames[topic] + ' (' + shown + ')';
+    document.querySelectorAll('.topic').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.topic === String(topic))); });
+  }
+  document.querySelectorAll('.fbtn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      sent = b.dataset.sent;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      apply();
+    });
+  });
+  document.querySelectorAll('.topic').forEach(function (b) {
+    b.addEventListener('click', function () {
+      topic = (String(topic) === b.dataset.topic) ? null : Number(b.dataset.topic);
+      apply();
+      if (topic !== null) document.getElementById('messages').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  document.getElementById('clear-topic').addEventListener('click', function () { topic = null; apply(); });
+
+  var zh = document.getElementById('show-zh');
+  try { if (localStorage.getItem('showZh') === '0') zh.checked = false; } catch (e) {}
+  function syncZh() {
+    document.body.classList.toggle('hide-zh', !zh.checked);
+    try { localStorage.setItem('showZh', zh.checked ? '1' : '0'); } catch (e) {}
+  }
+  zh.addEventListener('change', syncZh); syncZh();
+
+  // Show timestamps in the viewer's local time zone.
+  var fmt = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+  document.querySelectorAll('time[datetime]').forEach(function (t) {
+    var d = new Date(t.getAttribute('datetime'));
+    if (!isNaN(d)) { t.title = t.textContent; t.textContent = fmt.format(d); }
+  });
+
+  // Highlight links: reveal the target even if filtered out, then flash it.
+  document.querySelectorAll('.hl a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      sent = 'all'; topic = null;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.sent === 'all')); });
+      apply();
+      var el = document.querySelector(a.getAttribute('href'));
+      if (el) { el.classList.add('flash'); setTimeout(function () { el.classList.remove('flash'); }, 1600); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

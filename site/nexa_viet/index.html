@@ -1,0 +1,1722 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexa Vietnam — English</title>
+<meta name="description" content="A near-dormant group: bot welcomes, occasional price gripes, one real mining chat and a moderation spat.">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --line: #e1e0d9; --ring: rgba(11,11,11,.10); --wash: rgba(11,11,11,.04);
+  --accent: #2a78d6; --accent-ink: #1c5cab;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #c98500; --neu: #898781; --mid: #f0efec;
+  --zh: #52514e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+    --accent: #3987e5; --accent-ink: #86b6ef;
+    --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+    --zh: #c3c2b7;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+  --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+  --accent: #3987e5; --accent-ink: #86b6ef;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+  --zh: #c3c2b7;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--page); color: var(--ink);
+  font: 15px/1.55 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  padding-inline: clamp(16px, 4vw, 32px); padding-block: 0 64px;
+}
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 900px; margin: 0 auto; }
+header.top { padding-block: 40px 24px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+h1 { font-size: clamp(24px, 4vw, 34px); line-height: 1.15; margin: 0 0 10px; letter-spacing: -.01em; }
+.meta { color: var(--ink-2); font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; }
+.meta span::before { content: ""; }
+h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; font-weight: 600; }
+section { padding-block: 32px; }
+h2 .sub { font-weight: 400; letter-spacing: 0; text-transform: none; }
+section + section { border-top: 1px solid var(--line); }
+.headline { font-size: clamp(19px, 2.6vw, 24px); line-height: 1.3; font-weight: 600; margin: 0 0 12px; letter-spacing: -.01em; }
+.lede { font-size: 16px; color: var(--ink-2); margin: 0; max-width: 70ch; }
+.grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.topics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.topic { width: 100%; text-align: left; background: transparent; border: 1px solid transparent; border-radius: 10px; padding: 12px 14px; color: inherit; font: inherit; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; }
+.topic:hover { background: var(--wash); }
+.topic[aria-pressed="true"] { border-color: var(--accent); background: var(--wash); }
+.topic .t { font-weight: 600; }
+.topic .n { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.topic .s { grid-column: 1 / -1; color: var(--ink-2); font-size: 14px; }
+.mood-label { font-size: 26px; font-weight: 700; letter-spacing: -.01em; margin: 0 0 4px; }
+.mood-score { color: var(--muted); font-size: 13px; margin: 0 0 12px; font-variant-numeric: tabular-nums; }
+.meter { position: relative; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--neg), var(--mid) 50%, var(--pos)); margin: 6px 0 4px; }
+.meter i { position: absolute; top: 50%; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 3px solid var(--ink); transform: translate(-50%, -50%); box-shadow: 0 0 0 2px var(--surface); }
+.meter-ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+.mood-desc { margin: 0 0 20px; color: var(--ink-2); font-size: 14px; }
+.dist { display: flex; height: 12px; border-radius: 4px; overflow: hidden; gap: 2px; background: var(--surface); margin-bottom: 10px; }
+.dist b { display: block; height: 100%; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 13px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend .n { margin-left: auto; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.positive { --c: var(--pos); } .negative { --c: var(--neg); } .mixed { --c: var(--mix); } .neutral { --c: var(--neu); }
+.dot, .dist b { background: var(--c); }
+.chip { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--ink-2); padding: 2px 8px 2px 6px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); white-space: nowrap; }
+.chip::before { content: attr(data-glyph); width: 14px; height: 14px; border-radius: 50%; background: var(--c); color: #fff; display: inline-grid; place-items: center; font-size: 11px; line-height: 1; }
+.hl { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hl a { display: block; color: inherit; background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 12px 14px; }
+.hl a:hover { text-decoration: none; border-color: var(--accent); }
+.hl .q { font-size: 15px; margin: 0 0 4px; }
+.hl .w { font-size: 13px; color: var(--ink-2); margin: 0; }
+.hl .w b { font-weight: 600; color: var(--ink); }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 16px; position: sticky; top: 0; background: var(--page); padding-block: 10px; z-index: 2; border-bottom: 1px solid var(--line); }
+.controls .sp { flex: 1; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.fbtn { font: inherit; font-size: 13px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.fbtn[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); cursor: pointer; user-select: none; }
+.toggle input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+.active-topic { display: none; font-size: 13px; color: var(--ink-2); padding: 8px 12px; border-radius: 8px; background: var(--wash); margin-bottom: 12px; }
+.active-topic.on { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.active-topic button { font: inherit; font-size: 13px; background: none; border: 0; color: var(--accent-ink); cursor: pointer; padding: 0; }
+.msgs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.msg { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 12px 16px; scroll-margin-top: 70px; }
+.msg[hidden] { display: none; }
+.msg.flash { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42,120,214,.25); }
+.msg .head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 6px; font-size: 13px; }
+.msg .who { font-weight: 600; color: var(--ink); font-size: 14px; }
+.msg time { color: var(--muted); font-variant-numeric: tabular-nums; }
+.msg .lnk { margin-left: auto; color: var(--muted); font-size: 12px; }
+.msg .reply { border-left: 3px solid var(--line); padding: 2px 10px; margin: 0 0 8px; color: var(--ink-2); font-size: 13px; }
+.msg .reply b { font-weight: 600; }
+.msg .en { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg .zh { margin: 6px 0 0; color: var(--zh); font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+body.hide-zh .msg .zh { display: none; }
+.msg .note { margin: 8px 0 0; font-size: 13px; color: var(--ink-2); font-style: italic; }
+.msg .note::before { content: "Note: "; font-style: normal; font-weight: 600; }
+.empty { display: none; color: var(--muted); padding: 24px 0; text-align: center; }
+.empty.on { display: block; }
+footer { color: var(--muted); font-size: 13px; padding-top: 32px; border-top: 1px solid var(--line); }
+footer p { margin: 0 0 6px; }
+@media (prefers-reduced-motion: no-preference) { .msg { transition: border-color .3s, box-shadow .3s; } }
+.nav { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; padding: 0; list-style: none; }
+.nav a { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); }
+.nav a:hover { text-decoration: none; border-color: var(--accent); }
+.nav a[aria-current="page"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.nav .lang { font-weight: 400; opacity: .75; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
+.cards > li > a { display: block; color: inherit; height: 100%; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.cards > li > a:hover { text-decoration: none; border-color: var(--accent); }
+.cards h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.cards .sub { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+.cards .hd { font-size: 15px; font-weight: 600; margin: 0 0 10px; line-height: 1.35; }
+.cards .mood { display: flex; align-items: baseline; gap: 8px; margin: 0 0 8px; }
+.cards .mood b { font-size: 20px; letter-spacing: -.01em; }
+.cards .mood span { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.cards .dist { margin: 10px 0 8px; }
+.cards .legend { grid-template-columns: repeat(4, auto); justify-content: start; gap: 4px 14px; font-size: 12px; }
+.cards .legend .n { margin-left: 4px; }
+.cards .more { color: var(--accent-ink); font-size: 13px; font-weight: 600; margin: 12px 0 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <ul class="nav" aria-label="Communities">
+  <li><a href="../">Overview</a></li>
+  
+  <li><a href="../nexa_china/"><span aria-hidden="true">🇨🇳</span> Chinese</a></li>
+  
+  <li><a href="../nexa_netherlands/"><span aria-hidden="true">🇳🇱</span> Dutch</a></li>
+  
+  <li><a href="../nexa_germany/"><span aria-hidden="true">🇩🇪</span> German</a></li>
+  
+  <li><a href="../nexa_india/"><span aria-hidden="true">🇮🇳</span> Hindi</a></li>
+  
+  <li><a href="../nexa_korean/"><span aria-hidden="true">🇰🇷</span> Korean</a></li>
+  
+  <li><a href="../nexa_nor/"><span aria-hidden="true">🇳🇴</span> Norwegian</a></li>
+  
+  <li><a href="../nexa_philippines/"><span aria-hidden="true">🇵🇭</span> Filipino</a></li>
+  
+  <li><a href="../nexa_poland/"><span aria-hidden="true">🇵🇱</span> Polish</a></li>
+  
+  <li><a href="../nexa_ru/"><span aria-hidden="true">🇷🇺</span> Russian</a></li>
+  
+  <li><a href="../nexa_spanish/"><span aria-hidden="true">🇪🇸</span> Spanish</a></li>
+  
+  <li><a href="../nexatr/"><span aria-hidden="true">🇹🇷</span> Turkish</a></li>
+  
+  <li><a href="../nexa_viet/" aria-current="page"><span aria-hidden="true">🇻🇳</span> Vietnamese</a></li>
+  
+</ul>
+  <p class="eyebrow">Telegram · Vietnamese → English mirror</p>
+  <h1>Nexa Vietnam</h1>
+  <p class="meta">
+    <span><a href="https://t.me/nexa_viet" rel="noopener">t.me/nexa_viet</a></span>
+    <span>28 members</span>
+    <span>Last 100 messages · <time datetime="2024-11-04T02:36:49+00:00">2024-11-04 02:36 UTC</time> → <time datetime="2026-09-06T20:13:18+00:00">2026-09-06 20:13 UTC</time></span>
+    <span>Updated <time datetime="2026-09-12T16:38:22.800275+00:00">2026-09-12 16:38 UTC</time></span>
+  </p>
+</header>
+
+<section id="summary">
+  <h2>Summary</h2>
+  <p class="headline">A near-dormant group: bot welcomes, occasional price gripes, one real mining chat and a moderation spat.</p>
+  <p class="lede">This window covers roughly two years (Nov 2024 – Sep 2026) of a very quiet channel, where the majority of messages are the Rose bot&#39;s automated welcome and departure lines plus scattered &#39;GM&#39; greetings from Promanon &#34;NTR, Onur_Chinaski (mod) and DhammaDana. Genuine conversation is rare: Royan asked about Nexa&#39;s market cap and Promanon pointed to CoinGecko (~$8.4M), while Huy8x, Khanh Nguyen84, R P and Nexa Nexa repeatedly questioned whether the group or the project is dead as the price kept sliding. Nexa Nexa also accused the team of &#39;only talking a good game&#39; and complained about a ban, prompting Onur_Chinaski to explain that criticism is fine but personal attacks are not. The most substantive exchange came in August 2026, when Nexa Nexa and Quin Nguyen discussed mining economics — Quin mines ~18M NEXA/day (down from 20M+), runs at a loss on electricity but finds it better than INI, and is holding rather than selling, with Nexa Nexa mentioning an expected hardfork in about two months. Brighter notes include DhammaDana&#39;s report of meetings with officials in Sravasti about Nexa collaboration, Zhang Qian noting a sharp price rally in April 2026, and several Russian-language spam accounts drifting through.</p>
+</section>
+
+<section id="analysis">
+  <div class="grid">
+    <div class="card">
+      <h2>Topics</h2>
+      <ul class="topics">
+        
+        <li>
+          <button class="topic" type="button" data-topic="0" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Bot welcomes and idle greetings</span>
+            <span class="n">53 msgs · <span class="chip neutral" data-glyph="·">Neutral</span></span>
+            <span class="s">Most traffic is the Rose bot greeting newcomers and announcing departures, with GM exchanges from Promanon &#34;NTR, Onur_Chinaski, DhammaDana and casual hellos from Royan, PK and Nexa Nexa.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="1" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Mining economics and hardfork</span>
+            <span class="n">20 msgs · <span class="chip mixed" data-glyph="±">Mixed</span></span>
+            <span class="s">Quin Nguyen told Nexa Nexa he switched from mining INI to Nexa, earns about 18 million NEXA a day (down from 20M+), is at a loss on electricity and has made only ~$300 in a month, but is holding; Nexa Nexa said a hardfork is expected in roughly two months.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="2" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Is the project/group dead?</span>
+            <span class="n">8 msgs · <span class="chip negative" data-glyph="−">Negative</span></span>
+            <span class="s">Huy8x asked whether the group had disbanded, Khanh Nguyen84 declared &#39;it&#39;s dead already&#39;, R P asked why Nexa keeps dropping, and Nexa Nexa said the team &#39;only talks a good game&#39; and later checked whether the project was still alive.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="3" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Moderation dispute</span>
+            <span class="n">4 msgs · <span class="chip negative" data-glyph="−">Negative</span></span>
+            <span class="s">Nexa Nexa asked if user Hung had been banned and argued the group was supposed to be free; mod Onur_Chinaski replied that chatting freely does not license cursing at everyone and drew a line between criticism and personal attacks.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="4" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Price and market cap</span>
+            <span class="n">7 msgs · <span class="chip mixed" data-glyph="±">Mixed</span></span>
+            <span class="s">Royan asked Nexa&#39;s market cap and Promanon &#34;NTR cited CoinGecko at $8.4M, which Royan called &#39;average&#39;; much later Zhang Qian remarked that Nexa had been &#39;flying like crazy&#39; for a few days.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="5" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Outreach and external news</span>
+            <span class="n">6 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">DhammaDana reported meeting a former Mandal chairman and an airport director in Sravasti to explore collaboration for Nexa; Onur_Chinaski and 💻 shared X links, and Khanh Nguyen84 joked that Pi holders are coming over to Nexa.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="6" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Spam accounts</span>
+            <span class="n">2 msgs · <span class="chip neutral" data-glyph="·">Neutral</span></span>
+            <span class="s">Russian-language accounts advertising weapon models and &#39;data services&#39; joined and posted before leaving.</span>
+          </button>
+        </li>
+        
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Mood</h2>
+      <p class="mood-label">Flat and skeptical</p>
+      <p class="mood-score">Mood score -0.15 on a −1 … +1 scale</p>
+      <div class="meter" role="img" aria-label="Mood score -0.15 of 1"><i style="left: 42.5%"></i></div>
+      <div class="meter-ticks"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
+      <p class="mood-desc">The dominant feeling is emptiness — long stretches where only the welcome bot speaks, punctuated by members asking if anyone is still there. When people do talk, the tone is skeptical or resigned: complaints about the falling price, accusations that the team only talks, and mining that runs at a loss. There are small warm patches — DhammaDana&#39;s outreach report, a brief price pump noted by Zhang Qian, and the friendly Nexa Nexa/Quin Nguyen mining chat — but nothing sustains momentum, and one exchange turns tense over a ban.</p>
+      <h2>Sentiment by message</h2>
+      <div class="dist" role="img" aria-label="Positive 43, Mixed 1, Neutral 44, Negative 12">
+        <b class="positive" style="flex: 43" title="Positive: 43"></b><b class="mixed" style="flex: 1" title="Mixed: 1"></b><b class="neutral" style="flex: 44" title="Neutral: 44"></b><b class="negative" style="flex: 12" title="Negative: 12"></b>
+      </div>
+      <ul class="legend">
+        
+        <li><span class="dot positive"></span>Positive<span class="n">43 · 43.0%</span></li>
+        
+        <li><span class="dot mixed"></span>Mixed<span class="n">1 · 1.0%</span></li>
+        
+        <li><span class="dot neutral"></span>Neutral<span class="n">44 · 44.0%</span></li>
+        
+        <li><span class="dot negative"></span>Negative<span class="n">12 · 12.0%</span></li>
+        
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section id="highlights">
+  <h2>Worth reading first</h2>
+  <ul class="hl">
+    
+    <li><a href="#m-917">
+      <p class="q">“I get 18 million NEXA”</p>
+      <p class="w"><b>Quin Nguyen</b> · The one concrete data point in the window: Quin Nguyen&#39;s actual mining yield of 18M NEXA/day, down from 20M+.</p>
+    </a></li>
+    
+    <li><a href="#m-914">
+      <p class="q">“Yeah, losing on electricity”</p>
+      <p class="w"><b>Quin Nguyen</b> · Miner openly admits he&#39;s losing money on electricity — but still prefers Nexa to INI.</p>
+    </a></li>
+    
+    <li><a href="#m-882">
+      <p class="q">“You&#39;re free to chat in this group. However, that doesn&#39;t mean you can curse at everybody. The group has its own rules.”</p>
+      <p class="w"><b>Onur_Chinaski Nexa mod</b> · Mod Onur_Chinaski publicly restates the group rules after a member complains about a ban.</p>
+    </a></li>
+    
+    <li><a href="#m-824">
+      <p class="q">“Today in Sravasti, we had the opportunity to meet the former Chairman of Mandal and the Director of the Airport. We discussed several important topics and explored new directions for future collaboration for Nexa. It was a very positive and inspiring session.”</p>
+      <p class="w"><b>DhammaDana</b> · Rare positive project news: DhammaDana&#39;s report of meetings with local officials in Sravasti about Nexa collaboration.</p>
+    </a></li>
+    
+    <li><a href="#m-826">
+      <p class="q">“It&#39;s dead already”</p>
+      <p class="w"><b>Khanh Nguyen84</b> · Blunt two-word verdict — &#39;It&#39;s dead already&#39; — that captures the recurring skepticism in the group.</p>
+    </a></li>
+    
+  </ul>
+</section>
+
+
+<section id="messages">
+  <h2>Messages <span class="sub">· newest first</span></h2>
+  <div class="controls">
+    <div class="filters" role="group" aria-label="Filter by sentiment">
+      <button class="fbtn" type="button" data-sent="all" aria-pressed="true">All</button>
+      <button class="fbtn" type="button" data-sent="positive" aria-pressed="false">Positive (43)</button><button class="fbtn" type="button" data-sent="mixed" aria-pressed="false">Mixed (1)</button><button class="fbtn" type="button" data-sent="neutral" aria-pressed="false">Neutral (44)</button><button class="fbtn" type="button" data-sent="negative" aria-pressed="false">Negative (12)</button>
+    </div>
+    <span class="sp"></span>
+    <label class="toggle"><input type="checkbox" id="show-zh" checked> Show original Vietnamese</label>
+  </div>
+  <div class="active-topic" id="active-topic"><span>Topic: <b id="active-topic-name"></b></span><button type="button" id="clear-topic">Show all messages</button></div>
+  <ol class="msgs" id="msg-list" reversed>
+    
+    <li class="msg" id="m-937" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-06T20:13:18+00:00">2026-09-06 20:13 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/937" rel="noopener" title="Open on Telegram">#937 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Решения Для Работы С Данными 📊 Информация В Описании Профиля, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there Решения Для Работы С Данными 📊 Информация В Описании Профиля, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="note">Bot welcome; username is Russian spam text.</p>
+    </li>
+    
+    <li class="msg" id="m-935" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-04T13:44:39+00:00">2026-09-04 13:44 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/935" rel="noopener" title="Open on Telegram">#935 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Zhang Qian, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there Zhang Qian, and welcome to Nexa Vietnam! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-933" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-08-23T22:52:18+00:00">2026-08-23 22:52 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/933" rel="noopener" title="Open on Telegram">#933 ↗</a>
+      </div>
+      
+      <p class="en">Hey there ДатаСервис.​ Функции Для Ваших Дел 📊 Info В Описании Профиля, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there ДатаСервис.​ Функции Для Ваших Дел 📊 Info В Описании Профиля, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="note">Automated welcome bot message; the username is Russian spam text.</p>
+    </li>
+    
+    <li class="msg" id="m-931" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2026-08-11T11:30:35+00:00">2026-08-11 11:30 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/931" rel="noopener" title="Open on Telegram">#931 ↗</a>
+      </div>
+      
+      <p class="en">You still mining?</p>
+      <p class="zh" lang="vi">Ông vẫn đang đào à</p>
+      
+    </li>
+    
+    <li class="msg" id="m-930" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2026-08-11T11:30:28+00:00">2026-08-11 11:30 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/930" rel="noopener" title="Open on Telegram">#930 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Quin Nguyen</b>: Just holding for now</p>
+      
+      <p class="en">Hello?</p>
+      <p class="zh" lang="vi">Alo</p>
+      
+    </li>
+    
+    <li class="msg" id="m-929" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2026-08-10T00:55:40+00:00">2026-08-10 00:55 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/929" rel="noopener" title="Open on Telegram">#929 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Quin Nguyen</b>: Just holding for now</p>
+      
+      <p class="en">Come into the VN group and shoot the breeze for fun</p>
+      <p class="zh" lang="vi">Vào nhóm vn chém cho vui</p>
+      <p class="note">&#34;chém&#34; (short for chém gió) = idle chatting/BS-ing.</p>
+    </li>
+    
+    <li class="msg" id="m-928" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2026-08-09T15:08:58+00:00">2026-08-09 15:08 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/928" rel="noopener" title="Open on Telegram">#928 ↗</a>
+      </div>
+      
+      <p class="en">I think probably 2 months from now</p>
+      <p class="zh" lang="vi">Tôi nghĩ chắc 2 tháng nữa</p>
+      
+    </li>
+    
+    <li class="msg" id="m-927" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2026-08-09T15:08:48+00:00">2026-08-09 15:08 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.15">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/927" rel="noopener" title="Open on Telegram">#927 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Quin Nguyen</b>: Just holding for now</p>
+      
+      <p class="en">They&#39;re about to hardfork</p>
+      <p class="zh" lang="vi">Bọn nó sắp harrdfork rồi</p>
+      
+    </li>
+    
+    <li class="msg" id="m-926" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Quin Nguyen</span>
+        <time datetime="2026-08-09T15:08:24+00:00">2026-08-09 15:08 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/926" rel="noopener" title="Open on Telegram">#926 ↗</a>
+      </div>
+      
+      <p class="en">Just holding for now</p>
+      <p class="zh" lang="vi">Giờ giưz thkoi</p>
+      
+    </li>
+    
+    <li class="msg" id="m-925" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2026-08-09T15:06:25+00:00">2026-08-09 15:06 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/925" rel="noopener" title="Open on Telegram">#925 ↗</a>
+      </div>
+      
+      <p class="en">Are you holding or selling, man?</p>
+      <p class="zh" lang="vi">Có giữ ko hay bán hả ông</p>
+      
+    </li>
+    
+    <li class="msg" id="m-924" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">Quin Nguyen</span>
+        <time datetime="2026-08-09T15:05:49+00:00">2026-08-09 15:05 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.25">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_viet/924" rel="noopener" title="Open on Telegram">#924 ↗</a>
+      </div>
+      
+      <p class="en">I&#39;ve been mining for about a month and only got a bit over 300u</p>
+      <p class="zh" lang="vi">Đào đc tầm thánh mới đc có hơn 300u</p>
+      <p class="note">&#34;tầm thánh&#34; is a typo for &#34;tầm tháng&#34; (about a month); &#34;300u&#34; = 300 USDT/USD.</p>
+    </li>
+    
+    <li class="msg" id="m-923" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2026-08-09T15:05:31+00:00">2026-08-09 15:05 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/923" rel="noopener" title="Open on Telegram">#923 ↗</a>
+      </div>
+      
+      <p class="en">Are you holding a lot right now?</p>
+      <p class="zh" lang="vi">Giờ ông giữ nhiều ko</p>
+      
+    </li>
+    
+    <li class="msg" id="m-922" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">Quin Nguyen</span>
+        <time datetime="2026-08-09T15:05:29+00:00">2026-08-09 15:05 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_viet/922" rel="noopener" title="Open on Telegram">#922 ↗</a>
+      </div>
+      
+      <p class="en">But it&#39;s dropped now</p>
+      <p class="zh" lang="vi">Mà giờ giảm rồi</p>
+      
+    </li>
+    
+    <li class="msg" id="m-921" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Quin Nguyen</span>
+        <time datetime="2026-08-09T15:05:24+00:00">2026-08-09 15:05 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/921" rel="noopener" title="Open on Telegram">#921 ↗</a>
+      </div>
+      
+      <p class="en">It used to be over 20 million</p>
+      <p class="zh" lang="vi">Trước đc hơn 20tr</p>
+      
+    </li>
+    
+    <li class="msg" id="m-920" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Quin Nguyen</span>
+        <time datetime="2026-08-09T15:05:07+00:00">2026-08-09 15:05 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/920" rel="noopener" title="Open on Telegram">#920 ↗</a>
+      </div>
+      
+      <p class="en">That&#39;s right, 1 day</p>
+      <p class="zh" lang="vi">Đúng rồi 1 ngày</p>
+      
+    </li>
+    
+    <li class="msg" id="m-919" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2026-08-09T15:04:54+00:00">2026-08-09 15:04 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.35">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/919" rel="noopener" title="Open on Telegram">#919 ↗</a>
+      </div>
+      
+      <p class="en">Then scoop it up quick</p>
+      <p class="zh" lang="vi">Thế múc cho nhanh</p>
+      <p class="note">&#34;Múc&#34; = buy aggressively.</p>
+    </li>
+    
+    <li class="msg" id="m-918" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2026-08-09T15:04:46+00:00">2026-08-09 15:04 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/918" rel="noopener" title="Open on Telegram">#918 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Quin Nguyen</b>: I get 18 million NEXA</p>
+      
+      <p class="en">A day?</p>
+      <p class="zh" lang="vi">Một ngày à</p>
+      
+    </li>
+    
+    <li class="msg" id="m-917" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Quin Nguyen</span>
+        <time datetime="2026-08-09T15:04:10+00:00">2026-08-09 15:04 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/917" rel="noopener" title="Open on Telegram">#917 ↗</a>
+      </div>
+      
+      <p class="en">I get 18 million NEXA</p>
+      <p class="zh" lang="vi">Đc 18tr đồng nexa</p>
+      <p class="note">&#34;18tr&#34; = 18 triệu = 18 million.</p>
+    </li>
+    
+    <li class="msg" id="m-916" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2026-08-09T15:03:55+00:00">2026-08-09 15:03 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/916" rel="noopener" title="Open on Telegram">#916 ↗</a>
+      </div>
+      
+      <p class="en">How many coins a day?</p>
+      <p class="zh" lang="vi">Một ngày đc bn coin</p>
+      
+    </li>
+    
+    <li class="msg" id="m-915" data-sent="mixed" data-topics="1">
+      <div class="head">
+        <span class="who">Quin Nguyen</span>
+        <time datetime="2026-08-09T15:03:43+00:00">2026-08-09 15:03 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.15">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_viet/915" rel="noopener" title="Open on Telegram">#915 ↗</a>
+      </div>
+      
+      <p class="en">But it&#39;s better than mining Ini</p>
+      <p class="zh" lang="vi">Mà đỡ hơn đào Ini</p>
+      
+    </li>
+    
+    <li class="msg" id="m-914" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">Quin Nguyen</span>
+        <time datetime="2026-08-09T15:03:36+00:00">2026-08-09 15:03 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_viet/914" rel="noopener" title="Open on Telegram">#914 ↗</a>
+      </div>
+      
+      <p class="en">Yeah, losing on electricity</p>
+      <p class="zh" lang="vi">Um lỗ điện</p>
+      
+    </li>
+    
+    <li class="msg" id="m-913" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2026-08-09T15:03:25+00:00">2026-08-09 15:03 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_viet/913" rel="noopener" title="Open on Telegram">#913 ↗</a>
+      </div>
+      
+      <p class="en">Mining it is at a loss now, right?</p>
+      <p class="zh" lang="vi">Đào nó giờ lỗ đúng ko</p>
+      
+    </li>
+    
+    <li class="msg" id="m-912" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Quin Nguyen</span>
+        <time datetime="2026-08-09T15:03:16+00:00">2026-08-09 15:03 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/912" rel="noopener" title="Open on Telegram">#912 ↗</a>
+      </div>
+      
+      <p class="en">Switched over from INI</p>
+      <p class="zh" lang="vi">Chuyển từ INi qua</p>
+      
+    </li>
+    
+    <li class="msg" id="m-911" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Quin Nguyen</span>
+        <time datetime="2026-08-09T15:03:00+00:00">2026-08-09 15:03 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/911" rel="noopener" title="Open on Telegram">#911 ↗</a>
+      </div>
+      
+      <p class="en">I mine it, actually</p>
+      <p class="zh" lang="vi">Tôi đào ne</p>
+      
+    </li>
+    
+    <li class="msg" id="m-910" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2026-08-09T15:02:46+00:00">2026-08-09 15:02 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/910" rel="noopener" title="Open on Telegram">#910 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Quin Nguyen</b>: Yep, I&#39;m here</p>
+      
+      <p class="en">Did you scoop up a lot?</p>
+      <p class="zh" lang="vi">Ông múc nhiều ko?</p>
+      <p class="note">&#34;Múc&#34; (literally &#34;to scoop&#34;) is Vietnamese trader slang for buying in heavily.</p>
+    </li>
+    
+    <li class="msg" id="m-909" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Quin Nguyen</span>
+        <time datetime="2026-08-09T15:00:18+00:00">2026-08-09 15:00 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/909" rel="noopener" title="Open on Telegram">#909 ↗</a>
+      </div>
+      
+      <p class="en">Yep, I&#39;m here</p>
+      <p class="zh" lang="vi">Có ne</p>
+      
+    </li>
+    
+    <li class="msg" id="m-908" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2026-08-09T15:00:06+00:00">2026-08-09 15:00 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/908" rel="noopener" title="Open on Telegram">#908 ↗</a>
+      </div>
+      
+      <p class="en">Anyone here?</p>
+      <p class="zh" lang="vi">Có ai ở đây ko?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-907" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2026-08-09T14:59:59+00:00">2026-08-09 14:59 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/907" rel="noopener" title="Open on Telegram">#907 ↗</a>
+      </div>
+      
+      <p class="en">Hey bros</p>
+      <p class="zh" lang="vi">Chào ae</p>
+      
+    </li>
+    
+    <li class="msg" id="m-906" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-08-09T14:59:12+00:00">2026-08-09 14:59 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/906" rel="noopener" title="Open on Telegram">#906 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Quin, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there Quin, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="note">Automated welcome-bot message.</p>
+    </li>
+    
+    <li class="msg" id="m-904" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2026-08-07T06:49:26+00:00">2026-08-07 06:49 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/904" rel="noopener" title="Open on Telegram">#904 ↗</a>
+      </div>
+      
+      <p class="en">Hello bros</p>
+      <p class="zh" lang="vi">Hello ae</p>
+      <p class="note">&#39;ae&#39; = &#39;anh em&#39;, a casual way to address the guys/everyone.</p>
+    </li>
+    
+    <li class="msg" id="m-903" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-08-07T06:49:19+00:00">2026-08-07 06:49 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/903" rel="noopener" title="Open on Telegram">#903 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Nexa, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there Nexa, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="note">Automated welcome-bot message.</p>
+    </li>
+    
+    <li class="msg" id="m-901" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-08-06T13:40:28+00:00">2026-08-06 13:40 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/901" rel="noopener" title="Open on Telegram">#901 ↗</a>
+      </div>
+      
+      <p class="en">Hey there 零六, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there 零六, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="note">Automated welcome-bot message.</p>
+    </li>
+    
+    <li class="msg" id="m-899" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-04-26T11:14:49+00:00">2026-04-26 11:14 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/899" rel="noopener" title="Open on Telegram">#899 ↗</a>
+      </div>
+      
+      <p class="en">Nice knowing you!</p>
+      <p class="zh" lang="vi">Nice knowing you!</p>
+      <p class="note">Automated bot message posted when a member leaves.</p>
+    </li>
+    
+    <li class="msg" id="m-897" data-sent="neutral" data-topics="6">
+      <div class="head">
+        <span class="who">ᴄᴏздᴀнᴜᴇ ᴏᴘʏжᴇйныx ᴍᴏдᴇлᴇй ᴋᴏнтᴀкты ᴜ ᴄᴀйт ᴍᴀᴄтᴇᴘᴄкᴏй ʙ пᴘᴏфᴜлᴇ</span>
+        <time datetime="2026-04-26T11:14:48+00:00">2026-04-26 11:14 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/897" rel="noopener" title="Open on Telegram">#897 ↗</a>
+      </div>
+      
+      <p class="en">Have a nice day🤝
+I make traumatic and rifled models. Everything made to order.
+Detailed information on the website, the site address is in my &#34;about me&#34;. Many thanks for your interest!</p>
+      <p class="zh" lang="vi">Хорошего настроения🤝
+Создаю травматические и нарезные модели. Всё на заказ.
+Информация для подробного ознакомления на сайте, адрес сайта в &#34;о себе&#34;.  Большое спасибо за интерес!</p>
+      <p class="note">Russian-language spam ad for made-to-order firearms; off-topic for the group.</p>
+    </li>
+    
+    <li class="msg" id="m-896" data-sent="positive" data-topics="6">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-04-25T08:47:39+00:00">2026-04-25 08:47 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/896" rel="noopener" title="Open on Telegram">#896 ↗</a>
+      </div>
+      
+      <p class="en">Hey there ᴘᴀзᴘᴀбᴏткᴀ ᴏᴘʏжᴇйныx пᴘᴏᴇктᴏв.​ дᴇтᴀльнᴇᴇ ʙ гᴘᴀфᴇ &#34;ᴏ ᴄᴇбᴇ&#34;, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there ᴘᴀзᴘᴀбᴏткᴀ ᴏᴘʏжᴇйныx пᴘᴏᴇктᴏв.​ дᴇтᴀльнᴇᴇ ʙ гᴘᴀфᴇ &#34;ᴏ ᴄᴇбᴇ&#34;, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="note">Automated welcome-bot message; the username is Russian spam text (&#39;weapons project development, details in the About section&#39;).</p>
+    </li>
+    
+    <li class="msg" id="m-894" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-04-20T06:42:43+00:00">2026-04-20 06:42 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/894" rel="noopener" title="Open on Telegram">#894 ↗</a>
+      </div>
+      
+      <p class="en">Hey there MLM RAJA, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there MLM RAJA, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="note">Automated welcome-bot message.</p>
+    </li>
+    
+    <li class="msg" id="m-892" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Zhang Qian | SAND Road</span>
+        <time datetime="2026-04-02T11:45:43+00:00">2026-04-02 11:45 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/892" rel="noopener" title="Open on Telegram">#892 ↗</a>
+      </div>
+      
+      <p class="en">no idea why nexa&#39;s been flying like crazy these past few days</p>
+      <p class="zh" lang="vi">nexa mấy hôm nay không biết sao bay ác nhỉ</p>
+      <p class="note">&#39;bay ác&#39; = &#39;flying hard&#39;, i.e. pumping strongly.</p>
+    </li>
+    
+    <li class="msg" id="m-891" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Zhang Qian | SAND Road</span>
+        <time datetime="2026-03-31T13:56:51+00:00">2026-03-31 13:56 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/891" rel="noopener" title="Open on Telegram">#891 ↗</a>
+      </div>
+      
+      <p class="en">ok</p>
+      <p class="zh" lang="vi">ok</p>
+      
+    </li>
+    
+    <li class="msg" id="m-890" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-03-31T13:56:18+00:00">2026-03-31 13:56 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/890" rel="noopener" title="Open on Telegram">#890 ↗</a>
+      </div>
+      
+      <p class="en">Nice knowing you!</p>
+      <p class="zh" lang="vi">Nice knowing you!</p>
+      <p class="note">Automated bot message posted when a member leaves.</p>
+    </li>
+    
+    <li class="msg" id="m-888" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-03-31T09:13:01+00:00">2026-03-31 09:13 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/888" rel="noopener" title="Open on Telegram">#888 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Son, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there Son, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="note">Automated welcome-bot message.</p>
+    </li>
+    
+    <li class="msg" id="m-886" data-sent="negative" data-topics="2">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2026-02-12T14:23:29+00:00">2026-02-12 14:23 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_viet/886" rel="noopener" title="Open on Telegram">#886 ↗</a>
+      </div>
+      
+      <p class="en">This project isn&#39;t dead yet, huh</p>
+      <p class="zh" lang="vi">Dự án này chưa c à</p>
+      <p class="note">&#39;chưa c à&#39; looks like a truncated &#39;chưa chết à&#39; (= not dead yet?).</p>
+    </li>
+    
+    <li class="msg" id="m-885" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-10-28T19:48:46+00:00">2025-10-28 19:48 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/885" rel="noopener" title="Open on Telegram">#885 ↗</a>
+      </div>
+      
+      <p class="en">Nice knowing you!</p>
+      <p class="zh" lang="vi">Nice knowing you!</p>
+      <p class="note">Automated bot message posted when a member leaves the group.</p>
+    </li>
+    
+    <li class="msg" id="m-883" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2025-10-28T15:54:13+00:00">2025-10-28 15:54 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/883" rel="noopener" title="Open on Telegram">#883 ↗</a>
+      </div>
+      
+      <p class="en">There&#39;s a difference between attacking and criticizing.</p>
+      <p class="zh" lang="vi">Có sự khác biệt giữa tấn công và chỉ trích.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-882" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2025-10-28T15:53:47+00:00">2025-10-28 15:53 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/882" rel="noopener" title="Open on Telegram">#882 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Nexa Nexa</b>: I thought this group was a free-for-all group, no?</p>
+      
+      <p class="en">You&#39;re free to chat in this group. However, that doesn&#39;t mean you can curse at everybody. The group has its own rules.</p>
+      <p class="zh" lang="vi">Bạn có thể thoải mái trò chuyện trong nhóm chat này. Tuy nhiên, điều đó không có nghĩa là bạn có thể chửi rủa tất cả mọi người. Nhóm có quy tắc riêng.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-881" data-sent="negative" data-topics="3">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2025-10-28T11:32:14+00:00">2025-10-28 11:32 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_viet/881" rel="noopener" title="Open on Telegram">#881 ↗</a>
+      </div>
+      
+      <p class="en">I thought this group was a free-for-all group, no?</p>
+      <p class="zh" lang="vi">Tôi tưởng nhóm này là nhóm tự do chứ nhỉ</p>
+      
+    </li>
+    
+    <li class="msg" id="m-880" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2025-10-28T11:31:57+00:00">2025-10-28 11:31 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/880" rel="noopener" title="Open on Telegram">#880 ↗</a>
+      </div>
+      
+      <p class="en">Did Hung get banned?</p>
+      <p class="zh" lang="vi">Ông hung bị ban rồi à?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-871" data-sent="negative" data-topics="2">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2025-10-27T11:20:31+00:00">2025-10-27 11:20 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.60">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_viet/871" rel="noopener" title="Open on Telegram">#871 ↗</a>
+      </div>
+      
+      <p class="en">If it keeps going like this, you know how it ends</p>
+      <p class="zh" lang="vi">Chứ cứ thế này xác định</p>
+      <p class="note">&#39;xác định&#39; is slang for &#39;you can already be sure of the (bad) outcome&#39; — i.e. it&#39;s doomed.</p>
+    </li>
+    
+    <li class="msg" id="m-870" data-sent="negative" data-topics="2">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2025-10-27T11:20:12+00:00">2025-10-27 11:20 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.50">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_viet/870" rel="noopener" title="Open on Telegram">#870 ↗</a>
+      </div>
+      
+      <p class="en">All they do is talk a good game</p>
+      <p class="zh" lang="vi">Chỉ nói là hay</p>
+      
+    </li>
+    
+    <li class="msg" id="m-869" data-sent="negative" data-topics="2">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2025-10-27T11:20:04+00:00">2025-10-27 11:20 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_viet/869" rel="noopener" title="Open on Telegram">#869 ↗</a>
+      </div>
+      
+      <p class="en">I just joined and I can see it&#39;s really true</p>
+      <p class="zh" lang="vi">Tôi mới vào mà thấy đúng thật</p>
+      <p class="note">Agreeing with an earlier complaint about the project.</p>
+    </li>
+    
+    <li class="msg" id="m-865" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2025-10-21T20:11:10+00:00">2025-10-21 20:11 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/865" rel="noopener" title="Open on Telegram">#865 ↗</a>
+      </div>
+      
+      <p class="en">Hello👋</p>
+      <p class="zh" lang="vi">Hello👋</p>
+      
+    </li>
+    
+    <li class="msg" id="m-864" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Nexa Nexa</span>
+        <time datetime="2025-10-21T14:09:46+00:00">2025-10-21 14:09 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/864" rel="noopener" title="Open on Telegram">#864 ↗</a>
+      </div>
+      
+      <p class="en">Hello</p>
+      <p class="zh" lang="vi">Hello</p>
+      
+    </li>
+    
+    <li class="msg" id="m-863" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-10-21T14:09:39+00:00">2025-10-21 14:09 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/863" rel="noopener" title="Open on Telegram">#863 ↗</a>
+      </div>
+      
+      <p class="en">Hey there hssgh, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there hssgh, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="note">Automated welcome message from the group bot.</p>
+    </li>
+    
+    <li class="msg" id="m-860" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-10-17T14:12:03+00:00">2025-10-17 14:12 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/860" rel="noopener" title="Open on Telegram">#860 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Hung, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there Hung, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="note">Automated welcome message from the group bot.</p>
+    </li>
+    
+    <li class="msg" id="m-856" data-sent="negative" data-topics="2">
+      <div class="head">
+        <span class="who">R P</span>
+        <time datetime="2025-09-29T04:38:02+00:00">2025-09-29 04:38 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.50">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_viet/856" rel="noopener" title="Open on Telegram">#856 ↗</a>
+      </div>
+      
+      <p class="en">Why does Nexa keep dropping more and more?</p>
+      <p class="zh" lang="vi">Sao nexa càng ngày càng xuống nhỉ</p>
+      
+    </li>
+    
+    <li class="msg" id="m-855" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-09-28T15:03:11+00:00">2025-09-28 15:03 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/855" rel="noopener" title="Open on Telegram">#855 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Eliza, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there Eliza, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="note">Automated welcome message from the group bot.</p>
+    </li>
+    
+    <li class="msg" id="m-853" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">💻</span>
+        <time datetime="2025-09-14T07:51:05+00:00">2025-09-14 07:51 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/853" rel="noopener" title="Open on Telegram">#853 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/NexaArmyTurkey/status/1967133019237752838?t=VDqerIGhc8xKS9W3LBG3IA&amp;s=19</p>
+      <p class="zh" lang="vi">https://x.com/NexaArmyTurkey/status/1967133019237752838?t=VDqerIGhc8xKS9W3LBG3IA&amp;s=19</p>
+      
+    </li>
+    
+    <li class="msg" id="m-852" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">Khanh Nguyen84</span>
+        <time datetime="2025-08-11T13:29:36+00:00">2025-08-11 13:29 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/852" rel="noopener" title="Open on Telegram">#852 ↗</a>
+      </div>
+      
+      <p class="en">😂</p>
+      <p class="zh" lang="vi">😂</p>
+      
+    </li>
+    
+    <li class="msg" id="m-848" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-08-11T05:07:59+00:00">2025-08-11 05:07 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/848" rel="noopener" title="Open on Telegram">#848 ↗</a>
+      </div>
+      
+      <p class="en">Hey there 🍅 69, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there 🍅 69, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="note">Automated welcome message from the group bot.</p>
+    </li>
+    
+    <li class="msg" id="m-846" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-08-08T15:10:37+00:00">2025-08-08 15:10 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/846" rel="noopener" title="Open on Telegram">#846 ↗</a>
+      </div>
+      
+      <p class="en">Nice knowing you!</p>
+      <p class="zh" lang="vi">Nice knowing you!</p>
+      <p class="note">Automated bot message posted when someone leaves the group.</p>
+    </li>
+    
+    <li class="msg" id="m-844" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-08-08T11:34:54+00:00">2025-08-08 11:34 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/844" rel="noopener" title="Open on Telegram">#844 ↗</a>
+      </div>
+      
+      <p class="en">Nice knowing you!</p>
+      <p class="zh" lang="vi">Nice knowing you!</p>
+      <p class="note">Automated bot message posted when someone leaves the group.</p>
+    </li>
+    
+    <li class="msg" id="m-840" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">Khanh Nguyen84</span>
+        <time datetime="2025-08-08T06:27:10+00:00">2025-08-08 06:27 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.35">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/840" rel="noopener" title="Open on Telegram">#840 ↗</a>
+      </div>
+      
+      <p class="en">Pi holders are coming over to play with Nexa now :)</p>
+      <p class="zh" lang="vi">Pi thủ giờ sang chơi nexa :)</p>
+      <p class="note">&#34;Pi thủ&#34; = die-hard Pi Network holders; slightly teasing tone.</p>
+    </li>
+    
+    <li class="msg" id="m-838" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Khanh Nguyen84</span>
+        <time datetime="2025-08-08T06:10:33+00:00">2025-08-08 06:10 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/838" rel="noopener" title="Open on Telegram">#838 ↗</a>
+      </div>
+      
+      <p class="en">No</p>
+      <p class="zh" lang="vi">No</p>
+      
+    </li>
+    
+    <li class="msg" id="m-835" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-08-07T20:15:27+00:00">2025-08-07 20:15 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/835" rel="noopener" title="Open on Telegram">#835 ↗</a>
+      </div>
+      
+      <p class="en">Nice knowing you!</p>
+      <p class="zh" lang="vi">Nice knowing you!</p>
+      <p class="note">Automated bot message posted when someone leaves the group.</p>
+    </li>
+    
+    <li class="msg" id="m-826" data-sent="negative" data-topics="2">
+      <div class="head">
+        <span class="who">Khanh Nguyen84</span>
+        <time datetime="2025-08-07T03:08:57+00:00">2025-08-07 03:08 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.60">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_viet/826" rel="noopener" title="Open on Telegram">#826 ↗</a>
+      </div>
+      
+      <p class="en">It&#39;s dead already</p>
+      <p class="zh" lang="vi">Die rồi</p>
+      
+    </li>
+    
+    <li class="msg" id="m-824" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">DhammaDana</span>
+        <time datetime="2025-07-31T14:11:59+00:00">2025-07-31 14:11 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.80">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/824" rel="noopener" title="Open on Telegram">#824 ↗</a>
+      </div>
+      
+      <p class="en">Today in Sravasti, we had the opportunity to meet the former Chairman of Mandal and the Director of the Airport. We discussed several important topics and explored new directions for future collaboration for Nexa. It was a very positive and inspiring session.</p>
+      <p class="zh" lang="vi">Today in Sravasti, we had the opportunity to meet the former Chairman of Mandal and the Director of the Airport. We discussed several important topics and explored new directions for future collaboration for Nexa. It was a very positive and inspiring session.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-818" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-07-30T16:31:23+00:00">2025-07-30 16:31 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/818" rel="noopener" title="Open on Telegram">#818 ↗</a>
+      </div>
+      
+      <p class="en">Hey there 🍅 69, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there 🍅 69, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="note">Automated welcome message from the group bot.</p>
+    </li>
+    
+    <li class="msg" id="m-816" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-07-26T18:32:19+00:00">2025-07-26 18:32 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/816" rel="noopener" title="Open on Telegram">#816 ↗</a>
+      </div>
+      
+      <p class="en">Nice knowing you!</p>
+      <p class="zh" lang="vi">Nice knowing you!</p>
+      <p class="note">Automated bot message posted when someone leaves the group.</p>
+    </li>
+    
+    <li class="msg" id="m-814" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-07-26T18:11:45+00:00">2025-07-26 18:11 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/814" rel="noopener" title="Open on Telegram">#814 ↗</a>
+      </div>
+      
+      <p class="en">Hey there 🍅 69, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there 🍅 69, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="note">Automated welcome message from the group bot.</p>
+    </li>
+    
+    <li class="msg" id="m-812" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">PK</span>
+        <time datetime="2025-07-04T21:11:36+00:00">2025-07-04 21:11 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/812" rel="noopener" title="Open on Telegram">#812 ↗</a>
+      </div>
+      
+      <p class="en">How is everyone doing?</p>
+      <p class="zh" lang="vi">Mọi người khỏe không?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-811" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">PK</span>
+        <time datetime="2025-07-04T21:11:35+00:00">2025-07-04 21:11 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/811" rel="noopener" title="Open on Telegram">#811 ↗</a>
+      </div>
+      
+      <p class="en">Hello</p>
+      <p class="zh" lang="vi">Xin chào</p>
+      
+    </li>
+    
+    <li class="msg" id="m-810" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-07-04T21:11:30+00:00">2025-07-04 21:11 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/810" rel="noopener" title="Open on Telegram">#810 ↗</a>
+      </div>
+      
+      <p class="en">Hey there La hong, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there La hong, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="note">Automated welcome message from the group bot.</p>
+    </li>
+    
+    <li class="msg" id="m-808" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">DhammaDana</span>
+        <time datetime="2025-06-29T00:54:43+00:00">2025-06-29 00:54 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/808" rel="noopener" title="Open on Telegram">#808 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Promanon &#34;NTR</b>: GM</p>
+      
+      <p class="en">Gm</p>
+      <p class="zh" lang="vi">Gm</p>
+      
+    </li>
+    
+    <li class="msg" id="m-807" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Promanon &#34;NTR</span>
+        <time datetime="2025-06-29T00:53:39+00:00">2025-06-29 00:53 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/807" rel="noopener" title="Open on Telegram">#807 ↗</a>
+      </div>
+      
+      <p class="en">GM</p>
+      <p class="zh" lang="vi">GM</p>
+      
+    </li>
+    
+    <li class="msg" id="m-806" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Promanon &#34;NTR</span>
+        <time datetime="2025-06-28T01:26:52+00:00">2025-06-28 01:26 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.35">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/806" rel="noopener" title="Open on Telegram">#806 ↗</a>
+      </div>
+      
+      <p class="en">GM y&#39;all</p>
+      <p class="zh" lang="vi">GM y&#39;all</p>
+      
+    </li>
+    
+    <li class="msg" id="m-805" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Promanon &#34;NTR</span>
+        <time datetime="2025-06-27T05:54:22+00:00">2025-06-27 05:54 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/805" rel="noopener" title="Open on Telegram">#805 ↗</a>
+      </div>
+      
+      <p class="en">GM</p>
+      <p class="zh" lang="vi">GM</p>
+      <p class="note">&#34;GM&#34; = &#34;good morning&#34;, a standard crypto-community greeting.</p>
+    </li>
+    
+    <li class="msg" id="m-804" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Royan</span>
+        <time datetime="2025-06-26T14:19:40+00:00">2025-06-26 14:19 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/804" rel="noopener" title="Open on Telegram">#804 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Promanon &#34;NTR</b>: You can also check here - https://www.coingecko.com/en/coins/nexa</p>
+      
+      <p class="en">Thanks..</p>
+      <p class="zh" lang="vi">Cảm ơn..</p>
+      
+    </li>
+    
+    <li class="msg" id="m-803" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Royan</span>
+        <time datetime="2025-06-26T14:19:35+00:00">2025-06-26 14:19 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/803" rel="noopener" title="Open on Telegram">#803 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Promanon &#34;NTR</b>: According to coingecko, the current market cap is 8.4 million dollars.</p>
+      
+      <p class="en">Kind of average.</p>
+      <p class="zh" lang="vi">Trung bình một chút.</p>
+      <p class="note">Lukewarm reaction to the $8.4M market cap figure.</p>
+    </li>
+    
+    <li class="msg" id="m-802" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Promanon &#34;NTR</span>
+        <time datetime="2025-06-26T14:19:10+00:00">2025-06-26 14:19 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/802" rel="noopener" title="Open on Telegram">#802 ↗</a>
+      </div>
+      
+      <p class="en">You can also check here - https://www.coingecko.com/en/coins/nexa</p>
+      <p class="zh" lang="vi">Bạn cũng có thể kiểm tra ở đây- https://www.coingecko.com/en/coins/nexa</p>
+      
+    </li>
+    
+    <li class="msg" id="m-801" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Promanon &#34;NTR</span>
+        <time datetime="2025-06-26T14:18:46+00:00">2025-06-26 14:18 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/801" rel="noopener" title="Open on Telegram">#801 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Royan</b>: What&#39;s the market cap of the nexa token?</p>
+      
+      <p class="en">According to coingecko, the current market cap is 8.4 million dollars.</p>
+      <p class="zh" lang="vi">Theo coingecko, vốn hóa thị trường hiện tại là 8,4 triệu đô la.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-800" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Royan</span>
+        <time datetime="2025-06-26T14:14:51+00:00">2025-06-26 14:14 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/800" rel="noopener" title="Open on Telegram">#800 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Royan</b>: What&#39;s the market cap of the nexa token?</p>
+      
+      <p class="en">Right away.</p>
+      <p class="zh" lang="vi">Ngay lập tức</p>
+      
+    </li>
+    
+    <li class="msg" id="m-799" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Royan</span>
+        <time datetime="2025-06-26T14:14:29+00:00">2025-06-26 14:14 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/799" rel="noopener" title="Open on Telegram">#799 ↗</a>
+      </div>
+      
+      <p class="en">What&#39;s the market cap of the nexa token?</p>
+      <p class="zh" lang="vi">Vốn hóa thị trường của token nexa là bao nhiêu?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-798" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Royan</span>
+        <time datetime="2025-06-26T14:13:51+00:00">2025-06-26 14:13 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/798" rel="noopener" title="Open on Telegram">#798 ↗</a>
+      </div>
+      
+      <p class="en">How&#39;s everyone doing?</p>
+      <p class="zh" lang="vi">Mọi người khỏe không?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-797" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Royan</span>
+        <time datetime="2025-06-26T14:13:16+00:00">2025-06-26 14:13 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/797" rel="noopener" title="Open on Telegram">#797 ↗</a>
+      </div>
+      
+      <p class="en">Hello</p>
+      <p class="zh" lang="vi">Hello</p>
+      
+    </li>
+    
+    <li class="msg" id="m-796" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Promanon &#34;NTR</span>
+        <time datetime="2025-06-26T00:55:33+00:00">2025-06-26 00:55 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/796" rel="noopener" title="Open on Telegram">#796 ↗</a>
+      </div>
+      
+      <p class="en">GM y&#39;all</p>
+      <p class="zh" lang="vi">GM y&#39;all</p>
+      
+    </li>
+    
+    <li class="msg" id="m-795" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2025-06-25T07:28:56+00:00">2025-06-25 07:28 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/795" rel="noopener" title="Open on Telegram">#795 ↗</a>
+      </div>
+      
+      <p class="en">Gm👋</p>
+      <p class="zh" lang="vi">Gm👋</p>
+      
+    </li>
+    
+    <li class="msg" id="m-794" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Promanon &#34;NTR</span>
+        <time datetime="2025-06-25T03:12:23+00:00">2025-06-25 03:12 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/794" rel="noopener" title="Open on Telegram">#794 ↗</a>
+      </div>
+      
+      <p class="en">GM everyone!</p>
+      <p class="zh" lang="vi">GM mọi người ơi!</p>
+      
+    </li>
+    
+    <li class="msg" id="m-793" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-06-24T09:14:12+00:00">2025-06-24 09:14 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/793" rel="noopener" title="Open on Telegram">#793 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Dylan, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there Dylan, and welcome to Nexa Vietnam! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-791" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-06-24T08:29:03+00:00">2025-06-24 08:29 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/791" rel="noopener" title="Open on Telegram">#791 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Quách ma, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there Quách ma, and welcome to Nexa Vietnam! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-789" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-06-24T08:24:20+00:00">2025-06-24 08:24 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/789" rel="noopener" title="Open on Telegram">#789 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Liex:), and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there Liex:), and welcome to Nexa Vietnam! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-787" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Promanon &#34;NTR</span>
+        <time datetime="2025-06-24T07:09:08+00:00">2025-06-24 07:09 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/787" rel="noopener" title="Open on Telegram">#787 ↗</a>
+      </div>
+      
+      <p class="en">GM everyone!</p>
+      <p class="zh" lang="vi">GM mọi người ơi!</p>
+      <p class="note">&#39;GM&#39; = &#39;good morning&#39;, standard crypto-community greeting.</p>
+    </li>
+    
+    <li class="msg" id="m-786" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-06-23T21:15:22+00:00">2025-06-23 21:15 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/786" rel="noopener" title="Open on Telegram">#786 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Promanon &#34;NTR, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there Promanon &#34;NTR, and welcome to Nexa Vietnam! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-784" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2025-06-12T17:36:40+00:00">2025-06-12 17:36 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/784" rel="noopener" title="Open on Telegram">#784 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/TheVladCostea/status/1933211447884157350?t=d3RYdHjjxziruRAQHkR1ZQ&amp;s=35</p>
+      <p class="zh" lang="vi">https://x.com/TheVladCostea/status/1933211447884157350?t=d3RYdHjjxziruRAQHkR1ZQ&amp;s=35</p>
+      
+    </li>
+    
+    <li class="msg" id="m-783" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-06-09T20:49:29+00:00">2025-06-09 20:49 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/783" rel="noopener" title="Open on Telegram">#783 ↗</a>
+      </div>
+      
+      <p class="en">Hey there CryptographerWorld, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there CryptographerWorld, and welcome to Nexa Vietnam! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-781" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-05-12T05:18:10+00:00">2025-05-12 05:18 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/781" rel="noopener" title="Open on Telegram">#781 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Francis, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there Francis, and welcome to Nexa Vietnam! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-779" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-05-10T20:35:36+00:00">2025-05-10 20:35 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/779" rel="noopener" title="Open on Telegram">#779 ↗</a>
+      </div>
+      
+      <p class="en">Hey there DhammaDana, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there DhammaDana, and welcome to Nexa Vietnam! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-763" data-sent="negative" data-topics="2">
+      <div class="head">
+        <span class="who">Huy8x</span>
+        <time datetime="2025-02-07T05:37:25+00:00">2025-02-07 05:37 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_viet/763" rel="noopener" title="Open on Telegram">#763 ↗</a>
+      </div>
+      
+      <p class="en">Has this group been disbanded, guys?</p>
+      <p class="zh" lang="vi">Nhóm này giải tán rồi hả ae</p>
+      <p class="note">&#39;ae&#39; = &#39;anh em&#39;, casual &#39;bros/guys&#39;.</p>
+    </li>
+    
+    <li class="msg" id="m-762" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2025-02-06T13:56:17+00:00">2025-02-06 13:56 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/762" rel="noopener" title="Open on Telegram">#762 ↗</a>
+      </div>
+      
+      <p class="en">Hey there Huy8x, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there Huy8x, and welcome to Nexa Vietnam! How are you?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-760" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2024-12-05T13:45:25+00:00">2024-12-05 13:45 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_viet/760" rel="noopener" title="Open on Telegram">#760 ↗</a>
+      </div>
+      
+      <p class="en">Hey there MI, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="zh" lang="vi">Hey there MI, and welcome to Nexa Vietnam! How are you?</p>
+      <p class="note">Automated welcome bot message.</p>
+    </li>
+    
+    <li class="msg" id="m-758" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">🌱SEED</span>
+        <time datetime="2024-11-11T00:42:20+00:00">2024-11-11 00:42 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.15">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/758" rel="noopener" title="Open on Telegram">#758 ↗</a>
+      </div>
+      
+      <p class="en">Ok, on to cap50b</p>
+      <p class="zh" lang="vi">Ok tới cap50b</p>
+      <p class="note">&#39;cap50b&#39; likely refers to a 50 billion supply/market-cap milestone target.</p>
+    </li>
+    
+    <li class="msg" id="m-756" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2024-11-04T02:36:49+00:00">2024-11-04 02:36 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_viet/756" rel="noopener" title="Open on Telegram">#756 ↗</a>
+      </div>
+      
+      <p class="en">Nice knowing you!</p>
+      <p class="zh" lang="vi">Nice knowing you!</p>
+      <p class="note">Automated bot farewell posted when a member leaves the group.</p>
+    </li>
+    
+  </ol>
+  <p class="empty" id="empty">No messages match these filters.</p>
+</section>
+
+<footer>
+  <p>Translations, sentiment scores and the summary are generated automatically by claude-opus-5 and may contain mistakes. Original messages belong to their authors on Telegram.</p>
+  <p><a href="data.json">Raw data (JSON)</a></p>
+</footer>
+
+</div>
+<script>
+(function () {
+  var msgs = Array.prototype.slice.call(document.querySelectorAll('.msg'));
+  var sent = 'all', topic = null;
+  var topicNames = ["Bot welcomes and idle greetings", "Mining economics and hardfork", "Is the project/group dead?", "Moderation dispute", "Price and market cap", "Outreach and external news", "Spam accounts"];
+
+  function apply() {
+    var shown = 0;
+    msgs.forEach(function (m) {
+      var ok = (sent === 'all' || m.dataset.sent === sent) &&
+               (topic === null || (' ' + m.dataset.topics + ' ').indexOf(' ' + topic + ' ') !== -1);
+      m.hidden = !ok; if (ok) shown++;
+    });
+    document.getElementById('empty').classList.toggle('on', shown === 0);
+    var bar = document.getElementById('active-topic');
+    bar.classList.toggle('on', topic !== null);
+    if (topic !== null) document.getElementById('active-topic-name').textContent = topicNames[topic] + ' (' + shown + ')';
+    document.querySelectorAll('.topic').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.topic === String(topic))); });
+  }
+  document.querySelectorAll('.fbtn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      sent = b.dataset.sent;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      apply();
+    });
+  });
+  document.querySelectorAll('.topic').forEach(function (b) {
+    b.addEventListener('click', function () {
+      topic = (String(topic) === b.dataset.topic) ? null : Number(b.dataset.topic);
+      apply();
+      if (topic !== null) document.getElementById('messages').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  document.getElementById('clear-topic').addEventListener('click', function () { topic = null; apply(); });
+
+  var zh = document.getElementById('show-zh');
+  try { if (localStorage.getItem('showZh') === '0') zh.checked = false; } catch (e) {}
+  function syncZh() {
+    document.body.classList.toggle('hide-zh', !zh.checked);
+    try { localStorage.setItem('showZh', zh.checked ? '1' : '0'); } catch (e) {}
+  }
+  zh.addEventListener('change', syncZh); syncZh();
+
+  // Show timestamps in the viewer's local time zone.
+  var fmt = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+  document.querySelectorAll('time[datetime]').forEach(function (t) {
+    var d = new Date(t.getAttribute('datetime'));
+    if (!isNaN(d)) { t.title = t.textContent; t.textContent = fmt.format(d); }
+  });
+
+  // Highlight links: reveal the target even if filtered out, then flash it.
+  document.querySelectorAll('.hl a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      sent = 'all'; topic = null;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.sent === 'all')); });
+      apply();
+      var el = document.querySelector(a.getAttribute('href'));
+      if (el) { el.classList.add('flash'); setTimeout(function () { el.classList.remove('flash'); }, 1600); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

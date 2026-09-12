@@ -1,0 +1,6 @@
+<ul class="nav" aria-label="Communities">
+  <li><a href="{{ root }}"{% if current == 'overview' %} aria-current="page"{% endif %}>Overview</a></li>
+  {% for n in nav %}
+  <li><a href="{{ root }}{{ n.slug }}/"{% if current == n.slug %} aria-current="page"{% endif %}>{% if n.flag %}<span aria-hidden="true">{{ n.flag }}</span> {% endif %}{{ n.language }}</a></li>
+  {% endfor %}
+</ul>

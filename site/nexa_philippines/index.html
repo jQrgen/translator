@@ -1,0 +1,1265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexa 🇵🇭 Philippines — English</title>
+<meta name="description" content="A quiet Filipino Nexa group: launch-day onboarding, newcomer Q&amp;A, then sporadic price, wallet and halving chatter.">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --line: #e1e0d9; --ring: rgba(11,11,11,.10); --wash: rgba(11,11,11,.04);
+  --accent: #2a78d6; --accent-ink: #1c5cab;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #c98500; --neu: #898781; --mid: #f0efec;
+  --zh: #52514e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+    --accent: #3987e5; --accent-ink: #86b6ef;
+    --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+    --zh: #c3c2b7;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+  --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+  --accent: #3987e5; --accent-ink: #86b6ef;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+  --zh: #c3c2b7;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--page); color: var(--ink);
+  font: 15px/1.55 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  padding-inline: clamp(16px, 4vw, 32px); padding-block: 0 64px;
+}
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 900px; margin: 0 auto; }
+header.top { padding-block: 40px 24px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+h1 { font-size: clamp(24px, 4vw, 34px); line-height: 1.15; margin: 0 0 10px; letter-spacing: -.01em; }
+.meta { color: var(--ink-2); font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; }
+.meta span::before { content: ""; }
+h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; font-weight: 600; }
+section { padding-block: 32px; }
+h2 .sub { font-weight: 400; letter-spacing: 0; text-transform: none; }
+section + section { border-top: 1px solid var(--line); }
+.headline { font-size: clamp(19px, 2.6vw, 24px); line-height: 1.3; font-weight: 600; margin: 0 0 12px; letter-spacing: -.01em; }
+.lede { font-size: 16px; color: var(--ink-2); margin: 0; max-width: 70ch; }
+.grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.topics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.topic { width: 100%; text-align: left; background: transparent; border: 1px solid transparent; border-radius: 10px; padding: 12px 14px; color: inherit; font: inherit; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; }
+.topic:hover { background: var(--wash); }
+.topic[aria-pressed="true"] { border-color: var(--accent); background: var(--wash); }
+.topic .t { font-weight: 600; }
+.topic .n { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.topic .s { grid-column: 1 / -1; color: var(--ink-2); font-size: 14px; }
+.mood-label { font-size: 26px; font-weight: 700; letter-spacing: -.01em; margin: 0 0 4px; }
+.mood-score { color: var(--muted); font-size: 13px; margin: 0 0 12px; font-variant-numeric: tabular-nums; }
+.meter { position: relative; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--neg), var(--mid) 50%, var(--pos)); margin: 6px 0 4px; }
+.meter i { position: absolute; top: 50%; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 3px solid var(--ink); transform: translate(-50%, -50%); box-shadow: 0 0 0 2px var(--surface); }
+.meter-ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+.mood-desc { margin: 0 0 20px; color: var(--ink-2); font-size: 14px; }
+.dist { display: flex; height: 12px; border-radius: 4px; overflow: hidden; gap: 2px; background: var(--surface); margin-bottom: 10px; }
+.dist b { display: block; height: 100%; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 13px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend .n { margin-left: auto; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.positive { --c: var(--pos); } .negative { --c: var(--neg); } .mixed { --c: var(--mix); } .neutral { --c: var(--neu); }
+.dot, .dist b { background: var(--c); }
+.chip { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--ink-2); padding: 2px 8px 2px 6px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); white-space: nowrap; }
+.chip::before { content: attr(data-glyph); width: 14px; height: 14px; border-radius: 50%; background: var(--c); color: #fff; display: inline-grid; place-items: center; font-size: 11px; line-height: 1; }
+.hl { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hl a { display: block; color: inherit; background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 12px 14px; }
+.hl a:hover { text-decoration: none; border-color: var(--accent); }
+.hl .q { font-size: 15px; margin: 0 0 4px; }
+.hl .w { font-size: 13px; color: var(--ink-2); margin: 0; }
+.hl .w b { font-weight: 600; color: var(--ink); }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 16px; position: sticky; top: 0; background: var(--page); padding-block: 10px; z-index: 2; border-bottom: 1px solid var(--line); }
+.controls .sp { flex: 1; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.fbtn { font: inherit; font-size: 13px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.fbtn[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); cursor: pointer; user-select: none; }
+.toggle input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+.active-topic { display: none; font-size: 13px; color: var(--ink-2); padding: 8px 12px; border-radius: 8px; background: var(--wash); margin-bottom: 12px; }
+.active-topic.on { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.active-topic button { font: inherit; font-size: 13px; background: none; border: 0; color: var(--accent-ink); cursor: pointer; padding: 0; }
+.msgs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.msg { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 12px 16px; scroll-margin-top: 70px; }
+.msg[hidden] { display: none; }
+.msg.flash { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42,120,214,.25); }
+.msg .head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 6px; font-size: 13px; }
+.msg .who { font-weight: 600; color: var(--ink); font-size: 14px; }
+.msg time { color: var(--muted); font-variant-numeric: tabular-nums; }
+.msg .lnk { margin-left: auto; color: var(--muted); font-size: 12px; }
+.msg .reply { border-left: 3px solid var(--line); padding: 2px 10px; margin: 0 0 8px; color: var(--ink-2); font-size: 13px; }
+.msg .reply b { font-weight: 600; }
+.msg .en { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg .zh { margin: 6px 0 0; color: var(--zh); font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+body.hide-zh .msg .zh { display: none; }
+.msg .note { margin: 8px 0 0; font-size: 13px; color: var(--ink-2); font-style: italic; }
+.msg .note::before { content: "Note: "; font-style: normal; font-weight: 600; }
+.empty { display: none; color: var(--muted); padding: 24px 0; text-align: center; }
+.empty.on { display: block; }
+footer { color: var(--muted); font-size: 13px; padding-top: 32px; border-top: 1px solid var(--line); }
+footer p { margin: 0 0 6px; }
+@media (prefers-reduced-motion: no-preference) { .msg { transition: border-color .3s, box-shadow .3s; } }
+.nav { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; padding: 0; list-style: none; }
+.nav a { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); }
+.nav a:hover { text-decoration: none; border-color: var(--accent); }
+.nav a[aria-current="page"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.nav .lang { font-weight: 400; opacity: .75; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
+.cards > li > a { display: block; color: inherit; height: 100%; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.cards > li > a:hover { text-decoration: none; border-color: var(--accent); }
+.cards h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.cards .sub { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+.cards .hd { font-size: 15px; font-weight: 600; margin: 0 0 10px; line-height: 1.35; }
+.cards .mood { display: flex; align-items: baseline; gap: 8px; margin: 0 0 8px; }
+.cards .mood b { font-size: 20px; letter-spacing: -.01em; }
+.cards .mood span { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.cards .dist { margin: 10px 0 8px; }
+.cards .legend { grid-template-columns: repeat(4, auto); justify-content: start; gap: 4px 14px; font-size: 12px; }
+.cards .legend .n { margin-left: 4px; }
+.cards .more { color: var(--accent-ink); font-size: 13px; font-weight: 600; margin: 12px 0 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <ul class="nav" aria-label="Communities">
+  <li><a href="../">Overview</a></li>
+  
+  <li><a href="../nexa_china/"><span aria-hidden="true">🇨🇳</span> Chinese</a></li>
+  
+  <li><a href="../nexa_netherlands/"><span aria-hidden="true">🇳🇱</span> Dutch</a></li>
+  
+  <li><a href="../nexa_germany/"><span aria-hidden="true">🇩🇪</span> German</a></li>
+  
+  <li><a href="../nexa_india/"><span aria-hidden="true">🇮🇳</span> Hindi</a></li>
+  
+  <li><a href="../nexa_korean/"><span aria-hidden="true">🇰🇷</span> Korean</a></li>
+  
+  <li><a href="../nexa_nor/"><span aria-hidden="true">🇳🇴</span> Norwegian</a></li>
+  
+  <li><a href="../nexa_philippines/" aria-current="page"><span aria-hidden="true">🇵🇭</span> Filipino</a></li>
+  
+  <li><a href="../nexa_poland/"><span aria-hidden="true">🇵🇱</span> Polish</a></li>
+  
+  <li><a href="../nexa_ru/"><span aria-hidden="true">🇷🇺</span> Russian</a></li>
+  
+  <li><a href="../nexa_spanish/"><span aria-hidden="true">🇪🇸</span> Spanish</a></li>
+  
+  <li><a href="../nexatr/"><span aria-hidden="true">🇹🇷</span> Turkish</a></li>
+  
+  <li><a href="../nexa_viet/"><span aria-hidden="true">🇻🇳</span> Vietnamese</a></li>
+  
+</ul>
+  <p class="eyebrow">Telegram · Filipino → English mirror</p>
+  <h1>Nexa 🇵🇭 Philippines</h1>
+  <p class="meta">
+    <span><a href="https://t.me/nexa_Philippines" rel="noopener">t.me/nexa_Philippines</a></span>
+    <span>21 members</span>
+    <span>Last 48 messages · <time datetime="2024-12-12T09:51:42+00:00">2024-12-12 09:51 UTC</time> → <time datetime="2026-06-15T20:31:19+00:00">2026-06-15 20:31 UTC</time></span>
+    <span>Updated <time datetime="2026-09-12T16:31:55.261991+00:00">2026-09-12 16:31 UTC</time></span>
+  </p>
+</header>
+
+<section id="summary">
+  <h2>Summary</h2>
+  <p class="headline">A quiet Filipino Nexa group: launch-day onboarding, newcomer Q&amp;A, then sporadic price, wallet and halving chatter.</p>
+  <p class="lede">The window opens on 12 December 2024 with the group&#39;s launch: endo posts official Nexa materials (Andrew Stone&#39;s ASE overview, an X thread on Atomic Secrets and Private NFTs, a clip from the Australian Crypto Convention) and welcomes new Filipino members. Newcomers Dj Rhod and Adrian Dureza ask basic questions — supply burning (endo: none, mining is ongoing), CPU/PC mining (Rose posts the official mining guide and a warning not to mine to exchanges), token creation on Nexa, top-tier exchange listings, and whether the team plans to grow the small community. endo gently teases Dj Rhod for pasting an obviously ChatGPT-written &#39;Nexa Overview&#39;. After that the group goes largely dormant, with scattered activity through 2025 and 2026: a help-bot answer on how to buy NEXA (MEXC, Bitget, CoinEx), Dawen asking whether the project is any good, and Rickseekers urging accumulation while the price is low and floating $0.01 as a long-term target around 2030. Later messages cover wallets (Wally, Otoplo, a hardware-wallet question that mods answer with /wallet), Rj plugging a Nexa Philippines Facebook page and noting the halving is near, and Multiblitrze checking in for news.</p>
+</section>
+
+<section id="analysis">
+  <div class="grid">
+    <div class="card">
+      <h2>Topics</h2>
+      <ul class="topics">
+        
+        <li>
+          <button class="topic" type="button" data-topic="0" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Group launch and onboarding</span>
+            <span class="n">13 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">endo seeded the new Filipino group with official Nexa content (ASE episode, feature thread, convention clip) and welcomed arrivals; Dj Rhod, Jinky Crispolo and Adrian Dureza responded enthusiastically, and Rose/Onur later posted links and bot commands.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="1" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Newcomer questions on tokenomics and mining</span>
+            <span class="n">7 msgs · <span class="chip neutral" data-glyph="·">Neutral</span></span>
+            <span class="s">Dj Rhod asked about supply burning and token creation (endo: no burning, mining ongoing; yes, tokens can be created) and said he couldn&#39;t follow the PC mining steps; Rose replied with the YouTube mining guide, pool comparison and a warning never to mine to exchange wallets.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="2" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Price outlook and accumulation</span>
+            <span class="n">9 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">Dawen asked if the project is good and what price it could reach; Rickseekers said to accumulate on the dip, suggested $0.01 as a target possibly by 2030, and repeatedly urged buying while it&#39;s cheap. Rj noted the halving is near.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="3" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Wallets and how to buy</span>
+            <span class="n">6 msgs · <span class="chip neutral" data-glyph="·">Neutral</span></span>
+            <span class="s">The NexaHelpBot gave a Tagalog step-by-step on buying NEXA via MEXC, Bitget or CoinEx and moving funds to a wallet; Rickseekers named Wally and Otoplo as his storage wallets, and Multiblitrze&#39;s hardware-wallet question was answered by mod Onur_Chinaski with the /wallet command.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="4" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">AI-generated overview and posting etiquette</span>
+            <span class="n">5 msgs · <span class="chip mixed" data-glyph="±">Mixed</span></span>
+            <span class="s">Dj Rhod pasted a long, clearly AI-written &#39;Nexa Blockchain overview&#39; (including a claim that Nexa is less energy-intensive than proof-of-work) and asked admin permission; endo pointed him to nexa.org and official socials and joked &#39;Surely. If chatgpt says that 😅&#39;.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="5" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Community size, exchanges and promotion</span>
+            <span class="n">6 msgs · <span class="chip mixed" data-glyph="±">Mixed</span></span>
+            <span class="s">Adrian Dureza asked about top-tier exchange listings and whether the team has an organic growth plan; endo said growth is ongoing daily, and Rickseekers later noted most Filipinos are on Discord since this group is new. Rj promoted his own Nexa Philippines Facebook page.</span>
+          </button>
+        </li>
+        
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Mood</h2>
+      <p class="mood-label">Friendly but sleepy</p>
+      <p class="mood-score">Mood score +0.40 on a −1 … +1 scale</p>
+      <div class="meter" role="img" aria-label="Mood score +0.40 of 1"><i style="left: 70.0%"></i></div>
+      <div class="meter-ticks"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
+      <p class="mood-desc">The opening day is warm and energetic — official content, welcomes and eager newcomers asking a rapid string of questions, with one lightly teasing moment about AI-written copy. After December 2024 the tone flattens into long silences broken by occasional check-ins, wallet questions and bullish &#39;buy while it&#39;s cheap&#39; nudges. Mild undercurrents of concern appear around the small community size and the difficulty of setting up mining, but nothing turns hostile; the dominant feeling is patient, low-activity optimism.</p>
+      <h2>Sentiment by message</h2>
+      <div class="dist" role="img" aria-label="Positive 18, Mixed 2, Neutral 27, Negative 1">
+        <b class="positive" style="flex: 18" title="Positive: 18"></b><b class="mixed" style="flex: 2" title="Mixed: 2"></b><b class="neutral" style="flex: 27" title="Neutral: 27"></b><b class="negative" style="flex: 1" title="Negative: 1"></b>
+      </div>
+      <ul class="legend">
+        
+        <li><span class="dot positive"></span>Positive<span class="n">18 · 37.5%</span></li>
+        
+        <li><span class="dot mixed"></span>Mixed<span class="n">2 · 4.2%</span></li>
+        
+        <li><span class="dot neutral"></span>Neutral<span class="n">27 · 56.2%</span></li>
+        
+        <li><span class="dot negative"></span>Negative<span class="n">1 · 2.1%</span></li>
+        
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section id="highlights">
+  <h2>Worth reading first</h2>
+  <ul class="hl">
+    
+    <li><a href="#m-22">
+      <p class="q">“Surely. If chatgpt says that 😅”</p>
+      <p class="w"><b>endo</b> · endo&#39;s dry jab — &#39;Surely. If chatgpt says that 😅&#39; — at a member&#39;s obviously AI-generated Nexa overview.</p>
+    </a></li>
+    
+    <li><a href="#m-39">
+      <p class="q">“I saw that our community is small. Does the team have a plan to grow the community organically?”</p>
+      <p class="w"><b>Adrian Dureza</b> · Adrian Dureza raises the group&#39;s main structural worry: the community is small, is there an organic growth plan?</p>
+    </a></li>
+    
+    <li><a href="#m-77">
+      <p class="q">“In dollars, but it&#39;s possible that&#39;s still a long way off, around 2030. In pesos it&#39;s fine too — if you have 100m, at 0.01 in pesos you&#39;d already have 1 million, not bad for a 1st tp”</p>
+      <p class="w"><b>Rickseekers</b> · Rickseekers&#39; concrete (and speculative) price thesis: $0.01 maybe by 2030, framed as turning 100m NEXA into 1 million pesos.</p>
+    </a></li>
+    
+    <li><a href="#m-36">
+      <p class="q">“🟨 Guide how to mine NEXA on the YouTube:
+
+https://youtu.be/3Z0-GTmDmI0?si=h7Yqf4yegqHxpjvm
+
+⚠️  DO NOT MINE TO ANY EXCHANGES. ANY MINING TO EXCHANGE WALLETS RISK LOSS OF FUNDS.
+PLEASE CREATE A WALLET HERE: 
+https://www.nexa.org/node
+
+Mining Pool Comparison:
+https://miningpoolstats.stream/nexa
+
+Find more information as mining pools and mining software on our website:
+https://nexa.org/mining
+
+How to become a full member of the Nexa network:
+https://forum.nexa.org/t/how-to-become-a-full-member-of-the-nexa-network/237”</p>
+      <p class="w"><b>Rose</b> · Rose&#39;s mining guide with the key safety warning: never mine directly to exchange wallets.</p>
+    </a></li>
+    
+    <li><a href="#m-51">
+      <p class="q">“To buy NEXA, follow these steps:
+1. Choose an Exchange (Marketplace)
+Recommended exchanges:
+- MEXC → https://www.mexc.com/exchange/NEXAUSDT: https://www.mexc.com/exchange/NEXAUSDT
+- Bitget → https://www.bitget.com/spot/NEXAUSDT: https://www.bitget.com/spot/NEXAUSDT
+- CoinEx → https://www.coinex.com/exchange/nexa-usdt: https://www.coinex.com/exchange/nexa-usdt
+2. Create an Account
+- Register on the exchange (email/phone verification).
+- Enable 2FA (for security).
+3. Deposit Funds
+- You can deposit USDT, BTC, or ETH (depending on the exchange).
+- You can use P2P (if you want direct cash payment).
+4. Buy NEXA
+- Go to Spot Trading → Look for the NEXA/USDT pair.
+- Choose &#34;Market Buy&#34; (automatic price) or &#34;Limit Buy&#34; (set your price).
+5. Move it to a Wallet (Optional but Recommended)
+- For more security, move your NEXA to a Nexa wallet (e.g., Otoplo, Wally, or full node).
+- Use your Nexa address (from the wallet).
+Important Reminders
+✅ Don&#39;t give your private key or seed phrase to anyone.
+✅ Double-check the address before withdrawing.
+✅ There may be a withdrawal fee depending on the exchange.
+
+If you have more questions, you can join the Nexa Telegram (Tagalog-friendly):
+👉 https://t.me/nexacoin: https://t.me/nexacoin
+
+Good luck buying NEXA! 🚀”</p>
+      <p class="w"><b>NexaHelpBot (beta)</b> · The help bot&#39;s full Tagalog buying walkthrough — the most practical reference message in the window.</p>
+    </a></li>
+    
+  </ul>
+</section>
+
+
+<section id="messages">
+  <h2>Messages <span class="sub">· newest first</span></h2>
+  <div class="controls">
+    <div class="filters" role="group" aria-label="Filter by sentiment">
+      <button class="fbtn" type="button" data-sent="all" aria-pressed="true">All</button>
+      <button class="fbtn" type="button" data-sent="positive" aria-pressed="false">Positive (18)</button><button class="fbtn" type="button" data-sent="mixed" aria-pressed="false">Mixed (2)</button><button class="fbtn" type="button" data-sent="neutral" aria-pressed="false">Neutral (27)</button><button class="fbtn" type="button" data-sent="negative" aria-pressed="false">Negative (1)</button>
+    </div>
+    <span class="sp"></span>
+    <label class="toggle"><input type="checkbox" id="show-zh" checked> Show original Filipino</label>
+  </div>
+  <div class="active-topic" id="active-topic"><span>Topic: <b id="active-topic-name"></b></span><button type="button" id="clear-topic">Show all messages</button></div>
+  <ol class="msgs" id="msg-list" reversed>
+    
+    <li class="msg" id="m-116" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2026-06-15T20:31:19+00:00">2026-06-15 20:31 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/116" rel="noopener" title="Open on Telegram">#116 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/i/status/2066611798854549822</p>
+      <p class="zh" lang="fil">https://x.com/i/status/2066611798854549822</p>
+      
+    </li>
+    
+    <li class="msg" id="m-115" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-06-14T16:42:14+00:00">2026-06-14 16:42 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/115" rel="noopener" title="Open on Telegram">#115 ↗</a>
+      </div>
+      
+      <p class="en">Nice knowing you!</p>
+      <p class="zh" lang="fil">Nice knowing you!</p>
+      
+    </li>
+    
+    <li class="msg" id="m-111" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Rickseekers</span>
+        <time datetime="2026-05-21T00:47:39+00:00">2026-05-21 00:47 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/111" rel="noopener" title="Open on Telegram">#111 ↗</a>
+      </div>
+      
+      <p class="en">Buy now while it&#39;s still cheap.</p>
+      <p class="zh" lang="fil">Bili na habang mura pa.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-107" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Rj</span>
+        <time datetime="2026-03-19T04:26:00+00:00">2026-03-19 04:26 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/107" rel="noopener" title="Open on Telegram">#107 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Rj</b>: https://m.facebook.com/story.php?story_fbid=pfbid0Ftph7nLZrkm94tDCMMhifSw4p1KiUFUHQMv9Rorzbi7cb7RQBu98GKSNWW43cGbpl&amp;i...</p>
+      
+      <p class="en">Please like my fb nexa philippines</p>
+      <p class="zh" lang="fil">Please like my fb nexa philippines</p>
+      
+    </li>
+    
+    <li class="msg" id="m-106" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Rj</span>
+        <time datetime="2026-03-19T04:25:12+00:00">2026-03-19 04:25 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/106" rel="noopener" title="Open on Telegram">#106 ↗</a>
+      </div>
+      
+      <p class="en">Halving is near guys</p>
+      <p class="zh" lang="fil">Halving is near guys</p>
+      
+    </li>
+    
+    <li class="msg" id="m-104" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Rj</span>
+        <time datetime="2026-03-19T04:24:39+00:00">2026-03-19 04:24 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/104" rel="noopener" title="Open on Telegram">#104 ↗</a>
+      </div>
+      
+      <p class="en">https://m.facebook.com/story.php?story_fbid=pfbid0Ftph7nLZrkm94tDCMMhifSw4p1KiUFUHQMv9Rorzbi7cb7RQBu98GKSNWW43cGbpl&amp;id=61582788142356</p>
+      <p class="zh" lang="fil">https://m.facebook.com/story.php?story_fbid=pfbid0Ftph7nLZrkm94tDCMMhifSw4p1KiUFUHQMv9Rorzbi7cb7RQBu98GKSNWW43cGbpl&amp;id=61582788142356</p>
+      
+    </li>
+    
+    <li class="msg" id="m-99" data-sent="neutral" data-topics="">
+      <div class="head">
+        <span class="who">DhammaDana</span>
+        <time datetime="2026-02-27T16:42:47+00:00">2026-02-27 16:42 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/99" rel="noopener" title="Open on Telegram">#99 ↗</a>
+      </div>
+      
+      <p class="en">/report</p>
+      <p class="zh" lang="fil">/report</p>
+      <p class="note">Bot command to report a message (usually spam) to the admins.</p>
+    </li>
+    
+    <li class="msg" id="m-96" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Multiblitrze</span>
+        <time datetime="2026-02-20T10:21:00+00:00">2026-02-20 10:21 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/96" rel="noopener" title="Open on Telegram">#96 ↗</a>
+      </div>
+      
+      <p class="en">Any news?</p>
+      <p class="zh" lang="fil">Anong balita?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-95" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Multiblitrze</span>
+        <time datetime="2026-02-15T03:51:11+00:00">2026-02-15 03:51 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/95" rel="noopener" title="Open on Telegram">#95 ↗</a>
+      </div>
+      
+      <p class="en">Hello, how are the nexians here👋👋👋👋</p>
+      <p class="zh" lang="fil">Hello, kumusta ang mga nexians dito👋👋👋👋</p>
+      
+    </li>
+    
+    <li class="msg" id="m-87" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2025-12-31T08:54:24+00:00">2025-12-31 08:54 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/87" rel="noopener" title="Open on Telegram">#87 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Multiblitrze</b>: what hardware wallet can be used po?</p>
+      
+      <p class="en">/wallet</p>
+      <p class="zh" lang="fil">/wallet</p>
+      <p class="note">Bot command that pulls up the wallet info message.</p>
+    </li>
+    
+    <li class="msg" id="m-81" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Multiblitrze</span>
+        <time datetime="2025-09-29T14:37:01+00:00">2025-09-29 14:37 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/81" rel="noopener" title="Open on Telegram">#81 ↗</a>
+      </div>
+      
+      <p class="en">what hardware wallet can be used po?</p>
+      <p class="zh" lang="fil">ano pong hardware wallet pwede?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-80" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Rickseekers</span>
+        <time datetime="2025-09-27T22:15:26+00:00">2025-09-27 22:15 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/80" rel="noopener" title="Open on Telegram">#80 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Dawen</b>: What wallet do you use po for storing?</p>
+      
+      <p class="en">Wally wallet and otoplo wallet.</p>
+      <p class="zh" lang="fil">Wally wallet at otoplo wallet.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-79" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Dawen</span>
+        <time datetime="2025-09-27T17:29:10+00:00">2025-09-27 17:29 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/79" rel="noopener" title="Open on Telegram">#79 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Rickseekers</b>: In dollars, but it&#39;s possible that&#39;s still a long way off, around 2030. In pesos it&#39;s fine too — if you have 100m,...</p>
+      
+      <p class="en">What wallet do you use po for storing?</p>
+      <p class="zh" lang="fil">Anong wallet po gamit nyo sa pagimbak?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-78" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Rickseekers</span>
+        <time datetime="2025-09-27T07:12:11+00:00">2025-09-27 07:12 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/78" rel="noopener" title="Open on Telegram">#78 ↗</a>
+      </div>
+      
+      <p class="en">So stack and keep stacking while it&#39;s still cheap, next time this will be expensive..</p>
+      <p class="zh" lang="fil">Kaya mag imbak na ng mag imbak habang mura pa sa sunod mahal na to ..</p>
+      
+    </li>
+    
+    <li class="msg" id="m-77" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Rickseekers</span>
+        <time datetime="2025-09-27T07:10:55+00:00">2025-09-27 07:10 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/77" rel="noopener" title="Open on Telegram">#77 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Dawen</b>: In peso or dollar po?</p>
+      
+      <p class="en">In dollars, but it&#39;s possible that&#39;s still a long way off, around 2030. In pesos it&#39;s fine too — if you have 100m, at 0.01 in pesos you&#39;d already have 1 million, not bad for a 1st tp</p>
+      <p class="zh" lang="fil">In dollar pero posible matagal pa tlaga Yan mga 2030 sa pesos oks ndn Yan kung may 100m ka sa 0.01 in Piso may 1million kana din not bad for 1st tp</p>
+      <p class="note">&#34;tp&#34; = take profit target.</p>
+    </li>
+    
+    <li class="msg" id="m-76" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Dawen</span>
+        <time datetime="2025-09-27T03:47:52+00:00">2025-09-27 03:47 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/76" rel="noopener" title="Open on Telegram">#76 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Rickseekers</b>: 0.01 would be fine</p>
+      
+      <p class="en">In peso or dollar po?</p>
+      <p class="zh" lang="fil">In peso or dollar po?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-75" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Rickseekers</span>
+        <time datetime="2025-09-26T23:00:23+00:00">2025-09-26 23:00 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/75" rel="noopener" title="Open on Telegram">#75 ↗</a>
+      </div>
+      
+      <p class="en">0.01 would be fine</p>
+      <p class="zh" lang="fil">0.01 oks na</p>
+      
+    </li>
+    
+    <li class="msg" id="m-74" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Dawen</span>
+        <time datetime="2025-09-25T01:26:59+00:00">2025-09-25 01:26 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/74" rel="noopener" title="Open on Telegram">#74 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Rickseekers</b>: Yes, super good brother, let&#39;s accumulate more while the price is dip.</p>
+      
+      <p class="en">What&#39;s the possible potential price in the future, in your opinion po?</p>
+      <p class="zh" lang="fil">Ano po possible potential price in the future sa opinion nyo po ?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-73" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Rickseekers</span>
+        <time datetime="2025-09-25T00:22:12+00:00">2025-09-25 00:22 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.80">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/73" rel="noopener" title="Open on Telegram">#73 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Dawen</b>: Is this project any good po?</p>
+      
+      <p class="en">Yes, super good brother, let&#39;s accumulate more while the price is dip.</p>
+      <p class="zh" lang="fil">Yes super goods brother lets accumulate more while the price is dip.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-72" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Dawen</span>
+        <time datetime="2025-09-24T17:47:16+00:00">2025-09-24 17:47 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/72" rel="noopener" title="Open on Telegram">#72 ↗</a>
+      </div>
+      
+      <p class="en">Is this project any good po?</p>
+      <p class="zh" lang="fil">Goods po ba itong project na ito?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-71" data-sent="neutral" data-topics="">
+      <div class="head">
+        <span class="who">Dawen</span>
+        <time datetime="2025-09-24T17:47:00+00:00">2025-09-24 17:47 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/71" rel="noopener" title="Open on Telegram">#71 ↗</a>
+      </div>
+      
+      <p class="en">Hi, good evening po</p>
+      <p class="zh" lang="fil">Hi good evening po</p>
+      <p class="note">&#34;po&#34; is a Filipino politeness particle with no English equivalent.</p>
+    </li>
+    
+    <li class="msg" id="m-59" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Onur_Chinaski Nexa mod</span>
+        <time datetime="2025-06-12T17:36:40+00:00">2025-06-12 17:36 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/59" rel="noopener" title="Open on Telegram">#59 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/TheVladCostea/status/1933211447884157350?t=d3RYdHjjxziruRAQHkR1ZQ&amp;s=35</p>
+      <p class="zh" lang="fil">https://x.com/TheVladCostea/status/1933211447884157350?t=d3RYdHjjxziruRAQHkR1ZQ&amp;s=35</p>
+      
+    </li>
+    
+    <li class="msg" id="m-58" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Rickseekers</span>
+        <time datetime="2025-06-10T06:28:36+00:00">2025-06-10 06:28 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/58" rel="noopener" title="Open on Telegram">#58 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Adrian Dureza</b>: I saw that our community is small. Does the team have a plan to grow the community organically?</p>
+      
+      <p class="en">There are a lot more of us Pinoys on Discord — here there are only a few because it&#39;s still new.</p>
+      <p class="zh" lang="fil">Mas Marami na Tayo na Pinoy sa discord dito lng kunti Kasi bago pa.</p>
+      <p class="note">&#34;Pinoy&#34; = Filipino.</p>
+    </li>
+    
+    <li class="msg" id="m-51" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">NexaHelpBot (beta)</span>
+        <time datetime="2025-04-08T06:29:50+00:00">2025-04-08 06:29 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/51" rel="noopener" title="Open on Telegram">#51 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>endo</b>: How do you buy Nexa? help</p>
+      
+      <p class="en">To buy NEXA, follow these steps:
+1. Choose an Exchange (Marketplace)
+Recommended exchanges:
+- MEXC → https://www.mexc.com/exchange/NEXAUSDT: https://www.mexc.com/exchange/NEXAUSDT
+- Bitget → https://www.bitget.com/spot/NEXAUSDT: https://www.bitget.com/spot/NEXAUSDT
+- CoinEx → https://www.coinex.com/exchange/nexa-usdt: https://www.coinex.com/exchange/nexa-usdt
+2. Create an Account
+- Register on the exchange (email/phone verification).
+- Enable 2FA (for security).
+3. Deposit Funds
+- You can deposit USDT, BTC, or ETH (depending on the exchange).
+- You can use P2P (if you want direct cash payment).
+4. Buy NEXA
+- Go to Spot Trading → Look for the NEXA/USDT pair.
+- Choose &#34;Market Buy&#34; (automatic price) or &#34;Limit Buy&#34; (set your price).
+5. Move it to a Wallet (Optional but Recommended)
+- For more security, move your NEXA to a Nexa wallet (e.g., Otoplo, Wally, or full node).
+- Use your Nexa address (from the wallet).
+Important Reminders
+✅ Don&#39;t give your private key or seed phrase to anyone.
+✅ Double-check the address before withdrawing.
+✅ There may be a withdrawal fee depending on the exchange.
+
+If you have more questions, you can join the Nexa Telegram (Tagalog-friendly):
+👉 https://t.me/nexacoin: https://t.me/nexacoin
+
+Good luck buying NEXA! 🚀</p>
+      <p class="zh" lang="fil">Para bumili ng NEXA, sundin ang mga hakbang na ito:  
+1. Pumili ng Exchange (Pamilihan)  
+Mga rekomendadong exchange:  
+- MEXC → https://www.mexc.com/exchange/NEXAUSDT: https://www.mexc.com/exchange/NEXAUSDT  
+- Bitget → https://www.bitget.com/spot/NEXAUSDT: https://www.bitget.com/spot/NEXAUSDT  
+- CoinEx → https://www.coinex.com/exchange/nexa-usdt: https://www.coinex.com/exchange/nexa-usdt  
+2. Gumawa ng Account  
+- Mag-register sa exchange (email/phone verification).  
+- I-enable ang 2FA (para sa seguridad).  
+3. Mag-deposito ng Pondo  
+- Pwede kang mag-deposito ng USDT, BTC, o ETH (depende sa exchange).  
+- Pwedeng gamitin ang P2P (kung gusto mo ng direct cash payment).  
+4. Bilhin ang NEXA  
+- Pumunta sa Spot Trading → Hanapin ang NEXA/USDT pair.  
+- Piliin ang &#34;Market Buy&#34; (automatic price) o &#34;Limit Buy&#34; (set your price).  
+5. Ilipat sa Wallet (Optional pero Recommended)  
+- Para mas secure, ilipat ang NEXA sa Nexa wallet (e.g., Otoplo, Wally, o full node).  
+- Gamitin ang iyong Nexa address (mula sa wallet).  
+Mga Importanteng Paalala  
+✅ Huwag ibigay ang private key o seed phrase kahit kanino.  
+✅ I-double check ang address bago mag-withdraw.  
+✅ Maaaring may withdrawal fee depende sa exchange.  
+
+Kung may tanong ka pa, pwedeng sumali sa Nexa Telegram (Tagalog-friendly):  
+👉 https://t.me/nexacoin: https://t.me/nexacoin  
+
+Good luck sa pagbili ng NEXA! 🚀</p>
+      <p class="note">Automated bot reply in Tagalog.</p>
+    </li>
+    
+    <li class="msg" id="m-50" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2025-04-08T06:29:18+00:00">2025-04-08 06:29 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/50" rel="noopener" title="Open on Telegram">#50 ↗</a>
+      </div>
+      
+      <p class="en">How do you buy Nexa? help</p>
+      <p class="zh" lang="fil">Paano bumili ng Nexa? help</p>
+      <p class="note">Posted by an admin, likely to demo the help bot.</p>
+    </li>
+    
+    <li class="msg" id="m-40" data-sent="positive" data-topics="5">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-12-12T10:28:51+00:00">2024-12-12 10:28 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/40" rel="noopener" title="Open on Telegram">#40 ↗</a>
+      </div>
+      
+      <p class="en">It is growing, as yourself just joined, we created a new group, that&#39;s something what is ongoing daily :)</p>
+      <p class="zh" lang="fil">It is growing, as yourself just joined, we created a new group, that&#39;s something what is ongoing daily :)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-39" data-sent="mixed" data-topics="5">
+      <div class="head">
+        <span class="who">Adrian Dureza</span>
+        <time datetime="2024-12-12T10:27:43+00:00">2024-12-12 10:27 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/39" rel="noopener" title="Open on Telegram">#39 ↗</a>
+      </div>
+      
+      <p class="en">I saw that our community is small. Does the team have a plan to grow the community organically?</p>
+      <p class="zh" lang="fil">I saw that our community is small. Does the team have a plan to grow the community organically?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-38" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-12-12T10:25:15+00:00">2024-12-12 10:25 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/38" rel="noopener" title="Open on Telegram">#38 ↗</a>
+      </div>
+      
+      <p class="en">You can create tokens on Nexa - yes.</p>
+      <p class="zh" lang="fil">You can create tokens on Nexa - yes.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-37" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Dj Rhod</span>
+        <time datetime="2024-12-12T10:24:50+00:00">2024-12-12 10:24 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/37" rel="noopener" title="Open on Telegram">#37 ↗</a>
+      </div>
+      
+      <p class="en">nexa is a token deployer also right?</p>
+      <p class="zh" lang="fil">nexa is a token deployer also right?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-36" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2024-12-12T10:24:29+00:00">2024-12-12 10:24 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/36" rel="noopener" title="Open on Telegram">#36 ↗</a>
+      </div>
+      
+      <p class="en">🟨 Guide how to mine NEXA on the YouTube:
+
+https://youtu.be/3Z0-GTmDmI0?si=h7Yqf4yegqHxpjvm
+
+⚠️  DO NOT MINE TO ANY EXCHANGES. ANY MINING TO EXCHANGE WALLETS RISK LOSS OF FUNDS.
+PLEASE CREATE A WALLET HERE: 
+https://www.nexa.org/node
+
+Mining Pool Comparison:
+https://miningpoolstats.stream/nexa
+
+Find more information as mining pools and mining software on our website:
+https://nexa.org/mining
+
+How to become a full member of the Nexa network:
+https://forum.nexa.org/t/how-to-become-a-full-member-of-the-nexa-network/237</p>
+      <p class="zh" lang="fil">🟨 Guide how to mine NEXA on the YouTube:
+
+https://youtu.be/3Z0-GTmDmI0?si=h7Yqf4yegqHxpjvm
+
+⚠️  DO NOT MINE TO ANY EXCHANGES. ANY MINING TO EXCHANGE WALLETS RISK LOSS OF FUNDS.
+PLEASE CREATE A WALLET HERE: 
+https://www.nexa.org/node
+
+Mining Pool Comparison:
+https://miningpoolstats.stream/nexa
+
+Find more information as mining pools and mining software on our website:
+https://nexa.org/mining
+
+How to become a full member of the Nexa network:
+https://forum.nexa.org/t/how-to-become-a-full-member-of-the-nexa-network/237</p>
+      
+    </li>
+    
+    <li class="msg" id="m-31" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Adrian Dureza</span>
+        <time datetime="2024-12-12T10:23:44+00:00">2024-12-12 10:23 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/31" rel="noopener" title="Open on Telegram">#31 ↗</a>
+      </div>
+      
+      <p class="en">does the nexa team have plans to list on top tier exchanges?</p>
+      <p class="zh" lang="fil">does the nexa team have plans to list on top tier exchanges?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-30" data-sent="negative" data-topics="1">
+      <div class="head">
+        <span class="who">Dj Rhod</span>
+        <time datetime="2024-12-12T10:22:02+00:00">2024-12-12 10:22 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/30" rel="noopener" title="Open on Telegram">#30 ↗</a>
+      </div>
+      
+      <p class="en">i tried to access that on my pc but i cant follow the steps</p>
+      <p class="zh" lang="fil">i tried to access that on my pc but i cant follow the steps</p>
+      
+    </li>
+    
+    <li class="msg" id="m-29" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Dj Rhod</span>
+        <time datetime="2024-12-12T10:21:36+00:00">2024-12-12 10:21 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/29" rel="noopener" title="Open on Telegram">#29 ↗</a>
+      </div>
+      
+      <p class="en">mining from computer?</p>
+      <p class="zh" lang="fil">mining from computer?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-28" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-12-12T10:19:28+00:00">2024-12-12 10:19 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/28" rel="noopener" title="Open on Telegram">#28 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Dj Rhod</b>: Does devision plan to burn some supply?</p>
+      
+      <p class="en">No supply burning at all, mining ongoing</p>
+      <p class="zh" lang="fil">No supply burning at all, mining ongoing</p>
+      
+    </li>
+    
+    <li class="msg" id="m-27" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Adrian Dureza</span>
+        <time datetime="2024-12-12T10:19:16+00:00">2024-12-12 10:19 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/27" rel="noopener" title="Open on Telegram">#27 ↗</a>
+      </div>
+      
+      <p class="en">Gm gm</p>
+      <p class="zh" lang="fil">Gm gm</p>
+      <p class="note">&#34;gm&#34; = &#34;good morning&#34;, a standard crypto community greeting.</p>
+    </li>
+    
+    <li class="msg" id="m-25" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Dj Rhod</span>
+        <time datetime="2024-12-12T10:18:48+00:00">2024-12-12 10:18 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/25" rel="noopener" title="Open on Telegram">#25 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>endo</b>: Surely. If chatgpt says that 😅</p>
+      
+      <p class="en">Does devision plan to burn some supply?</p>
+      <p class="zh" lang="fil">Does devision plan to burn some supply?</p>
+      <p class="note">&#34;devision&#34; appears to be a typo for &#34;the dev(s)&#34;/&#34;division&#34; — i.e. the dev team.</p>
+    </li>
+    
+    <li class="msg" id="m-24" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Dj Rhod</span>
+        <time datetime="2024-12-12T10:18:08+00:00">2024-12-12 10:18 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/24" rel="noopener" title="Open on Telegram">#24 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>endo</b>: Surely. If chatgpt says that 😅</p>
+      
+      <p class="en">Yes that&#39;s why I&#39;m asking permission i just made my own something new.</p>
+      <p class="zh" lang="fil">Yes that&#39;s why I&#39;m asking permission i just made my own something new.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-22" data-sent="mixed" data-topics="4">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-12-12T10:10:22+00:00">2024-12-12 10:10 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.00">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/22" rel="noopener" title="Open on Telegram">#22 ↗</a>
+      </div>
+      
+      <p class="en">Surely. If chatgpt says that 😅</p>
+      <p class="zh" lang="fil">Surely. If chatgpt says that 😅</p>
+      <p class="note">Light teasing that the previous post was AI-generated.</p>
+    </li>
+    
+    <li class="msg" id="m-21" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-12-12T10:10:07+00:00">2024-12-12 10:10 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/21" rel="noopener" title="Open on Telegram">#21 ↗</a>
+      </div>
+      
+      <p class="en">You can read more on nexa.org and @nexa_updates , X.com/nexamoney socials</p>
+      <p class="zh" lang="fil">You can read more on nexa.org and @nexa_updates , X.com/nexamoney socials</p>
+      
+    </li>
+    
+    <li class="msg" id="m-20" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Dj Rhod</span>
+        <time datetime="2024-12-12T10:08:51+00:00">2024-12-12 10:08 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/20" rel="noopener" title="Open on Telegram">#20 ↗</a>
+      </div>
+      
+      <p class="en">is this okay admin?</p>
+      <p class="zh" lang="fil">is this okay admin?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-19" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Dj Rhod</span>
+        <time datetime="2024-12-12T10:08:41+00:00">2024-12-12 10:08 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/19" rel="noopener" title="Open on Telegram">#19 ↗</a>
+      </div>
+      
+      <p class="en">Nexa Blockchain: A Detailed Overview
+
+Introduction
+Nexa Blockchain is an emerging decentralized platform designed to offer scalability, efficiency, and low-cost transactions for both developers and users. With its focus on empowering financial tools and enabling seamless development of decentralized applications (dApps), Nexa has gained attention for its innovative approach to solving challenges faced by other blockchain ecosystems.
+
+---
+
+Key Features of Nexa Blockchain
+
+1. Scalability and Speed
+Nexa employs advanced consensus mechanisms and cutting-edge engineering to ensure high transaction throughput. It is designed to handle thousands of transactions per second (TPS), making it competitive with traditional payment networks.
+
+2. Low Transaction Costs
+By optimizing its architecture, Nexa minimizes fees, making microtransactions feasible. This feature is especially beneficial for developers creating applications that involve frequent, low-value transactions.
+
+3. Smart Contracts and Programmability
+Nexa supports smart contract functionality, allowing developers to build and deploy sophisticated dApps. These contracts are designed to be secure, efficient, and compatible with various use cases.
+
+4. Decentralization
+Nexa prioritizes decentralization, ensuring that no single entity controls the network. Its consensus mechanism incentivizes widespread participation, contributing to a secure and robust ecosystem.
+
+5. Energy Efficiency
+Nexa is built with sustainability in mind, using consensus protocols that are less energy-intensive compared to traditional Proof-of-Work systems like Bitcoin.
+
+---
+
+Use Cases
+
+1. Financial Services
+Nexa facilitates peer-to-peer payments, cross-border transactions, and decentralized finance (DeFi) solutions. Its scalability and low costs make it
+ 
+Tg Channel: https://t.me/nexa_philippines</p>
+      <p class="zh" lang="fil">Nexa Blockchain: A Detailed Overview
+
+Introduction
+Nexa Blockchain is an emerging decentralized platform designed to offer scalability, efficiency, and low-cost transactions for both developers and users. With its focus on empowering financial tools and enabling seamless development of decentralized applications (dApps), Nexa has gained attention for its innovative approach to solving challenges faced by other blockchain ecosystems.
+
+---
+
+Key Features of Nexa Blockchain
+
+1. Scalability and Speed
+Nexa employs advanced consensus mechanisms and cutting-edge engineering to ensure high transaction throughput. It is designed to handle thousands of transactions per second (TPS), making it competitive with traditional payment networks.
+
+2. Low Transaction Costs
+By optimizing its architecture, Nexa minimizes fees, making microtransactions feasible. This feature is especially beneficial for developers creating applications that involve frequent, low-value transactions.
+
+3. Smart Contracts and Programmability
+Nexa supports smart contract functionality, allowing developers to build and deploy sophisticated dApps. These contracts are designed to be secure, efficient, and compatible with various use cases.
+
+4. Decentralization
+Nexa prioritizes decentralization, ensuring that no single entity controls the network. Its consensus mechanism incentivizes widespread participation, contributing to a secure and robust ecosystem.
+
+5. Energy Efficiency
+Nexa is built with sustainability in mind, using consensus protocols that are less energy-intensive compared to traditional Proof-of-Work systems like Bitcoin.
+
+---
+
+Use Cases
+
+1. Financial Services
+Nexa facilitates peer-to-peer payments, cross-border transactions, and decentralized finance (DeFi) solutions. Its scalability and low costs make it
+ 
+Tg Channel: https://t.me/nexa_philippines</p>
+      
+    </li>
+    
+    <li class="msg" id="m-16" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Jinky Crispolo</span>
+        <time datetime="2024-12-12T10:02:12+00:00">2024-12-12 10:02 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/16" rel="noopener" title="Open on Telegram">#16 ↗</a>
+      </div>
+      
+      <p class="en">Nice project</p>
+      <p class="zh" lang="fil">Nice project</p>
+      
+    </li>
+    
+    <li class="msg" id="m-14" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-12-12T10:01:57+00:00">2024-12-12 10:01 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/14" rel="noopener" title="Open on Telegram">#14 ↗</a>
+      </div>
+      
+      <p class="en">Good luck and have fun, hope you will onboard many new Nexians !!</p>
+      <p class="zh" lang="fil">Good luck and have fun, hope you will onboard many new Nexians !!</p>
+      <p class="note">&#34;Nexians&#34; is the community&#39;s term for Nexa supporters/holders.</p>
+    </li>
+    
+    <li class="msg" id="m-13" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-12-12T10:01:41+00:00">2024-12-12 10:01 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/13" rel="noopener" title="Open on Telegram">#13 ↗</a>
+      </div>
+      
+      <p class="en">Welcome sir</p>
+      <p class="zh" lang="fil">Welcome sir</p>
+      
+    </li>
+    
+    <li class="msg" id="m-11" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Dj Rhod</span>
+        <time datetime="2024-12-12T09:59:44+00:00">2024-12-12 09:59 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/11" rel="noopener" title="Open on Telegram">#11 ↗</a>
+      </div>
+      
+      <p class="en">thank you sir we will not dis appoint you</p>
+      <p class="zh" lang="fil">thank you sir we will not dis appoint you</p>
+      
+    </li>
+    
+    <li class="msg" id="m-5" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-12-12T09:52:00+00:00">2024-12-12 09:52 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/5" rel="noopener" title="Open on Telegram">#5 ↗</a>
+      </div>
+      
+      <p class="en">📢 The mission of NEXA - Cryptocurrency for everyone, every day.
+
+Moment from the Australian Crypto Convention Andrew Stone&#39;s speech. We are working on cryptocurrency and genuinely want it to succeed.
+
+Watch shorts on YouTube:
+https://www.youtube.com/shorts/P-bXZFoDiDY
+
+Share on X:
+https://x.com/NexaMoney/status/1866758477819023797</p>
+      <p class="zh" lang="fil">📢 The mission of NEXA - Cryptocurrency for everyone, every day.
+
+Moment from the Australian Crypto Convention Andrew Stone&#39;s speech. We are working on cryptocurrency and genuinely want it to succeed.
+
+Watch shorts on YouTube:
+https://www.youtube.com/shorts/P-bXZFoDiDY
+
+Share on X:
+https://x.com/NexaMoney/status/1866758477819023797</p>
+      
+    </li>
+    
+    <li class="msg" id="m-4" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-12-12T09:51:49+00:00">2024-12-12 09:51 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/4" rel="noopener" title="Open on Telegram">#4 ↗</a>
+      </div>
+      
+      <p class="en">🪙 Cryptocurrencies have evolved significantly since Bitcoin introduced blockchain technology.
+
+NEXA redefines speed, scalability and usability with advanced features like Atomic Secrets, Private NFTs and more.
+
+ 🧵 A thread, read and share on X:
+https://x.com/NexaMoney/status/1866508959923978387</p>
+      <p class="zh" lang="fil">🪙 Cryptocurrencies have evolved significantly since Bitcoin introduced blockchain technology.
+
+NEXA redefines speed, scalability and usability with advanced features like Atomic Secrets, Private NFTs and more.
+
+ 🧵 A thread, read and share on X:
+https://x.com/NexaMoney/status/1866508959923978387</p>
+      
+    </li>
+    
+    <li class="msg" id="m-3" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">endo</span>
+        <time datetime="2024-12-12T09:51:42+00:00">2024-12-12 09:51 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_Philippines/3" rel="noopener" title="Open on Telegram">#3 ↗</a>
+      </div>
+      
+      <p class="en">⚛️ Nexa Overview and Atomic Secret Exchange (ASE)
+
+Andrew Stone provides an introductory overview of the Nexa cryptocurrency, then, for the first time anywhere, discusses a revolutionary application for blockchain technology!
+
+📽 Full episode:
+https://www.youtube.com/watch?v=5K903xIjN7Y&amp;t=23s
+
+Share on X:
+https://x.com/NexaMoney/status/1866045875753009422</p>
+      <p class="zh" lang="fil">⚛️ Nexa Overview and Atomic Secret Exchange (ASE)
+
+Andrew Stone provides an introductory overview of the Nexa cryptocurrency, then, for the first time anywhere, discusses a revolutionary application for blockchain technology!
+
+📽 Full episode:
+https://www.youtube.com/watch?v=5K903xIjN7Y&amp;t=23s
+
+Share on X:
+https://x.com/NexaMoney/status/1866045875753009422</p>
+      
+    </li>
+    
+  </ol>
+  <p class="empty" id="empty">No messages match these filters.</p>
+</section>
+
+<footer>
+  <p>Translations, sentiment scores and the summary are generated automatically by claude-opus-5 and may contain mistakes. Original messages belong to their authors on Telegram.</p>
+  <p><a href="data.json">Raw data (JSON)</a></p>
+</footer>
+
+</div>
+<script>
+(function () {
+  var msgs = Array.prototype.slice.call(document.querySelectorAll('.msg'));
+  var sent = 'all', topic = null;
+  var topicNames = ["Group launch and onboarding", "Newcomer questions on tokenomics and mining", "Price outlook and accumulation", "Wallets and how to buy", "AI-generated overview and posting etiquette", "Community size, exchanges and promotion"];
+
+  function apply() {
+    var shown = 0;
+    msgs.forEach(function (m) {
+      var ok = (sent === 'all' || m.dataset.sent === sent) &&
+               (topic === null || (' ' + m.dataset.topics + ' ').indexOf(' ' + topic + ' ') !== -1);
+      m.hidden = !ok; if (ok) shown++;
+    });
+    document.getElementById('empty').classList.toggle('on', shown === 0);
+    var bar = document.getElementById('active-topic');
+    bar.classList.toggle('on', topic !== null);
+    if (topic !== null) document.getElementById('active-topic-name').textContent = topicNames[topic] + ' (' + shown + ')';
+    document.querySelectorAll('.topic').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.topic === String(topic))); });
+  }
+  document.querySelectorAll('.fbtn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      sent = b.dataset.sent;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      apply();
+    });
+  });
+  document.querySelectorAll('.topic').forEach(function (b) {
+    b.addEventListener('click', function () {
+      topic = (String(topic) === b.dataset.topic) ? null : Number(b.dataset.topic);
+      apply();
+      if (topic !== null) document.getElementById('messages').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  document.getElementById('clear-topic').addEventListener('click', function () { topic = null; apply(); });
+
+  var zh = document.getElementById('show-zh');
+  try { if (localStorage.getItem('showZh') === '0') zh.checked = false; } catch (e) {}
+  function syncZh() {
+    document.body.classList.toggle('hide-zh', !zh.checked);
+    try { localStorage.setItem('showZh', zh.checked ? '1' : '0'); } catch (e) {}
+  }
+  zh.addEventListener('change', syncZh); syncZh();
+
+  // Show timestamps in the viewer's local time zone.
+  var fmt = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+  document.querySelectorAll('time[datetime]').forEach(function (t) {
+    var d = new Date(t.getAttribute('datetime'));
+    if (!isNaN(d)) { t.title = t.textContent; t.textContent = fmt.format(d); }
+  });
+
+  // Highlight links: reveal the target even if filtered out, then flash it.
+  document.querySelectorAll('.hl a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      sent = 'all'; topic = null;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.sent === 'all')); });
+      apply();
+      var el = document.querySelector(a.getAttribute('href'));
+      if (el) { el.classList.add('flash'); setTimeout(function () { el.classList.remove('flash'); }, 1600); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

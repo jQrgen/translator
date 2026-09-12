@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexa community chats — English</title>
+<meta name="description" content="English mirror of Nexa's regional Telegram groups with translation, sentiment and topic summaries.">
+<style>
+{% include '_style.css.j2' %}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  {% include '_nav.html.j2' %}
+  <p class="eyebrow">Telegram · English mirror</p>
+  <h1>Nexa community chats</h1>
+  <p class="meta">
+    <span>{{ reports | length }} groups · last {{ limit }} messages each</span>
+    <span>Updated <time datetime="{{ generated_at | iso }}">{{ generated_at | utc }}</time></span>
+  </p>
+</header>
+
+<section>
+  <ul class="cards">
+    {% for r in reports %}
+    <li><a href="{{ r.chat.slug }}/">
+      <h3>{% if r.chat.flag %}<span aria-hidden="true">{{ r.chat.flag }}</span> {% endif %}{{ r.chat.title }}</h3>
+      <p class="sub">{{ r.chat.language }}{% if r.chat.member_count %} · {{ "{:,}".format(r.chat.member_count) }} members{% endif %} · <time datetime="{{ r.window_start | iso }}">{{ r.window_start | utc }}</time> → <time datetime="{{ r.window_end | iso }}">{{ r.window_end | utc }}</time></p>
+      <p class="hd">{{ r.summary.headline }}</p>
+      <p class="mood"><b>{{ r.summary.mood_label }}</b><span>{{ "%+.2f" | format(r.summary.mood_score) }}</span></p>
+      <div class="meter" role="img" aria-label="Mood score {{ '%+.2f' | format(r.summary.mood_score) }} of 1"><i style="left: {{ mood_pct[r.chat.slug] }}%"></i></div>
+      <div class="dist" role="img" aria-label="{% for d in distribution[r.chat.slug] %}{{ d.label }} {{ d.count }}{{ ', ' if not loop.last }}{% endfor %}">
+        {% for d in distribution[r.chat.slug] if d.count %}<b class="{{ d.key }}" style="flex: {{ d.count }}" title="{{ d.label }}: {{ d.count }}"></b>{% endfor %}
+      </div>
+      <ul class="legend">
+        {% for d in distribution[r.chat.slug] %}<li><span class="dot {{ d.key }}"></span>{{ d.label }}<span class="n">{{ d.count }}</span></li>{% endfor %}
+      </ul>
+      <p class="more">Read the {{ r.messages | length }} messages →</p>
+    </a></li>
+    {% endfor %}
+  </ul>
+</section>
+
+<footer>
+  <p>Translations, sentiment scores and summaries are generated automatically by {{ model }} and may contain mistakes. Original messages belong to their authors on Telegram.</p>
+</footer>
+
+</div>
+<script>
+(function () {
+  var fmt = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+  document.querySelectorAll('time[datetime]').forEach(function (t) {
+    var d = new Date(t.getAttribute('datetime'));
+    if (!isNaN(d)) { t.title = t.textContent; t.textContent = fmt.format(d); }
+  });
+})();
+</script>
+</body>
+</html>

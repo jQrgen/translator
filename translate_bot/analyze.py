@@ -22,28 +22,42 @@ BATCH_SIZE = 25
 MAX_CONCURRENCY = 4
 FALLBACK_BETA = "server-side-fallback-2026-07-01"
 
-TRANSLATE_SYSTEM = """You are a professional Chinese-to-English translator and community analyst.
+# Optional per-language hints appended to the translator prompt.
+LANGUAGE_NOTES = {
+    "Chinese": "Expect crypto jargon such as 币, 矿, 算力, 交易所, 上所, 拉盘, 砸盘, 韭菜, 梭哈, 空投, plus internet slang.",
+    "Turkish": "Expect crypto jargon such as madencilik, cüzdan, borsa, listelenme, dip/pump/dump, kasa, plus internet slang and Turkish-English mixing.",
+}
 
-You are working on the public Telegram group of Nexa (nexa.org), a proof-of-work cryptocurrency. The group is its official Chinese-language community, so expect crypto jargon (币, 矿, 算力, 交易所, 上所, 拉盘, 砸盘, 韭菜, 梭哈, 空投…), internet slang, sarcasm, and very short replies whose meaning depends on the messages around them.
+TRANSLATE_SYSTEM = """You are a professional {language}-to-English translator and community analyst.
+
+You are working on the public Telegram group of Nexa (nexa.org), a proof-of-work cryptocurrency. The group is its official {language}-language community, so expect crypto and mining jargon, internet slang, sarcasm, and very short replies whose meaning depends on the messages around them. {notes}
 
 You will receive the full recent transcript in chronological order for context, followed by the subset of message ids you must process in this call.
 
 For every requested id:
-- Translate faithfully into natural English, at the same register as the original (casual stays casual, rude stays rude, jokes stay jokes). Keep emoji, tickers, URLs, @usernames and numbers unchanged. Never soften, expand, or editorialise.
+- Translate faithfully into natural English, at the same register as the original (casual stays casual, rude stays rude, jokes stay jokes). Keep emoji, tickers, URLs, @usernames and numbers unchanged. Never soften, expand, or editorialise. If a message is already in English, copy it through unchanged.
 - Classify sentiment (positive / neutral / negative / mixed) and give a score from -1 to 1. Judge the tone the sender is expressing, not how the reader would feel about the news. Pure information, questions, and greetings are neutral (score near 0).
-- Add a short note only when a non-Chinese reader would otherwise miss slang, a meme, wordplay, or a cultural reference.
+- Add a short note only when a non-{language} reader would otherwise miss slang, a meme, wordplay, or a cultural reference.
 
 Process every requested id exactly once, in the given order, and copy ids exactly."""
 
-SUMMARY_SYSTEM = """You are a community analyst writing an English briefing about the official Chinese-language Telegram group of Nexa (nexa.org), a proof-of-work cryptocurrency.
+SUMMARY_SYSTEM = """You are a community analyst writing an English briefing about the official {language}-language Telegram group of Nexa (nexa.org), a proof-of-work cryptocurrency.
 
-You will receive a window of recent messages (original Chinese, English translation, sender display name, timestamp, per-message sentiment). Write for an English-speaking team member who does not read Chinese and was not in the chat.
+You will receive a window of recent messages (original {language}, English translation, sender display name, timestamp, per-message sentiment). Write for an English-speaking team member who does not read {language} and was not in the chat.
 
 Guidelines:
 - Identify the main topics actually discussed, most-discussed first, and attribute them to the participants by display name. Assign each message to at most one topic; small talk that fits nowhere can be left out.
 - Describe the mood honestly: what people are excited, worried, annoyed or amused about, and whether the tone shifts across the window. Ground every claim in the messages; do not speculate beyond them.
 - Pick a few highlights worth reading first.
 - Be concrete and concise. No marketing language."""
+
+
+def _translate_system(chat: ChatInfo) -> str:
+    return TRANSLATE_SYSTEM.format(language=chat.language, notes=LANGUAGE_NOTES.get(chat.language, "")).replace("  ", " ")
+
+
+def _summary_system(chat: ChatInfo) -> str:
+    return SUMMARY_SYSTEM.format(language=chat.language)
 
 
 def _transcript_line(m: RawMessage) -> dict:
@@ -70,6 +84,7 @@ def _check_stop(response, what: str) -> None:
 async def _translate_batch(
     client: anthropic.AsyncAnthropic,
     settings: Settings,
+    chat: ChatInfo,
     transcript_json: str,
     batch: list[RawMessage],
     sem: asyncio.Semaphore,
@@ -82,7 +97,7 @@ async def _translate_batch(
             max_tokens=16000,
             betas=[FALLBACK_BETA],
             fallbacks="default",
-            system=[{"type": "text", "text": TRANSLATE_SYSTEM, "cache_control": {"type": "ephemeral"}}],
+            system=[{"type": "text", "text": _translate_system(chat), "cache_control": {"type": "ephemeral"}}],
             messages=[
                 {
                     "role": "user",
@@ -125,18 +140,18 @@ async def _translate_batch(
         if attempt >= 3:
             raise RuntimeError(f"Claude skipped message ids {[m.id for m in missing]} after {attempt} attempts.")
         print(f"  retrying {len(missing)} skipped message(s)…", file=sys.stderr)
-        done.update(await _translate_batch(client, settings, transcript_json, missing, sem, attempt + 1))
+        done.update(await _translate_batch(client, settings, chat, transcript_json, missing, sem, attempt + 1))
     return done
 
 
 async def translate_all(
-    client: anthropic.AsyncAnthropic, settings: Settings, messages: list[RawMessage]
+    client: anthropic.AsyncAnthropic, settings: Settings, chat: ChatInfo, messages: list[RawMessage]
 ) -> list[AnalyzedMessage]:
     transcript_json = json.dumps([_transcript_line(m) for m in messages], ensure_ascii=False, indent=0)
     batches = [messages[i : i + BATCH_SIZE] for i in range(0, len(messages), BATCH_SIZE)]
     sem = asyncio.Semaphore(MAX_CONCURRENCY)
-    print(f"Translating {len(messages)} messages in {len(batches)} batch(es) with {settings.model}…", file=sys.stderr)
-    results = await asyncio.gather(*(_translate_batch(client, settings, transcript_json, b, sem) for b in batches))
+    print(f"[{chat.username}] Translating {len(messages)} messages in {len(batches)} batch(es) with {settings.model}…", file=sys.stderr)
+    results = await asyncio.gather(*(_translate_batch(client, settings, chat, transcript_json, b, sem) for b in batches))
     merged: dict[int, AnalyzedMessage] = {}
     for r in results:
         merged.update(r)
@@ -158,13 +173,13 @@ async def summarize(
         }
         for m in messages
     ]
-    print("Summarising topics and mood…", file=sys.stderr)
+    print(f"[{chat.username}] Summarising topics and mood…", file=sys.stderr)
     response = await client.beta.messages.parse(
         model=settings.model,
         max_tokens=16000,
         betas=[FALLBACK_BETA],
         fallbacks="default",
-        system=SUMMARY_SYSTEM,
+        system=_summary_system(chat),
         messages=[
             {
                 "role": "user",
@@ -183,8 +198,10 @@ async def summarize(
 async def build_report(settings: Settings, chat: ChatInfo, messages: list[RawMessage]) -> Report:
     if not messages:
         raise RuntimeError("No messages to analyse.")
-    client = anthropic.AsyncAnthropic()
-    analyzed = await translate_all(client, settings, messages)
+    # Org-level keys that are not scoped to a workspace must name one via header.
+    headers = {"anthropic-workspace-id": settings.workspace_id} if settings.workspace_id else None
+    client = anthropic.AsyncAnthropic(default_headers=headers)
+    analyzed = await translate_all(client, settings, chat, messages)
     summary = await summarize(client, settings, chat, analyzed)
     known = {m.id for m in analyzed}
     for topic in summary.topics:  # drop any ids the model invented

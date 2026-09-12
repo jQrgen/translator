@@ -1,0 +1,1887 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexa - RU - Official — English</title>
+<meta name="description" content="Community-built prediction site, a modest NEXA price rally, and node 2.2.0.0 / Tailstorm fork talk">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --line: #e1e0d9; --ring: rgba(11,11,11,.10); --wash: rgba(11,11,11,.04);
+  --accent: #2a78d6; --accent-ink: #1c5cab;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #c98500; --neu: #898781; --mid: #f0efec;
+  --zh: #52514e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+    --accent: #3987e5; --accent-ink: #86b6ef;
+    --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+    --zh: #c3c2b7;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+  --line: #2c2c2a; --ring: rgba(255,255,255,.10); --wash: rgba(255,255,255,.05);
+  --accent: #3987e5; --accent-ink: #86b6ef;
+  --pos: #0ca30c; --neg: #d03b3b; --mix: #fab219; --neu: #898781; --mid: #383835;
+  --zh: #c3c2b7;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--page); color: var(--ink);
+  font: 15px/1.55 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  padding-inline: clamp(16px, 4vw, 32px); padding-block: 0 64px;
+}
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 900px; margin: 0 auto; }
+header.top { padding-block: 40px 24px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+h1 { font-size: clamp(24px, 4vw, 34px); line-height: 1.15; margin: 0 0 10px; letter-spacing: -.01em; }
+.meta { color: var(--ink-2); font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; }
+.meta span::before { content: ""; }
+h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; font-weight: 600; }
+section { padding-block: 32px; }
+h2 .sub { font-weight: 400; letter-spacing: 0; text-transform: none; }
+section + section { border-top: 1px solid var(--line); }
+.headline { font-size: clamp(19px, 2.6vw, 24px); line-height: 1.3; font-weight: 600; margin: 0 0 12px; letter-spacing: -.01em; }
+.lede { font-size: 16px; color: var(--ink-2); margin: 0; max-width: 70ch; }
+.grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.topics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.topic { width: 100%; text-align: left; background: transparent; border: 1px solid transparent; border-radius: 10px; padding: 12px 14px; color: inherit; font: inherit; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; }
+.topic:hover { background: var(--wash); }
+.topic[aria-pressed="true"] { border-color: var(--accent); background: var(--wash); }
+.topic .t { font-weight: 600; }
+.topic .n { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.topic .s { grid-column: 1 / -1; color: var(--ink-2); font-size: 14px; }
+.mood-label { font-size: 26px; font-weight: 700; letter-spacing: -.01em; margin: 0 0 4px; }
+.mood-score { color: var(--muted); font-size: 13px; margin: 0 0 12px; font-variant-numeric: tabular-nums; }
+.meter { position: relative; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--neg), var(--mid) 50%, var(--pos)); margin: 6px 0 4px; }
+.meter i { position: absolute; top: 50%; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 3px solid var(--ink); transform: translate(-50%, -50%); box-shadow: 0 0 0 2px var(--surface); }
+.meter-ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+.mood-desc { margin: 0 0 20px; color: var(--ink-2); font-size: 14px; }
+.dist { display: flex; height: 12px; border-radius: 4px; overflow: hidden; gap: 2px; background: var(--surface); margin-bottom: 10px; }
+.dist b { display: block; height: 100%; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 13px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend .n { margin-left: auto; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.positive { --c: var(--pos); } .negative { --c: var(--neg); } .mixed { --c: var(--mix); } .neutral { --c: var(--neu); }
+.dot, .dist b { background: var(--c); }
+.chip { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--ink-2); padding: 2px 8px 2px 6px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); white-space: nowrap; }
+.chip::before { content: attr(data-glyph); width: 14px; height: 14px; border-radius: 50%; background: var(--c); color: #fff; display: inline-grid; place-items: center; font-size: 11px; line-height: 1; }
+.hl { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hl a { display: block; color: inherit; background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 12px 14px; }
+.hl a:hover { text-decoration: none; border-color: var(--accent); }
+.hl .q { font-size: 15px; margin: 0 0 4px; }
+.hl .w { font-size: 13px; color: var(--ink-2); margin: 0; }
+.hl .w b { font-weight: 600; color: var(--ink); }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 16px; position: sticky; top: 0; background: var(--page); padding-block: 10px; z-index: 2; border-bottom: 1px solid var(--line); }
+.controls .sp { flex: 1; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.fbtn { font: inherit; font-size: 13px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.fbtn[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); cursor: pointer; user-select: none; }
+.toggle input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+.active-topic { display: none; font-size: 13px; color: var(--ink-2); padding: 8px 12px; border-radius: 8px; background: var(--wash); margin-bottom: 12px; }
+.active-topic.on { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.active-topic button { font: inherit; font-size: 13px; background: none; border: 0; color: var(--accent-ink); cursor: pointer; padding: 0; }
+.msgs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.msg { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 12px 16px; scroll-margin-top: 70px; }
+.msg[hidden] { display: none; }
+.msg.flash { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42,120,214,.25); }
+.msg .head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 6px; font-size: 13px; }
+.msg .who { font-weight: 600; color: var(--ink); font-size: 14px; }
+.msg time { color: var(--muted); font-variant-numeric: tabular-nums; }
+.msg .lnk { margin-left: auto; color: var(--muted); font-size: 12px; }
+.msg .reply { border-left: 3px solid var(--line); padding: 2px 10px; margin: 0 0 8px; color: var(--ink-2); font-size: 13px; }
+.msg .reply b { font-weight: 600; }
+.msg .en { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg .zh { margin: 6px 0 0; color: var(--zh); font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+body.hide-zh .msg .zh { display: none; }
+.msg .note { margin: 8px 0 0; font-size: 13px; color: var(--ink-2); font-style: italic; }
+.msg .note::before { content: "Note: "; font-style: normal; font-weight: 600; }
+.empty { display: none; color: var(--muted); padding: 24px 0; text-align: center; }
+.empty.on { display: block; }
+footer { color: var(--muted); font-size: 13px; padding-top: 32px; border-top: 1px solid var(--line); }
+footer p { margin: 0 0 6px; }
+@media (prefers-reduced-motion: no-preference) { .msg { transition: border-color .3s, box-shadow .3s; } }
+.nav { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; padding: 0; list-style: none; }
+.nav a { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); color: var(--ink-2); }
+.nav a:hover { text-decoration: none; border-color: var(--accent); }
+.nav a[aria-current="page"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.nav .lang { font-weight: 400; opacity: .75; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
+.cards > li > a { display: block; color: inherit; height: 100%; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px 20px; }
+.cards > li > a:hover { text-decoration: none; border-color: var(--accent); }
+.cards h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.cards .sub { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+.cards .hd { font-size: 15px; font-weight: 600; margin: 0 0 10px; line-height: 1.35; }
+.cards .mood { display: flex; align-items: baseline; gap: 8px; margin: 0 0 8px; }
+.cards .mood b { font-size: 20px; letter-spacing: -.01em; }
+.cards .mood span { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.cards .dist { margin: 10px 0 8px; }
+.cards .legend { grid-template-columns: repeat(4, auto); justify-content: start; gap: 4px 14px; font-size: 12px; }
+.cards .legend .n { margin-left: 4px; }
+.cards .more { color: var(--accent-ink); font-size: 13px; font-weight: 600; margin: 12px 0 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <ul class="nav" aria-label="Communities">
+  <li><a href="../">Overview</a></li>
+  
+  <li><a href="../nexa_china/"><span aria-hidden="true">🇨🇳</span> Chinese</a></li>
+  
+  <li><a href="../nexa_netherlands/"><span aria-hidden="true">🇳🇱</span> Dutch</a></li>
+  
+  <li><a href="../nexa_germany/"><span aria-hidden="true">🇩🇪</span> German</a></li>
+  
+  <li><a href="../nexa_india/"><span aria-hidden="true">🇮🇳</span> Hindi</a></li>
+  
+  <li><a href="../nexa_korean/"><span aria-hidden="true">🇰🇷</span> Korean</a></li>
+  
+  <li><a href="../nexa_nor/"><span aria-hidden="true">🇳🇴</span> Norwegian</a></li>
+  
+  <li><a href="../nexa_philippines/"><span aria-hidden="true">🇵🇭</span> Filipino</a></li>
+  
+  <li><a href="../nexa_poland/"><span aria-hidden="true">🇵🇱</span> Polish</a></li>
+  
+  <li><a href="../nexa_ru/" aria-current="page"><span aria-hidden="true">🇷🇺</span> Russian</a></li>
+  
+  <li><a href="../nexa_spanish/"><span aria-hidden="true">🇪🇸</span> Spanish</a></li>
+  
+  <li><a href="../nexatr/"><span aria-hidden="true">🇹🇷</span> Turkish</a></li>
+  
+  <li><a href="../nexa_viet/"><span aria-hidden="true">🇻🇳</span> Vietnamese</a></li>
+  
+</ul>
+  <p class="eyebrow">Telegram · Russian → English mirror</p>
+  <h1>Nexa - RU - Official</h1>
+  <p class="meta">
+    <span><a href="https://t.me/nexa_ru" rel="noopener">t.me/nexa_ru</a></span>
+    <span>691 members</span>
+    <span>Last 100 messages · <time datetime="2026-09-02T19:11:08+00:00">2026-09-02 19:11 UTC</time> → <time datetime="2026-09-12T03:37:35+00:00">2026-09-12 03:37 UTC</time></span>
+    <span>Updated <time datetime="2026-09-12T16:35:53.171144+00:00">2026-09-12 16:35 UTC</time></span>
+  </p>
+</header>
+
+<section id="summary">
+  <h2>Summary</h2>
+  <p class="headline">Community-built prediction site, a modest NEXA price rally, and node 2.2.0.0 / Tailstorm fork talk</p>
+  <p class="lede">Over roughly ten days the Russian Nexa group mixed light community projects with price and protocol discussion. Woldemar Kulachesko and Alex ▼ promoted a free, no-stakes Premier League prediction site that uses Wally wallet login, and Alex ▼ quickly added CS2 and Dota sections at High Voltage&#39;s suggestion. The bigger thread was price: after Max complained growth had stalled, Лил, Sergey Ionov, Bossmen and Woldemar Kulachesko debated whether a real rally had begun, whether whales/ASIC miners would dump again (Bossmen noting there are no buy walls below), and whether NEXA can reclaim old highs — with some jokes that such prices might take 40 years. Лил raised harder questions about whether only die-hard fans remain and whether the project will survive, while Bossmen argued the team at least hasn&#39;t rugged. Blacktea ▽ posted the official announcement for Full-Node 2.2.0.0 with rolling checkpoints (200-block finality), the last release before the Tailstorm hard fork, plus a Peter Rizun &#39;scaling by circuit&#39; article. That triggered a technical exchange in which Woldemar Kulachesko and Alex ▼ explained GPUs stay, old ASICs become obsolete, and a Game-of-Life-based changing algorithm would make ASICs inefficient.</p>
+</section>
+
+<section id="analysis">
+  <div class="grid">
+    <div class="card">
+      <h2>Topics</h2>
+      <ul class="topics">
+        
+        <li>
+          <button class="topic" type="button" data-topic="0" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Price action and rally hopes</span>
+            <span class="n">32 msgs · <span class="chip mixed" data-glyph="±">Mixed</span></span>
+            <span class="s">Max flagged stalled growth; Sergey Ionov, Woldemar Kulachesko, Лил and Bossmen then discussed a slow climb off the bottom, deposits near 2x, missing buy walls, fear of another whale/ASIC dump, and how long a return to old highs could take.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="1" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Node 2.2.0.0, Tailstorm and mining hardware</span>
+            <span class="n">12 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">Blacktea ▽ announced the Full-Node 2.2.0.0 release with rolling checkpoints and the upcoming Tailstorm hard fork; Oleg, Sergey Ionov, Woldemar Kulachesko and Alex ▼ debated whether mining shifts to ASICs, concluding GPUs remain and a changing, Game-of-Life-based algorithm would make ASICs inefficient.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="2" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Community Premier League prediction site</span>
+            <span class="n">15 msgs · <span class="chip positive" data-glyph="+">Positive</span></span>
+            <span class="s">Woldemar Kulachesko shared a free, payment-free predictions site built by Alex ▼ with Wally wallet login; High Voltage asked for Dota and CS variants and Alex ▼ added CS2 and Dota within days, with a 50-euro prize mentioned.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="3" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Project viability and trust in the team</span>
+            <span class="n">23 msgs · <span class="chip mixed" data-glyph="±">Mixed</span></span>
+            <span class="s">Лил wondered whether only true fans remain, who the big holders are, and whether Nexa will survive like BTC; Bossmen said the devs at least never rugged and speculated they dumped the price to buy cheaper, while Woldemar Kulachesko confirmed the BU/BCH link.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="4" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">MEXC login trouble</span>
+            <span class="n">13 msgs · <span class="chip mixed" data-glyph="±">Mixed</span></span>
+            <span class="s">Лил couldn&#39;t receive SMS codes on MEXC and had forgotten the account email; Woldemar Kulachesko suggested support or waiting, and Лил eventually got in via password plus Google Authenticator, then asked what a passkey is.</span>
+          </button>
+        </li>
+        
+        <li>
+          <button class="topic" type="button" data-topic="5" aria-pressed="false" title="Show only messages in this topic">
+            <span class="t">Where to buy Nexa</span>
+            <span class="n">5 msgs · <span class="chip neutral" data-glyph="·">Neutral</span></span>
+            <span class="s">Woldemar Kulachesko and Д. Н. triggered the Rose bot&#39;s /buy exchange list; Woldemar Kulachesko also dropped a NexaMoney X post.</span>
+          </button>
+        </li>
+        
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Mood</h2>
+      <p class="mood-label">Cautiously hopeful, joking</p>
+      <p class="mood-score">Mood score +0.30 on a −1 … +1 scale</p>
+      <div class="meter" role="img" aria-label="Mood score +0.30 of 1"><i style="left: 65.0%"></i></div>
+      <div class="meter-ticks"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
+      <p class="mood-desc">The tone is light and bantering throughout — gaming-prediction jokes, self-deprecating &#39;nobody buys the bottom&#39; remarks, and laughter about price targets taking 40 years. Underneath there is genuine cautious optimism as Nexa grinds upward, mixed with real anxiety from Bossmen about missing buy walls and a repeat of the ASIC miners&#39; big dump, and existential doubt from Лил about whether the project will ever take off. The official node 2.2.0.0 / Tailstorm announcement lifts the mood into constructive technical curiosity near the end, even if Sergey Ionov admits he understands little of it.</p>
+      <h2>Sentiment by message</h2>
+      <div class="dist" role="img" aria-label="Positive 25, Mixed 12, Neutral 52, Negative 11">
+        <b class="positive" style="flex: 25" title="Positive: 25"></b><b class="mixed" style="flex: 12" title="Mixed: 12"></b><b class="neutral" style="flex: 52" title="Neutral: 52"></b><b class="negative" style="flex: 11" title="Negative: 11"></b>
+      </div>
+      <ul class="legend">
+        
+        <li><span class="dot positive"></span>Positive<span class="n">25 · 25.0%</span></li>
+        
+        <li><span class="dot mixed"></span>Mixed<span class="n">12 · 12.0%</span></li>
+        
+        <li><span class="dot neutral"></span>Neutral<span class="n">52 · 52.0%</span></li>
+        
+        <li><span class="dot negative"></span>Negative<span class="n">11 · 11.0%</span></li>
+        
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section id="highlights">
+  <h2>Worth reading first</h2>
+  <ul class="hl">
+    
+    <li><a href="#m-108271">
+      <p class="q">“Stay true to consensus: update your Nexa Full-Node to version 2.2.0.0
+
+Nexa keeps improving the protocol, and we advise everyone to update their node client applications to the latest version.
+
+This release includes rolling checkpoints. Once a block reaches position 200 in the chain, the node marks it as finalized. From that position on it is considered irreversibly confirmed, and any reorganization past that point is rejected.
+
+For exchanges and services this means something concrete: after 200 confirmations a transaction cannot be reversed.
+
+This is also the last release before the upcoming hard fork and the activation of the Tailstorm protocol. It&#39;s important to stay true to consensus and update your clients. 👇
+
+https://nexa.org/node”</p>
+      <p class="w"><b>Blacktea ▽</b> · Official announcement: Full-Node 2.2.0.0 with 200-block rolling checkpoints, the last release before the Tailstorm hard fork.</p>
+    </a></li>
+    
+    <li><a href="#m-108228">
+      <p class="q">“I&#39;m slamming creatine, I don&#39;t give a fuck anymore 😂”</p>
+      <p class="w"><b>Bossmen</b> · Bossmen&#39;s crude, funny reply to being teased about his &#39;depression&#39; over the price — a chat-defining moment.</p>
+    </a></li>
+    
+    <li><a href="#m-108231">
+      <p class="q">“The only thing I don&#39;t like about this rally is that there are no buy walls below at all”</p>
+      <p class="w"><b>Bossmen</b> · Concrete market concern: the rally has no buy walls beneath it, so whales could dump.</p>
+    </a></li>
+    
+    <li><a href="#m-108296">
+      <p class="q">“Unlikely there&#39;ll be ASICs (new chips). They&#39;re going to change the algorithm based on the game of &#34;Life&#34;. And ASICs will be completely inefficient.”</p>
+      <p class="w"><b>Alex ▼</b> · Alex ▼ explains the planned Game-of-Life-based changing algorithm would make ASICs inefficient, countering the ASIC-transition assumption.</p>
+    </a></li>
+    
+    <li><a href="#m-108246">
+      <p class="q">“The way I see it, only the true nexa fans are left here. The vast majority bailed long ago”</p>
+      <p class="w"><b>Лил</b> · Лил&#39;s blunt take that only die-hard fans remain and the majority bailed long ago, framing the project-survival debate.</p>
+    </a></li>
+    
+  </ul>
+</section>
+
+
+<section id="messages">
+  <h2>Messages <span class="sub">· newest first</span></h2>
+  <div class="controls">
+    <div class="filters" role="group" aria-label="Filter by sentiment">
+      <button class="fbtn" type="button" data-sent="all" aria-pressed="true">All</button>
+      <button class="fbtn" type="button" data-sent="positive" aria-pressed="false">Positive (25)</button><button class="fbtn" type="button" data-sent="mixed" aria-pressed="false">Mixed (12)</button><button class="fbtn" type="button" data-sent="neutral" aria-pressed="false">Neutral (52)</button><button class="fbtn" type="button" data-sent="negative" aria-pressed="false">Negative (11)</button>
+    </div>
+    <span class="sp"></span>
+    <label class="toggle"><input type="checkbox" id="show-zh" checked> Show original Russian</label>
+  </div>
+  <div class="active-topic" id="active-topic"><span>Topic: <b id="active-topic-name"></b></span><button type="button" id="clear-topic">Show all messages</button></div>
+  <ol class="msgs" id="msg-list" reversed>
+    
+    <li class="msg" id="m-108304" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-12T03:37:35+00:00">2026-09-12 03:37 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108304" rel="noopener" title="Open on Telegram">#108304 ↗</a>
+      </div>
+      
+      <p class="en">https://x.com/NexaMoney/status/2098501837145972770</p>
+      <p class="zh" lang="ru">https://x.com/NexaMoney/status/2098501837145972770</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108301" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-10T15:17:07+00:00">2026-09-10 15:17 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108301" rel="noopener" title="Open on Telegram">#108301 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Д. Н.</b>: /buy</p>
+      
+      <p class="en">The most popular exchanges for buying and trading Nexa:
+
+🔸MEXC: https://www.mexc.com/exchange/NEXA_USDT
+🔸BingX: https://bingx.com/en-us/spot/NEXAUSDT/
+🔸Biconomy: https://www.biconomy.com/exchange/NEXA_USDT
+🔸Coinstash: https://coinstash.com.au/nexa/buy
+🔸CoinEx: https://www.coinex.com/exchange/NEXA-USDT
+🔸NonKyc: https://nonkyc.io/market/NEXA_USDT
+
+ALWAYS WITHDRAW YOUR NEXA COINS TO YOUR OWN WALLET — NOT YOUR KEYS, NOT YOUR COINS!</p>
+      <p class="zh" lang="ru">Самые популярные биржи для покупки и торговли Nexa:
+
+🔸MEXC: https://www.mexc.com/exchange/NEXA_USDT
+🔸BingX: https://bingx.com/en-us/spot/NEXAUSDT/
+🔸Biconomy: https://www.biconomy.com/exchange/NEXA_USDT
+🔸Coinstash: https://coinstash.com.au/nexa/buy
+🔸CoinEx: https://www.coinex.com/exchange/NEXA-USDT
+🔸NonKyc: https://nonkyc.io/market/NEXA_USDT
+
+ВСЕГДА ВЫВОДИТЕ МОНЕТЫ NEXA НА СОБСТВЕННЫЙ КОШЕЛЕК — НЕТ КЛЮЧЕЙ, НЕТ МОНЕТ!</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108300" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Д. Н.</span>
+        <time datetime="2026-09-10T15:17:06+00:00">2026-09-10 15:17 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108300" rel="noopener" title="Open on Telegram">#108300 ↗</a>
+      </div>
+      
+      <p class="en">/buy</p>
+      <p class="zh" lang="ru">/buy</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108299" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Alex ▼</span>
+        <time datetime="2026-09-10T08:21:25+00:00">2026-09-10 08:21 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108299" rel="noopener" title="Open on Telegram">#108299 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Sergey Ionov</b>: Very interesting, but I don&#39;t understand a damn thing. How is the network going to survive? Will there even be miners in it?</p>
+      
+      <p class="en">ASICs are hardware built for one single algorithm, that&#39;s why they&#39;re very efficient. Hash/J. If the algorithm keeps changing, then ASICs, whose architecture is built to be efficient for one algorithm, will perform badly with a different one.</p>
+      <p class="zh" lang="ru">Асики это железо, которые построен для одного алгоритма, по этому они очень эффективные. Hash/J. Если алгоритм будет меняться, то асики которые по архитектуре построенные, что бы быть эффективным под один алгоритм, будут плохо работать с другим алгоритмом.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108298" data-sent="mixed" data-topics="1">
+      <div class="head">
+        <span class="who">Sergey Ionov</span>
+        <time datetime="2026-09-10T08:17:02+00:00">2026-09-10 08:17 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108298" rel="noopener" title="Open on Telegram">#108298 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Alex ▼</b>: https://t.me/nexa_ru/3529/108090</p>
+      
+      <p class="en">Very interesting, but I don&#39;t understand a damn thing. How is the network going to survive? Will there even be miners in it?</p>
+      <p class="zh" lang="ru">Очень интересно но нифига не понятно. Как сеть будет жить? Майнеры будут в ней вообще?</p>
+      <p class="note">&#34;Very interesting, but nothing is clear&#34; is a well-known Russian meme catchphrase.</p>
+    </li>
+    
+    <li class="msg" id="m-108297" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Alex ▼</span>
+        <time datetime="2026-09-10T08:15:04+00:00">2026-09-10 08:15 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108297" rel="noopener" title="Open on Telegram">#108297 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Sergey Ionov</b>: Well there&#39;s your next pump then, GPU profitability will fly to the moon for a short while. Who knows when they&#39;ll...</p>
+      
+      <p class="en">https://t.me/nexa_ru/3529/108090</p>
+      <p class="zh" lang="ru">https://t.me/nexa_ru/3529/108090</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108296" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Alex ▼</span>
+        <time datetime="2026-09-10T08:13:41+00:00">2026-09-10 08:13 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108296" rel="noopener" title="Open on Telegram">#108296 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Sergey Ionov</b>: Well there&#39;s your next pump then, GPU profitability will fly to the moon for a short while. Who knows when they&#39;ll...</p>
+      
+      <p class="en">Unlikely there&#39;ll be ASICs (new chips). They&#39;re going to change the algorithm based on the game of &#34;Life&#34;. And ASICs will be completely inefficient.</p>
+      <p class="zh" lang="ru">Вряд-ли будут асики ( новые чипы ). Будут изменять алгоритм на основе игры &#34;жизнь&#34;. И асики будут совсем не эффективные.</p>
+      <p class="note">&#34;Life&#34; = Conway&#39;s Game of Life cellular automaton.</p>
+    </li>
+    
+    <li class="msg" id="m-108291" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-09T20:22:04+00:00">2026-09-09 20:22 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108291" rel="noopener" title="Open on Telegram">#108291 ↗</a>
+      </div>
+      
+      <p class="en">Hardware acceleration: scaling by circuit.
+
+The second article in this series built a Nexa transaction verification system out of six components, a tape and a head, and showed how it successfully processes a payment from Alice to Bob without using any software at all.
+
+Since the tape only moved in one direction, the system was able to satisfy the first of the four conditions an improved version of Bitcoin must meet: it was suitable for pipelining.
+
+In this article we show how to satisfy the remaining conditions. As Nexa&#39;s chief scientist Dr. Peter Rizun (@PeterRizun) demonstrated in Sydney, we can fix the Bitcoin that Satoshi built and make it meet all of these requirements with just three simple changes. On top of that, in the process the system gains two more properties: extensibility and compressibility, at virtually no extra cost.
+
+https://forum.nexa.org/t/scaling-by-circuit/1749</p>
+      <p class="zh" lang="ru">Аппаратное ускорение: масштабирование с помощью схемы.
+
+Во второй статье этой серии была создана система проверки транзакций Nexa из шести компонентов, ленты и головки, и было показано, как она успешно обрабатывает платеж от Алисы к Бобу без использования какого-либо программного обеспечения.
+
+Поскольку лента двигалась только в одном направлении, система смогла выполнить первое из четырех условий, которые должна удовлетворять улучшенная версия Bitcoin: она была пригодна для конвейерной обработки.
+
+В этой статье мы покажем, как выполнить остальные условия. Как продемонстрировал главный научный сотрудник Nexa, доктор Питер Ризун (@PeterRizun), в Сиднее, мы можем исправить Bitcoin, созданный Сатоши, и заставить его соответствовать всем этим требованиям, внеся всего три простых изменения. Кроме того, в процессе работы система приобретает еще два свойства: расширяемость и сжимаемость, практически без дополнительных затрат.
+
+https://forum.nexa.org/t/scaling-by-circuit/1749</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108287" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Rose</span>
+        <time datetime="2026-09-09T19:42:23+00:00">2026-09-09 19:42 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108287" rel="noopener" title="Open on Telegram">#108287 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Woldemar Kulachesko</b>: /buy</p>
+      
+      <p class="en">The most popular exchanges for buying and trading Nexa:
+
+🔸MEXC: https://www.mexc.com/exchange/NEXA_USDT
+🔸BingX: https://bingx.com/en-us/spot/NEXAUSDT/
+🔸Biconomy: https://www.biconomy.com/exchange/NEXA_USDT
+🔸Coinstash: https://coinstash.com.au/nexa/buy
+🔸CoinEx: https://www.coinex.com/exchange/NEXA-USDT
+🔸NonKyc: https://nonkyc.io/market/NEXA_USDT
+
+ALWAYS WITHDRAW YOUR NEXA COINS TO YOUR OWN WALLET — NOT YOUR KEYS, NOT YOUR COINS!</p>
+      <p class="zh" lang="ru">Самые популярные биржи для покупки и торговли Nexa:
+
+🔸MEXC: https://www.mexc.com/exchange/NEXA_USDT
+🔸BingX: https://bingx.com/en-us/spot/NEXAUSDT/
+🔸Biconomy: https://www.biconomy.com/exchange/NEXA_USDT
+🔸Coinstash: https://coinstash.com.au/nexa/buy
+🔸CoinEx: https://www.coinex.com/exchange/NEXA-USDT
+🔸NonKyc: https://nonkyc.io/market/NEXA_USDT
+
+ВСЕГДА ВЫВОДИТЕ МОНЕТЫ NEXA НА СОБСТВЕННЫЙ КОШЕЛЕК — НЕТ КЛЮЧЕЙ, НЕТ МОНЕТ!</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108286" data-sent="neutral" data-topics="5">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-09T19:42:22+00:00">2026-09-09 19:42 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108286" rel="noopener" title="Open on Telegram">#108286 ↗</a>
+      </div>
+      
+      <p class="en">/buy</p>
+      <p class="zh" lang="ru">/buy</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108280" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Sergey Ionov</span>
+        <time datetime="2026-09-08T09:33:30+00:00">2026-09-08 09:33 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108280" rel="noopener" title="Open on Telegram">#108280 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Woldemar Kulachesko</b>: Yes</p>
+      
+      <p class="en">Well there&#39;s your next pump then, GPU profitability will fly to the moon for a short while. Who knows when they&#39;ll release the new chips</p>
+      <p class="zh" lang="ru">Ну вот и новый памп будет, доходность на ГПУ улетит в космос на короткое время. Новые чипы они же неизвестно когда выпустят</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108279" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-08T09:32:31+00:00">2026-09-08 09:32 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108279" rel="noopener" title="Open on Telegram">#108279 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Sergey Ionov</b>: So GPUs stay and the old ASICs that are basically holding the network right now will go away?</p>
+      
+      <p class="en">Yes</p>
+      <p class="zh" lang="ru">Да</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108278" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Sergey Ionov</span>
+        <time datetime="2026-09-08T09:29:36+00:00">2026-09-08 09:29 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108278" rel="noopener" title="Open on Telegram">#108278 ↗</a>
+      </div>
+      
+      <p class="en">So GPUs stay and the old ASICs that are basically holding the network right now will go away?</p>
+      <p class="zh" lang="ru">ГПУ останутся а старые асики уйдут которые щас сеть считай держат?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108277" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-08T09:07:21+00:00">2026-09-08 09:07 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108277" rel="noopener" title="Open on Telegram">#108277 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Oleg</b>: Did I get it right that the switch to Tailstorm is for moving mining from GPUs to ASICs?</p>
+      
+      <p class="en">Tailstorm combines the best of DAGs and blockchains. It uses sub-blocks held in RAM for efficient mining and transaction signaling, while preserving all the core blockchain properties via summary blocks on disk. The architecture is resistant to common attack vectors, eliminates ambiguity and ensures deterministic chain progression.</p>
+      <p class="zh" lang="ru">Tailstorm сочетает в себе лучшее из DAG и блокчейнов. Она использует подблоки, находящиеся в оперативной памяти, для эффективного майнинга и сигнализации транзакций, сохраняя при этом все основные свойства блокчейна посредством сводных блоков на диске. Архитектура устойчива к распространённым векторам атак, исключает неоднозначность и обеспечивает детерминированное развитие цепочки.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108276" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-08T09:00:38+00:00">2026-09-08 09:00 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108276" rel="noopener" title="Open on Telegram">#108276 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Oleg</b>: Did I get it right that the switch to Tailstorm is for moving mining from GPUs to ASICs?</p>
+      
+      <p class="en">GPUs will stay</p>
+      <p class="zh" lang="ru">Гпу останутся</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108275" data-sent="neutral" data-topics="1">
+      <div class="head">
+        <span class="who">Oleg</span>
+        <time datetime="2026-09-08T08:57:11+00:00">2026-09-08 08:57 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108275" rel="noopener" title="Open on Telegram">#108275 ↗</a>
+      </div>
+      
+      <p class="en">Did I get it right that the switch to Tailstorm is for moving mining from GPUs to ASICs?</p>
+      <p class="zh" lang="ru">Я правильно понял что переход на tailstorm это для перехода майнинга с гпу на асики?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108274" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">Max</span>
+        <time datetime="2026-09-08T04:57:22+00:00">2026-09-08 04:57 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.20">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108274" rel="noopener" title="Open on Telegram">#108274 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Sergey Ionov</b>: Maybe in 40)</p>
+      
+      <p class="en">And who here will live to see it?😂</p>
+      <p class="zh" lang="ru">И кто доживёт тут?😂</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108273" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Sergey Ionov</span>
+        <time datetime="2026-09-08T04:56:04+00:00">2026-09-08 04:56 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108273" rel="noopener" title="Open on Telegram">#108273 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Max</b>: Is that the price we&#39;ll get in 40 years?😂😂</p>
+      
+      <p class="en">Maybe in 40)</p>
+      <p class="zh" lang="ru">Может и через 40)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108272" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">Max</span>
+        <time datetime="2026-09-08T02:29:20+00:00">2026-09-08 02:29 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.20">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108272" rel="noopener" title="Open on Telegram">#108272 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Sergey Ionov</b>: That price will come, the only question is when 😁</p>
+      
+      <p class="en">Is that the price we&#39;ll get in 40 years?😂😂</p>
+      <p class="zh" lang="ru">Это когда такая цена будет через 40 лет?😂😂</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108271" data-sent="positive" data-topics="1">
+      <div class="head">
+        <span class="who">Blacktea ▽</span>
+        <time datetime="2026-09-07T21:35:01+00:00">2026-09-07 21:35 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108271" rel="noopener" title="Open on Telegram">#108271 ↗</a>
+      </div>
+      
+      <p class="en">Stay true to consensus: update your Nexa Full-Node to version 2.2.0.0
+
+Nexa keeps improving the protocol, and we advise everyone to update their node client applications to the latest version.
+
+This release includes rolling checkpoints. Once a block reaches position 200 in the chain, the node marks it as finalized. From that position on it is considered irreversibly confirmed, and any reorganization past that point is rejected.
+
+For exchanges and services this means something concrete: after 200 confirmations a transaction cannot be reversed.
+
+This is also the last release before the upcoming hard fork and the activation of the Tailstorm protocol. It&#39;s important to stay true to consensus and update your clients. 👇
+
+https://nexa.org/node</p>
+      <p class="zh" lang="ru">Оставайтесь верны консенсусу: обновите Nexa Full-Node до версии 2.2.0.0
+
+Nexa продолжает совершенствовать протокол, и мы советуем всем обновить свои клиентские приложения для узлов до последней версии.
+
+Эта версия включает в себя скользящие контрольные точки. Как только блок достигает 200-й позиции в цепочке, узел помечает его как завершенный. С этой позиции он считается окончательно утвержденным, и любая реорганизация после этой точки отклоняется.
+
+Для бирж и сервисов это означает нечто конкретное: после 200 подтверждений транзакцию нельзя отменить.
+
+Это также последний релиз перед предстоящим хардфорком и активацией протокола Tailstorm. Важно оставаться верными консенсусу и обновить свои клиенты. 👇
+
+https://nexa.org/node</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108270" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-07T20:16:38+00:00">2026-09-07 20:16 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108270" rel="noopener" title="Open on Telegram">#108270 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Лил</b>: And bch — that&#39;s the same team, right?</p>
+      
+      <p class="en">Yes, BU developed the software for BCH</p>
+      <p class="zh" lang="ru">Да, BU разрабатывали программное обеспечение для BCH</p>
+      <p class="note">BU = Bitcoin Unlimited, the dev team behind Nexa.</p>
+    </li>
+    
+    <li class="msg" id="m-108269" data-sent="negative" data-topics="3">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-07T20:08:01+00:00">2026-09-07 20:08 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.20">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108269" rel="noopener" title="Open on Telegram">#108269 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Sergey Ionov</b>: Yup</p>
+      
+      <p class="en">Nobody&#39;s going to last that long)</p>
+      <p class="zh" lang="ru">В это ни кто не дотянет)</p>
+      <p class="note">Joking that no one will still be around/holding by the time that price hits.</p>
+    </li>
+    
+    <li class="msg" id="m-108268" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Sergey Ionov</span>
+        <time datetime="2026-09-07T19:28:22+00:00">2026-09-07 19:28 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108268" rel="noopener" title="Open on Telegram">#108268 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Bossmen</b>: Three zeros, right?</p>
+      
+      <p class="en">Yup</p>
+      <p class="zh" lang="ru">Угу</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108267" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T19:04:11+00:00">2026-09-07 19:04 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108267" rel="noopener" title="Open on Telegram">#108267 ↗</a>
+      </div>
+      
+      <p class="en">Like 162 thousand per billion</p>
+      <p class="zh" lang="ru">162 тысячи за ярд типа</p>
+      <p class="note">&#34;ярд&#34; = billion (milliard) of NEXA coins.</p>
+    </li>
+    
+    <li class="msg" id="m-108266" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T19:03:17+00:00">2026-09-07 19:03 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108266" rel="noopener" title="Open on Telegram">#108266 ↗</a>
+      </div>
+      
+      <p class="en">Three zeros, right?</p>
+      <p class="zh" lang="ru">Три нуля верно ?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108265" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Sergey Ionov</span>
+        <time datetime="2026-09-07T18:45:50+00:00">2026-09-07 18:45 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108265" rel="noopener" title="Open on Telegram">#108265 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Лил</b>: The question is different — will there be a new ATH? Like 0.(4)4? I.e. will the project take off? Or will it all...</p>
+      
+      <p class="en">That price will come, the only question is when 😁</p>
+      <p class="zh" lang="ru">Такая будет цена, вопрос только когда😁</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108264" data-sent="negative" data-topics="3">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-07T17:57:19+00:00">2026-09-07 17:57 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.25">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108264" rel="noopener" title="Open on Telegram">#108264 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Bossmen</b>: Well, those are just my thoughts ))) well, if I were a dev I&#39;d do the same</p>
+      
+      <p class="en">Ugh.. too bad there&#39;s no alternative to btc</p>
+      <p class="zh" lang="ru">Эх.. Жаль нет альтернативы btc</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108263" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T17:50:10+00:00">2026-09-07 17:50 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108263" rel="noopener" title="Open on Telegram">#108263 ↗</a>
+      </div>
+      
+      <p class="en">Well, those are just my thoughts ))) well, if I were a dev I&#39;d do the same</p>
+      <p class="zh" lang="ru">Ну это мой мысли ))) ну я был бы девом так сделал</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108262" data-sent="negative" data-topics="3">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-07T17:42:48+00:00">2026-09-07 17:42 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.20">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108262" rel="noopener" title="Open on Telegram">#108262 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Bossmen</b>: Well, they dumped it on purpose to buy down low and then cash in 😂</p>
+      
+      <p class="en">Typical non-holders 😂😂😂</p>
+      <p class="zh" lang="ru">Типичные не холдеры😂😂😂</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108260" data-sent="negative" data-topics="3">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T17:39:53+00:00">2026-09-07 17:39 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.20">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108260" rel="noopener" title="Open on Telegram">#108260 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Лил</b>: I see it&#39;s a long-haul project.</p>
+      
+      <p class="en">Well, they dumped it on purpose to buy down low and then cash in 😂</p>
+      <p class="zh" lang="ru">Ну слили спецом чтоб внизу купить и потом заработать 😂</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108259" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-07T17:39:34+00:00">2026-09-07 17:39 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108259" rel="noopener" title="Open on Telegram">#108259 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Bossmen</b>: And here it&#39;s more like they dumped it down and they were spending their own money</p>
+      
+      <p class="en">I see it&#39;s a long-haul project.</p>
+      <p class="zh" lang="ru">Вижу, что долгий проект.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108258" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T17:39:30+00:00">2026-09-07 17:39 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108258" rel="noopener" title="Open on Telegram">#108258 ↗</a>
+      </div>
+      
+      <p class="en">They&#39;ve got</p>
+      <p class="zh" lang="ru">У них</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108257" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T17:39:27+00:00">2026-09-07 17:39 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.15">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108257" rel="noopener" title="Open on Telegram">#108257 ↗</a>
+      </div>
+      
+      <p class="en">Imagine how much cash 🤣</p>
+      <p class="zh" lang="ru">Бабок прикинь скока 🤣</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108256" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T17:39:19+00:00">2026-09-07 17:39 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108256" rel="noopener" title="Open on Telegram">#108256 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Лил</b>: And bch — that&#39;s the same team, right?</p>
+      
+      <p class="en">Yes</p>
+      <p class="zh" lang="ru">Да</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108255" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-07T17:39:01+00:00">2026-09-07 17:39 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108255" rel="noopener" title="Open on Telegram">#108255 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Woldemar Kulachesko</b>: Well, that news should be coming soon I reckon, we&#39;re not growing for no reason)</p>
+      
+      <p class="en">And bch — that&#39;s the same team, right?</p>
+      <p class="zh" lang="ru">А bch - это же та те команда?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108254" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T17:38:59+00:00">2026-09-07 17:38 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108254" rel="noopener" title="Open on Telegram">#108254 ↗</a>
+      </div>
+      
+      <p class="en">And here it&#39;s more like they dumped it down and they were spending their own money</p>
+      <p class="zh" lang="ru">А тут как бы ее слили вниз и они тратили бабки</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108253" data-sent="positive" data-topics="3">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T17:38:32+00:00">2026-09-07 17:38 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108253" rel="noopener" title="Open on Telegram">#108253 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Лил</b>: The night is still young 😂😂</p>
+      
+      <p class="en">Well, over that kind of time span it would have already scammed</p>
+      <p class="zh" lang="ru">Ну на дистанций она бы уже скаманула</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108252" data-sent="negative" data-topics="3">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-07T17:37:20+00:00">2026-09-07 17:37 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.25">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108252" rel="noopener" title="Open on Telegram">#108252 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Bossmen</b>: Hell if I know. Well, he didn&#39;t scam, and that&#39;s good, plenty of others did scam</p>
+      
+      <p class="en">The night is still young 😂😂</p>
+      <p class="zh" lang="ru">Ещё не вечер😂😂</p>
+      <p class="note">Idiom &#39;ещё не вечер&#39; — i.e. there&#39;s still time for them to scam.</p>
+    </li>
+    
+    <li class="msg" id="m-108251" data-sent="mixed" data-topics="3">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T17:29:26+00:00">2026-09-07 17:29 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.20">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108251" rel="noopener" title="Open on Telegram">#108251 ↗</a>
+      </div>
+      
+      <p class="en">Hell if I know. Well, he didn&#39;t scam, and that&#39;s good, plenty of others did scam</p>
+      <p class="zh" lang="ru">Да фиг его . ну он не скаманул и это радует многие же скаманули</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108250" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-07T17:24:55+00:00">2026-09-07 17:24 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108250" rel="noopener" title="Open on Telegram">#108250 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Bossmen</b>: The ASIC guys I think, and the team, even though they say they didn&#39;t buy</p>
+      
+      <p class="en">Will the project stay alive? Like btc.. That was the feeling.. That they really wanted it..</p>
+      <p class="zh" lang="ru">Проект будет жив? Типа btc..  Было такое ощущения.. Что они сильно хотели..</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108249" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T17:23:20+00:00">2026-09-07 17:23 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108249" rel="noopener" title="Open on Telegram">#108249 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Лил</b>: Are Indians the main holders now? And the ones on ASICs?</p>
+      
+      <p class="en">The ASIC guys I think, and the team, even though they say they didn&#39;t buy</p>
+      <p class="zh" lang="ru">Асики я думаю и команда хоть они и говорят не покупали</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108248" data-sent="neutral" data-topics="3">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-07T17:22:12+00:00">2026-09-07 17:22 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108248" rel="noopener" title="Open on Telegram">#108248 ↗</a>
+      </div>
+      
+      <p class="en">Are Indians the main holders now? And the ones on ASICs?</p>
+      <p class="zh" lang="ru">Сейчас индусы основные держатели? И те кто на асиках?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108247" data-sent="mixed" data-topics="3">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-07T17:21:24+00:00">2026-09-07 17:21 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.20">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108247" rel="noopener" title="Open on Telegram">#108247 ↗</a>
+      </div>
+      
+      <p class="en">The question is different — will there be a new ATH? Like 0.(4)4? I.e. will the project take off? Or will it all just stay the devs&#39; wet dreams? KAS is supposedly flying already.. But in my opinion it&#39;s better to short that one</p>
+      <p class="zh" lang="ru">Вопрос в другом - перехай будет? Типа 0.(4)4? Т.е. проект взлетит? Или все и останется просто влажные мечты разрабов? Там и каs уже типа летит.. Но как по мне, лучше играть на понижение с ней</p>
+      <p class="note">&#39;0.(4)4&#39; is shorthand for 0.00004-style price with four zeros; KAS = Kaspa.</p>
+    </li>
+    
+    <li class="msg" id="m-108246" data-sent="mixed" data-topics="3">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-07T17:18:06+00:00">2026-09-07 17:18 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.15">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108246" rel="noopener" title="Open on Telegram">#108246 ↗</a>
+      </div>
+      
+      <p class="en">The way I see it, only the true nexa fans are left here. The vast majority bailed long ago</p>
+      <p class="zh" lang="ru">Я так понимаю здесь остались только истинные фаны nexa.  Основное большинство слилось уже давно</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108245" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-07T16:00:14+00:00">2026-09-07 16:00 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.55">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108245" rel="noopener" title="Open on Telegram">#108245 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Bossmen</b>: Well, for it to get bought up you need decent news</p>
+      
+      <p class="en">Well, that news should be coming soon I reckon, we&#39;re not growing for no reason)</p>
+      <p class="zh" lang="ru">Ну скоро должны быть эти новости я так думаю, не просто же так растем)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108244" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T15:55:58+00:00">2026-09-07 15:55 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score -0.05">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108244" rel="noopener" title="Open on Telegram">#108244 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Woldemar Kulachesko</b>: Well, even if they dump, I think it&#39;ll get bought up fast</p>
+      
+      <p class="en">Well, for it to get bought up you need decent news</p>
+      <p class="zh" lang="ru">Ну что выкупили нужны норм новости</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108243" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-07T15:53:23+00:00">2026-09-07 15:53 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.45">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108243" rel="noopener" title="Open on Telegram">#108243 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Bossmen</b>: Main thing is that it doesn&#39;t go like — remember when the ASIC guys dumped 300 billion</p>
+      
+      <p class="en">Well, even if they dump, I think it&#39;ll get bought up fast</p>
+      <p class="zh" lang="ru">Да даже если ливанут, я думаю это быстро выкупят</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108242" data-sent="negative" data-topics="0">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T15:52:17+00:00">2026-09-07 15:52 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108242" rel="noopener" title="Open on Telegram">#108242 ↗</a>
+      </div>
+      
+      <p class="en">Main thing is that it doesn&#39;t go like — remember when the ASIC guys dumped 300 billion</p>
+      <p class="zh" lang="ru">Главное чтоб сейчас не было как помните асики 300 ярдов ливанули</p>
+      <p class="note">&#39;ярд&#39; = billion (NEXA coins); &#39;ливанули&#39; = dumped on the market.</p>
+    </li>
+    
+    <li class="msg" id="m-108241" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T15:49:43+00:00">2026-09-07 15:49 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.15">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108241" rel="noopener" title="Open on Telegram">#108241 ↗</a>
+      </div>
+      
+      <p class="en">Well, I was waiting for, you know, it to bounce back and I wanted to buy more 😅 well, whatever, that&#39;s enough for me 🤣</p>
+      <p class="zh" lang="ru">Ну я ждал когда ты знаешь что отрастёт и хотел еще купить 😅 ну ладно мне хватит 🤣</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108240" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T15:48:48+00:00">2026-09-07 15:48 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108240" rel="noopener" title="Open on Telegram">#108240 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Woldemar Kulachesko</b>: When did you manage to buy Nexa?)</p>
+      
+      <p class="en">600 -800</p>
+      <p class="zh" lang="ru">600 -800</p>
+      <p class="note">Refers to his entry price zone — satoshi-scale price levels (or sats per billion NEXA), not dollars.</p>
+    </li>
+    
+    <li class="msg" id="m-108239" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-07T15:12:38+00:00">2026-09-07 15:12 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108239" rel="noopener" title="Open on Telegram">#108239 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Bossmen</b>: Well, I wouldn&#39;t say that)) mine&#39;s not exactly the bottom, but I did buy</p>
+      
+      <p class="en">When did you manage to buy Nexa?)</p>
+      <p class="zh" lang="ru">Когда успел закупить нексу?)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108238" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T15:07:14+00:00">2026-09-07 15:07 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108238" rel="noopener" title="Open on Telegram">#108238 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Sergey Ionov</b>: But as always, hardly anyone bought at the bottom))</p>
+      
+      <p class="en">Well, I wouldn&#39;t say that)) mine&#39;s not exactly the bottom, but I did buy</p>
+      <p class="zh" lang="ru">Ну я бы на сказал )) ну у меня не прям дно но я купил</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108237" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-07T14:11:15+00:00">2026-09-07 14:11 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108237" rel="noopener" title="Open on Telegram">#108237 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Sergey Ionov</b>: But as always, hardly anyone bought at the bottom))</p>
+      
+      <p class="en">I also dragged my feet for a long time before buying Nexa)</p>
+      <p class="zh" lang="ru">Я тоже долго тянул с закупкой нексы)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108236" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">Sergey Ionov</span>
+        <time datetime="2026-09-07T14:01:57+00:00">2026-09-07 14:01 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score -0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108236" rel="noopener" title="Open on Telegram">#108236 ↗</a>
+      </div>
+      
+      <p class="en">But as always, hardly anyone bought at the bottom))</p>
+      <p class="zh" lang="ru">Но как всегда хер к о покупал на дне))</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108235" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-07T14:01:16+00:00">2026-09-07 14:01 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108235" rel="noopener" title="Open on Telegram">#108235 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Sergey Ionov</b>: By my estimates everything&#39;s fine, slowly but surely we&#39;re heading to the highs and maybe beyond. But the deposit...</p>
+      
+      <p class="en">Finally we&#39;ve found the bottom)</p>
+      <p class="zh" lang="ru">Наконец-то дно нащупали)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108234" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Sergey Ionov</span>
+        <time datetime="2026-09-07T13:56:45+00:00">2026-09-07 13:56 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108234" rel="noopener" title="Open on Telegram">#108234 ↗</a>
+      </div>
+      
+      <p class="en">By my estimates everything&#39;s fine, slowly but surely we&#39;re heading to the highs and maybe beyond. But the deposit already being almost x2 is nice)</p>
+      <p class="zh" lang="ru">По моим прикидкам всё хорошо, медленно но верно идем к хаям а там и дальше возможно. Но уже дэп почти х2 радует)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108233" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-07T13:55:04+00:00">2026-09-07 13:55 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108233" rel="noopener" title="Open on Telegram">#108233 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Bossmen</b>: The whales will dump and that&#39;s it</p>
+      
+      <p class="en">They&#39;ll shake the whales out too, so they can stage an even more savage pump afterwards</p>
+      <p class="zh" lang="ru">Крупняк и выбьют, чтоб дальше памп лютый устроить</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108232" data-sent="negative" data-topics="0">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T13:53:34+00:00">2026-09-07 13:53 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.40">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108232" rel="noopener" title="Open on Telegram">#108232 ↗</a>
+      </div>
+      
+      <p class="en">The whales will dump and that&#39;s it</p>
+      <p class="zh" lang="ru">Крупняк сольет и усе</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108231" data-sent="negative" data-topics="0">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T13:53:25+00:00">2026-09-07 13:53 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108231" rel="noopener" title="Open on Telegram">#108231 ↗</a>
+      </div>
+      
+      <p class="en">The only thing I don&#39;t like about this rally is that there are no buy walls below at all</p>
+      <p class="zh" lang="ru">Одно тока мне не нравится в этом росте стенок ниже нет вообще</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108230" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T13:51:27+00:00">2026-09-07 13:51 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108230" rel="noopener" title="Open on Telegram">#108230 ↗</a>
+      </div>
+      
+      <p class="en">Ah fuck, even less 🤣</p>
+      <p class="zh" lang="ru">А ебать еще меньше 🤣</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108229" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T13:50:59+00:00">2026-09-07 13:50 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108229" rel="noopener" title="Open on Telegram">#108229 ↗</a>
+      </div>
+      
+      <p class="en">What do I care, I&#39;ve only got x2.5 to go if the price hasn&#39;t fallen from the peak 🤣</p>
+      <p class="zh" lang="ru">Так мне то че мне всего х2.5 осталось если цена не упала от пика 🤣</p>
+      <p class="note">He means he only needs a 2.5x to get back to break-even.</p>
+    </li>
+    
+    <li class="msg" id="m-108228" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">Bossmen</span>
+        <time datetime="2026-09-07T13:50:36+00:00">2026-09-07 13:50 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108228" rel="noopener" title="Open on Telegram">#108228 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Sergey Ionov</b>: Maybe Bossmen will slowly climb out of his depression 😁</p>
+      
+      <p class="en">I&#39;m slamming creatine, I don&#39;t give a fuck anymore 😂</p>
+      <p class="zh" lang="ru">Я креатин хуярю мне похуй уже 😂</p>
+      <p class="note">Crude joke — he&#39;s busy with gym/creatine instead of worrying about the chart.</p>
+    </li>
+    
+    <li class="msg" id="m-108227" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-07T13:30:22+00:00">2026-09-07 13:30 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108227" rel="noopener" title="Open on Telegram">#108227 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Sergey Ionov</b>: Maybe Bossmen will slowly climb out of his depression 😁</p>
+      
+      <p class="en">So he&#39;s probably the one pumping it 😁</p>
+      <p class="zh" lang="ru">Так он наверное и пампит😁</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108226" data-sent="mixed" data-topics="0">
+      <div class="head">
+        <span class="who">Sergey Ionov</span>
+        <time datetime="2026-09-07T13:07:28+00:00">2026-09-07 13:07 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.20">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108226" rel="noopener" title="Open on Telegram">#108226 ↗</a>
+      </div>
+      
+      <p class="en">Maybe Bossmen will slowly climb out of his depression 😁</p>
+      <p class="zh" lang="ru">Глядишь боссмен из депрессии потихоньку выйдет😁</p>
+      <p class="note">Teasing a regular member, Bossmen, who had been down about the price.</p>
+    </li>
+    
+    <li class="msg" id="m-108224" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-07T12:54:43+00:00">2026-09-07 12:54 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.60">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108224" rel="noopener" title="Open on Telegram">#108224 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Woldemar Kulachesko</b>: Well, as you can see, yes, so far everything&#39;s going positively, Nexa is climbing bit by bit 😎</p>
+      
+      <p class="en">Then let&#39;s keep the positive attitude)</p>
+      <p class="zh" lang="ru">Тогда держим позитивный настрой)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108223" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-07T12:47:13+00:00">2026-09-07 12:47 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.70">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108223" rel="noopener" title="Open on Telegram">#108223 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Лил</b>: Is a new rally starting?</p>
+      
+      <p class="en">Well, as you can see, yes, so far everything&#39;s going positively, Nexa is climbing bit by bit 😎</p>
+      <p class="zh" lang="ru">Ну как видно да, пока все положительно идёт, по чуть-чуть поднимается некса😎</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108222" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-07T12:38:48+00:00">2026-09-07 12:38 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108222" rel="noopener" title="Open on Telegram">#108222 ↗</a>
+      </div>
+      
+      <p class="en">Is a new rally starting?</p>
+      <p class="zh" lang="ru">Начинается новый рост?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108219" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-06T18:28:12+00:00">2026-09-06 18:28 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108219" rel="noopener" title="Open on Telegram">#108219 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Woldemar Kulachesko</b>: Login via PIN code or fingerprint</p>
+      
+      <p class="en">I see....</p>
+      <p class="zh" lang="ru">Понятно....</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108218" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-06T18:27:10+00:00">2026-09-06 18:27 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108218" rel="noopener" title="Open on Telegram">#108218 ↗</a>
+      </div>
+      
+      <p class="en">Login via PIN code or fingerprint</p>
+      <p class="zh" lang="ru">Вход по пин коду или по отпечатку пальца</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108217" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-06T18:26:40+00:00">2026-09-06 18:26 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108217" rel="noopener" title="Open on Telegram">#108217 ↗</a>
+      </div>
+      
+      <p class="en">Biometric data, probably</p>
+      <p class="zh" lang="ru">Биометрические данные наверное</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108215" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-06T18:21:51+00:00">2026-09-06 18:21 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108215" rel="noopener" title="Open on Telegram">#108215 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Woldemar Kulachesko</b>: Well, good, the main thing is you managed to get in)</p>
+      
+      <p class="en">And what is a passkey?</p>
+      <p class="zh" lang="ru">А что такое ключ доступа?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108214" data-sent="positive" data-topics="4">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-06T18:13:38+00:00">2026-09-06 18:13 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108214" rel="noopener" title="Open on Telegram">#108214 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Лил</b>: Got in with my password and Google Authenticator.. But it&#39;s weird.</p>
+      
+      <p class="en">Well, good, the main thing is you managed to get in)</p>
+      <p class="zh" lang="ru">Ну хорошо, главное что получилось зайти)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108213" data-sent="mixed" data-topics="4">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-06T18:12:44+00:00">2026-09-06 18:12 UTC</time>
+        <span class="chip mixed" data-glyph="±" title="score +0.10">Mixed</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108213" rel="noopener" title="Open on Telegram">#108213 ↗</a>
+      </div>
+      
+      <p class="en">Got in with my password and Google Authenticator.. But it&#39;s weird.</p>
+      <p class="zh" lang="ru">Вошёл через пароль и google аутентификацию.. Но странно это</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108211" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-06T17:59:25+00:00">2026-09-06 17:59 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108211" rel="noopener" title="Open on Telegram">#108211 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Лил</b>: I logged in with my phone number. Now the SMS aren&#39;t coming. And on top of that I can&#39;t find the email. Most likely...</p>
+      
+      <p class="en">Maybe the SMS will come through later.</p>
+      <p class="zh" lang="ru">Может потом смс придет</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108210" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-06T17:58:52+00:00">2026-09-06 17:58 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108210" rel="noopener" title="Open on Telegram">#108210 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Лил</b>: I logged in with my phone number. Now the SMS aren&#39;t coming. And on top of that I can&#39;t find the email. Most likely...</p>
+      
+      <p class="en">Hmm, try logging in with your phone number a bit later, maybe they&#39;re having some sort of glitch.</p>
+      <p class="zh" lang="ru">Хмм, попробуй попозже по номеру телефона зайти, может у них неполадки какие-то</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108209" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-06T17:57:30+00:00">2026-09-06 17:57 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108209" rel="noopener" title="Open on Telegram">#108209 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Woldemar Kulachesko</b>: Yeah, I always logged in via email and authentication</p>
+      
+      <p class="en">I logged in with my phone number. Now the SMS aren&#39;t coming. And on top of that I can&#39;t find the email. Most likely I registered without it. But I did pass their authentication. I used to withdraw and deposit before. But I haven&#39;t logged in for something like 6-10 months</p>
+      <p class="zh" lang="ru">Я входил по номеру телефона. Сейчас не приходят СМС. При этом не могу найти почту. Скорее всего без нее регистрировал. Но аутентификацию прошёл у них. Раньше и выводит и заводил. Но не заходил где-то 6-10 месяцев</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108208" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-06T17:54:18+00:00">2026-09-06 17:54 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108208" rel="noopener" title="Open on Telegram">#108208 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Лил</b>: On the site? You could log into MEXC without an email, right?</p>
+      
+      <p class="en">Yeah, I always logged in via email and authentication</p>
+      <p class="zh" lang="ru">Да, я вообще входил через почту и аутентификацию</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108207" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-06T17:52:09+00:00">2026-09-06 17:52 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108207" rel="noopener" title="Open on Telegram">#108207 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Woldemar Kulachesko</b>: Hi, try contacting MEXC support</p>
+      
+      <p class="en">On the site? You could log into MEXC without an email, right?</p>
+      <p class="zh" lang="ru">На сайте? На мекс же можно было без почты входить?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108206" data-sent="neutral" data-topics="4">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-06T17:46:41+00:00">2026-09-06 17:46 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108206" rel="noopener" title="Open on Telegram">#108206 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Лил</b>: Hi. Maybe someone can help. I can&#39;t log into the mexc exchange. The code isn&#39;t coming to my number. And I don&#39;t...</p>
+      
+      <p class="en">Hi, try contacting MEXC support</p>
+      <p class="zh" lang="ru">Привет, попробуй обратиться в поддержку мекса</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108205" data-sent="negative" data-topics="4">
+      <div class="head">
+        <span class="who">Лил</span>
+        <time datetime="2026-09-06T17:16:31+00:00">2026-09-06 17:16 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108205" rel="noopener" title="Open on Telegram">#108205 ↗</a>
+      </div>
+      
+      <p class="en">Hi. Maybe someone can help. I can&#39;t log into the mexc exchange. The code isn&#39;t coming to my number. And I don&#39;t remember the email</p>
+      <p class="zh" lang="ru">Привет. Может кто подскажет. Не могу на биржу mexc зайти. Не приходит на номер код. 
+А почту не помню</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108203" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">High Voltage</span>
+        <time datetime="2026-09-05T11:57:30+00:00">2026-09-05 11:57 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108203" rel="noopener" title="Open on Telegram">#108203 ↗</a>
+      </div>
+      
+      <p class="en">A cent will be quite enough</p>
+      <p class="zh" lang="ru">До цента вполне хватит</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108202" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-05T11:07:02+00:00">2026-09-05 11:07 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108202" rel="noopener" title="Open on Telegram">#108202 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Sergey Ionov</b>: You meant to say a buck, right?)</p>
+      
+      <p class="en">Of course 😁</p>
+      <p class="zh" lang="ru">Конечно 😁</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108201" data-sent="positive" data-topics="0">
+      <div class="head">
+        <span class="who">Sergey Ionov</span>
+        <time datetime="2026-09-05T10:57:18+00:00">2026-09-05 10:57 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108201" rel="noopener" title="Open on Telegram">#108201 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Woldemar Kulachesko</b>: So you need the price to hit a cent right away?😁</p>
+      
+      <p class="en">You meant to say a buck, right?)</p>
+      <p class="zh" lang="ru">Ты хотел сказать до бакса?)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108200" data-sent="neutral" data-topics="0">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-05T10:17:40+00:00">2026-09-05 10:17 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108200" rel="noopener" title="Open on Telegram">#108200 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Max</b>: The growth has kind of stalled somehow</p>
+      
+      <p class="en">So you need the price to hit a cent right away?😁</p>
+      <p class="zh" lang="ru">А нужно чтобы до цента цена сразу же дошла?😁</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108199" data-sent="negative" data-topics="0">
+      <div class="head">
+        <span class="who">Max</span>
+        <time datetime="2026-09-05T10:14:43+00:00">2026-09-05 10:14 UTC</time>
+        <span class="chip negative" data-glyph="−" title="score -0.30">Negative</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108199" rel="noopener" title="Open on Telegram">#108199 ↗</a>
+      </div>
+      
+      <p class="en">The growth has kind of stalled somehow</p>
+      <p class="zh" lang="ru">Что-то как-то рост приостановился</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108198" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Sergey Ionov</span>
+        <time datetime="2026-09-04T19:14:47+00:00">2026-09-04 19:14 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.50">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108198" rel="noopener" title="Open on Telegram">#108198 ↗</a>
+      </div>
+      
+      <p class="en">Sweet, he added it))</p>
+      <p class="zh" lang="ru">Кайф добавил))</p>
+      <p class="note">&#34;Кайф&#34; = &#34;nice/awesome&#34;; the phrasing is playful, echoing &#34;added Dota&#34;.</p>
+    </li>
+    
+    <li class="msg" id="m-108196" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Alex ▼</span>
+        <time datetime="2026-09-04T19:05:28+00:00">2026-09-04 19:05 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108196" rel="noopener" title="Open on Telegram">#108196 ↗</a>
+      </div>
+      
+      <p class="en">Added Dota</p>
+      <p class="zh" lang="ru">Доту добавил</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108195" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">Alex ▼</span>
+        <time datetime="2026-09-04T18:37:17+00:00">2026-09-04 18:37 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108195" rel="noopener" title="Open on Telegram">#108195 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>High Voltage</b>: I&#39;m no expert) I&#39;m a hodler)</p>
+      
+      <p class="en">I did it. Come on in</p>
+      <p class="zh" lang="ru">Я сделал. Залетай</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108194" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">High Voltage</span>
+        <time datetime="2026-09-04T18:35:17+00:00">2026-09-04 18:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108194" rel="noopener" title="Open on Telegram">#108194 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Alex ▼</b>: Will you help?</p>
+      
+      <p class="en">I&#39;m no expert) I&#39;m a hodler)</p>
+      <p class="zh" lang="ru">Я не шарю) я ходлер)</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108193" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Alex ▼</span>
+        <time datetime="2026-09-04T18:32:07+00:00">2026-09-04 18:32 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108193" rel="noopener" title="Open on Telegram">#108193 ↗</a>
+      </div>
+      
+      <p class="en">Added CS2</p>
+      <p class="zh" lang="ru">CS2 добавил</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108192" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Alex ▼</span>
+        <time datetime="2026-09-04T17:51:05+00:00">2026-09-04 17:51 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108192" rel="noopener" title="Open on Telegram">#108192 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>High Voltage</b>: Just from September 1st a lot of people put a self-ban on bookmakers, and here it&#39;s kind of not bookies but there are bets 😁😂</p>
+      
+      <p class="en">Will you help?</p>
+      <p class="zh" lang="ru">Поможешь?</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108191" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">High Voltage</span>
+        <time datetime="2026-09-04T15:03:24+00:00">2026-09-04 15:03 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.30">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108191" rel="noopener" title="Open on Telegram">#108191 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Alex ▼</b>: I can do that.</p>
+      
+      <p class="en">Just from September 1st a lot of people put a self-ban on bookmakers, and here it&#39;s kind of not bookies but there are bets 😁😂</p>
+      <p class="zh" lang="ru">Как раз с 1 сентября многие самозапрет на буков поставили, а тут как бы не буки но и ставки есть 😁😂</p>
+      <p class="note">Refers to a Russian scheme letting people voluntarily self-ban from betting shops.</p>
+    </li>
+    
+    <li class="msg" id="m-108190" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Alex ▼</span>
+        <time datetime="2026-09-04T07:40:46+00:00">2026-09-04 07:40 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108190" rel="noopener" title="Open on Telegram">#108190 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>High Voltage</b>: You should make one for Dota and Counter-Strike too 😁</p>
+      
+      <p class="en">I can do that.</p>
+      <p class="zh" lang="ru">Могу сделать.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108189" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Alex ▼</span>
+        <time datetime="2026-09-03T18:54:59+00:00">2026-09-03 18:54 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108189" rel="noopener" title="Open on Telegram">#108189 ↗</a>
+      </div>
+      
+      <p class="en">50 euros for the winner.</p>
+      <p class="zh" lang="ru">50 евро для победителя.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108188" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Alex ▼</span>
+        <time datetime="2026-09-03T17:35:54+00:00">2026-09-03 17:35 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.20">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108188" rel="noopener" title="Open on Telegram">#108188 ↗</a>
+      </div>
+      
+      <p class="en">I can</p>
+      <p class="zh" lang="ru">Я могу</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108187" data-sent="positive" data-topics="2">
+      <div class="head">
+        <span class="who">High Voltage</span>
+        <time datetime="2026-09-03T17:33:19+00:00">2026-09-03 17:33 UTC</time>
+        <span class="chip positive" data-glyph="+" title="score +0.40">Positive</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108187" rel="noopener" title="Open on Telegram">#108187 ↗</a>
+      </div>
+      
+      <p class="en">You should make one for Dota and Counter-Strike too 😁</p>
+      <p class="zh" lang="ru">Надо ещё создать по доте и контрстрайку 😁</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108186" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-03T17:20:43+00:00">2026-09-03 17:20 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.00">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108186" rel="noopener" title="Open on Telegram">#108186 ↗</a>
+      </div>
+      
+      <p class="en">https://prognoseliga-clubhaus.good-map-1085.chatgpt.site/</p>
+      <p class="zh" lang="ru">https://prognoseliga-clubhaus.good-map-1085.chatgpt.site/</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108185" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-03T17:20:06+00:00">2026-09-03 17:20 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108185" rel="noopener" title="Open on Telegram">#108185 ↗</a>
+      </div>
+      
+      <p class="reply">↩ <b>Woldemar Kulachesko</b>: Hello. I made a free, no payments, predictions site for the premier league. Authentication is with wally. Can I Post...</p>
+      
+      <p class="en">@AlexSpez has created a free site with predictions for the English Premier League, access to which requires no payments at all. Authorization is done through the &#34;Wally&#34; system. The site is intended for the community only.</p>
+      <p class="zh" lang="ru">@AlexSpez создал бесплатный сайт с прогнозами для английской премьер-лиги, доступ к которому не требует никаких платежей. Авторизация осуществляется через систему &#34;Wally&#34;. Сайт предназначен только для сообщества.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108183" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">Woldemar Kulachesko</span>
+        <time datetime="2026-09-03T17:19:26+00:00">2026-09-03 17:19 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108183" rel="noopener" title="Open on Telegram">#108183 ↗</a>
+      </div>
+      
+      <p class="en">Hello. I made a free, no payments, predictions site for the premier league. Authentication is with wally. Can I Post here? Or do I need an audit? It is just for the community.</p>
+      <p class="zh" lang="ru">Hello. I made a free, no payments, predictions site for the premier league. Authentication is with wally. Can I Post here? Or do I need an audit? It is just for the community.</p>
+      
+    </li>
+    
+    <li class="msg" id="m-108182" data-sent="neutral" data-topics="2">
+      <div class="head">
+        <span class="who">High Voltage</span>
+        <time datetime="2026-09-02T19:11:08+00:00">2026-09-02 19:11 UTC</time>
+        <span class="chip neutral" data-glyph="·" title="score +0.10">Neutral</span>
+        <a class="lnk" href="https://t.me/nexa_ru/108182" rel="noopener" title="Open on Telegram">#108182 ↗</a>
+      </div>
+      
+      <p class="en">They haul whatever you want. As they say, any whim for your dough.</p>
+      <p class="zh" lang="ru">Возят что угодно. Как говорится за ваши бабулесы любые капризы</p>
+      <p class="note">&#34;За ваши бабулесы любые капризы&#34; — a common Russian joke phrase: &#34;any whim for your money.&#34;</p>
+    </li>
+    
+  </ol>
+  <p class="empty" id="empty">No messages match these filters.</p>
+</section>
+
+<footer>
+  <p>Translations, sentiment scores and the summary are generated automatically by claude-opus-5 and may contain mistakes. Original messages belong to their authors on Telegram.</p>
+  <p><a href="data.json">Raw data (JSON)</a></p>
+</footer>
+
+</div>
+<script>
+(function () {
+  var msgs = Array.prototype.slice.call(document.querySelectorAll('.msg'));
+  var sent = 'all', topic = null;
+  var topicNames = ["Price action and rally hopes", "Node 2.2.0.0, Tailstorm and mining hardware", "Community Premier League prediction site", "Project viability and trust in the team", "MEXC login trouble", "Where to buy Nexa"];
+
+  function apply() {
+    var shown = 0;
+    msgs.forEach(function (m) {
+      var ok = (sent === 'all' || m.dataset.sent === sent) &&
+               (topic === null || (' ' + m.dataset.topics + ' ').indexOf(' ' + topic + ' ') !== -1);
+      m.hidden = !ok; if (ok) shown++;
+    });
+    document.getElementById('empty').classList.toggle('on', shown === 0);
+    var bar = document.getElementById('active-topic');
+    bar.classList.toggle('on', topic !== null);
+    if (topic !== null) document.getElementById('active-topic-name').textContent = topicNames[topic] + ' (' + shown + ')';
+    document.querySelectorAll('.topic').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.topic === String(topic))); });
+  }
+  document.querySelectorAll('.fbtn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      sent = b.dataset.sent;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      apply();
+    });
+  });
+  document.querySelectorAll('.topic').forEach(function (b) {
+    b.addEventListener('click', function () {
+      topic = (String(topic) === b.dataset.topic) ? null : Number(b.dataset.topic);
+      apply();
+      if (topic !== null) document.getElementById('messages').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  document.getElementById('clear-topic').addEventListener('click', function () { topic = null; apply(); });
+
+  var zh = document.getElementById('show-zh');
+  try { if (localStorage.getItem('showZh') === '0') zh.checked = false; } catch (e) {}
+  function syncZh() {
+    document.body.classList.toggle('hide-zh', !zh.checked);
+    try { localStorage.setItem('showZh', zh.checked ? '1' : '0'); } catch (e) {}
+  }
+  zh.addEventListener('change', syncZh); syncZh();
+
+  // Show timestamps in the viewer's local time zone.
+  var fmt = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+  document.querySelectorAll('time[datetime]').forEach(function (t) {
+    var d = new Date(t.getAttribute('datetime'));
+    if (!isNaN(d)) { t.title = t.textContent; t.textContent = fmt.format(d); }
+  });
+
+  // Highlight links: reveal the target even if filtered out, then flash it.
+  document.querySelectorAll('.hl a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      sent = 'all'; topic = null;
+      document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.sent === 'all')); });
+      apply();
+      var el = document.querySelector(a.getAttribute('href'));
+      if (el) { el.classList.add('flash'); setTimeout(function () { el.classList.remove('flash'); }, 1600); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
