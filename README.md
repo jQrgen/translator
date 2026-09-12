@@ -10,6 +10,8 @@ as a static website. Each community gets its own page with:
 
 plus an **overview** page linking every community with its headline, mood and sentiment mix.
 
+**Live site: <https://jQrgen.github.io/translator/>**
+
 The site is generated into `site/` (self-contained HTML, light/dark aware) — an overview at `/`
 and one page per group at `/<username>/`, each with a `data.json` alongside it.
 
