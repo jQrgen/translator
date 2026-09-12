@@ -4,6 +4,7 @@
     translate-bot fetch      pull the last N text messages of each chat into data/<chat>/messages.json
     translate-bot analyze    translate/score/summarise data/<chat>/messages.json -> data/<chat>/report.json
     translate-bot build      render data/*/report.json -> site/ (overview at /, one page per chat at /<chat>/)
+    translate-bot refresh    one pass: fetch every chat and re-translate only those that changed, then rebuild
     translate-bot serve      serve site/ locally
     translate-bot watch      re-run the pipeline every N minutes and serve site/ (the "bot" mode)
     translate-bot login      print a Telegram StringSession for headless use
@@ -107,6 +108,12 @@ def cmd_run(settings: Settings) -> None:
     cmd_build(settings)
 
 
+def cmd_refresh(settings: Settings) -> None:
+    """A single watch pass: re-translate only changed chats. Ideal for a scheduled CI job."""
+    if not refresh(settings) and not (settings.site_dir / "index.html").exists():
+        cmd_build(settings)
+
+
 def refresh(settings: Settings) -> bool:
     """One pass over all chats: fetch, translate only the chats whose window changed, rebuild if any did."""
     from .analyze import build_report
@@ -194,7 +201,7 @@ def cmd_login(settings: Settings) -> None:
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="translate-bot", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="command", required=True)
-    for name in ("run", "fetch", "analyze", "build", "login"):
+    for name in ("run", "fetch", "analyze", "build", "refresh", "login"):
         sub.add_parser(name)
     for name in ("serve", "watch"):
         sp = sub.add_parser(name)
@@ -211,7 +218,8 @@ def main(argv: list[str] | None = None) -> None:
         elif args.command == "watch":
             cmd_watch(settings, args.host, args.port, args.every)
         else:
-            {"run": cmd_run, "fetch": cmd_fetch, "analyze": cmd_analyze, "build": cmd_build, "login": cmd_login}[args.command](settings)
+            {"run": cmd_run, "fetch": cmd_fetch, "analyze": cmd_analyze, "build": cmd_build,
+             "refresh": cmd_refresh, "login": cmd_login}[args.command](settings)
     except ConfigError as e:
         raise SystemExit(f"error: {e}")
 

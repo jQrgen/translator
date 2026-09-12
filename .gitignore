@@ -6,4 +6,3 @@ data/*.session
 data/login_qr.svg
 data/*.session-journal
 data/*/messages.json
-data/*/report.json
