@@ -7,50 +7,11 @@
     "lang_code": "zh-Hans",
     "member_count": 265
   },
-  "generated_at": "2026-09-12T16:23:52.778393Z",
+  "generated_at": "2026-09-13T11:23:21.141990Z",
   "model": "claude-opus-5",
-  "window_start": "2026-09-04T01:37:12Z",
-  "window_end": "2026-09-12T16:17:19Z",
+  "window_start": "2026-09-04T03:53:01Z",
+  "window_end": "2026-09-13T04:26:43Z",
   "messages": [
-    {
-      "id": 15319,
-      "date": "2026-09-04T01:37:12Z",
-      "sender_id": 6560990109,
-      "sender_name": "yuyuiop cvvvh",
-      "text": "这波你怎么看",
-      "reply_to_id": null,
-      "link": "https://t.me/Nexa_China/15319",
-      "translation": "What's your take on this move?",
-      "sentiment": "neutral",
-      "sentiment_score": 0.0,
-      "note": null
-    },
-    {
-      "id": 15320,
-      "date": "2026-09-04T01:37:18Z",
-      "sender_id": 6560990109,
-      "sender_name": "yuyuiop cvvvh",
-      "text": "我tm躺着看",
-      "reply_to_id": null,
-      "link": "https://t.me/Nexa_China/15320",
-      "translation": "I'm just lying down watching, damn it",
-      "sentiment": "neutral",
-      "sentiment_score": -0.1,
-      "note": "躺着看 = 'watching while lying down', i.e. doing nothing / just holding and observing."
-    },
-    {
-      "id": 15324,
-      "date": "2026-09-04T02:32:24Z",
-      "sender_id": 6560990109,
-      "sender_name": "yuyuiop cvvvh",
-      "text": "这个skills能支持workbuddy吗",
-      "reply_to_id": 15304,
-      "link": "https://t.me/Nexa_China/15324",
-      "translation": "Can this skill support workbuddy?",
-      "sentiment": "neutral",
-      "sentiment_score": 0.0,
-      "note": null
-    },
     {
       "id": 15326,
       "date": "2026-09-04T03:53:01Z",
@@ -61,7 +22,7 @@
       "link": "https://t.me/Nexa_China/15326",
       "translation": "@b1ackt34 can you kick these two ad bots out?",
       "sentiment": "negative",
-      "sentiment_score": -0.3,
+      "sentiment_score": -0.2,
       "note": null
     },
     {
@@ -75,7 +36,7 @@
       "translation": "https://prognoseliga-clubhaus.good-map-1085.chatgpt.site/ league starts in 30 min. 50 Euro get the winner.",
       "sentiment": "neutral",
       "sentiment_score": 0.1,
-      "note": null
+      "note": "Looks like spam/scam link posted in the group."
     },
     {
       "id": 15333,
@@ -85,7 +46,7 @@
       "text": "这个是基于nexa的吗",
       "reply_to_id": 15332,
       "link": "https://t.me/Nexa_China/15333",
-      "translation": "Is this built on Nexa?",
+      "translation": "Is this based on Nexa?",
       "sentiment": "neutral",
       "sentiment_score": 0.0,
       "note": null
@@ -98,7 +59,7 @@
       "text": "保持共识：更新至 Nexa 全节点 2.2.0.0\n\nNexa 正在推进协议改进，我们建议所有用户将节点客户端更新至最新版本。\n\n此版本包含滚动检查点机制。当区块在链中达到 200 个确认后，节点会将其标记为已结算。从该深度开始，区块状态将保持不变，任何后续的重组都将被拒绝。\n\n对于交易所和服务而言，这意味着：经过 200 次确认后，交易将无法撤销。\n\n这也是即将到来的硬分叉和 Tailstorm 协议激活前的最后一个版本。保持共识并更新您的客户端至关重要。👇\n\nhttps://nexa.org/node",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15337",
-      "translation": "Stay in consensus: update to Nexa full node 2.2.0.0\n\nNexa is moving forward with protocol improvements, and we recommend all users update their node client to the latest version.\n\nThis version includes a rolling checkpoint mechanism. Once a block reaches 200 confirmations in the chain, the node marks it as settled. From that depth onward, the block's state stays unchanged and any subsequent reorg will be rejected.\n\nFor exchanges and services, this means: after 200 confirmations, a transaction cannot be reversed.\n\nThis is also the last version before the upcoming hard fork and the activation of the Tailstorm protocol. Staying in consensus and updating your client is essential. 👇\n\nhttps://nexa.org/node",
+      "translation": "Stay in consensus: update to Nexa full node 2.2.0.0\n\nNexa is pushing forward with protocol improvements, and we recommend all users update their node client to the latest version.\n\nThis release includes a rolling checkpoint mechanism. Once a block reaches 200 confirmations in the chain, the node marks it as settled. From that depth on, the block's state stays unchanged and any subsequent reorg will be rejected.\n\nFor exchanges and services, this means: after 200 confirmations, a transaction cannot be reversed.\n\nThis is also the last release before the upcoming hard fork and the activation of the Tailstorm protocol. Staying in consensus and updating your client is critical. 👇\n\nhttps://nexa.org/node",
       "sentiment": "neutral",
       "sentiment_score": 0.2,
       "note": null
@@ -150,7 +111,7 @@
       "text": "如果有更新，请进行更新。👌🏻",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15341",
-      "translation": "If there's an update, go ahead and update. 👌🏻",
+      "translation": "If there's an update, then update. 👌🏻",
       "sentiment": "neutral",
       "sentiment_score": 0.2,
       "note": null
@@ -163,10 +124,10 @@
       "text": "直接用沃利钱包啊！听好用就是没有中文翻译🤣",
       "reply_to_id": 15340,
       "link": "https://t.me/Nexa_China/15342",
-      "translation": "Just use the Wally wallet! I hear it's good to use, it just doesn't have a Chinese translation 🤣",
-      "sentiment": "mixed",
-      "sentiment_score": 0.3,
-      "note": "沃利 is the phonetic Chinese rendering of 'Wally'."
+      "translation": "Just use the Wally wallet! I hear it's easy to use, it just doesn't have a Chinese translation 🤣",
+      "sentiment": "positive",
+      "sentiment_score": 0.4,
+      "note": "沃利 is a phonetic rendering of \"Wally\"."
     },
     {
       "id": 15343,
@@ -176,9 +137,9 @@
       "text": "我用了翻译器，我也不知道自己在写什么😄",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15343",
-      "translation": "I used a translator, I have no idea what I'm writing myself 😄",
-      "sentiment": "neutral",
-      "sentiment_score": 0.2,
+      "translation": "I used a translator, I don't even know what I'm writing myself 😄",
+      "sentiment": "positive",
+      "sentiment_score": 0.3,
       "note": null
     },
     {
@@ -202,9 +163,9 @@
       "text": "那就是otoplo还得登录一下",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15345",
-      "translation": "So that means I still have to log into Otoplo once",
+      "translation": "So that means I still have to log into Otoplo",
       "sentiment": "neutral",
-      "sentiment_score": 0.0,
+      "sentiment_score": -0.1,
       "note": null
     },
     {
@@ -345,7 +306,7 @@
       "text": "购买和交易 Nexa 的热门交易所：\n\n🔸MEXC: https://www.mexc.com/exchange/NEXA_USDT\n🔸BingX: https://bingx.com/en-us/spot/NEXAUSDT/\n🔸Biconomy: https://www.biconomy.com/exchange/NEXA_USDT\n🔸Coinstash: https://coinstash.com.au/nexa/buy\n🔸CoinEx: https://www.coinex.com/exchange/NEXA-USDT\n🔸NonKyc: https://nonkyc.io/market/NEXA_USDT\n\n请务必将您的 Nexa 代币提现至自托管钱包——“没有私钥，就没有资产”！",
       "reply_to_id": 15373,
       "link": "https://t.me/Nexa_China/15374",
-      "translation": "Most popular exchanges to buy and trade Nexa:\n\n🔸MEXC: https://www.mexc.com/exchange/NEXA_USDT\n🔸BingX: https://bingx.com/en-us/spot/NEXAUSDT/\n🔸Biconomy: https://www.biconomy.com/exchange/NEXA_USDT\n🔸Coinstash: https://coinstash.com.au/nexa/buy\n🔸CoinEx: https://www.coinex.com/exchange/NEXA-USDT\n🔸NonKyc: https://nonkyc.io/market/NEXA_USDT\n\nAlways withdraw your Nexa coins to self-custody — \"not your keys, not your coins\"!",
+      "translation": "Popular exchanges to buy and trade Nexa:\n\n🔸MEXC: https://www.mexc.com/exchange/NEXA_USDT\n🔸BingX: https://bingx.com/en-us/spot/NEXAUSDT/\n🔸Biconomy: https://www.biconomy.com/exchange/NEXA_USDT\n🔸Coinstash: https://coinstash.com.au/nexa/buy\n🔸CoinEx: https://www.coinex.com/exchange/NEXA-USDT\n🔸NonKyc: https://nonkyc.io/market/NEXA_USDT\n\nAlways withdraw your Nexa coins to a self-custody wallet — \"not your keys, not your coins\"!",
       "sentiment": "neutral",
       "sentiment_score": 0.1,
       "note": null
@@ -371,7 +332,7 @@
       "text": "@b1ackt34 正确的",
       "reply_to_id": 15374,
       "link": "https://t.me/Nexa_China/15376",
-      "translation": "@b1ackt34 it's correct",
+      "translation": "@b1ackt34 correct",
       "sentiment": "positive",
       "sentiment_score": 0.3,
       "note": null
@@ -410,7 +371,7 @@
       "text": "硬件加速：基于电路的扩容\n\n本系列的第二篇文章利用六个组件、一条磁带和一个读写头构建了 Nexa 的验证引擎，并演示了它如何在完全不运行软件的情况下，完成从 Alice 到 Bob 的一笔支付。\n\n由于磁带始终只向一个方向移动，该引擎满足了“更优秀的比特币”所需具备的四个条件中的第一个：即支持流水线处理。\n\n本文将探讨如何满足其余的条件。正如 Nexa 首席科学家 Peter Rizun 博士（@PeterRizun）在悉尼所展示的那样，我们只需进行三项简单的改动，就能完善中本聪的比特币并使其满足所有这些条件；在此过程中，该引擎还将几乎“零成本”地获得另外两项特性：可扩展性和可压缩性。\n\nhttps://forum.nexa.org/t/scaling-by-circuit/1749",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15381",
-      "translation": "Hardware acceleration: Scaling by circuit\n\nThe second article in this series builds Nexa's validation engine out of six components, a tape and a read/write head, and demonstrates how it can complete a payment from Alice to Bob without running any software at all.\n\nBecause the tape only ever moves in one direction, the engine satisfies the first of the four conditions a \"better Bitcoin\" must meet: support for pipelining.\n\nThis article explores how to satisfy the remaining conditions. As Nexa Chief Scientist Dr. Peter Rizun (@PeterRizun) showed in Sydney, we only need three simple changes to perfect Satoshi's Bitcoin and make it meet all of these conditions; along the way, the engine also gains two more properties almost \"for free\": scalability and compressibility.\n\nhttps://forum.nexa.org/t/scaling-by-circuit/1749",
+      "translation": "Hardware acceleration: Scaling by circuit\n\nThe second article in this series builds Nexa's validation engine out of six components, a tape and a read/write head, and demonstrates how it completes a payment from Alice to Bob without running any software at all.\n\nBecause the tape only ever moves in one direction, the engine satisfies the first of the four conditions a \"better Bitcoin\" must meet: it supports pipelining.\n\nThis article explores how to meet the remaining conditions. As Nexa Chief Scientist Dr. Peter Rizun (@PeterRizun) showed in Sydney, we only need three simple changes to perfect Satoshi's Bitcoin and make it satisfy all of them; along the way the engine also gains two more properties at almost \"zero cost\": scalability and compressibility.\n\nhttps://forum.nexa.org/t/scaling-by-circuit/1749",
       "sentiment": "positive",
       "sentiment_score": 0.6,
       "note": null
@@ -423,10 +384,10 @@
       "text": "I'll fetch that Nexa forum thread and summarize it for you.# Nexa 论坛帖《Scaling By Circuit》总结\n\n**来源**：https://forum.nexa.org/t/scaling-by-circuit/1749 （Nexa 官方论坛，硬件项目系列第二篇）\n性质**：技术长文 + 配图（含 5 张架构示意图），核心是 **\"用电路/硬件实现比特币式扩容\" 的论证，主要论据来自 Nexa 首席科学家 Dr. Peter Rizun 2024 年 11 月悉尼 Australian Crypto Convention 的演讲。\n\n---\n\n## 一、全文主线：给\"更好的比特币\"打勾\n\n系列第一篇用\"六组件 + 磁带 + 磁头\"把 Nexa 的验证引擎搭出来，证明它**可流水线化（pipelineable）**。本篇把剩下三个勾补齐，**只需三处改动**，顺带白送两个属性：\n\n| 属性 | 来源 | 说明 |\n|---|---|---|\n| Pipelineable 可流水线 | 磁带单向流动 | 第一篇已证明 |\n| Scalable 可扩容 | 并行流水线 + \"集合树\" | 本篇第 1 处改动 |\n| Extensible 可扩展 | 反馈回路 → 图灵机 | 本篇衍生（意外收获） |\n| Compressible 可压缩 | UTXO 承诺写进区块头 | 本篇第 2 处改动 |\n| Incentive compatible 激励相容 | 哈希函数强制跑完验证流程 | 第一篇主题（第 3 处改动） |\n\n---\n\n## 二、四个技术要点\n\n### 1. 两条流水线（并行化）——靠\"反相时钟\"解决竞态\n- 加第二条并行验证流水线，用开关把交易路由到空闲的那条。\n- 难点一：两个磁头共用同一个 UTXO 集，若同一时钟周期内都想花掉同一枚币，会**竞态**。\n  - 解法（纯硬件）：**把第二条流水线的时钟信号反相**——一条在上升沿抓币，另一条在下降沿抓币，物理上不可能同时访问同一枚币。极简，但很优雅。\n\n### 2. \"集合树\"替代 Merkle 树——本篇最关键的改动\n- 难点二：并行后交易**出序可能与入序不同**（TX2 可能先于 TX1 进块）。对等节点重算出的根哈希不同 → 区块被判无效。\n- 传统解法是**排序**，但排序不可流水线化（磁带要来回走）→ **排序无法扩容**。\n- 作者主张：中本聪白皮书里的 \"Merkle tree\" 应被**字面之外的意图**理解——他要的不是\"列表的树\"而是**\"集合的树\"**。真正的答案是 **compact bitwise prefix tree（紧凑位前缀树）**：\n  - 同样支持 SPV 证明；\n  - 且**与交易顺序无关**——只要两个交易集合相等，根哈希就相等。\n- 这建立在 **Amaury Séchet**（BCH 核心开发者）\"把区块当集合而非列表来哈希\"的思路之上。\n- 有了它，**无需排序即可恢复可流水线化** → 一条改动就让币\"可扩容\"。\n\n> 作者给出的扩容公式：流水线化下，TPS 上限 ≈ **最慢一步（通常是签名验证）耗时的倒数**，其他短延迟无关紧要；并行化下，吞吐可**乘以流水线条数**。Rizun 原话：*\"基本上我们只要往问题上砸更多硬件，就能达到任意规模。\"*\n\n### 3. \"意外的图灵机\"——扩展性来自反馈回路\n- 场景：Alice→Bob，Bob 立刻把同一枚币付给 Carol。因为顺序不可控，磁头可能**先**看到 Bob→Carol：查 UTXO 找不到该币，但也找不到\"已花费\"的证据 → **既不能判有效也不能判无效 = 未决（undecided）**。\n- 解法：加**第三条流水线**把未决交易**回灌到输入端**。重入后 Bob 的币已被写入 UTXO 集，交易即可正常验证通过。\n- 正是\"存在未决状态\"逼出了反馈路径，而反馈路径让机器**可模拟图灵机**：磁头能左右移动、能插入新格，磁带长度实际无界。\n- 实用意义**：可**纯用脚本**加入量子抗性签名等新特性，**连软/硬分叉都不需要 → 币变得\"可扩展\"。\n\n### 4. \"用证明代替数据库\"——可压缩性\n- 现状：全验证节点必须自维护 UTXO 集来判断币是否未花费。\n- 第 2 处改动：矿工把 UTXO 集存为紧凑位前缀树，**把该树根哈希放进区块头**（紧挨着区块根哈希）。\n  - 思想源自 BitcoinTalk 2012 年\"终极区块链压缩\"帖。\n  - 全节点此后只需**一条到区块头的分支证明**即可确认币未花费，**不再需要 UTXO 数据库**。\n- 矿工计算 UTXO 根哈希不难：可流水线、可并行、每次增删 O(log s) 复杂度 → 符合\"可扩容\"定义。\n\n---\n\n## 三、UTXO 模型 vs 账户模型（Nexa vs 以太坊）\n\n这是全文的收尾对比，也是\"并行度从哪来\"的根因：\n\n| 维度 | Nexa（UTXO） | 以太坊（账户） |\n|---|---|---|\n| 状态模型 | 只有\"币\"，全花或全不花 | 账户 + 余额 |\n| 状态改动范围 | **局部化**到指定输入 | 磁头身处全局状态空间，可读写一切 |\n| 并行性 | **高**——可预知每笔交易能改的状态区域，多磁头无冲突 | **低**——交易可触及的状态区域无法局部化 |\n| 风险 | 输入本质上是\"防火墙\" | 合约混乱时，Eve 可能写出扣 Alice 账户给 Eve 的交易 |\n| 定位 | 币/商品，矿工 PoW 确认 | Ether 是\"去中心化公司的股份\"，非币非商品 |\n\n作者结论：**两者是服务不同目的的两种东西**，不存在简单优劣。\n\n---\n\n## 四、总体结论\n\n> \"纸上，这台引擎已经完整了：一个更好的比特币，逐项打勾，由导线和门电路构成。剩下的就是把它用**你能握在手里的真硅**造出来——那正是本系列下一步的方向。\"\n\n**一句话**：这篇文章是用**电路级硬件架构**论证 Nexa 为何天然可扩容——**并行流水线（反相时钟）+ 集合树（免排序）+ UTXO 局部状态 + 反馈回路（图灵完备）+ 区块头 UTXO 承诺**，五者合力得到\"可扩容、可扩展、可压缩、激励相容\"的比特币改良方案，并预告下一篇进入**真实芯片实现**。\n\n**引用来源**：Peter Rizun 悉尼演讲（2024-11-23）；BitcoinTalk 2012\"终极区块链压缩\"帖；Amaury Séchet 的集合哈希思路；中本聪白皮书 SPV 部分；系列前作《Why Nexa Builds Hardware》《A Node Made of Wires》。",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15382",
-      "translation": "I'll fetch that Nexa forum thread and summarize it for you.# Summary of the Nexa forum post \"Scaling By Circuit\"\n\n**Source**: https://forum.nexa.org/t/scaling-by-circuit/1749 (official Nexa forum, second piece in the hardware project series)\nNature**: long technical article + illustrations (5 architecture diagrams), and its core is the argument for **\"achieving Bitcoin-style scaling with circuits/hardware\"**, with the main arguments drawn from Nexa Chief Scientist Dr. Peter Rizun's November 2024 talk at the Australian Crypto Convention in Sydney.\n\n---\n\n## I. The through-line: ticking the boxes for a \"better Bitcoin\"\n\nThe first article in the series built Nexa's validation engine out of \"six components + a tape + a head\" and proved it is **pipelineable**. This article fills in the remaining three ticks, needing **only three changes**, and throws in two properties for free:\n\n| Property | Source | Notes |\n|---|---|---|\n| Pipelineable | Tape flows in one direction | Proven in part one |\n| Scalable | Parallel pipelines + \"set tree\" | Change #1 in this article |\n| Extensible | Feedback loop → Turing machine | Derived here (a happy accident) |\n| Compressible | UTXO commitment written into the block header | Change #2 in this article |\n| Incentive compatible | Hash function forces the validation process to run to completion | Theme of part one (change #3) |\n\n---\n\n## II. Four technical points\n\n### 1. Two pipelines (parallelization) — solving the race condition with an \"inverted clock\"\n- Add a second parallel validation pipeline and use a switch to route transactions to whichever one is idle.\n- Difficulty one: the two heads share the same UTXO set, and if both try to spend the same coin in the same clock cycle you get a **race condition**.\n  - Solution (pure hardware): **invert the clock signal of the second pipeline** — one grabs coins on the rising edge, the other on the falling edge, making it physically impossible to access the same coin simultaneously. Minimalist, but very elegant.\n\n### 2. A \"set tree\" replacing the Merkle tree — the key change in this article\n- Difficulty two: after parallelization the **output order of transactions may differ from the input order** (TX2 may enter the block before TX1). Peer nodes recompute a different root hash → the block is judged invalid.\n- The traditional fix is **sorting**, but sorting can't be pipelined (the tape has to move back and forth) → **sorting can't scale**.\n- The author argues: the \"Merkle tree\" in Satoshi's whitepaper should be understood by **intent rather than the letter** — what he wanted was not a \"tree of a list\" but a **\"tree of a set\"**. The real answer is a **compact bitwise prefix tree**:\n  - It still supports SPV proofs;\n  - And it is **order-independent** — as long as two transaction sets are equal, the root hashes are equal.\n- This builds on **Amaury Séchet**'s (BCH core developer) idea of \"hashing a block as a set rather than a list\".\n- With it, **pipelineability is restored without sorting** → one change makes the coin \"scalable\".\n\n> The scaling formula the author gives: under pipelining, the TPS ceiling ≈ **the reciprocal of the time taken by the slowest step (usually signature verification)**, and other short latencies don't matter; under parallelization, throughput can be **multiplied by the number of pipelines**. Rizun's own words: *\"Basically we can reach any scale just by throwing more hardware at the problem.\"*\n\n### 3. \"The accidental Turing machine\" — extensibility comes from the feedback loop\n- Scenario: Alice→Bob, and Bob immediately pays the same coin to Carol. Because the order can't be controlled, the head may see Bob→Carol **first**: it looks up the UTXO set and can't find the coin, but also can't find evidence it was \"spent\" → **it can judge it neither valid nor invalid = undecided**.\n- Solution: add a **third pipeline** to **feed undecided transactions back to the input**. On re-entry Bob's coin has already been written into the UTXO set, so the transaction validates normally.\n- It is precisely the \"existence of an undecided state\" that forces a feedback path, and the feedback path makes the machine **able to simulate a Turing machine**: the head can move left and right, can insert new cells, and the tape length is effectively unbounded.\n- Practical meaning**: new features such as quantum-resistant signatures can be added **purely in script**, **without even a soft or hard fork → the coin becomes \"extensible\"**.\n\n### 4. \"Replacing the database with proofs\" — compressibility\n- Status quo: fully validating nodes must maintain their own UTXO set to judge whether a coin is unspent.\n- Change #2: miners store the UTXO set as a compact bitwise prefix tree and **put that tree's root hash into the block header** (right next to the block root hash).\n  - The idea comes from the 2012 BitcoinTalk thread on \"ultimate blockchain compression\".\n  - From then on a full node only needs **a single branch proof up to the block header** to confirm a coin is unspent, and **no longer needs a UTXO database**.\n- Computing the UTXO root hash isn't hard for miners: it's pipelineable, parallelizable, and each insert/delete is O(log s) → it fits the definition of \"scalable\".\n\n---\n\n## III. UTXO model vs. account model (Nexa vs. Ethereum)\n\nThis is the article's closing comparison, and also the root cause of \"where the parallelism comes from\":\n\n| Dimension | Nexa (UTXO) | Ethereum (accounts) |\n|---|---|---|\n| State model | Only \"coins\", spent in full or not at all | Accounts + balances |\n| Scope of state changes | **Localized** to the specified inputs | The head sits in the global state space and can read/write anything |\n| Parallelism | **High** — you can know in advance which region of state each transaction can change, so multiple heads don't conflict | **Low** — the state region a transaction can touch can't be localized |\n| Risk | Inputs are essentially a \"firewall\" | If a contract is messy, Eve may be able to write a transaction that debits Alice's account and pays Eve |\n| Positioning | A coin/commodity, confirmed by miners' PoW | Ether is \"shares in a decentralized company\", neither a coin nor a commodity |\n\nThe author's conclusion: **the two are different things serving different purposes**; there's no simple better-or-worse.\n\n---\n\n## IV. Overall conclusion\n\n> \"On paper, the engine is now complete: a better Bitcoin, box by box, made of wires and gates. What remains is building it in **real silicon you can hold in your hand** — which is exactly where this series goes next.\"\n\n**In one sentence**: this article uses a **circuit-level hardware architecture** to argue why Nexa is naturally scalable — **parallel pipelines (inverted clock) + set tree (sorting-free) + UTXO local state + feedback loop (Turing completeness) + UTXO commitment in the block header** — with all five together yielding a \"scalable, extensible, compressible, incentive-compatible\" improvement on Bitcoin, and it previews the next installment moving on to **real chip implementation**.\n\n**Cited sources**: Peter Rizun's Sydney talk (2024-11-23); the 2012 BitcoinTalk \"ultimate blockchain compression\" thread; Amaury Séchet's set-hashing idea; the SPV section of Satoshi's whitepaper; earlier pieces in the series, \"Why Nexa Builds Hardware\" and \"A Node Made of Wires\".",
+      "translation": "I'll fetch that Nexa forum thread and summarize it for you.# Summary of the Nexa forum post \"Scaling By Circuit\"\n\n**Source**: https://forum.nexa.org/t/scaling-by-circuit/1749 (official Nexa forum, second article in the hardware project series)\nNature**: long technical article + illustrations (including 5 architecture diagrams), the core being the argument for **\"achieving Bitcoin-style scaling with circuits/hardware\"**, with the main arguments drawn from Nexa Chief Scientist Dr. Peter Rizun's talk at the Australian Crypto Convention in Sydney in November 2024.\n\n---\n\n## I. The main thread: ticking the boxes for a \"better Bitcoin\"\n\nThe first article in the series built Nexa's validation engine out of \"six components + a tape + a head,\" proving it is **pipelineable**. This article ticks off the remaining three boxes, needing **only three changes**, and throws in two properties for free:\n\n| Property | Source | Notes |\n|---|---|---|\n| Pipelineable | Tape moves one way only | Proven in article one |\n| Scalable | Parallel pipelines + \"set tree\" | Change #1 in this article |\n| Extensible | Feedback loop → Turing machine | Derived here (an unexpected bonus) |\n| Compressible | UTXO commitment written into the block header | Change #2 in this article |\n| Incentive compatible | Hash function forces the full validation process to run | Topic of article one (change #3) |\n\n---\n\n## II. Four technical points\n\n### 1. Two pipelines (parallelization) — solving race conditions with an \"inverted clock\"\n- Add a second parallel validation pipeline, with a switch routing transactions to whichever one is idle.\n- Difficulty one: the two heads share the same UTXO set; if both try to spend the same coin in the same clock cycle you get a **race condition**.\n  - Solution (pure hardware): **invert the clock signal of the second pipeline** — one grabs coins on the rising edge, the other on the falling edge, making it physically impossible to access the same coin simultaneously. Minimalist, but very elegant.\n\n### 2. A \"set tree\" replacing the Merkle tree — the key change in this article\n- Difficulty two: after parallelization the **output order may differ from the input order** (TX2 may enter the block before TX1). Peer nodes recompute a different root hash → the block is judged invalid.\n- The traditional fix is **sorting**, but sorting is not pipelineable (the tape would have to move back and forth) → **sorting cannot scale**.\n- The author argues the \"Merkle tree\" in Satoshi's whitepaper should be understood by **intent rather than the letter** — what he wanted was not a \"tree of a list\" but a **\"tree of a set.\"** The real answer is a **compact bitwise prefix tree**:\n  - It still supports SPV proofs;\n  - and is **independent of transaction order** — as long as two transaction sets are equal, the root hashes are equal.\n- This builds on **Amaury Séchet**'s (BCH core developer) idea of \"hashing a block as a set rather than a list.\"\n- With it, **pipelineability is restored without sorting** → one change makes the coin \"scalable.\"\n\n> The scaling formula the author gives: under pipelining, the TPS ceiling ≈ **the reciprocal of the slowest step (usually signature verification)**; other short latencies don't matter; under parallelization, throughput can be **multiplied by the number of pipelines**. Rizun's own words: *\"Basically we can just throw more hardware at the problem and reach any scale.\"*\n\n### 3. The \"accidental Turing machine\" — extensibility from the feedback loop\n- Scenario: Alice→Bob, and Bob immediately pays the same coin to Carol. Because ordering can't be controlled, the head may see Bob→Carol **first**: looking up the UTXO set it can't find the coin, but it can't find proof it was \"spent\" either → **it can be judged neither valid nor invalid = undecided**.\n- Solution: add a **third pipeline** that **feeds undecided transactions back to the input**. On re-entry, Bob's coin has already been written into the UTXO set and the transaction validates normally.\n- It's precisely the \"existence of an undecided state\" that forces a feedback path, and the feedback path lets the machine **simulate a Turing machine**: the head can move left and right, can insert new cells, and the tape length is effectively unbounded.\n- Practical significance**: new features such as quantum-resistant signatures can be added **purely via script**, with **no soft or hard fork needed → the coin becomes \"extensible.\"**\n\n### 4. \"Proofs instead of a database\" — compressibility\n- Status quo: fully validating nodes must maintain their own UTXO set to judge whether a coin is unspent.\n- Change #2: miners store the UTXO set as a compact bitwise prefix tree and **put that tree's root hash into the block header** (right next to the block root hash).\n  - The idea comes from the 2012 BitcoinTalk \"ultimate blockchain compression\" thread.\n  - From then on, a full node only needs **one branch proof up to the block header** to confirm a coin is unspent, and **no longer needs a UTXO database**.\n- Computing the UTXO root hash isn't hard for miners: it's pipelineable, parallelizable, and each insert/delete is O(log s) → it fits the definition of \"scalable.\"\n\n---\n\n## III. UTXO model vs account model (Nexa vs Ethereum)\n\nThis is the closing comparison of the article, and also the root cause of \"where the parallelism comes from\":\n\n| Dimension | Nexa (UTXO) | Ethereum (accounts) |\n|---|---|---|\n| State model | Only \"coins,\" spent in full or not at all | Accounts + balances |\n| Scope of state change | **Localized** to the specified inputs | The head sits in a global state space and can read/write anything |\n| Parallelism | **High** — you can know in advance which state region each transaction can change, so multiple heads don't conflict | **Low** — the state region a transaction can touch cannot be localized |\n| Risk | Inputs are essentially a \"firewall\" | When a contract is messy, Eve might write a transaction that deducts from Alice's account and pays Eve |\n| Positioning | A coin/commodity, confirmed by miners' PoW | Ether is \"shares in a decentralized company,\" neither a coin nor a commodity |\n\nThe author's conclusion: **they are two different things serving different purposes**; there's no simple better/worse.\n\n---\n\n## IV. Overall conclusion\n\n> \"On paper, this engine is already complete: a better Bitcoin, box by box ticked, made of wires and gates. What remains is to build it in **real silicon you can hold in your hand** — which is exactly where this series goes next.\"\n\n**In one sentence**: this article uses **circuit-level hardware architecture** to argue why Nexa is inherently scalable — **parallel pipelines (inverted clock) + set tree (no sorting needed) + UTXO local state + feedback loop (Turing completeness) + UTXO commitment in the block header** — five things combining to yield a \"scalable, extensible, compressible, incentive-compatible\" improved Bitcoin, and it previews the next installment moving to **real chip implementation**.\n\n**Cited sources**: Peter Rizun's Sydney talk (2024-11-23); the 2012 BitcoinTalk \"ultimate blockchain compression\" thread; Amaury Séchet's set-hashing idea; the SPV section of Satoshi's whitepaper; earlier articles in the series, \"Why Nexa Builds Hardware\" and \"A Node Made of Wires.\"",
       "sentiment": "positive",
       "sentiment_score": 0.5,
-      "note": "This is an AI-generated (ChatGPT-style) Chinese summary of the linked English forum article, pasted into the chat verbatim."
+      "note": "This is an AI-generated Chinese summary of the linked forum article, pasted into the chat."
     },
     {
       "id": 15383,
@@ -436,9 +397,9 @@
       "text": "好安静啊，都没人了",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15383",
-      "translation": "It's so quiet here, nobody's around",
+      "translation": "So quiet here, nobody's around anymore",
       "sentiment": "negative",
-      "sentiment_score": -0.3,
+      "sentiment_score": -0.4,
       "note": null
     },
     {
@@ -475,10 +436,10 @@
       "text": "热闹一b",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15386",
-      "translation": "Damn lively over there",
+      "translation": "It's buzzing as hell",
       "sentiment": "positive",
       "sentiment_score": 0.5,
-      "note": "热闹一b — '一b' is a crude intensifier (from 逼), like 'as fuck'."
+      "note": "\"热闹一b\" — vulgar intensifier (lit. \"lively as f***\")."
     },
     {
       "id": 15387,
@@ -515,8 +476,8 @@
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15389",
       "translation": "7 online",
-      "sentiment": "neutral",
-      "sentiment_score": -0.1,
+      "sentiment": "negative",
+      "sentiment_score": -0.2,
       "note": null
     },
     {
@@ -566,9 +527,9 @@
       "text": "买够10亿",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15393",
-      "translation": "Buying up to 1 billion",
+      "translation": "Buy up to 1 billion",
       "sentiment": "positive",
-      "sentiment_score": 0.6,
+      "sentiment_score": 0.5,
       "note": "Refers to accumulating 1 billion NEXA."
     },
     {
@@ -579,7 +540,7 @@
       "text": "我去其他pow群推",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15394",
-      "translation": "I'll go promote it in other PoW groups",
+      "translation": "I'll go shill it in other PoW groups",
       "sentiment": "positive",
       "sentiment_score": 0.4,
       "note": null
@@ -592,10 +553,10 @@
       "text": "那些人都更喜欢买土狗",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15396",
-      "translation": "Those people all prefer buying shitcoins",
+      "translation": "Those folks all prefer buying shitcoins",
       "sentiment": "negative",
       "sentiment_score": -0.3,
-      "note": "土狗 ('local dog') = low-cap degen shitcoins."
+      "note": "土狗 = \"local dog\", slang for low-cap junk/meme coins."
     },
     {
       "id": 15397,
@@ -605,7 +566,7 @@
       "text": "和超低市值的",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15397",
-      "translation": "and ultra-low market cap ones",
+      "translation": "and ultra-low market cap stuff",
       "sentiment": "neutral",
       "sentiment_score": -0.1,
       "note": null
@@ -631,7 +592,7 @@
       "text": "最近太忙",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15399",
-      "translation": "I've been too busy lately",
+      "translation": "Been too busy lately",
       "sentiment": "neutral",
       "sentiment_score": -0.1,
       "note": null
@@ -644,7 +605,7 @@
       "text": "我看牛来的时候0.03",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15400",
-      "translation": "I saw it at 0.03 when the bull run came",
+      "translation": "I saw it was at 0.03 when the bull run came",
       "sentiment": "neutral",
       "sentiment_score": 0.1,
       "note": null
@@ -657,10 +618,10 @@
       "text": "不然我就做一系列短剧",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15401",
-      "translation": "Otherwise I'd make a whole series of short skits",
-      "sentiment": "neutral",
-      "sentiment_score": 0.2,
-      "note": "短剧 = short drama/mini-series clips, a popular Chinese short-video format."
+      "translation": "Otherwise I'd make a series of short skits",
+      "sentiment": "positive",
+      "sentiment_score": 0.3,
+      "note": "短剧 = the short vertical-video drama format popular in China."
     },
     {
       "id": 15402,
@@ -670,10 +631,10 @@
       "text": "进去都4倍了",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15402",
-      "translation": "By the time I got in it was already up 4x.",
+      "translation": "By the time I got in it was already up 4x",
       "sentiment": "mixed",
-      "sentiment_score": 0.1,
-      "note": "Regret at having entered late, after the price had already quadrupled."
+      "sentiment_score": 0.0,
+      "note": null
     },
     {
       "id": 15403,
@@ -683,10 +644,10 @@
       "text": "搞个nexa把kas和土狗吊起来打的",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15403",
-      "translation": "Make one where Nexa beats the crap out of KAS and the shitcoins.",
+      "translation": "Make Nexa beat the crap out of KAS and the shitcoins",
       "sentiment": "positive",
-      "sentiment_score": 0.6,
-      "note": "Continuing the idea of making a series of short drama videos; 土狗 = 'dirt dog', slang for low-cap garbage/meme coins; 吊起来打 = 'string 'em up and beat them', i.e. totally outclass."
+      "sentiment_score": 0.5,
+      "note": "吊起来打 = lit. \"string them up and beat them\", i.e. thoroughly outclass."
     },
     {
       "id": 15404,
@@ -696,7 +657,7 @@
       "text": "我的xtm已经十倍了",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15404",
-      "translation": "My XTM is already up 10x.",
+      "translation": "My XTM is already up 10x",
       "sentiment": "positive",
       "sentiment_score": 0.7,
       "note": null
@@ -709,9 +670,9 @@
       "text": "哈哈哈 搞",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15406",
-      "translation": "Hahaha, do it",
+      "translation": "Hahaha, let's do it",
       "sentiment": "positive",
-      "sentiment_score": 0.5,
+      "sentiment_score": 0.6,
       "note": null
     },
     {
@@ -722,10 +683,10 @@
       "text": "羡慕大哥",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15407",
-      "translation": "Jealous, big bro",
+      "translation": "Envy you, bro",
       "sentiment": "positive",
       "sentiment_score": 0.4,
-      "note": null
+      "note": "大哥 literally 'big brother', used here as a friendly, admiring term for someone doing better."
     },
     {
       "id": 15408,
@@ -748,9 +709,9 @@
       "text": "tari啊",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15409",
-      "translation": "Tari, obviously",
+      "translation": "Tari, of course",
       "sentiment": "neutral",
-      "sentiment_score": 0.0,
+      "sentiment_score": 0.1,
       "note": null
     },
     {
@@ -774,7 +735,7 @@
       "text": "xmr前首席开发者开的新币",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15411",
-      "translation": "It's the new coin started by XMR's former lead developer",
+      "translation": "The new coin started by XMR's former lead developer",
       "sentiment": "neutral",
       "sentiment_score": 0.1,
       "note": null
@@ -787,9 +748,9 @@
       "text": "对啊",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15412",
-      "translation": "Yep",
+      "translation": "Exactly",
       "sentiment": "neutral",
-      "sentiment_score": 0.05,
+      "sentiment_score": 0.1,
       "note": null
     },
     {
@@ -801,8 +762,8 @@
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15413",
       "translation": "I reckon there's still another pullback coming",
-      "sentiment": "mixed",
-      "sentiment_score": -0.2,
+      "sentiment": "neutral",
+      "sentiment_score": -0.1,
       "note": null
     },
     {
@@ -813,7 +774,7 @@
       "text": "二层网络还没出来啊l",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15414",
-      "translation": "The layer 2 still isn't out yet",
+      "translation": "The layer 2 isn't out yet",
       "sentiment": "neutral",
       "sentiment_score": -0.1,
       "note": null
@@ -826,7 +787,7 @@
       "text": "哦哦哦。我上车的XEQM",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15415",
-      "translation": "Ohh ok. The one I got in on is XEQM",
+      "translation": "Oh oh oh. I got in on XEQM",
       "sentiment": "neutral",
       "sentiment_score": 0.1,
       "note": "上车 = 'got on board', i.e. bought in."
@@ -865,7 +826,7 @@
       "text": "我现在已经不敢买小团队搞的任何币",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15418",
-      "translation": "These days I don't dare buy any coin made by a small team",
+      "translation": "These days I don't dare buy any coin run by a small team",
       "sentiment": "negative",
       "sentiment_score": -0.5,
       "note": null
@@ -878,10 +839,10 @@
       "text": "tmd",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15419",
-      "translation": "fucking hell",
+      "translation": "Damn it",
       "sentiment": "negative",
       "sentiment_score": -0.5,
-      "note": null
+      "note": "tmd = 他妈的, a swear word."
     },
     {
       "id": 15420,
@@ -891,10 +852,10 @@
       "text": "全是割韭菜",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15420",
-      "translation": "It's all just fleecing the retail suckers",
+      "translation": "They're all just fleecing the retail suckers",
       "sentiment": "negative",
       "sentiment_score": -0.7,
-      "note": "割韭菜 = 'cutting the chives', i.e. harvesting naive retail investors."
+      "note": "割韭菜 lit. 'cutting the chives' — exploiting retail investors."
     },
     {
       "id": 15421,
@@ -904,9 +865,9 @@
       "text": "之前那个wart",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15421",
-      "translation": "Take that WART thing from before",
+      "translation": "Like that WART before",
       "sentiment": "negative",
-      "sentiment_score": -0.3,
+      "sentiment_score": -0.4,
       "note": null
     },
     {
@@ -917,7 +878,7 @@
       "text": "吹牛逼",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15422",
-      "translation": "All that big talk",
+      "translation": "All that bragging",
       "sentiment": "negative",
       "sentiment_score": -0.5,
       "note": null
@@ -932,7 +893,7 @@
       "link": "https://t.me/Nexa_China/15423",
       "translation": "PoBW",
       "sentiment": "neutral",
-      "sentiment_score": -0.1,
+      "sentiment_score": 0.0,
       "note": null
     },
     {
@@ -943,9 +904,9 @@
       "text": "平衡算法",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15424",
-      "translation": "balancing algorithm",
+      "translation": "Balanced algorithm",
       "sentiment": "neutral",
-      "sentiment_score": -0.1,
+      "sentiment_score": 0.0,
       "note": null
     },
     {
@@ -956,9 +917,9 @@
       "text": "硬编码defi",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15425",
-      "translation": "hard-coded DeFi",
+      "translation": "Hard-coded DeFi",
       "sentiment": "neutral",
-      "sentiment_score": -0.1,
+      "sentiment_score": 0.0,
       "note": null
     },
     {
@@ -969,7 +930,7 @@
       "text": "现在歇菜了",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15426",
-      "translation": "and now it's dead in the water",
+      "translation": "And now it's dead in the water",
       "sentiment": "negative",
       "sentiment_score": -0.6,
       "note": null
@@ -982,7 +943,7 @@
       "text": "哈哈哈 小团队割人才狠啊",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15427",
-      "translation": "Hahaha, small teams are the most ruthless at fleecing people",
+      "translation": "Hahaha, small teams really fleece people hard",
       "sentiment": "negative",
       "sentiment_score": -0.4,
       "note": null
@@ -995,10 +956,10 @@
       "text": "还好我割的早",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15428",
-      "translation": "Good thing I cut out early.",
-      "sentiment": "mixed",
-      "sentiment_score": 0.1,
-      "note": "Plays on 割 (to 'harvest/cut') from the previous message about teams fleecing retail — here it means he sold/cut his losses early."
+      "translation": "Luckily I cashed out early",
+      "sentiment": "positive",
+      "sentiment_score": 0.3,
+      "note": "割 here means he 'harvested'/sold out in time rather than being the one harvested."
     },
     {
       "id": 15429,
@@ -1008,9 +969,9 @@
       "text": "买的早 提前跑",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15429",
-      "translation": "Bought early, ran out early.",
+      "translation": "Bought early, ran out early",
       "sentiment": "neutral",
-      "sentiment_score": 0.1,
+      "sentiment_score": 0.2,
       "note": null
     },
     {
@@ -1021,10 +982,10 @@
       "text": "一个人就走得快，一群人走得远",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15430",
-      "translation": "Alone you go fast, together you go far.",
+      "translation": "Alone you go fast, together you go far",
       "sentiment": "positive",
-      "sentiment_score": 0.4,
-      "note": "A well-known proverb, used here to argue for sticking with the community."
+      "sentiment_score": 0.5,
+      "note": "A common proverb, used here to argue for backing projects with a real community."
     },
     {
       "id": 15431,
@@ -1034,9 +995,9 @@
       "text": "等",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15431",
-      "translation": "Just wait",
+      "translation": "Wait",
       "sentiment": "neutral",
-      "sentiment_score": 0.1,
+      "sentiment_score": 0.0,
       "note": null
     },
     {
@@ -1086,7 +1047,7 @@
       "text": "为什么0.0000003的时候不买",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15435",
-      "translation": "Why didn't you buy when it was at 0.0000003?",
+      "translation": "Why didn't you buy at 0.0000003?",
       "sentiment": "neutral",
       "sentiment_score": -0.1,
       "note": null
@@ -1099,7 +1060,7 @@
       "text": "不敢买啊 看着是奔着归零去的",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15437",
-      "translation": "Didn't dare to buy man, it looked like it was headed straight to zero",
+      "translation": "Didn't dare to buy, it looked like it was heading straight to zero",
       "sentiment": "negative",
       "sentiment_score": -0.4,
       "note": null
@@ -1125,7 +1086,7 @@
       "text": "还有200w美金市值",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15439",
-      "translation": "That was still a $2M market cap",
+      "translation": "and still a $2M market cap",
       "sentiment": "neutral",
       "sentiment_score": 0.1,
       "note": null
@@ -1138,10 +1099,10 @@
       "text": "一看就是有人护盘",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15440",
-      "translation": "You could tell right away somebody was propping up the price",
+      "translation": "You could tell right away someone was propping up the price",
       "sentiment": "neutral",
       "sentiment_score": 0.2,
-      "note": "护盘 = supporting/defending the price level with buy orders."
+      "note": "护盘 = supporting/defending the price to stop it dropping."
     },
     {
       "id": 15441,
@@ -1153,7 +1114,7 @@
       "link": "https://t.me/Nexa_China/15441",
       "translation": "Bro",
       "sentiment": "neutral",
-      "sentiment_score": 0.0,
+      "sentiment_score": 0.1,
       "note": null
     },
     {
@@ -1165,8 +1126,8 @@
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15442",
       "translation": "If you don't buy the dip at a time like that...",
-      "sentiment": "mixed",
-      "sentiment_score": 0.1,
+      "sentiment": "neutral",
+      "sentiment_score": 0.2,
       "note": null
     },
     {
@@ -1192,7 +1153,7 @@
       "link": "https://t.me/Nexa_China/15444",
       "translation": "Now it takes 300 USDT to buy 300 million",
       "sentiment": "neutral",
-      "sentiment_score": 0.1,
+      "sentiment_score": 0.2,
       "note": null
     },
     {
@@ -1203,9 +1164,9 @@
       "text": "没办法啊 胆子小还没钱",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15446",
-      "translation": "What can I do, I'm chicken and broke",
+      "translation": "What can you do, I'm chicken and broke",
       "sentiment": "negative",
-      "sentiment_score": -0.2,
+      "sentiment_score": -0.3,
       "note": null
     },
     {
@@ -1229,7 +1190,7 @@
       "text": "能让我回本就行 不贪了",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15448",
-      "translation": "As long as I get back to break-even I'm fine, not being greedy anymore",
+      "translation": "As long as I can break even I'm happy, not being greedy anymore",
       "sentiment": "mixed",
       "sentiment_score": -0.1,
       "note": null
@@ -1242,7 +1203,7 @@
       "text": "加仓拉低均价回本",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15449",
-      "translation": "Add to your position, lower your average cost, get back to break-even",
+      "translation": "Add to your position to lower your average cost and break even",
       "sentiment": "positive",
       "sentiment_score": 0.4,
       "note": null
@@ -1255,10 +1216,10 @@
       "text": "就怕又套进去了🐽",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_China/15450",
-      "translation": "Just afraid of getting bagged again 🐽",
+      "translation": "I'm just afraid of getting stuck holding the bag again 🐽",
       "sentiment": "negative",
-      "sentiment_score": -0.3,
-      "note": "套进去 = getting stuck holding at a loss; 🐽 pig emoji is self-deprecating."
+      "sentiment_score": -0.4,
+      "note": "套进去 = getting trapped in a losing position."
     },
     {
       "id": 15451,
@@ -1270,7 +1231,7 @@
       "link": "https://t.me/Nexa_China/15451",
       "translation": "Just throw it in a cold wallet",
       "sentiment": "neutral",
-      "sentiment_score": 0.2,
+      "sentiment_score": 0.3,
       "note": null
     },
     {
@@ -1283,7 +1244,7 @@
       "link": "https://t.me/Nexa_China/15452",
       "translation": "and don't look at it",
       "sentiment": "neutral",
-      "sentiment_score": 0.1,
+      "sentiment_score": 0.2,
       "note": null
     },
     {
@@ -1294,7 +1255,7 @@
       "text": "我们不需要第二层（Layer 2），因为第一层（Layer 1）已足够强大，能够支持每秒 42,000 笔交易（TPS），且未来有望达到 100,000 TPS。",
       "reply_to_id": 15414,
       "link": "https://t.me/Nexa_China/15456",
-      "translation": "We don't need a Layer 2, because Layer 1 is already strong enough to support 42,000 transactions per second (TPS), with the potential to reach 100,000 TPS in the future.",
+      "translation": "We don't need a Layer 2, because Layer 1 is already powerful enough to support 42,000 transactions per second (TPS), with the potential to reach 100,000 TPS in the future.",
       "sentiment": "positive",
       "sentiment_score": 0.6,
       "note": null
@@ -1307,19 +1268,58 @@
       "text": "我们正在改进 Wally 中的中文翻译",
       "reply_to_id": 15342,
       "link": "https://t.me/Nexa_China/15457",
-      "translation": "We're working on improving the Chinese translation in Wally",
+      "translation": "We're improving the Chinese translations in Wally",
       "sentiment": "positive",
+      "sentiment_score": 0.4,
+      "note": null
+    },
+    {
+      "id": 15458,
+      "date": "2026-09-12T16:22:54Z",
+      "sender_id": 1523926079,
+      "sender_name": "A-bao",
+      "text": "把wally弄一个安卓的，国内手机都不能在谷歌商店下载",
+      "reply_to_id": null,
+      "link": "https://t.me/Nexa_China/15458",
+      "translation": "Make an Android version of Wally — phones in China can't download from the Google Play Store",
+      "sentiment": "neutral",
+      "sentiment_score": -0.1,
+      "note": null
+    },
+    {
+      "id": 15459,
+      "date": "2026-09-13T04:26:26Z",
+      "sender_id": 1856208061,
+      "sender_name": "Snap fingers",
+      "text": "直接可以在官网下载的",
+      "reply_to_id": null,
+      "link": "https://t.me/Nexa_China/15459",
+      "translation": "You can just download it straight from the official site",
+      "sentiment": "neutral",
+      "sentiment_score": 0.3,
+      "note": null
+    },
+    {
+      "id": 15460,
+      "date": "2026-09-13T04:26:43Z",
+      "sender_id": 1856208061,
+      "sender_name": "Snap fingers",
+      "text": "官网浏览器直接可以下载",
+      "reply_to_id": 15458,
+      "link": "https://t.me/Nexa_China/15460",
+      "translation": "You can download it right from the browser on the official site",
+      "sentiment": "neutral",
       "sentiment_score": 0.3,
       "note": null
     }
   ],
   "summary": {
-    "headline": "Node 2.2.0.0 update guidance, wallet questions, low group activity, and candid price talk dominate a quiet window.",
-    "summary": "The window is dominated by two threads: an official announcement from Blacktea ▽ that everyone should upgrade to Nexa full node 2.2.0.0 (rolling checkpoints at 200 confirmations, the last release before the hard fork and Tailstorm activation), and a follow-up Q&A where yuyuiop cvvvh repeatedly asks whether an uninstalled Otoplo wallet needs action — Blacktea reassures him the coins are safe and he can just reinstall the latest Otoplo when needed. Wally Wallet is recommended by Snap fingers and jQrgen ⛛, though yuyuiop calls the UI ugly and notes the lack of Chinese; jQrgen later says Chinese translation in Wally is being improved. Blacktea also shared the 'Scaling by Circuit' forum article (Peter Rizun's circuit-level scaling argument), which yuyuiop answered with a very long AI-generated Chinese summary. Later, HO HO complains the group is dead; yuyuiop counts 266 members with only 7 online, says the Chinese group needs promotion, and jokes about making short video skits of Nexa beating up KAS and shitcoins. The longest conversation is price/portfolio talk between yuyuiop cvvvh and 心存善念，万邪不侵 — accumulating billions of NEXA, regret over not buying at 0.0000003, a 10x on Tari (XTM), and bitterness about small teams and the WART project 'fleecing retail'. Minor housekeeping: a request to kick ad bots, a spam link from Alex ▼, and Blacktea asking yuyuiop to verify the Chinese version of the Rose /buy exchange list (confirmed correct).",
+    "headline": "Node 2.2.0 update notice, wallet questions, a quiet-group lament and candid price/rug talk.",
+    "summary": "Over roughly ten days the group was dominated by two threads. First, admin Blacktea ▽ posted the official call to upgrade to Nexa full node 2.2.0.0 (rolling checkpoints at 200 confirmations, last release before the hard fork and Tailstorm activation), which triggered a long back-and-forth with yuyuiop cvvvh about whether an uninstalled Otoplo mobile wallet needs any action — Blacktea reassured him the coins are safe and he can just reinstall the latest version when needed. Wally Wallet came up repeatedly: yuyuiop called the UI ugly, jQrgen ⛛ said Chinese translations are being improved, A-bao noted Chinese phones can't use Google Play, and Snap fingers pointed to the direct download on the official site. Second, HO HO's remark that the group is dead opened a long, informal exchange between yuyuiop cvvvh and 心存善念，万邪不侵 about the 266-member/7-online Chinese group, promotion ideas, buying another billion NEXA, the 10x on Tari (XTM), the WART project they see as a rug, and the fear of being stuck in the bag again. Blacktea also shared the 'Scaling by Circuit' hardware article and yuyuiop posted a very long (apparently AI-generated) Chinese summary of it; jQrgen added that Nexa needs no Layer 2 given 42,000 TPS on L1. Minor housekeeping: a request to kick ad bots, a spam link from 'Alex ▼', and Blacktea checking the Chinese version of the Rose /buy command.",
     "topics": [
       {
-        "title": "Price talk, bags and missed dips",
-        "summary": "yuyuiop cvvvh and 心存善念，万邪不侵 compare positions: buying 1–2 billion NEXA, regret at not buying at 0.0000003 ($2M market cap), a 10x on Tari/XTM, distrust of small teams after WART 'died in the water', and advice to average down and hold in a cold wallet without looking.",
+        "title": "Price talk and rug-pull cynicism",
+        "summary": "yuyuiop cvvvh and 心存善念，万邪不侵 traded stories about accumulating billions of NEXA, missing the 0.0000003 bottom, a 10x on Tari (XTM), and distrust of small teams after WART went dead; the tone mixes gallows humour with hope that 'Nexa won't let everyone down'.",
         "message_ids": [
           15393,
           15396,
@@ -1328,7 +1328,6 @@
           15400,
           15402,
           15404,
-          15406,
           15407,
           15408,
           15409,
@@ -1371,15 +1370,13 @@
           15449,
           15450,
           15451,
-          15452,
-          15319,
-          15320
+          15452
         ],
         "sentiment": "mixed"
       },
       {
-        "title": "Node 2.2.0.0 and wallet updates",
-        "summary": "Blacktea ▽ announced the 2.2.0.0 full node release with rolling checkpoints (200 confirmations = irreversible), the last version before the hard fork and Tailstorm; yuyuiop cvvvh asked three times whether his uninstalled Otoplo wallet needs reinstalling/syncing and was told his funds are fine and he can just install the latest Otoplo when he needs them.",
+        "title": "Node 2.2.0.0 and Otoplo wallet",
+        "summary": "Blacktea ▽ announced the mandatory-ish upgrade to full node 2.2.0.0 with rolling checkpoints ahead of the hard fork and Tailstorm; yuyuiop cvvvh repeatedly asked whether his uninstalled Otoplo wallet needs updating or syncing, and Blacktea confirmed the funds can simply be left alone.",
         "message_ids": [
           15337,
           15338,
@@ -1394,20 +1391,23 @@
         "sentiment": "neutral"
       },
       {
-        "title": "Wally vs Otoplo wallet UX",
-        "summary": "Snap fingers recommended Wally Wallet but noted it has no Chinese translation; yuyuiop cvvvh dismissed its UI as ugly. jQrgen ⛛ linked wallywallet.org and later said the Chinese translation in Wally is being improved.",
+        "title": "Wally Wallet: language and Android access",
+        "summary": "Snap fingers recommended Wally but noted the missing Chinese, yuyuiop called the UI ugly, jQrgen ⛛ said Chinese translations are being improved and shared the site, A-bao raised that Chinese phones can't use Google Play, and Snap fingers replied it downloads directly from the official website.",
         "message_ids": [
           15342,
           15343,
           15344,
           15349,
-          15457
+          15457,
+          15458,
+          15459,
+          15460
         ],
         "sentiment": "mixed"
       },
       {
-        "title": "Quiet group, promotion ideas",
-        "summary": "HO HO said the group feels dead; yuyuiop cvvvh pointed to 266 members with only 7 online, said the Chinese group needs promotion, offered to advertise in other PoW groups, and floated making short skits of Nexa beating KAS and shitcoins.",
+        "title": "Group is too quiet / promotion",
+        "summary": "HO HO complained nobody is around; yuyuiop cvvvh countered that the main group is busy, noted only 7 of 266 Chinese members online, said the group needs promotion, and joked about shilling in other PoW groups and making short video skits where Nexa beats up KAS and shitcoins.",
         "message_ids": [
           15383,
           15384,
@@ -1422,31 +1422,25 @@
           15394,
           15399,
           15401,
-          15403
+          15403,
+          15406
         ],
         "sentiment": "mixed"
       },
       {
         "title": "Scaling by Circuit article",
-        "summary": "Blacktea ▽ shared the second hardware-series forum post on building Nexa's validation engine as a circuit (pipelining, set tree, UTXO commitments), and yuyuiop cvvvh posted a lengthy AI-produced Chinese summary of the whole article.",
+        "summary": "Blacktea ▽ shared the second hardware-series forum post on building Nexa's validation engine in circuitry (set trees, parallel pipelines, UTXO commitments); yuyuiop cvvvh posted a very long Chinese breakdown of it, and jQrgen ⛛ later argued no Layer 2 is needed because L1 already does 42,000 TPS.",
         "message_ids": [
           15381,
-          15382
-        ],
-        "sentiment": "positive"
-      },
-      {
-        "title": "Layer 2 / TPS claim",
-        "summary": "Replying to an earlier remark about a layer-2 not being out yet, jQrgen ⛛ stated Nexa doesn't need one because Layer 1 already handles 42,000 TPS with potential for 100,000.",
-        "message_ids": [
+          15382,
           15414,
           15456
         ],
         "sentiment": "positive"
       },
       {
-        "title": "Spam bots and bot localization",
-        "summary": "yuyuiop cvvvh asked Blacktea to kick two ad bots, and Alex ▼ posted an unrelated betting-league spam link that yuyuiop sarcastically asked if it was 'built on Nexa'. Blacktea also had yuyuiop verify the Chinese version of the Rose /buy exchange list, which he confirmed correct.",
+        "title": "Spam bots and Rose commands",
+        "summary": "yuyuiop cvvvh asked Blacktea to kick ad bots after 'Alex ▼' posted an off-topic betting-league link; Blacktea also tested the Rose /buy exchange list and had yuyuiop verify the Chinese version, which he confirmed was correct.",
         "message_ids": [
           15326,
           15332,
@@ -1461,39 +1455,34 @@
           15375,
           15376,
           15377,
-          15378,
-          15324
+          15378
         ],
         "sentiment": "neutral"
       }
     ],
     "mood_label": "Quiet but loyal",
-    "mood_description": "The tone is low-energy and mostly practical early on — routine upgrade questions answered patiently by Blacktea ▽. It dips when HO HO notes the group is dead and yuyuiop cvvvh counts just 7 members online, and turns cynical during the trading chat, with complaints about small teams 'fleecing retail' and the failed WART project. It lifts again at the end with mutual encouragement to accumulate, hold in cold storage and 'wait for takeoff', plus positive technical news from jQrgen ⛛ on TPS and Chinese translations.",
+    "mood_description": "The window starts businesslike — an upgrade announcement and patient wallet support from Blacktea ▽ — then turns wistful when HO HO points out how dead the group is. From there it becomes a frank, joking conversation between two holders about missed bottoms, a shitcoin that rugged them, and fear of being bagged again, softened by mutual encouragement to hold and wait for 'takeoff'. Underlying frustration about low activity and no Chinese-language Wally support coexists with genuine interest in the hardware-scaling research.",
     "mood_score": 0.1,
     "highlights": [
       {
         "message_id": 15337,
-        "why": "The key official announcement: node 2.2.0.0 with rolling checkpoints, last release before the hard fork and Tailstorm activation."
+        "why": "The key announcement: node 2.2.0.0 with 200-confirmation rolling checkpoints, the last release before the hard fork and Tailstorm activation."
       },
       {
         "message_id": 15389,
-        "why": "266 members, 7 online — a blunt data point on how inactive the Chinese group has become."
-      },
-      {
-        "message_id": 15456,
-        "why": "jQrgen ⛛ states Nexa needs no Layer 2 at 42,000 TPS, with 100,000 potential — a clear project-positioning claim."
-      },
-      {
-        "message_id": 15382,
-        "why": "A member posts an enormous AI-generated Chinese summary of the 'Scaling by Circuit' article — the most substantial technical content in the window."
-      },
-      {
-        "message_id": 15403,
-        "why": "Funny promotion idea: short video skits of Nexa 'beating the crap out of KAS and shitcoins'."
+        "why": "Blunt data point on community health — only 7 of 266 Chinese group members online, prompting the promotion discussion."
       },
       {
         "message_id": 15420,
-        "why": "Captures the underlying cynicism about small crypto teams that colours the whole trading discussion."
+        "why": "Raw distrust of small crypto teams after the WART experience; captures the group's cynicism about everything except Nexa."
+      },
+      {
+        "message_id": 15456,
+        "why": "jQrgen's clear technical stance: no Layer 2 needed because L1 already handles 42,000 TPS, answering an earlier comment."
+      },
+      {
+        "message_id": 15458,
+        "why": "Practical localisation problem: Chinese users can't install Wally from Google Play, an actionable product/distribution issue."
       }
     ]
   }
