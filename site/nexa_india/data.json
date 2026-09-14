@@ -5,39 +5,13 @@
     "url": "https://t.me/Nexa_India",
     "language": "Hindi",
     "lang_code": "hi",
-    "member_count": 352
+    "member_count": 350
   },
-  "generated_at": "2026-09-13T11:25:06.831528Z",
+  "generated_at": "2026-09-14T12:18:30.768155Z",
   "model": "claude-opus-5",
-  "window_start": "2026-03-26T14:09:19Z",
-  "window_end": "2026-09-13T11:13:04Z",
+  "window_start": "2026-03-26T14:15:35Z",
+  "window_end": "2026-09-14T12:01:37Z",
   "messages": [
-    {
-      "id": 4064,
-      "date": "2026-03-26T14:09:19Z",
-      "sender_id": 2122365698,
-      "sender_name": "SINS KARI",
-      "text": "Searching 🔍",
-      "reply_to_id": null,
-      "link": "https://t.me/Nexa_India/4064",
-      "translation": "Searching 🔍",
-      "sentiment": "neutral",
-      "sentiment_score": 0.0,
-      "note": null
-    },
-    {
-      "id": 4065,
-      "date": "2026-03-26T14:10:47Z",
-      "sender_id": 2122365698,
-      "sender_name": "SINS KARI",
-      "text": "Season point window where is located",
-      "reply_to_id": null,
-      "link": "https://t.me/Nexa_India/4065",
-      "translation": "Season point window where is located",
-      "sentiment": "neutral",
-      "sentiment_score": 0.0,
-      "note": null
-    },
     {
       "id": 4066,
       "date": "2026-03-26T14:15:35Z",
@@ -74,7 +48,7 @@
       "link": "https://t.me/Nexa_India/4068",
       "translation": "Join official group",
       "sentiment": "neutral",
-      "sentiment_score": 0.0,
+      "sentiment_score": 0.1,
       "note": null
     },
     {
@@ -191,7 +165,7 @@
       "link": "https://t.me/Nexa_India/4110",
       "translation": "The new era has officially started and the first 50% of Nexa supply has been mined. Mining rewards reduced from 10,000,000 NEXA per block to 5,000,000 NEXA coins. \n\nNexa is a proof-of-work network and is following the same model as Bitcoin. The blockchain halves approximately every 4 years, or in the case of Nexa, every 1,050,000 blocks. \n\nThe next Nexa halving is projected to happen sometime in 2030 with the total supply reaching 75%, and the mining rewards halving to 2,500,000 NEXA coins. \n\nThe first block post-halving 👇 \nhttps://explorer.nexa.org/block-analysis/1050001",
       "sentiment": "positive",
-      "sentiment_score": 0.6,
+      "sentiment_score": 0.5,
       "note": null
     },
     {
@@ -204,7 +178,7 @@
       "link": "https://t.me/Nexa_India/4111",
       "translation": "Good morning Nexians ❤️",
       "sentiment": "positive",
-      "sentiment_score": 0.6,
+      "sentiment_score": 0.5,
       "note": null
     },
     {
@@ -217,7 +191,7 @@
       "link": "https://t.me/Nexa_India/4112",
       "translation": "Last hours to submit your artwork and participate in Halving Fest 2026 !!\n\nCreate your own artwork inspired by the NEXA halving\nUpload it to Niftyart.cash, remembering to include the tag \"Halving2026\"\nReply to NEXA's post on X ( https://x.com/NexaMoney/status/2046851526535131167 ) by pasting your artwork and tx ID, which you can retrieve on Niftyart or from your wallet\n\nThat's all. Good competition to all 🥳 Event ends on 1 May 2026 at 12:00 UTC",
       "sentiment": "positive",
-      "sentiment_score": 0.6,
+      "sentiment_score": 0.5,
       "note": null
     },
     {
@@ -230,7 +204,7 @@
       "link": "https://t.me/Nexa_India/4113",
       "translation": "🎉  Nexa and NiftyArtCash Halving Fest 2026 has officially concluded.\nThank you, everyone, for participating, for your great entries, and for the true halving vibes!\nThe team is evaluating the entries, and the winner will be announced in the coming week.",
       "sentiment": "positive",
-      "sentiment_score": 0.7,
+      "sentiment_score": 0.6,
       "note": null
     },
     {
@@ -295,7 +269,7 @@
       "link": "https://t.me/Nexa_India/4160",
       "translation": "Very well",
       "sentiment": "positive",
-      "sentiment_score": 0.4,
+      "sentiment_score": 0.3,
       "note": null
     },
     {
@@ -319,7 +293,7 @@
       "text": "Idea simple है: खुद catalyst बनो।\n\nहर दिन अपने किसी एक करीबी दोस्त को Nexa समझाओ और convince करो कि वह 1 billion Nexa long-term hold करे। फिर एक strong व्यक्ति को target करो जो 10 billion Nexa hold करने की क्षमता रखता हो।\n\nबस यही काम अगर community मिलकर करने लगे, तो supply धीरे-धीरे market से कम होती जाएगी और demand का pressure अपने आप दिखेगा।\n\nआप सिर्फ holder मत बनो।\nआप salesperson बनो।\nआप खुद exchange बनो।\nआप अपने circle में Nexa की ताकत फैलाओ।\n\nNexa की असली power community में है। अब सिर्फ बात करने का समय नहीं है, action लेने का समय है।\n\nहर आदमी एक आदमी को समझाए।\nहर city में team बने।\nहर दिन Nexa आगे बढ़े।\n\nLet’s make it happen.",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4254",
-      "translation": "The idea is simple: become the catalyst yourself.\n\nEvery day, explain Nexa to one of your close friends and convince him to hold 1 billion Nexa long-term. Then target one strong person who has the capacity to hold 10 billion Nexa.\n\nIf the community just starts doing this together, supply will gradually reduce from the market and the pressure of demand will show up on its own.\n\nDon't just be a holder.\nBe a salesperson.\nBe an exchange yourself.\nSpread the power of Nexa in your circle.\n\nNexa's real power is in the community. Now is not the time to just talk, it's time to take action.\n\nEvery person should convince one person.\nLet a team be formed in every city.\nLet Nexa move forward every day.\n\nLet's make it happen.",
+      "translation": "The idea is simple: become the catalyst yourself.\n\nEvery day, explain Nexa to one of your close friends and convince him to hold 1 billion Nexa long-term. Then target one strong individual who has the capacity to hold 10 billion Nexa.\n\nIf the community simply starts doing just this together, supply will gradually shrink from the market and the pressure of demand will show up on its own.\n\nDon't just be a holder.\nBe a salesperson.\nBe an exchange yourself.\nSpread Nexa's strength within your circle.\n\nNexa's real power is in the community. Now is not the time to just talk, it's the time to take action.\n\nLet every person convince one person.\nLet a team be formed in every city.\nLet Nexa move forward every day.\n\nLet's make it happen.",
       "sentiment": "positive",
       "sentiment_score": 0.8,
       "note": null
@@ -411,8 +385,8 @@
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4263",
       "translation": "Truth does not need promotion. It only needs to be lived",
-      "sentiment": "neutral",
-      "sentiment_score": 0.1,
+      "sentiment": "positive",
+      "sentiment_score": 0.3,
       "note": null
     },
     {
@@ -478,7 +452,7 @@
       "translation": "https://forum.nexa.org/t/important-notice-exbitron-is-shutting-down-permanently/1699",
       "sentiment": "neutral",
       "sentiment_score": -0.1,
-      "note": "Link title announces that the Exbitron exchange, which listed NEXA, is shutting down permanently."
+      "note": "Link to a notice that the Exbitron exchange is shutting down permanently — informational, no tone added."
     },
     {
       "id": 4301,
@@ -501,9 +475,9 @@
       "text": "📒 Monthly Development Updates: May 2026\n\nThere are many developments to review from May 2026. Still, a lot of attention is being given to preparing for the upcoming hard fork, testing, and cleanup efforts. \n\nTailstorm integration is currently the most critical work that requires time, patience, and testing. Alongside that, NexScript v1.1.0 was released, as well as continued work on LibNexaKotlin and wallet updates, with further developments happening in parallel.\n\nFind full development updates for May 2026, including details on preparations for the protocol upgrade, work on the Nexa explorer, the ecosystem, and more. 👇\n\nhttps://forum.nexa.org/t/monthly-development-updates-may-2026/1703",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4305",
-      "translation": "📒 Monthly Development Updates: May 2026\n\nThere are many developments to review from May 2026. Still, a lot of attention is being given to preparing for the upcoming hard fork, testing, and cleanup efforts. \n\nTailstorm integration is currently the most critical work that requires time, patience, and testing. Alongside that, NexScript v1.1.0 was released, as well as continued work on LibNexaKotlin and wallet updates, with further developments happening in parallel.\n\nFind full development updates for May 2026, including details on preparations for the protocol upgrade, work on the Nexa explorer, the ecosystem, and more. 👇\n\nhttps://forum.nexa.org/t/monthly-development-updates-may-2026/1703",
+      "translation": "📒 Monthly Development Updates: May 2026\n\nThere are many developments to review from May 2026. Still, a lot of attention is being given to preparing for the upcoming hard fork, testing, and cleanup efforts.\n\nTailstorm integration is currently the most critical work that requires time, patience, and testing. Alongside that, NexScript v1.1.0 was released, as well as continued work on LibNexaKotlin and wallet updates, with further developments happening in parallel.\n\nFind full development updates for May 2026, including details on preparations for the protocol upgrade, work on the Nexa explorer, the ecosystem, and more. 👇\n\nhttps://forum.nexa.org/t/monthly-development-updates-may-2026/1703",
       "sentiment": "neutral",
-      "sentiment_score": 0.3,
+      "sentiment_score": 0.2,
       "note": null
     },
     {
@@ -542,7 +516,7 @@
       "link": "https://t.me/Nexa_India/4311",
       "translation": "📒 Nexa June Highlights: Strengthening the Foundations\n\nJune is a special month for Nexa, with its 4th Anniversary just a few days away. Nexa blockchain was launched on 21 June 2022 with the goal of maintaining the original vision of electronic cash for the whole planet. On the e 2026 - 8 PM UTC, the team will hold a Spaces on X with Nexa's founder and lead developer, @GAndrewStone, on air.\n\nEarlier this month, Nexa's solution architect, Steven, joined EvolvH3R to discuss Nexa's architecture and gaming in the \"Moving beyond decentralized gaming with Nexa blockchain\" webinar.\n\nThe team is happy to highlight community activities in @Nexa_India. The team recently shared the \"Nexa Bharat Yatra: Bihar Chapter\" event on social media, organized by India and Nepal ambassador Kashish Gupta. Building the future of digital cash in Bihar takes place at The Great Mithila, Madhubani, on 21 June 2026.\n\nhttps://forum.nexa.org/t/nexa-june-highlights-strengthening-the-foundations/1704",
       "sentiment": "positive",
-      "sentiment_score": 0.6,
+      "sentiment_score": 0.5,
       "note": null
     },
     {
@@ -566,9 +540,9 @@
       "text": "📒 Nexa 4-Year Anniversary X Spaces  \n\nClear your schedules and prepare for the long-anticipated celebration, live on X with the founder and lead developer, Andrew Stone (https://x.com/GAndrewStone).\n\n⌛️ 21 June 2026 — 8:00 PM UTC\n\nSet your reminders:\nhttps://x.com/i/spaces/1vJpPPnkqyaJE",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4314",
-      "translation": "📒 Nexa 4-Year Anniversary X Spaces  \n\nClear your schedules and prepare for the long-anticipated celebration, live on X with the founder and lead developer, Andrew Stone (https://x.com/GAndrewStone).\n\n⌛️ 21 June 2026 — 8:00 PM UTC\n\nSet your reminders:\nhttps://x.com/i/spaces/1vJpPPnkqyaJE",
+      "translation": "📒 Nexa 4-Year Anniversary X Spaces\n\nClear your schedules and prepare for the long-anticipated celebration, live on X with the founder and lead developer, Andrew Stone (https://x.com/GAndrewStone).\n\n⌛️ 21 June 2026 — 8:00 PM UTC\n\nSet your reminders:\nhttps://x.com/i/spaces/1vJpPPnkqyaJE",
       "sentiment": "positive",
-      "sentiment_score": 0.6,
+      "sentiment_score": 0.5,
       "note": null
     },
     {
@@ -595,7 +569,7 @@
       "translation": "/emission",
       "sentiment": "neutral",
       "sentiment_score": 0.0,
-      "note": "A bot command that pulls up Nexa's coin emission info."
+      "note": "Bot command that pulls up Nexa's coin emission info."
     },
     {
       "id": 4329,
@@ -608,7 +582,7 @@
       "translation": "/tokenomics",
       "sentiment": "neutral",
       "sentiment_score": 0.0,
-      "note": "Bot command displaying Nexa tokenomics info."
+      "note": "Bot command that pulls up Nexa's tokenomics info."
     },
     {
       "id": 4331,
@@ -618,9 +592,9 @@
       "text": "📒 LibNexaKotlin 0.5.68: Wallet Stability Release\n\nA new release of LibNexaKotlin 0.5.68 with wallet stability improvements, and a call for developers to upgrade to the new version.\n\nLately, a lot of major work has been happening in this library, designed to make it easier to interact with the Nexa blockchain. \n\nSince the last update, there have been two more releases, 0.5.67 and 0.5.68, which improved the experience on iOS devices.\n\nRead more and find all the details in the Nexa Forum below. 👇\n\nhttps://forum.nexa.org/t/libnexakotlin-0-5-68-wallet-stability-release/1707",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4331",
-      "translation": "📒 LibNexaKotlin 0.5.68: Wallet Stability Release\n\nA new release of LibNexaKotlin 0.5.68 with wallet stability improvements, and a call for developers to upgrade to the new version.\n\nLately, a lot of major work has been happening in this library, designed to make it easier to interact with the Nexa blockchain. \n\nSince the last update, there have been two more releases, 0.5.67 and 0.5.68, which improved the experience on iOS devices.\n\nRead more and find all the details in the Nexa Forum below. 👇\n\nhttps://forum.nexa.org/t/libnexakotlin-0-5-68-wallet-stability-release/1707",
-      "sentiment": "positive",
-      "sentiment_score": 0.4,
+      "translation": "📒 LibNexaKotlin 0.5.68: Wallet Stability Release\n\nA new release of LibNexaKotlin 0.5.68 with wallet stability improvements, and a call for developers to upgrade to the new version.\n\nLately, a lot of major work has been happening in this library, designed to make it easier to interact with the Nexa blockchain.\n\nSince the last update, there have been two more releases, 0.5.67 and 0.5.68, which improved the experience on iOS devices.\n\nRead more and find all the details in the Nexa Forum below. 👇\n\nhttps://forum.nexa.org/t/libnexakotlin-0-5-68-wallet-stability-release/1707",
+      "sentiment": "neutral",
+      "sentiment_score": 0.3,
       "note": null
     },
     {
@@ -631,9 +605,9 @@
       "text": "The core developers from the Nexa team are integrating Tailstorm, a block-DAG-based design based on the Tailstorm research. The Tailstorm model represents a significant architectural evolution, moving away from a linear blockchain toward a directed acyclic graph (DAG) of subblocks, while preserving a conventional chain of “summary blocks.” Merging the summary-block model with the traditional chain allows Nexa to take advantage of both approaches while adopting more advanced mining and block-propagation mechanisms.\n\nFind the link to the article below 👇\n\nhttps://x.com/NexaMoney/status/2070771625239200024",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4332",
-      "translation": "The core developers from the Nexa team are integrating Tailstorm, a block-DAG-based design based on the Tailstorm research. The Tailstorm model represents a significant architectural evolution, moving away from a linear blockchain toward a directed acyclic graph (DAG) of subblocks, while preserving a conventional chain of \"summary blocks.\" Merging the summary-block model with the traditional chain allows Nexa to take advantage of both approaches while adopting more advanced mining and block-propagation mechanisms.\n\nFind the link to the article below 👇\n\nhttps://x.com/NexaMoney/status/2070771625239200024",
-      "sentiment": "positive",
-      "sentiment_score": 0.4,
+      "translation": "The core developers from the Nexa team are integrating Tailstorm, a block-DAG-based design based on the Tailstorm research. The Tailstorm model represents a significant architectural evolution, moving away from a linear blockchain toward a directed acyclic graph (DAG) of subblocks, while preserving a conventional chain of “summary blocks.” Merging the summary-block model with the traditional chain allows Nexa to take advantage of both approaches while adopting more advanced mining and block-propagation mechanisms.\n\nFind the link to the article below 👇\n\nhttps://x.com/NexaMoney/status/2070771625239200024",
+      "sentiment": "neutral",
+      "sentiment_score": 0.3,
       "note": null
     },
     {
@@ -657,7 +631,7 @@
       "text": "Rethinking PoW and Understanding Nexa’s Architecture with President Andrew Clifford\n\nJoin Nexa x EvolvH3R for an insightful webinar on Proof-of-Work, where President Andrew Clifford will break down the strengths of the protocol and share deeper insights into Nexa’s architecture. 1 July 2026 9:00 AM UTC Find more details below.\n\nhttps://x.com/evolvh3r/status/2068847073923912190",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4335",
-      "translation": "Rethinking PoW and Understanding Nexa's Architecture with President Andrew Clifford\n\nJoin Nexa x EvolvH3R for an insightful webinar on Proof-of-Work, where President Andrew Clifford will break down the strengths of the protocol and share deeper insights into Nexa's architecture. 1 July 2026 9:00 AM UTC Find more details below.\n\nhttps://x.com/evolvh3r/status/2068847073923912190",
+      "translation": "Rethinking PoW and Understanding Nexa’s Architecture with President Andrew Clifford\n\nJoin Nexa x EvolvH3R for an insightful webinar on Proof-of-Work, where President Andrew Clifford will break down the strengths of the protocol and share deeper insights into Nexa’s architecture. 1 July 2026 9:00 AM UTC Find more details below.\n\nhttps://x.com/evolvh3r/status/2068847073923912190",
       "sentiment": "positive",
       "sentiment_score": 0.4,
       "note": null
@@ -722,7 +696,7 @@
       "text": "Moving Beyond Centralized Gaming: Nexa Blockchain with Steven van den Meiracker\n\nIn a recent webinar on gaming with Evolvher (https://x.com/EvolvH3R), Nexa’s Senior Development and Solution Architect, Steven van den Meiracker, presented Nexa Blockchain, its architecture and strengths, and highlighted how it can be integrated with the gaming ecosystem and used as infrastructure to explore digital assets beyond gaming.\n\nIn-game assets can now truly belong to players, and that’s more than just a promise. Steven showcased a demo of a new on-chain card game, “Nexa Warriors”, which is currently in development.\n\nBeyond the gameplay experience, users will be able to trade game cards on marketplaces and use them in additional ways that are still being explored.\n\nFind and learn more in the Nexa Forum below.\n\nhttps://forum.nexa.org/t/moving-beyond-centralized-gaming-nexa-blockchain-with-steven-van-den-meiracker/1712",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4340",
-      "translation": "Moving Beyond Centralized Gaming: Nexa Blockchain with Steven van den Meiracker\n\nIn a recent webinar on gaming with Evolvher (https://x.com/EvolvH3R), Nexa’s Senior Development and Solution Architect, Steven van den Meiracker, presented Nexa Blockchain, its architecture and strengths, and highlighted how it can be integrated with the gaming ecosystem and used as infrastructure to explore digital assets beyond gaming.\n\nIn-game assets can now truly belong to players, and that’s more than just a promise. Steven showcased a demo of a new on-chain card game, “Nexa Warriors”, which is currently in development.\n\nBeyond the gameplay experience, users will be able to trade game cards on marketplaces and use them in additional ways that are still being explored.\n\nFind and learn more in the Nexa Forum below.\n\nhttps://forum.nexa.org/t/moving-beyond-centralized-gaming-nexa-blockchain-with-steven-van-den-meiracker/1712",
+      "translation": "Moving Beyond Centralized Gaming: Nexa Blockchain with Steven van den Meiracker\n\nIn a recent webinar on gaming with Evolvher (https://x.com/EvolvH3R), Nexa's Senior Development and Solution Architect, Steven van den Meiracker, presented Nexa Blockchain, its architecture and strengths, and highlighted how it can be integrated with the gaming ecosystem and used as infrastructure to explore digital assets beyond gaming.\n\nIn-game assets can now truly belong to players, and that's more than just a promise. Steven showcased a demo of a new on-chain card game, \"Nexa Warriors\", which is currently in development.\n\nBeyond the gameplay experience, users will be able to trade game cards on marketplaces and use them in additional ways that are still being explored.\n\nFind and learn more in the Nexa Forum below.\n\nhttps://forum.nexa.org/t/moving-beyond-centralized-gaming-nexa-blockchain-with-steven-van-den-meiracker/1712",
       "sentiment": "positive",
       "sentiment_score": 0.5,
       "note": null
@@ -761,7 +735,7 @@
       "text": "NexScript Playground Upgrades\n\nWe are pleased to announce that the NexScript Playground has been upgraded with major improvements. \n\nA full code editor has been added with five example contracts to help developers get started with coding advanced transactions. \n\nThe playground is connected to the network, and you can write, test, and interact with the contracts straight from the website.\n\nFind more detailed information in the Nexa Forum below. 👇\n\nhttps://forum.nexa.org/t/nexscript-playground-upgrades/1716",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4354",
-      "translation": "NexScript Playground Upgrades\n\nWe are pleased to announce that the NexScript Playground has been upgraded with major improvements. \n\nA full code editor has been added with five example contracts to help developers get started with coding advanced transactions. \n\nThe playground is connected to the network, and you can write, test, and interact with the contracts straight from the website.\n\nFind more detailed information in the Nexa Forum below. 👇\n\nhttps://forum.nexa.org/t/nexscript-playground-upgrades/1716",
+      "translation": "NexScript Playground Upgrades\n\nWe are pleased to announce that the NexScript Playground has been upgraded with major improvements.\n\nA full code editor has been added with five example contracts to help developers get started with coding advanced transactions.\n\nThe playground is connected to the network, and you can write, test, and interact with the contracts straight from the website.\n\nFind more detailed information in the Nexa Forum below. 👇\n\nhttps://forum.nexa.org/t/nexscript-playground-upgrades/1716",
       "sentiment": "positive",
       "sentiment_score": 0.5,
       "note": null
@@ -777,7 +751,7 @@
       "translation": "If you don't want to be kicked out of the channel, you'll have to send the sequence of numbers you're seeing.",
       "sentiment": "neutral",
       "sentiment_score": -0.1,
-      "note": "Refers to a CAPTCHA/anti-bot verification step for new members."
+      "note": "Anti-bot CAPTCHA instruction for the group."
     },
     {
       "id": 4378,
@@ -787,7 +761,7 @@
       "text": "नेक्सा एक्सप्लोरर: नए फीचर्स\n\nनेक्सा एक्सप्लोरर में अभी-अभी सुधारों का एक और दौर हुआ है। मेन पेज को रिफ्रेश किया गया है, और ट्रांज़ैक्शन व्यू को फ़ोन पर ठीक से पढ़ने के लिए फिर से बनाया गया है, इसलिए अब किसी भी डिवाइस पर इनपुट और आउटपुट साफ़ दिखते हैं।\n\nएक और खास बात है सेल्फ-होस्टिंग। थोड़ी टेक्निकल जानकारी वाला कोई भी व्यक्ति अब एक्सप्लोरर को अपनी मशीन पर चला सकता है, और लोकल इंस्टेंस सेट अप करने के लिए बस एक कमांड की ज़रूरत होती है।\n\nकुछ छोटी-छोटी चीज़ें भी हैं जो रोज़ाना इस्तेमाल में मायने रखती हैं: टोकन अथॉरिटीज़ टैब में सुधार, बेहतर विज़ुअलाइज़ेशन, और नेक्सा फ़न, वह पेज जो ब्लॉकचेन पर ऐतिहासिक और दिलचस्प घटनाओं को दिखाता है।\n\nपूरा अपडेट नीचे नेक्सा फ़ोरम में देखें। 👇\n\nhttps://forum.nexa.org/t/nexa-explorer-new-features/1719",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4378",
-      "translation": "Nexa Explorer: New Features\n\nThe Nexa Explorer has just gone through another round of improvements. The main page has been refreshed, and the transaction view has been rebuilt to read properly on phones, so inputs and outputs now display clearly on any device.\n\nAnother notable point is self-hosting. Anyone with a bit of technical knowledge can now run the explorer on their own machine, and setting up a local instance takes just one command.\n\nThere are also some smaller things that matter for daily use: improvements to the token authorities tab, better visualization, and Nexa Fun, the page that shows historic and interesting events on the blockchain.\n\nSee the full update in the Nexa Forum below. 👇\n\nhttps://forum.nexa.org/t/nexa-explorer-new-features/1719",
+      "translation": "Nexa Explorer: New Features\n\nThe Nexa Explorer has just gone through another round of improvements. The main page has been refreshed, and the transaction view has been rebuilt to read properly on phones, so inputs and outputs now display clearly on any device.\n\nAnother highlight is self-hosting. Anyone with a bit of technical knowledge can now run the explorer on their own machine, and setting up a local instance takes just one command.\n\nThere are also some smaller things that matter in daily use: improvements to the Token Authorities tab, better visualization, and Nexa Fun, the page that shows historic and interesting events on the blockchain.\n\nSee the full update in the Nexa Forum below. 👇\n\nhttps://forum.nexa.org/t/nexa-explorer-new-features/1719",
       "sentiment": "positive",
       "sentiment_score": 0.45,
       "note": null
@@ -800,7 +774,7 @@
       "text": "मंथली डेवलपमेंट अपडेट्स: जून 2026\n\nजून कंसोलिडेशन और कंस्ट्रक्शन का महीना था। सबसे बड़ा काम अभी भी दूसरा हार्ड फोर्क है, जिसमें लॉकिंग और वैलिडेशन पर बड़े पैमाने पर फिर से काम किया गया है। इसे छोटे, रिव्यू किए जा सकने वाले हिस्सों में बांटा जा रहा है जो एक-एक करके पूरे किए जा रहे हैं।\n\nइसके साथ ही, ब्लॉक एक्सप्लोरर का अब तक का सबसे बिज़ी महीना रहा, नेक्सा वॉरियर्स कॉन्ट्रैक्ट सूट के साथ स्मार्ट-कॉन्ट्रैक्ट टूलिंग को उसकी लिमिट तक बढ़ाया गया, और टाइम-लॉक वॉल्ट्स लगभग पूरे होने वाले थे।\n\nये सभी अपडेट्स, ज़्यादा डिटेल्ड जानकारी के साथ, नीचे जून मंथली डेवलपमेंट अपडेट में मिल सकते हैं। 👇\n\nhttps://forum.nexa.org/t/monthly-development-updates-june-2026/1721",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4383",
-      "translation": "Monthly Development Updates: June 2026\n\nJune was a month of consolidation and construction. The biggest work is still the second hard fork, which has involved large-scale rework on locking and validation. It is being broken down into smaller, reviewable pieces that are being completed one by one.\n\nAlongside that, it was the block explorer's busiest month so far, smart-contract tooling was pushed to its limits with the Nexa Warriors contract suite, and time-lock vaults were nearly complete.\n\nAll of these updates, with more detailed information, can be found in the June monthly development update below. 👇\n\nhttps://forum.nexa.org/t/monthly-development-updates-june-2026/1721",
+      "translation": "Monthly Development Updates: June 2026\n\nJune was a month of consolidation and construction. The biggest job is still the second hard fork, with extensive rework on locking and validation. It's being broken down into small, reviewable pieces that are being completed one by one.\n\nAlong with that, it was the block explorer's busiest month so far, smart-contract tooling was pushed to its limits with the Nexa Warriors contract suite, and time-lock vaults were close to completion.\n\nAll these updates, with more detailed information, can be found in the June Monthly Development Update below. 👇\n\nhttps://forum.nexa.org/t/monthly-development-updates-june-2026/1721",
       "sentiment": "positive",
       "sentiment_score": 0.4,
       "note": null
@@ -826,7 +800,7 @@
       "text": "एंड्रयू स्टोन, एंड्रिया सुइसानी और डेविड थिबोडो के साथ नेक्सा की चौथी एनिवर्सरी स्पेस\n\nचार साल पहले, नेक्सा कुछ लोगों के एक छोटे ग्रुप, एक बहुत बड़े टेक्निकल विज़न और इस विश्वास के साथ लॉन्च हुआ था कि स्केलेबल पीयर-टू-पीयर इलेक्ट्रॉनिक कैश को और आगे ले जाया जा सकता है।\n\nतब से, नेक्सा बदलते मार्केट के हालात, टेक्निकल चुनौतियों, बड़े इंफ्रास्ट्रक्चर डेवलपमेंट, नए एप्लिकेशन, कॉन्फ्रेंस, इकोसिस्टम ग्रोथ और अब अपनी पहली हाफिंग के ज़रिए आगे बढ़ा है।\n\nचार साल एक अहम पड़ाव है, खासकर ऐसी इंडस्ट्री में जहाँ प्रोजेक्ट, टेक्नोलॉजी और पूरी कहानियाँ बहुत तेज़ी से आ और जा सकती हैं।\n\nएनिवर्सरी मनाने के लिए, टीम एक लाइव स्पेस के लिए एक साथ आई ताकि इस सफ़र को देखा जा सके, सीखे गए सबक पर चर्चा की जा सके, यह पता लगाया जा सके कि अभी क्या बन रहा है, और यह सोचा जा सके कि नेक्सा अपने पाँचवें साल में किस दिशा में आगे बढ़ेगा। इवेंट को मॉडरेट करने के लिए डॉन अलुकार्ड का खास धन्यवाद।\n\nhttps://forum.nexa.org/t/nexa-4th-anniversary-spaces-with-andrew-stone-andrea-suisani-and-david-thibodeau/1722",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4385",
-      "translation": "Nexa's 4th Anniversary Spaces with Andrew Stone, Andrea Suisani and David Thibodeau\n\nFour years ago, Nexa launched with a small group of people, a very large technical vision, and the belief that scalable peer-to-peer electronic cash could be taken further.\n\nSince then, Nexa has moved through changing market conditions, technical challenges, major infrastructure developments, new applications, conferences, ecosystem growth, and now its first halving.\n\nFour years is an important milestone, especially in an industry where projects, technologies and entire narratives can come and go very quickly.\n\nTo celebrate the anniversary, the team came together for a live Space to look back on the journey, discuss lessons learned, find out what is being built right now, and consider where Nexa is heading in its fifth year. Special thanks to Don Alucard for moderating the event.\n\nhttps://forum.nexa.org/t/nexa-4th-anniversary-spaces-with-andrew-stone-andrea-suisani-and-david-thibodeau/1722",
+      "translation": "Nexa's 4th Anniversary Spaces with Andrew Stone, Andrea Suisani and David Thibodeau\n\nFour years ago, Nexa launched with a small group of people, a very big technical vision, and the belief that scalable peer-to-peer electronic cash could be taken further.\n\nSince then, Nexa has moved through changing market conditions, technical challenges, major infrastructure development, new applications, conferences, ecosystem growth, and now its first halving.\n\nFour years is an important milestone, especially in an industry where projects, technologies and whole narratives can come and go very quickly.\n\nTo celebrate the anniversary, the team came together for a live Space to look back at this journey, discuss the lessons learned, find out what is being built right now, and think about where Nexa is heading in its fifth year. Special thanks to Don Alucard for moderating the event.\n\nhttps://forum.nexa.org/t/nexa-4th-anniversary-spaces-with-andrew-stone-andrea-suisani-and-david-thibodeau/1722",
       "sentiment": "positive",
       "sentiment_score": 0.55,
       "note": null
@@ -839,7 +813,7 @@
       "text": "नेक्सा आगे की सोच रहा है और आने वाले कल के लिए सॉल्यूशन बना रहा है, एक ऐसा सुरक्षित इंटरनेट जिसका हर कोई हकदार है। ब्लॉकचेन सिर्फ़ पैसे से कहीं ज़्यादा हैं; वे डिजिटल पहचान भी देते हैं जो आपको ऑनलाइन दिखा सकती हैं और थर्ड पार्टी के बजाय आपकी हो सकती हैं।\n\nhttps://x.com/NexaMoney/status/2081107219932975266",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4386",
-      "translation": "Nexa is thinking ahead and building solutions for tomorrow, a secure internet that everyone deserves. Blockchains are much more than just money; they also provide digital identity that can represent you online and can belong to you instead of a third party.\n\nhttps://x.com/NexaMoney/status/2081107219932975266",
+      "translation": "Nexa is thinking ahead and building solutions for tomorrow, a secure internet that everyone deserves. Blockchains are much more than just money; they also provide digital identity that can represent you online and can be yours instead of a third party's.\n\nhttps://x.com/NexaMoney/status/2081107219932975266",
       "sentiment": "positive",
       "sentiment_score": 0.5,
       "note": null
@@ -865,9 +839,9 @@
       "text": "नेक्सा हार्डवेयर क्यों बनाता है\n\nसोचिए एक माइक्रोचिप जो आपके सॉफ्टवेयर नोड जैसा ही काम कर सके, लेकिन ज़्यादा तेज़ हो, ज़्यादा भरोसेमंद हो, कम एनर्जी इस्तेमाल करे, और बहुत कम खर्च में बनाया जा सके। यह कोई दूर का सपना नहीं है, बल्कि नेक्सा सालों से इसी दिशा में काम कर रहा है।\n\nनेक्सा के चीफ साइंटिस्ट, डॉ. पीटर रिज़ुन ने ब्लिट्ज़ डिज़ाइन किया, यह एक ऐसा हार्डवेयर है जो डिजिटल सिग्नेचर को वेरिफाई करता है और क्रिप्टोकरेंसी को स्केल करने में आने वाली बड़ी कंप्यूट रुकावट को दूर करता है।\n\nहार्डवेयर एक्सेलरेशन के फ़ायदे को समझने के लिए, हमें सबसे पहले उस समय पर वापस जाना होगा जब पहला बिटकॉइन ब्लॉक माइन किया गया था। तब से, टेक्नोलॉजी में 1,000,000 गुना से ज़्यादा सुधार हुआ है, और क्रिप्टोकरेंसी को स्केल करने में भी इतना ही सुधार किया जा सकता है।\n\nपूरा आर्टिकल नीचे नेक्सा फ़ोरम में पढ़ें। 👇\n\nhttps://forum.nexa.org/t/why-nexa-builds-hardware/1723",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4388",
-      "translation": "Why Nexa Builds Hardware\n\nImagine a microchip that can do the same job as your software node, but faster, more reliable, using less energy, and buildable at a much lower cost. This is not some distant dream; Nexa has been working in this direction for years.\n\nNexa's Chief Scientist, Dr. Peter Rizun, designed Blitz, a piece of hardware that verifies digital signatures and removes the major compute bottleneck in scaling cryptocurrency.\n\nTo understand the benefit of hardware acceleration, we first have to go back to the time when the first Bitcoin block was mined. Since then, technology has improved by more than 1,000,000 times, and cryptocurrency scaling can be improved by just as much.\n\nRead the full article in the Nexa Forum below. 👇\n\nhttps://forum.nexa.org/t/why-nexa-builds-hardware/1723",
+      "translation": "Why Nexa Builds Hardware\n\nImagine a microchip that could do the same job as your software node, but faster, more reliable, using less energy, and buildable at a much lower cost. This is not some distant dream — Nexa has been working in this direction for years.\n\nNexa's Chief Scientist, Dr. Peter Rizun, designed Blitz, a piece of hardware that verifies digital signatures and removes the big compute bottleneck in scaling cryptocurrency.\n\nTo understand the benefit of hardware acceleration, we first have to go back to the time when the first Bitcoin block was mined. Since then, technology has improved by more than 1,000,000x, and cryptocurrency scaling can be improved by just as much.\n\nRead the full article in the Nexa Forum below. 👇\n\nhttps://forum.nexa.org/t/why-nexa-builds-hardware/1723",
       "sentiment": "positive",
-      "sentiment_score": 0.55,
+      "sentiment_score": 0.5,
       "note": null
     },
     {
@@ -878,9 +852,9 @@
       "text": "वैली वॉलेट: पीयर-टू-पीयर ऑफ़र\n\nवैली वॉलेट में काफ़ी समय से एक बहुत ही खास फ़ीचर रहा है, और अब इसे रिव्यू करने का समय आ गया है। पीयर-टू-पीयर ट्रेड अब सीधे वैली में किए जा सकते हैं, जिसमें नेक्सा कॉइन को टोकन या NFT के लिए एक्सचेंज किया जा सकता है।\n\nऔर पढ़ें:\n\nhttps://forum.nexa.org/t/wally-wallet-peer-to-peer-offers/1726",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4389",
-      "translation": "Wally Wallet: Peer-to-Peer Offers\n\nWally Wallet has had a very special feature for quite a while, and now it's time to review it. Peer-to-peer trades can now be done directly in Wally, exchanging Nexa coins for tokens or NFTs.\n\nRead more:\n\nhttps://forum.nexa.org/t/wally-wallet-peer-to-peer-offers/1726",
+      "translation": "Wally Wallet: Peer-to-Peer Offers\n\nWally Wallet has had a very special feature for quite a while now, and it's time to review it. Peer-to-peer trades can now be done directly in Wally, exchanging Nexa coins for tokens or NFTs.\n\nRead more:\n\nhttps://forum.nexa.org/t/wally-wallet-peer-to-peer-offers/1726",
       "sentiment": "positive",
-      "sentiment_score": 0.45,
+      "sentiment_score": 0.4,
       "note": null
     },
     {
@@ -891,9 +865,9 @@
       "text": "नेक्सा मंथली न्यूज़लेटर जुलाई 2026: हार्डवेयर एक्सेलरेशन\n\nजुलाई को हार्डवेयर एक्सेलरेशन के साथ हाईलाइट करना इससे ज़्यादा एक्साइटिंग नहीं हो सकता। लंबे समय तक रिसर्च, टेस्टिंग और डेवलपमेंट के बाद, ब्लिट्ज़ प्रोजेक्ट एक साथ आ रहा है, और टीम ऐसे आर्टिकल्स की एक सीरीज़ पब्लिश करने का इंतज़ार कर रही है जो इसके पीछे की टेक्नोलॉजी को मोटिवेट और एक्सप्लेन करेंगे। इस महीने हमने उस सीरीज़ की शुरुआत इस आर्टिकल से की कि नेक्सा हार्डवेयर क्यों बनाता है।\n\nनेक्सा की 4th एनिवर्सरी स्पेसेस रीकैप का पब्लिकेशन भी कम इंपॉर्टेंट नहीं था, जिसमें लीड डेवलपर ने इस बारे में इनसाइट्स दीं कि प्रोजेक्ट कहाँ जा रहा है, टेलस्टॉर्म जैसे कोर ब्लॉकचेन इम्प्रूवमेंट्स कैसे प्रोग्रेस कर रहे हैं, और भी बहुत कुछ।\n\nइनके साथ, कवर करने के लिए और भी बहुत कुछ है: 2026 और 2027 के लिए एक अपडेटेड नेक्सा रोडमैप, नए रिलीज़ हुए फीचर्स, अपडेटेड एक्सप्लोरर, वैली वॉलेट पैच, और बाकी सब कुछ नीचे रीकैप किया गया है।\n\nपूरा न्यूज़लेटर नीचे नेक्सा फोरम में देखें। 👇\n\nhttps://forum.nexa.org/t/nexa-monthly-newsletter-july-2026-hardware-acceleration/1728",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4390",
-      "translation": "Nexa Monthly Newsletter July 2026: Hardware Acceleration\n\nHighlighting July with hardware acceleration couldn't be more exciting. After a long period of research, testing and development, the Blitz project is coming together, and the team is looking forward to publishing a series of articles that will motivate and explain the technology behind it. This month we kicked off that series with the article on why Nexa builds hardware.\n\nNo less important was the publication of the recap of Nexa's 4th anniversary Spaces, in which the lead developer gave insights into where the project is heading, how core blockchain improvements like Tailstorm are progressing, and much more.\n\nAlong with these, there is much more to cover: an updated Nexa roadmap for 2026 and 2027, newly released features, an updated explorer, Wally Wallet patches, and everything else is recapped below.\n\nSee the full newsletter in the Nexa forum below. 👇\n\nhttps://forum.nexa.org/t/nexa-monthly-newsletter-july-2026-hardware-acceleration/1728",
+      "translation": "Nexa Monthly Newsletter July 2026: Hardware Acceleration\n\nJuly couldn't be more exciting to highlight with hardware acceleration. After long research, testing and development, the Blitz project is coming together, and the team is looking forward to publishing a series of articles that will motivate and explain the technology behind it. This month we started that series with the article on why Nexa builds hardware.\n\nNo less important was the publication of the recap of Nexa's 4th Anniversary Spaces, where the lead developer gave insights into where the project is heading, how core blockchain improvements like Tailstorm are progressing, and much more.\n\nAlong with these, there's plenty more to cover: an updated Nexa roadmap for 2026 and 2027, newly released features, an updated explorer, a Wally Wallet patch, and everything else recapped below.\n\nSee the full newsletter in the Nexa forum below. 👇\n\nhttps://forum.nexa.org/t/nexa-monthly-newsletter-july-2026-hardware-acceleration/1728",
       "sentiment": "positive",
-      "sentiment_score": 0.6,
+      "sentiment_score": 0.55,
       "note": null
     },
     {
@@ -904,7 +878,7 @@
       "text": "प्रूफ़ ऑफ़ वर्क पर फिर से सोचना: एंड्रयू क्लिफ़र्ड के साथ नेक्सा के आर्किटेक्चर को समझना\n\nबिटकॉइन अनलिमिटेड के प्रेसिडेंट एंड्रयू क्लिफ़र्ड, प्रूफ़-ऑफ़-वर्क पर एक वेबिनार के लिए इवॉल्वH3r की डेनियल मैरी के साथ शामिल हुए, कि यह कहाँ से आया, और नेक्सा ने इसे आगे बढ़ाने के लिए क्या किया है।\n\nडेनियल के ब्लॉकचेन, लेयर वन, UTXOs, डीसेंट्रलाइज़ेशन और ब्लॉकचेन ट्राइलेमा की बुनियादी बातों से इंट्रोडक्शन के बाद, एंड्रयू ने उन कॉन्सेप्ट्स को लिया और उन्हें 1990 के दशक की शुरुआत में एंटी-स्पैम मैकेनिज़्म के तौर पर प्रूफ़-ऑफ़-वर्क की शुरुआत से लेकर बिटकॉइन माइनिंग और सिक्योरिटी में इसके रोल तक, और नेक्साPoW और इसके अगले एल्गोरिदम अपग्रेड के बाद नेक्सा की माइनिंग के बारे में यूज़र्स को क्या जानना चाहिए, इस पर एक काम करने वाली क्रिप्टोकरेंसी पर लागू किया।\n\nपूरी रिकॉर्डिंग और उनका प्रेजेंटेशन नीचे नेक्सा फ़ोरम में रीकैप किया गया है। 👇\n\nhttps://forum.nexa.org/t/rethinking-proof-of-work-understanding-nexas-architecture-with-andrew-clifford/1729",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4391",
-      "translation": "Rethinking Proof of Work: Understanding Nexa's Architecture with Andrew Clifford\n\nBitcoin Unlimited President Andrew Clifford joined EvolvH3r's Danielle Marie for a webinar on proof-of-work, where it came from, and what Nexa has done to take it further.\n\nAfter Danielle's introduction to the basics of blockchains, layer ones, UTXOs, decentralization and the blockchain trilemma, Andrew took those concepts and applied them to a working cryptocurrency, from the beginnings of proof-of-work as an anti-spam mechanism in the early 1990s, to its role in Bitcoin mining and security, and what users should know about Nexa's mining with NexaPoW and its next algorithm upgrade.\n\nThe full recording and their presentation are recapped in the Nexa Forum below. 👇\n\nhttps://forum.nexa.org/t/rethinking-proof-of-work-understanding-nexas-architecture-with-andrew-clifford/1729",
+      "translation": "Rethinking Proof of Work: Understanding Nexa's Architecture with Andrew Clifford\n\nAndrew Clifford, President of Bitcoin Unlimited, joined EvolvH3R's Danielle Marie for a webinar on proof-of-work: where it came from, and what Nexa has done to take it further.\n\nAfter Danielle's introduction to the basics of blockchain, layer one, UTXOs, decentralization and the blockchain trilemma, Andrew took those concepts and applied them to a working cryptocurrency, from the beginnings of proof-of-work as an anti-spam mechanism in the early 1990s, to its role in Bitcoin mining and security, to what users should know about Nexa's mining after NexaPoW and its next algorithm upgrade.\n\nThe full recording and his presentation are recapped in the Nexa Forum below. 👇\n\nhttps://forum.nexa.org/t/rethinking-proof-of-work-understanding-nexas-architecture-with-andrew-clifford/1729",
       "sentiment": "positive",
       "sentiment_score": 0.4,
       "note": null
@@ -930,7 +904,7 @@
       "text": "गुड मॉर्निंग नेक्सियंस 💛\n\nआज नॉइज़ी ट्यूजडे है और आप सोशल मीडिया पर NEXA के लिए अपना सारा प्यार शेयर कर सकते हैं।\n\nअपना लिंक हमारे साथ https://t.me/Nexa_Socials/11889 पर शेयर करें और कम्युनिटी लाइक और शेयर करेगी।\n\nआइए अपने प्रोजेक्ट को मशहूर करें 😎",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4397",
-      "translation": "Good morning Nexians 💛\n\nToday is Noisy Tuesday and you can share all your love for NEXA on social media.\n\nShare your link with us at https://t.me/Nexa_Socials/11889 and the community will like and share it.\n\nLet's make our project famous 😎",
+      "translation": "Good morning Nexians 💛\n\nToday is Noisy Tuesday and you can share all your love for NEXA on social media.\n\nShare your link with us at https://t.me/Nexa_Socials/11889 and the community will like and share.\n\nLet's make our project famous 😎",
       "sentiment": "positive",
       "sentiment_score": 0.7,
       "note": null
@@ -943,9 +917,9 @@
       "text": "📒 तारों से बना एक नोड\n\nइस सीरीज़ के पहले आर्टिकल में हमने बताया था कि नेक्सा हार्डवेयर क्यों बनाता है। प्रूफ़-ऑफ़-वर्क ने सत्रह साल एक ऐसे कैलकुलेशन को तेज़ करने में लगाए जो नेटवर्क की कैपेसिटी के लिए कुछ नहीं करता, और नेक्सा उसी फ़ोर्स को उस काम पर लगाना चाहता है जिसकी असल में एक मनी नेटवर्क को ज़रूरत होती है।\n\nयह आर्टिकल दिखाता है कि वह हार्डवेयर असल में क्या है, पैसे को वैलिडेट करने वाली एक मशीन, जो सबसे आसान इलेक्ट्रिकल पार्ट्स से बनी है।\n\nनेक्सा के चीफ़ साइंटिस्ट, डॉ. पीटर रिज़ुन, डिजिटल लॉजिक गेट्स के एक सर्किट के तौर पर एक नोड बना रहे हैं। यह देखने के लिए कि कोई सर्किट बिना किसी सॉफ़्टवेयर के पैसे के ट्रांज़ैक्शन को कैसे वैलिडेट कर सकता है, आपको सिर्फ़ छह कंपोनेंट्स को पूरा करना होगा।\n\nपूरा आर्टिकल नीचे नेक्सा फ़ोरम में पढ़ें। 👇\n\nhttps://forum.nexa.org/t/a-node-made-of-wires/1730",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4398",
-      "translation": "📒 A Node Made of Wires\n\nIn the first article of this series we explained why Nexa builds hardware. Proof-of-work spent seventeen years accelerating a calculation that does nothing for the network's capacity, and Nexa wants to put that same force to the work a money network actually needs.\n\nThis article shows what that hardware actually is: a machine that validates money, built from the simplest electrical parts.\n\nNexa's Chief Scientist, Dr. Peter Rizun, is building a node as a circuit of digital logic gates. To see how a circuit can validate a money transaction without any software at all, you only need to work through six components.\n\nRead the full article in the Nexa Forum below. 👇\n\nhttps://forum.nexa.org/t/a-node-made-of-wires/1730",
+      "translation": "📒 A Node Made of Wires\n\nIn the first article of this series we explained why Nexa builds hardware. Proof-of-work spent seventeen years speeding up a calculation that does nothing for the network's capacity, and Nexa wants to put that same force to the work a money network actually needs.\n\nThis article shows what that hardware actually is: a machine that validates money, built from the simplest electrical parts.\n\nNexa's Chief Scientist, Dr. Peter Rizun, is building a node as a circuit of digital logic gates. To see how a circuit can validate a money transaction without any software at all, you only need to work through six components.\n\nRead the full article in the Nexa Forum below. 👇\n\nhttps://forum.nexa.org/t/a-node-made-of-wires/1730",
       "sentiment": "positive",
-      "sentiment_score": 0.5,
+      "sentiment_score": 0.45,
       "note": null
     },
     {
@@ -956,9 +930,9 @@
       "text": "📒 Nexa अगस्त हाइलाइट्स: NexaPoW 2.0 पेश किया गया\n\nयह अगस्त रोमांचक है और हमारे लिए बहुत सारी पॉजिटिव खबरें लेकर आया है। Bitcoin Unlimited के प्रेसिडेंट, एंड्रयू क्लिफोर्ड ने NexaPoW एल्गोरिदम के नए 2.0 वर्शन के बारे में बताया है, जो Nexa ब्लॉकचेन में एक बुनियादी सुधार है।\n\nNexa के चीफ साइंटिस्ट डॉ. पीटर रिज़ुन और लीड डेवलपर एंड्रयू स्टोन NexaPoW को दो दिशाओं से आगे बढ़ा रहे हैं।\n\nपीटर रिज़ुन माइनिंग और सिग्नेचर वेरिफिकेशन के लिए FPGA-बेस्ड हार्डवेयर सॉल्यूशन बना रहे हैं, जिससे मुख्य फुल-नोड बॉटलनेक दूर हो रहा है।\n\nएंड्रयू स्टोन सॉफ्टवेयर साइड को आगे बढ़ा रहे हैं, Tailstorm को इंटीग्रेट कर रहे हैं और Nexa को हाइब्रिड DAG + ब्लॉकचेन आर्किटेक्चर की ओर बढ़ा रहे हैं।\n\nहाइब्रिड मॉडल का मतलब है कि Nexa ब्लॉकचेन ब्लॉक को माइन करने में तेज़ी लाएगा, ब्लॉक रिवॉर्ड का सही डिस्ट्रीब्यूशन पक्का करेगा, और ट्रांज़ैक्शन वेरिफिकेशन को तेज़ करेगा।\n​\nऔर पढ़ें :\nhttps://forum.nexa.org/t/nexa-august-highlights-nexapow-2-0-introduced/1731",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4401",
-      "translation": "📒 Nexa August Highlights: NexaPoW 2.0 Introduced\n\nThis August is exciting and has brought us a lot of positive news. Bitcoin Unlimited's President, Andrew Clifford, has explained the new 2.0 version of the NexaPoW algorithm, which is a fundamental improvement to the Nexa blockchain.\n\nNexa's Chief Scientist Dr. Peter Rizun and lead developer Andrew Stone are advancing NexaPoW from two directions.\n\nPeter Rizun is building an FPGA-based hardware solution for mining and signature verification, removing the main full-node bottleneck.\n\nAndrew Stone is advancing the software side, integrating Tailstorm and moving Nexa toward a hybrid DAG + blockchain architecture.\n\nThe hybrid model means the Nexa blockchain will speed up mining of blocks, ensure proper distribution of block rewards, and speed up transaction verification.\n\nRead more:\nhttps://forum.nexa.org/t/nexa-august-highlights-nexapow-2-0-introduced/1731",
+      "translation": "📒 Nexa August Highlights: NexaPoW 2.0 Introduced\n\nThis August is exciting and has brought us a lot of positive news. Bitcoin Unlimited's President, Andrew Clifford, has explained the new 2.0 version of the NexaPoW algorithm, a fundamental improvement to the Nexa blockchain.\n\nNexa's Chief Scientist Dr. Peter Rizun and lead developer Andrew Stone are pushing NexaPoW forward from two directions.\n\nPeter Rizun is building an FPGA-based hardware solution for mining and signature verification, removing the main full-node bottleneck.\n\nAndrew Stone is advancing the software side, integrating Tailstorm and moving Nexa toward a hybrid DAG + blockchain architecture.\n\nThe hybrid model means the Nexa blockchain will speed up block mining, ensure correct distribution of block rewards, and speed up transaction verification.\n\nRead more:\nhttps://forum.nexa.org/t/nexa-august-highlights-nexapow-2-0-introduced/1731",
       "sentiment": "positive",
-      "sentiment_score": 0.7,
+      "sentiment_score": 0.6,
       "note": null
     },
     {
@@ -972,7 +946,7 @@
       "translation": "Good morning 🌹🙏\nMay happiness, peace, health, prosperity and success come into your life.\nMay God's blessings be with you at every step.\nMay your day be very beautiful and auspicious. Good morning! 🌅🌺\n\n-Arun Dutta📞9817018154, 7018844599",
       "sentiment": "positive",
       "sentiment_score": 0.8,
-      "note": "Typical Indian WhatsApp/Telegram-style 'good morning' blessing forward, signed off with the sender's phone numbers."
+      "note": null
     },
     {
       "id": 4405,
@@ -982,7 +956,7 @@
       "text": "मंथली डेवलपमेंट अपडेट: जुलाई 2026\n\nटीम तेज़ी से काम कर रही है, और जुलाई 2026 की डेवलपमेंट न्यूज़ यह दिखाती है। इस महीने Nexa GitLab में तेरह रिपॉजिटरी से 100 से ज़्यादा मर्ज हुए।\n\nसबसे ज़रूरी डिलीवरी Tailstorm प्रोटोकॉल को मज़बूत करना है, जो अभी भी बड़े टेस्टिंग फ़ेज़ में है। मेननेट इंटीग्रेशन से पहले Tailstorm अपने आखिरी फ़ेज़ में पहुँच रहा है।\n\nब्लॉक एक्सप्लोरर, LibNexaKotlin में Hodl वॉल्ट्स इंटीग्रेशन, और वॉलेट और SDK इंफ्रास्ट्रक्चर के कई अपडेट पर लगातार काम चल रहा है। NexScript प्लेग्राउंड भी रोडमैप में प्लान किए गए अपडेट और रिलीज़ की ओर बढ़ रहा है।\n\nAI-असिस्टेड डेवलपमेंट के क्षेत्र में खास डेवलपमेंट हुए हैं, जहाँ टीम AI एजेंट्स के लिए स्किल्स और टूल्स इकट्ठा कर रही है। पहले, यह पब्लिकली अनाउंस किया गया था कि काम चल रहा है, और हम जल्द ही AI स्किल्स पर डेविड थिबोडो की प्रेजेंटेशन का रिव्यू करेंगे।\n\nपूरा मंथली डेवलपमेंट अपडेट नीचे पढ़ें। 👇\n\nhttps://forum.nexa.org/t/monthly-development-updates-july-2026/1732",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4405",
-      "translation": "Monthly Development Update: July 2026\n\nThe team is working at pace, and the development news for July 2026 shows it. This month there were over 100 merges across thirteen repositories in the Nexa GitLab.\n\nThe most important deliverable is hardening the Tailstorm protocol, which is still in a major testing phase. Tailstorm is reaching its final phase before mainnet integration.\n\nWork is continuing steadily on the block explorer, Hodl vaults integration in LibNexaKotlin, and several updates to wallet and SDK infrastructure. The NexScript Playground is also moving toward the updates and releases planned in the roadmap.\n\nThere have been notable developments in the area of AI-assisted development, where the team is assembling skills and tools for AI agents. It was previously announced publicly that work was underway, and we will soon review David Thibodeau's presentation on AI skills.\n\nRead the full monthly development update below. 👇\n\nhttps://forum.nexa.org/t/monthly-development-updates-july-2026/1732",
+      "translation": "Monthly Development Update: July 2026\n\nThe team is working at pace, and the July 2026 development news shows it. This month there were more than 100 merges from thirteen repositories in Nexa GitLab.\n\nThe most important deliverable is hardening the Tailstorm protocol, which is still in a major testing phase. Tailstorm is reaching its final phase before mainnet integration.\n\nWork continues steadily on the block explorer, Hodl vaults integration in LibNexaKotlin, and several updates to wallet and SDK infrastructure. The NexScript Playground is also moving toward the updates and releases planned in the roadmap.\n\nThere have been notable developments in the area of AI-assisted development, where the team is assembling skills and tools for AI agents. It was previously publicly announced that work was underway, and we will soon review David Thibodeau's presentation on AI skills.\n\nRead the full monthly development update below. 👇\n\nhttps://forum.nexa.org/t/monthly-development-updates-july-2026/1732",
       "sentiment": "positive",
       "sentiment_score": 0.5,
       "note": null
@@ -995,9 +969,9 @@
       "text": "सेलुलर ऑटोमेटन: नेक्सा के अगले प्रूफ-ऑफ-वर्क के अंदर\n\nनेक्सा प्रूफ-ऑफ-वर्क एल्गोरिदम में बदलाव पहले से ही प्लान किए जा रहे हैं और उन पर काम किया जा रहा है। नए NexaPoW 2.0 वर्शन के आने वाले अपग्रेड के तौर पर सेलुलर ऑटोमेटन का ज़िक्र पहले ही किया जा चुका है।\n\nबिटकॉइन अनलिमिटेड के प्रेसिडेंट, एंड्रयू क्लिफोर्ड ने भी नए नेक्सा एल्गोरिदम के एक हिस्से के बारे में थोड़ा बताया, और चीफ साइंटिस्ट डॉ. पीटर रिज़ुन ने एक आर्टिकल जारी किया जिसमें बताया गया कि नेक्सा माइनिंग एल्गोरिदम को रीडिज़ाइन क्यों कर रहा है।\n\nनए NexaPoW 2.0 एल्गोरिदम के साथ एक सेलुलर ऑटोमेटन पेश किया जाएगा जो किसी भी डेडिकेटेड ASIC को डिप्लॉय करने के लिए कॉन्फ़िगरेशन को बहुत बार और बिना किसी उम्मीद के बदल सकता है। माइनिंग एल्गोरिदम में यह बदलाव माइनिंग को असरदार तरीके से ASIC-रेसिस्टेंट और FPGAs तक लिमिटेड बना देगा।\n\nसेलुलर ऑटोमेटन कंप्यूटर साइंस की सबसे आसान मशीनों में से एक है और इसे पांच मिनट में समझा जा सकता है।\n\nhttps://forum.nexa.org/t/the-cellular-automaton-inside-nexas-next-proof-of-work/1733",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4407",
-      "translation": "Cellular Automaton: Inside Nexa's Next Proof-of-Work\n\nChanges to the Nexa proof-of-work algorithm are already being planned and worked on. The cellular automaton has already been mentioned as an upcoming upgrade in the new NexaPoW 2.0 version.\n\nBitcoin Unlimited's president, Andrew Clifford, also gave a glimpse of one part of the new Nexa algorithm, and chief scientist Dr. Peter Rizun released an article explaining why Nexa is redesigning the mining algorithm.\n\nAlong with the new NexaPoW 2.0 algorithm, a cellular automaton will be introduced that can change the configuration very frequently and unpredictably for deploying any dedicated ASIC. This change in the mining algorithm will effectively make mining ASIC-resistant and limited to FPGAs.\n\nThe cellular automaton is one of the simplest machines in computer science and can be understood in five minutes.\n\nhttps://forum.nexa.org/t/the-cellular-automaton-inside-nexas-next-proof-of-work/1733",
+      "translation": "Cellular Automaton: Inside Nexa's Next Proof-of-Work\n\nChanges to the Nexa proof-of-work algorithm are already being planned and worked on. The cellular automaton has already been mentioned as an upcoming upgrade in the new NexaPoW 2.0 version.\n\nBitcoin Unlimited's President, Andrew Clifford, also gave a little insight into one part of the new Nexa algorithm, and Chief Scientist Dr. Peter Rizun released an article explaining why Nexa is redesigning the mining algorithm.\n\nWith the new NexaPoW 2.0 algorithm, a cellular automaton will be introduced that can change the configuration for deploying any dedicated ASIC very frequently and unpredictably. This change to the mining algorithm will effectively make mining ASIC-resistant and limited to FPGAs.\n\nThe cellular automaton is one of the simplest machines in computer science and can be understood in five minutes.\n\nhttps://forum.nexa.org/t/the-cellular-automaton-inside-nexas-next-proof-of-work/1733",
       "sentiment": "positive",
-      "sentiment_score": 0.45,
+      "sentiment_score": 0.4,
       "note": null
     },
     {
@@ -1008,9 +982,9 @@
       "text": "नेक्सा जार: कॉइन-टोकनॉमिक्स समझाया गया\n\nज़्यादातर लोग इस मॉडल को पहले से जानते हैं, लेकिन हर कोई यह नहीं जानता कि नेक्सा जार बिटकॉइन के जार जैसा ही है।\n\nकभी सोचा है कि 21 ट्रिलियन क्यों और 21 मिलियन क्यों नहीं? क्योंकि डेसिमल पॉइंट को छह जगह खिसका दिया गया था, जिससे एक सिक्के के हिस्से पूरी यूनिट में बदल गए।\n\nसातोशी की कुल संख्या बिल्कुल बिटकॉइन के बराबर है: 2.1 क्वाड्रिलियन। नेक्सा बस आठ के बजाय दो डेसिमल रखता है, जो रोज़ाना इस्तेमाल के लिए कहीं ज़्यादा आसान है, ठीक वैसे ही जैसे हम फिएट को हैंडल करने के आदी हैं।\n\n21 ट्रिलियन NEXA मैक्सिमम सप्लाई है, और आम सहमति से यह 2138 तक पूरी तरह से माइन नहीं होगा।\n\nहर 1,050,000 ब्लॉक, लगभग चार साल में, माइनिंग रिवॉर्ड आधा कर दिया जाता है।\n\nपहली Nexa हाफिंग 1 मई 2026 को हुई, जब ब्लॉक रिवॉर्ड 10,000,000 से घटकर 5,000,000 NEXA हो गया।\n\nNexa एमिशन साइट नीचे कमेंट्स में है। 👇\n\nhttps://emission.nexa.org/",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4421",
-      "translation": "Nexa Jar: Coin Tokenomics Explained\n\nMost people already know this model, but not everyone knows that the Nexa jar is just like Bitcoin's jar.\n\nEver wondered why 21 trillion and not 21 million? Because the decimal point was shifted six places, turning fractions of a coin into whole units.\n\nThe total number of satoshis is exactly the same as Bitcoin's: 2.1 quadrillion. Nexa simply keeps two decimals instead of eight, which is far easier for everyday use, just like we're used to handling fiat.\n\n21 trillion NEXA is the maximum supply, and by general consensus it won't be fully mined until 2138.\n\nEvery 1,050,000 blocks, roughly four years, the mining reward is halved.\n\nThe first Nexa halving happened on 1 May 2026, when the block reward dropped from 10,000,000 to 5,000,000 NEXA.\n\nThe Nexa emission site is in the comments below. 👇\n\nhttps://emission.nexa.org/",
+      "translation": "Nexa Jar: Coin Tokenomics Explained\n\nMost people already know this model, but not everyone knows that the Nexa jar is just like Bitcoin's jar.\n\nEver wondered why 21 trillion and not 21 million? Because the decimal point was shifted six places, turning fractions of a coin into whole units.\n\nThe total number of satoshis is exactly the same as Bitcoin's: 2.1 quadrillion. Nexa simply keeps two decimals instead of eight, which is far more convenient for everyday use, just as we're used to handling fiat.\n\n21 trillion NEXA is the maximum supply, and by consensus it will not be fully mined until 2138.\n\nEvery 1,050,000 blocks, roughly four years, the mining reward is halved.\n\nThe first Nexa halving happened on 1 May 2026, when the block reward dropped from 10,000,000 to 5,000,000 NEXA.\n\nThe Nexa emission site is in the comments below. 👇\n\nhttps://emission.nexa.org/",
       "sentiment": "neutral",
-      "sentiment_score": 0.15,
+      "sentiment_score": 0.2,
       "note": null
     },
     {
@@ -1021,9 +995,9 @@
       "text": "नेक्सा: ब्लॉकचेन बनाने की कला\n\nइस बार, हम नेक्सा ब्लॉकचेन और इसके पीछे की बिटकॉइन अनलिमिटेड टीम की सोच, लक्ष्यों और विरासत पर फिर से बात करना चाहते हैं।\n\nयह सफ़र एक दशक से भी पहले शुरू हुआ था, जब जोशीले और जोशीले लोगों का एक छोटा ग्रुप बिटकॉइनटॉक फ़ोरम पर मिला था।\n\nतब से, बहुत कुछ हुआ है, एक लंबा सफ़र तय किया गया है, और बहुत अनुभव मिला है।\n\nयह आर्टिकल टेक्निकल नहीं होगा, और इंडस्ट्री के कुछ पुराने लोगों के लिए, यह कहानी जानी-पहचानी है।\n\nबाकी सभी के लिए, एक कप चाय लें और आइए देखें कि नेक्सा कहाँ से आ रहा है और इसे कौन बना रहा है। 👇\n\nhttps://forum.nexa.org/t/nexa-the-art-of-building-a-blockchain/1739",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4430",
-      "translation": "Nexa: The Art of Building a Blockchain\n\nThis time, we want to revisit the thinking, goals and legacy of the Nexa blockchain and the Bitcoin Unlimited team behind it.\n\nThe journey began more than a decade ago, when a small group of passionate and enthusiastic people met on the BitcoinTalk forum.\n\nSince then, a lot has happened, a long road has been travelled, and much experience has been gained.\n\nThis article won't be technical, and for some of the industry's old-timers, this story is familiar.\n\nFor everyone else, grab a cup of tea and let's see where Nexa comes from and who is building it. 👇\n\nhttps://forum.nexa.org/t/nexa-the-art-of-building-a-blockchain/1739",
+      "translation": "Nexa: The Art of Building a Blockchain\n\nThis time, we want to revisit the thinking, goals and legacy of the Nexa blockchain and the Bitcoin Unlimited team behind it.\n\nThis journey began more than a decade ago, when a small group of passionate, spirited people met on the BitcoinTalk forum.\n\nSince then, a lot has happened, a long road has been travelled, and much experience has been gained.\n\nThis article won't be technical, and for some old-timers of the industry, this story is familiar.\n\nFor everyone else, grab a cup of tea and let's look at where Nexa comes from and who is building it. 👇\n\nhttps://forum.nexa.org/t/nexa-the-art-of-building-a-blockchain/1739",
       "sentiment": "positive",
-      "sentiment_score": 0.4,
+      "sentiment_score": 0.5,
       "note": null
     },
     {
@@ -1050,7 +1024,7 @@
       "translation": "/antiraid 3h",
       "sentiment": "neutral",
       "sentiment_score": 0.0,
-      "note": "Bot command that temporarily locks the group against bot/spam raids."
+      "note": "Telegram moderation bot command enabling anti-raid (bot-flood) protection for 3 hours."
     },
     {
       "id": 4545,
@@ -1075,7 +1049,7 @@
       "link": "https://t.me/Nexa_India/4546",
       "translation": "let them come in",
       "sentiment": "neutral",
-      "sentiment_score": 0.05,
+      "sentiment_score": 0.1,
       "note": null
     },
     {
@@ -1138,9 +1112,9 @@
       "text": "Let them be India has less likely to have bot attacks, people are already busy in their life",
       "reply_to_id": 4558,
       "link": "https://t.me/Nexa_India/4671",
-      "translation": "Let them be, India has less likely to have bot attacks, people are already busy in their life",
+      "translation": "Let them be India has less likely to have bot attacks, people are already busy in their life",
       "sentiment": "neutral",
-      "sentiment_score": 0.05,
+      "sentiment_score": 0.1,
       "note": null
     },
     {
@@ -1151,9 +1125,9 @@
       "text": "नेक्सा मंथली न्यूज़लेटर अगस्त 2026: माइनिंग पज़ल का रीडिज़ाइन\n\nटीम लगातार काम कर रही है, और अगस्त में हमें आने वाले बड़े नेटवर्क बदलावों और नए एल्गोरिदम की खबरें मिलीं। नेक्साPoW 2.0 को कम्युनिटी के सामने पेश किया गया, और बिटकॉइन अनलिमिटेड के प्रेसिडेंट ने खुद नेक्सा के आर्किटेक्चर के बारे में बताया। नेटवर्क को अगले बड़े प्रोटोकॉल अपग्रेड के लिए तैयार किया जा रहा है, जिसमें लगातार डेवलपमेंट हो रहे हैं।\n\nअभी प्रोटोकॉल के लिए सबसे बड़ी चुनौतियों में से एक सिलिकॉन में नोड बनाना है। नेक्सा पहला पूरी तरह से काम करने वाला हार्डवेयर नोड प्रोटोटाइप कर रहा है जो ट्रांज़ैक्शन को वेरिफाई करने के लिए ज़रूरी डिजिटल सिग्नेचर को वैलिडेट कर सके। चिप अभी डेवलपमेंट में है और इसे टेस्ट, एडजस्ट और बेहतर किया जा रहा है।\n\nदूसरे एरिया में, इकोसिस्टम डेवलपमेंट उम्मीद के मुताबिक चल रहा है। कई प्रोजेक्ट अपने आखिरी डेवलपमेंट स्टेज में पहुँच रहे हैं और टेस्टिंग फेज़ में जा रहे हैं, जहाँ रिलीज़ से पहले उन्हें पॉलिश किया जाएगा।\n\nhttps://forum.nexa.org/t/nexa-monthly-newsletter-august-2026-redesign-of-the-mining-puzzle/1740",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4677",
-      "translation": "Nexa Monthly Newsletter August 2026: Redesign of the Mining Puzzle\n\nThe team is working non-stop, and in August we got news about the big network changes coming and the new algorithm. NexaPoW 2.0 was introduced to the community, and Bitcoin Unlimited's president himself explained Nexa's architecture. The network is being prepared for the next major protocol upgrade, with development happening continuously.\n\nRight now, one of the biggest challenges for the protocol is building the node in silicon. Nexa is prototyping the first fully functional hardware node that can validate the digital signatures needed to verify transactions. The chip is still in development and is being tested, adjusted and improved.\n\nIn other areas, ecosystem development is going as expected. Several projects are reaching their final development stages and moving into the testing phase, where they will be polished before release.\n\nhttps://forum.nexa.org/t/nexa-monthly-newsletter-august-2026-redesign-of-the-mining-puzzle/1740",
+      "translation": "Nexa Monthly Newsletter August 2026: Redesign of the Mining Puzzle\n\nThe team is working continuously, and in August we got news about the big network changes coming and about the new algorithm. NexaPoW 2.0 was presented to the community, and the President of Bitcoin Unlimited himself explained Nexa's architecture. The network is being prepared for the next major protocol upgrade, with development happening continuously.\n\nRight now, one of the biggest challenges for the protocol is building the node in silicon. Nexa is prototyping the first fully functional hardware node that can validate the digital signatures needed to verify transactions. The chip is still in development and is being tested, adjusted and improved.\n\nIn other areas, ecosystem development is progressing as expected. Several projects are reaching their final development stages and moving into the testing phase, where they will be polished before release.\n\nhttps://forum.nexa.org/t/nexa-monthly-newsletter-august-2026-redesign-of-the-mining-puzzle/1740",
       "sentiment": "positive",
-      "sentiment_score": 0.45,
+      "sentiment_score": 0.5,
       "note": null
     },
     {
@@ -1177,9 +1151,9 @@
       "text": "नेक्सा फुल-नोड 2.2.0.0: टेलस्टॉर्म से पहले आखिरी चेकपॉइंट\n\nहम नेक्सा फुल-नोड 2.2.0.0 पेश करते हुए बहुत खुश हैं, जो एक ज़रूरी पड़ाव है और आने वाले हार्ड-फोर्क से पहले आखिरी चेकपॉइंट है, जो मेननेट में टेलस्टॉर्म इंटीग्रेशन लाता है।\n\nयह एक तैयारी वाला रिलीज़ है जिसमें बड़े प्रोटोकॉल अपग्रेड के लिए नया टेलस्टॉर्म सोर्स कोड शामिल है, और यह नेटवर्क को अगले रिलीज़ के लिए तैयार करता है।\n\nहर कोई जो नेक्सा फुल-नोड चलाता है, चाहे वह स्टैंड-अलोन हो, किसी सर्विस के साथ इंटीग्रेटेड हो, या वॉलेट बैक-एंड के तौर पर हो: कृपया अपने क्लाइंट को लेटेस्ट वर्शन में अपडेट करें।\n\nअगर आपके पास फुल-नोड वॉलेट पर कोई एसेट है, तो हम आपको हमेशा सलाह देते हैं कि अपग्रेड इंस्टॉल करने से पहले अपनी wallet.dat फ़ाइल का सुरक्षित बैकअप ले लें।\n\nनीचे नेक्सा फ़ोरम में सभी डिटेल्स और डाउनलोड लिंक पाएं। 👇\n\nhttps://forum.nexa.org/t/nexa-full-node-2-2-0-0-the-final-checkpoint-before-the-tailstorm/1742",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4699",
-      "translation": "Nexa Full-Node 2.2.0.0: The Final Checkpoint Before Tailstorm\n\nWe are very happy to introduce Nexa Full-Node 2.2.0.0, an important milestone and the final checkpoint before the upcoming hard fork that brings the Tailstorm integration to mainnet.\n\nThis is a preparatory release that includes the new Tailstorm source code for the major protocol upgrade, and it readies the network for the next release.\n\nEveryone who runs a Nexa full-node, whether stand-alone, integrated with a service, or as a wallet back-end: please update your client to the latest version.\n\nIf you have any assets on a full-node wallet, we always advise you to make a safe backup of your wallet.dat file before installing the upgrade.\n\nFind all the details and download links in the Nexa forum below. 👇\n\nhttps://forum.nexa.org/t/nexa-full-node-2-2-0-0-the-final-checkpoint-before-the-tailstorm/1742",
+      "translation": "Nexa Full-Node 2.2.0.0: The Final Checkpoint Before Tailstorm\n\nWe are very happy to introduce Nexa Full-Node 2.2.0.0, an important milestone and the final checkpoint before the upcoming hard fork, which brings the Tailstorm integration to mainnet.\n\nThis is a preparatory release that includes the new Tailstorm source code for the major protocol upgrade, and it gets the network ready for the next release.\n\nEveryone who runs a Nexa full node, whether stand-alone, integrated with a service, or as a wallet back-end: please update your client to the latest version.\n\nIf you hold any assets on a full-node wallet, we always advise you to make a safe backup of your wallet.dat file before installing the upgrade.\n\nFind all the details and the download link in the Nexa forum below. 👇\n\nhttps://forum.nexa.org/t/nexa-full-node-2-2-0-0-the-final-checkpoint-before-the-tailstorm/1742",
       "sentiment": "positive",
-      "sentiment_score": 0.45,
+      "sentiment_score": 0.5,
       "note": null
     },
     {
@@ -1193,7 +1167,7 @@
       "translation": "https://prognoseliga-clubhaus.good-map-1085.chatgpt.site/ league starts in 30 min. 50 Euro get the winner.",
       "sentiment": "neutral",
       "sentiment_score": 0.0,
-      "note": "Looks like spam / a scam link posted in the group."
+      "note": "Looks like spam/scam link posted in the group."
     },
     {
       "id": 4734,
@@ -1203,7 +1177,7 @@
       "text": "आम सहमति के साथ बने रहें: Nexa Full-Node 2.2.0.0 में अपडेट करें\n\nNexa प्रोटोकॉल में सुधार के साथ आगे बढ़ रहा है, और हम सभी को सलाह देते हैं कि वे अपने नोड क्लाइंट को सबसे नए वर्शन में अपडेट करें।\n\nइस वर्शन में रोलिंग चेकपॉइंट शामिल हैं। एक बार जब कोई ब्लॉक चेन में 200 गहराई पर होता है, तो नोड उसे सेटल मार्क कर देता है। उस गहराई से यह पक्का हो जाता है, और उस पॉइंट के बाद कोई भी रीऑर्गेनाइज़ेशन रिजेक्ट कर दिया जाता है।\n\nएक्सचेंज और सर्विसेज़ के लिए इसका मतलब पक्का है: 200 कन्फर्मेशन के बाद, किसी ट्रांज़ैक्शन को रिवर्स नहीं किया जा सकता है।\n\nयह आने वाले हार्ड-फोर्क और टेलस्टॉर्म प्रोटोकॉल एक्टिवेशन से पहले का फ़ाइनल रिलीज़ भी है। आम सहमति के साथ बने रहना और अपने क्लाइंट को अपडेट करना ज़रूरी है। 👇\n\nhttps://nexa.org/node",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4734",
-      "translation": "Stay with consensus: Update to Nexa Full-Node 2.2.0.0\n\nNexa is moving forward with protocol improvements, and we advise everyone to update their node client to the newest version.\n\nThis version includes rolling checkpoints. Once a block is 200 deep in the chain, the node marks it as settled. From that depth it becomes final, and any reorganization after that point is rejected.\n\nFor exchanges and services this means certainty: after 200 confirmations, a transaction cannot be reversed.\n\nThis is also the final release before the upcoming hard fork and Tailstorm protocol activation. It's essential to stay with consensus and update your client. 👇\n\nhttps://nexa.org/node",
+      "translation": "Stay with consensus: Update to Nexa Full-Node 2.2.0.0\n\nNexa is moving ahead with protocol improvements, and we advise everyone to update their node client to the newest version.\n\nThis version includes rolling checkpoints. Once a block is 200 deep in the chain, the node marks it as settled. From that depth it becomes final, and any reorganization after that point is rejected.\n\nFor exchanges and services this means certainty: after 200 confirmations, a transaction cannot be reversed.\n\nThis is also the final release before the upcoming hard fork and the Tailstorm protocol activation. It is essential to stay with consensus and update your client. 👇\n\nhttps://nexa.org/node",
       "sentiment": "positive",
       "sentiment_score": 0.4,
       "note": null
@@ -1216,9 +1190,9 @@
       "text": "भारत में NEXA को लेकर एक बहुत महत्वपूर्ण चीज़ जमीन पर बन रही है, जिसे सिर्फ chart और exchange volume देखकर समझना मुश्किल है।\n\nआज कुछ छोटे शहरों, गाँवों और सामान्य परिवारों तक NEXA पहुँच चुका है। लोग OTC और P2P deals कर रहे हैं, और कई जगह local market में NEXA global market से 10%, 15% या कभी-कभी 20% तक premium पर खरीदा-बेचा जा रहा है।\n\nमान लो किसी व्यक्ति को NEXA ₹100 के equivalent में मिलता है और local demand के कारण वही NEXA ₹115 में बिक जाता है।\n\nउस ₹15 के फर्क को सिर्फ trading profit मत समझिए।\n\nकिसी सामान्य परिवार के लिए वही पैसा दाल, आटा, चावल, सब्जी, बच्चों की पढ़ाई, मोबाइल recharge या घर के दूसरे खर्च में काम आ सकता है।\n\nयहीं से असली adoption शुरू होता है।\n\nएक व्यक्ति NEXA खरीदता है।\n\nदूसरे व्यक्ति को local market में NEXA चाहिए।\n\nदोनों के बीच OTC deal होती है।\n\nPrice difference के कारण arbitrage बनता है।\n\nकिसी सामान्य व्यक्ति को छोटा margin मिलता है।\n\nऔर वह margin वापस local economy में खर्च होता है।\n\nयानी crypto सिर्फ exchange की screen पर नहीं घूम रहा, वह घर-गृहस्थी की economy में प्रवेश कर रहा है।\n\nमेरे लिए यह बहुत fundamental use case है।\n\nSmart contracts, applications, DeFi और बाकी technology अपनी जगह महत्वपूर्ण हैं, लेकिन अगर कोई decentralized coin किसी सामान्य व्यक्ति के लिए आर्थिक उपयोग पैदा कर देता है, तो उससे basic adoption और क्या होगा?\n\nएक और महत्वपूर्ण बात:\n\nExchange का volume पूरी कहानी नहीं बताता।\n\nIndia के अंदर wallet-to-wallet, OTC और local P2P में जो activity हो रही है, उसका बड़ा हिस्सा किसी एक exchange के volume में साफ दिखाई ही नहीं देगा।\n\nकोई arbitrage कर रहा है।\n\nकोई local buyer को supply कर रहा है।\n\nकोई accumulate कर रहा है।\n\nऔर कोई छोटा margin कमाकर अपने घर का खर्च चला रहा है।\n\nमेरी इच्छा यह नहीं है कि सिर्फ India या Nepal आगे बढ़ें।\n\nमैं चाहता हूँ कि दुनिया भर के लोग इस model को समझें और जहाँ कानून अनुमति देता है, वहाँ participate करें।\n\nअगर India और Nepal में कोई useful P2P ecosystem बन रहा है, तो उसका knowledge पूरी global community के साथ share होना चाहिए।\n\nPeer-to-peer money का सबसे सरल अर्थ यही है:\n\nदो लोग सीधे value exchange कर सकें और उस network का वास्तविक जीवन में उपयोग हो।\n\nजब NEXA किसी सामान्य परिवार तक पहुँचता है और उसके लिए economic opportunity पैदा करता है, तब वह सिर्फ एक coin नहीं रहता।\n\nवह एक उपयोगी network बनना शुरू करता है।\n\nअसली adoption तब शुरू होता है जब सामान्य इंसान को किसी coin को use करने का वास्तविक कारण मिल जाए।\n\n— Dhammadana",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4751",
-      "translation": "Something very important is being built on the ground for NEXA in India, something that's hard to grasp by only looking at charts and exchange volume.\n\nToday NEXA has reached some small towns, villages and ordinary families. People are doing OTC and P2P deals, and in many places NEXA is being bought and sold in the local market at a 10%, 15% or sometimes even 20% premium over the global market.\n\nSuppose a person gets NEXA at the equivalent of ₹100 and, because of local demand, that same NEXA sells for ₹115.\n\nDon't think of that ₹15 difference as merely trading profit.\n\nFor an ordinary family, that same money can go toward lentils, flour, rice, vegetables, the children's education, a mobile recharge, or other household expenses.\n\nThis is where real adoption begins.\n\nOne person buys NEXA.\n\nAnother person needs NEXA in the local market.\n\nAn OTC deal happens between the two.\n\nArbitrage is created because of the price difference.\n\nAn ordinary person gets a small margin.\n\nAnd that margin is spent back into the local economy.\n\nIn other words, crypto isn't just moving around on an exchange screen, it's entering the household economy.\n\nFor me, this is a very fundamental use case.\n\nSmart contracts, applications, DeFi and the rest of the technology are important in their own place, but if a decentralized coin creates economic utility for an ordinary person, what greater basic adoption could there be?\n\nAnother important point:\n\nExchange volume doesn't tell the whole story.\n\nA large part of the wallet-to-wallet, OTC and local P2P activity happening inside India will simply not be visible in any single exchange's volume.\n\nSomeone is doing arbitrage.\n\nSomeone is supplying a local buyer.\n\nSomeone is accumulating.\n\nAnd someone is earning a small margin and running their household with it.\n\nMy wish is not that only India or Nepal move forward.\n\nI want people all over the world to understand this model and participate wherever the law permits.\n\nIf a useful P2P ecosystem is being built in India and Nepal, then that knowledge should be shared with the entire global community.\n\nThe simplest meaning of peer-to-peer money is this:\n\nTwo people can exchange value directly and that network gets used in real life.\n\nWhen NEXA reaches an ordinary family and creates economic opportunity for them, it stops being just a coin.\n\nIt starts becoming a useful network.\n\nReal adoption begins when an ordinary human being gets a real reason to use a coin.\n\n— Dhammadana",
+      "translation": "Something very important regarding NEXA is being built on the ground in India, which is hard to understand just by looking at charts and exchange volume.\n\nToday NEXA has reached some small towns, villages and ordinary families. People are doing OTC and P2P deals, and in many places NEXA is being bought and sold in the local market at a premium of 10%, 15%, or sometimes even 20% over the global market.\n\nSuppose someone gets NEXA for the equivalent of ₹100 and, because of local demand, that same NEXA sells for ₹115.\n\nDon't think of that ₹15 difference as merely trading profit.\n\nFor an ordinary family, that same money can go towards lentils, flour, rice, vegetables, children's education, mobile recharge or other household expenses.\n\nThis is where real adoption begins.\n\nOne person buys NEXA.\n\nAnother person needs NEXA in the local market.\n\nAn OTC deal happens between the two.\n\nArbitrage is created because of the price difference.\n\nAn ordinary person gets a small margin.\n\nAnd that margin is spent back into the local economy.\n\nThat is, crypto is not just moving around on an exchange screen, it is entering the household economy.\n\nFor me this is a very fundamental use case.\n\nSmart contracts, applications, DeFi and the rest of the technology are important in their own place, but if a decentralized coin creates economic use for an ordinary person, what greater basic adoption could there be?\n\nAnother important point:\n\nExchange volume doesn't tell the whole story.\n\nA large part of the wallet-to-wallet, OTC and local P2P activity happening inside India will simply not show up clearly in any single exchange's volume.\n\nSomeone is doing arbitrage.\n\nSomeone is supplying a local buyer.\n\nSomeone is accumulating.\n\nAnd someone is earning a small margin and running their household with it.\n\nMy wish is not that only India or Nepal move ahead.\n\nI want people around the world to understand this model and participate wherever the law permits.\n\nIf a useful P2P ecosystem is being built in India and Nepal, then that knowledge should be shared with the whole global community.\n\nThe simplest meaning of peer-to-peer money is this:\n\nTwo people can exchange value directly and that network gets used in real life.\n\nWhen NEXA reaches an ordinary family and creates economic opportunity for them, then it is no longer just a coin.\n\nIt starts becoming a useful network.\n\nReal adoption begins when an ordinary human being gets a genuine reason to use a coin.\n\n— Dhammadana",
       "sentiment": "positive",
-      "sentiment_score": 0.75,
+      "sentiment_score": 0.8,
       "note": null
     },
     {
@@ -1229,10 +1203,10 @@
       "text": "India aur Nepal mein NEXA ka real adoption dheere-dheere ground level tak pahunch raha hai.\n\nKuch families, especially chhote towns aur villages mein, NEXA ki OTC buying-selling aur arbitrage se earning kar rahi hain. Log ek market se buy karke doosre market mein sell karte hain, aur isi process se local NEXA market develop ho raha hai.\n\nMere liye real adoption ka matlab sirf price badhna nahi hai. Real adoption tab hai jab technology aur network aam logon ke kaam aaye, unke liye opportunities create kare aur local economy mein actual use ho.\n\nIndia aur Nepal mein ab wahi process start hota dikh raha hai.\n\nAur yeh sirf India ya Nepal tak limited nahi rehna chahiye. Jahan bhi log NEXA ko responsibly use karke local markets aur opportunities build kar sakte hain, unhe participate karna chahiye.\n\nNEXA sirf ek coin nahi, ek open network hai. Iski asli value tab banegi jab iska fayda ground level par logon tak pahuche.",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4752",
-      "translation": "In India and Nepal, NEXA's real adoption is slowly reaching the ground level.\n\nSome families, especially in small towns and villages, are earning from OTC buying-selling and arbitrage of NEXA. People buy in one market and sell in another, and through this very process a local NEXA market is developing.\n\nFor me, real adoption doesn't just mean the price going up. Real adoption is when the technology and the network are useful to ordinary people, create opportunities for them, and get actual use in the local economy.\n\nThat same process now seems to be starting in India and Nepal.\n\nAnd this shouldn't stay limited to just India or Nepal. Wherever people can use NEXA responsibly and build local markets and opportunities, they should participate.\n\nNEXA isn't just a coin, it's an open network. Its real value will be created when its benefit reaches people at the ground level.",
+      "translation": "In India and Nepal, real adoption of NEXA is slowly reaching the ground level.\n\nSome families, especially in small towns and villages, are earning from OTC buying-selling and arbitrage of NEXA. People buy in one market and sell in another, and through this very process a local NEXA market is developing.\n\nFor me, real adoption doesn't just mean the price going up. Real adoption is when the technology and the network are useful to ordinary people, create opportunities for them, and get actual use in the local economy.\n\nIn India and Nepal that very process now seems to be starting.\n\nAnd this shouldn't stay limited to just India or Nepal. Wherever people can use NEXA responsibly and build local markets and opportunities, they should participate.\n\nNEXA is not just a coin, it's an open network. Its real value will be created when its benefit reaches people at the ground level.",
       "sentiment": "positive",
-      "sentiment_score": 0.7,
-      "note": "Written in Hinglish (Romanized Hindi)."
+      "sentiment_score": 0.75,
+      "note": null
     },
     {
       "id": 4754,
@@ -1242,9 +1216,9 @@
       "text": "हार्डवेयर एक्सेलरेशन: सर्किट के ज़रिए स्केलिंग\n\nइस सीरीज़ के दूसरे लेख में, Nexa का वैलिडेशन इंजन छह कंपोनेंट्स, एक टेप और एक हेड से बनाया गया था। इसने बिना किसी सॉफ़्टवेयर को चलाए, ऐलिस से बॉब को पेमेंट पूरा करके दिखाया।\n\nक्योंकि टेप हमेशा आगे की दिशा में ही चलता था, इसलिए इंजन ने उन चार शर्तों में से पहली शर्त पूरी कर ली जो एक बेहतर बिटकॉइन के लिए ज़रूरी हैं: यह पाइपलाइन-योग्य (pipelineable) था।\n\nयह लेख बाकी शर्तों को भी पूरा करता है। जैसा कि Nexa के चीफ़ साइंटिस्ट डॉ. पीटर रिज़ुन (@PeterRizun) ने सिडनी में दिखाया था, हम सतोशी के बिटकॉइन में सुधार कर सकते हैं और सिर्फ़ तीन आसान बदलावों से उन सभी शर्तों को पूरा कर सकते हैं। साथ ही, इंजन को दो और खूबियां—एक्सटेंसिबिलिटी (विस्तार की क्षमता) और कंप्रेसिबिलिटी (डेटा छोटा करने की क्षमता)—लगभग मुफ़्त में मिल जाती हैं।\n\nhttps://forum.nexa.org/t/scaling-by-circuit/1749",
       "reply_to_id": null,
       "link": "https://t.me/Nexa_India/4754",
-      "translation": "Hardware Acceleration: Scaling by Circuit\n\nIn the second article of this series, Nexa's validation engine was built from six components, a tape and a head. It demonstrated completing a payment from Alice to Bob without running any software.\n\nBecause the tape always moved only in the forward direction, the engine satisfied the first of the four conditions required for a better Bitcoin: it was pipelineable.\n\nThis article fulfills the remaining conditions as well. As Nexa's chief scientist Dr. Peter Rizun (@PeterRizun) showed in Sydney, we can improve on Satoshi's Bitcoin and meet all those conditions with just three simple changes. On top of that, the engine gets two more qualities—extensibility and compressibility—almost for free.\n\nhttps://forum.nexa.org/t/scaling-by-circuit/1749",
+      "translation": "Hardware Acceleration: Scaling by Circuit\n\nIn the second article of this series, Nexa's validation engine was built out of six components, a tape and a head. It demonstrated a payment from Alice to Bob being completed without running any software.\n\nBecause the tape always moved only in the forward direction, the engine satisfied the first of the four conditions required for a better Bitcoin: it was pipelineable.\n\nThis article satisfies the remaining conditions as well. As Nexa's Chief Scientist Dr. Peter Rizun (@PeterRizun) showed in Sydney, we can improve on Satoshi's Bitcoin and meet all those conditions with just three simple changes. On top of that, the engine gets two more qualities—extensibility and compressibility—almost for free.\n\nhttps://forum.nexa.org/t/scaling-by-circuit/1749",
       "sentiment": "positive",
-      "sentiment_score": 0.4,
+      "sentiment_score": 0.45,
       "note": null
     },
     {
@@ -1274,19 +1248,6 @@
       "note": null
     },
     {
-      "id": 4806,
-      "date": "2026-09-13T10:41:56Z",
-      "sender_id": 609517172,
-      "sender_name": "Rose",
-      "text": "Hey there Abhi, and welcome to NEXA INDIA 🇮🇳! How are you?",
-      "reply_to_id": null,
-      "link": "https://t.me/Nexa_India/4806",
-      "translation": "Hey there Abhi, and welcome to NEXA INDIA 🇮🇳! How are you?",
-      "sentiment": "positive",
-      "sentiment_score": 0.5,
-      "note": "Automated welcome message from the Rose group-management bot."
-    },
-    {
       "id": 4808,
       "date": "2026-09-13T10:44:33Z",
       "sender_id": 7185503510,
@@ -1300,26 +1261,65 @@
       "note": null
     },
     {
-      "id": 4811,
-      "date": "2026-09-13T11:13:04Z",
+      "id": 4826,
+      "date": "2026-09-13T11:39:04Z",
+      "sender_id": 5651007159,
+      "sender_name": "World fire crypto",
+      "text": "G.a",
+      "reply_to_id": 4808,
+      "link": "https://t.me/Nexa_India/4826",
+      "translation": "G.a",
+      "sentiment": "neutral",
+      "sentiment_score": 0.2,
+      "note": "Short for \"Good afternoon\", replying to the previous greeting."
+    },
+    {
+      "id": 4846,
+      "date": "2026-09-14T08:00:15Z",
+      "sender_id": 5651007159,
+      "sender_name": "World fire crypto",
+      "text": "https://youtu.be/jedLpGyIoPk?si=bXeYYVnLb3u7OImv",
+      "reply_to_id": null,
+      "link": "https://t.me/Nexa_India/4846",
+      "translation": "https://youtu.be/jedLpGyIoPk?si=bXeYYVnLb3u7OImv",
+      "sentiment": "neutral",
+      "sentiment_score": 0.0,
+      "note": null
+    },
+    {
+      "id": 4847,
+      "date": "2026-09-14T10:45:47Z",
+      "sender_id": 6082093545,
+      "sender_name": "Blacktea ▽",
+      "text": "Tailstorm: पारंपरिक ब्लॉकचेन के साथ मिला हुआ Directed Acyclic Graph (DAG)\n\nएक ऐसा 'प्रूफ-ऑफ-वर्क' सिस्टम जो आपके ट्रांज़ैक्शन को 3 सेकंड में कन्फर्म कर सके, कुछ समय पहले तक बस एक कल्पना ही थी।\n\nक्या हो अगर इसमें 200 गुना सुधार हो जाए, जिससे आप अपने ट्रांज़ैक्शन को कुछ ही सेकंड में माइन होते हुए देख सकें? इससे सच में एक ग्लोबल इलेक्ट्रॉनिक पीयर-टू-पीयर कैश नेटवर्क बन पाएगा।\n\nNexa इस क्षेत्र में तेज़ी से काम कर रहा है, और यहीं पर Tailstorm प्रोटोकॉल काम आता है। ब्लॉकचेन के पारंपरिक समरी ब्लॉक्स और Nexa के 2-मिनट वाले ब्लॉक्स के बीच, Tailstorm सब-ब्लॉक्स (subblocks) लाएगा। योजना के अनुसार, इनमें से लगभग 40 सब-ब्लॉक्स होंगे जो हर 3 सेकंड में माइन किए जाएंगे।\n\nये सब-ब्लॉक्स DAG आर्किटेक्चर का फ़ायदा उठाएंगे, जो पारंपरिक समरी ब्लॉक्स पर वापस लौटता है।\n\nऔर जानने के लिए नीचे दिए गए Nexa फ़ोरम में पूरा लेख पढ़ें। 👇\n\nhttps://forum.nexa.org/t/tailstorm-directed-acyclic-graph-dag-combined-with-traditional-blockchain/1750",
+      "reply_to_id": null,
+      "link": "https://t.me/Nexa_India/4847",
+      "translation": "Tailstorm: A Directed Acyclic Graph (DAG) combined with a traditional blockchain\n\nA proof-of-work system that can confirm your transaction in 3 seconds was, until recently, just a fantasy.\n\nWhat if it improved 200x, so you could watch your transaction get mined in just a few seconds? That would genuinely make a global electronic peer-to-peer cash network possible.\n\nNexa is working fast in this area, and this is where the Tailstorm protocol comes in. Between the blockchain's traditional summary blocks and Nexa's 2-minute blocks, Tailstorm will bring subblocks. As planned, there will be about 40 of these subblocks, mined every 3 seconds.\n\nThese subblocks will take advantage of the DAG architecture, which falls back onto the traditional summary blocks.\n\nTo learn more, read the full article in the Nexa forum below. 👇\n\nhttps://forum.nexa.org/t/tailstorm-directed-acyclic-graph-dag-combined-with-traditional-blockchain/1750",
+      "sentiment": "positive",
+      "sentiment_score": 0.6,
+      "note": null
+    },
+    {
+      "id": 4849,
+      "date": "2026-09-14T12:01:37Z",
       "sender_id": 609517172,
       "sender_name": "Rose",
-      "text": "Hey there S K Bhai, and welcome to NEXA INDIA 🇮🇳! How are you?",
+      "text": "Hey there Farru.​olds, and welcome to NEXA INDIA 🇮🇳! How are you?",
       "reply_to_id": null,
-      "link": "https://t.me/Nexa_India/4811",
-      "translation": "Hey there S K Bhai, and welcome to NEXA INDIA 🇮🇳! How are you?",
+      "link": "https://t.me/Nexa_India/4849",
+      "translation": "Hey there Farru.​olds, and welcome to NEXA INDIA 🇮🇳! How are you?",
       "sentiment": "positive",
-      "sentiment_score": 0.5,
-      "note": "Automated Rose bot welcome; \"Bhai\" (brother) is part of the user's display name."
+      "sentiment_score": 0.4,
+      "note": "Automated welcome message from the Rose moderation bot."
     }
   ],
   "summary": {
-    "headline": "A six-month announcement-heavy window: Nexa's first halving, Tailstorm/hard-fork prep, hardware R&D, and grassroots India adoption talk.",
-    "summary": "This window spans late March to mid-September 2026 and is dominated by official announcements posted by Blacktea ▽, with only light chatter from members. The centerpiece is Nexa's first halving on 1 May 2026 (block reward cut from 10M to 5M NEXA), surrounded by countdowns, a NiftyArt 'Halving Fest' art contest and an X Spaces event. After that, the feed tracks protocol work — Tailstorm/DAG integration, preparations for Hard Fork #2, Full-Node 2.2.0.0 as the 'final checkpoint', NexaPoW 2.0 and Peter Rizun's hardware/Blitz article series — plus developer tooling (NexScript v1.1.0 and Playground, explorer, LibNexaKotlin, Wally Wallet) and the 4-year anniversary Spaces with Andrew Stone. The main community voice is DhammaDana, who pushes a grassroots evangelism message and argues that real Indian adoption is happening off-exchange via OTC/P2P deals at 10–20% local premiums. Sour notes are few but real: warnings that Nexamine is not an official project, the Exbitron and BitMart exchange shutdown notices, a bot-raid/CAPTCHA incident on 1 September, and one spam link.",
+    "headline": "Mostly an announcement feed: Nexa's first halving, 4th anniversary, Tailstorm/hardware work, plus grassroots Indian adoption posts",
+    "summary": "This window of the Hindi-language NEXA INDIA group is dominated by Blacktea ▽ relaying official Nexa announcements, with only sporadic community chatter. The big events are the first Nexa halving on 1 May 2026 (block reward cut from 10M to 5M NEXA), the Halving Fest artwork contest and Spaces, and the 4-year anniversary Spaces on 21 June with founder Andrew Stone, followed by commemorative NFTs. A steady stream of technical updates covers the Tailstorm DAG-hybrid protocol and the upcoming hard fork, NexScript v1.1.0 and Playground upgrades, explorer and Wally Wallet improvements, LibNexaKotlin releases, the Nexa Full-Node 2.2.0.0 'final checkpoint' release, and a hardware-acceleration article series by Peter Rizun leading to NexaPoW 2.0. The local community voice comes mainly from DhammaDana, who posts two long Hindi essays urging members to personally onboard holders and describing real OTC/P2P NEXA trading at 10-20% local premiums in Indian and Nepali small towns. Housekeeping items include a warning that Nexamine is not official, exchange shutdown notices (Exbitron, BitMart), and a brief anti-raid/CAPTCHA episode on 1 September where Asin asked Blacktea not to block genuine new joiners.",
     "topics": [
       {
-        "title": "First Nexa halving",
-        "summary": "Blacktea ▽ and DhammaDana ran a countdown to the 1 May 2026 halving, confirmed the block reward drop from 10,000,000 to 5,000,000 NEXA, and promoted the 'New Baseline' Spaces plus the Halving Fest 2026 artwork contest on NiftyArt.",
+        "title": "First Nexa halving and Halving Fest",
+        "summary": "Blacktea ▽ and DhammaDana ran the countdown, confirmed the halving at block 1,050,001 (rewards 10M → 5M NEXA), promoted the NiftyArt 'Halving Fest 2026' artwork contest and the post-halving 'The New Baseline' X Spaces.",
         "message_ids": [
           4106,
           4107,
@@ -1335,68 +1335,36 @@
         "sentiment": "positive"
       },
       {
-        "title": "Tailstorm, hard fork and node releases",
-        "summary": "A long run of Blacktea ▽ posts on Hard Fork #2 preparation, Tailstorm block-DAG integration, monthly dev updates, NexaPoW 2.0 with a cellular-automaton ASIC-resistant redesign, and the call for everyone to upgrade to Full-Node 2.2.0.0 with rolling checkpoints before Tailstorm activation.",
+        "title": "Tailstorm, hard fork and dev updates",
+        "summary": "Blacktea ▽ posted monthly development updates (April–July) and articles on Tailstorm's DAG-hybrid architecture, the pending second hard fork, and the Nexa Full-Node 2.2.0.0 release with rolling checkpoints, urging node operators to upgrade before Tailstorm activation.",
         "message_ids": [
           4117,
           4305,
           4332,
           4383,
-          4401,
           4405,
-          4407,
-          4677,
           4699,
-          4734
+          4734,
+          4847
         ],
         "sentiment": "positive"
       },
       {
-        "title": "Developer tooling and ecosystem",
-        "summary": "Announcements on NexScript v1.1.0 and its regtest default, NexScript Playground upgrades, Nexa Explorer features and self-hosting, LibNexaKotlin wallet stability, Wally Wallet P2P offers, the updated 2026-27 roadmap, NiftyArt stats and the 'Nexa Warriors' on-chain card game demo.",
-        "message_ids": [
-          4257,
-          4259,
-          4331,
-          4340,
-          4342,
-          4343,
-          4354,
-          4378,
-          4389,
-          4396
-        ],
-        "sentiment": "positive"
-      },
-      {
-        "title": "Hardware acceleration / Blitz",
-        "summary": "Blacktea ▽ published a Peter Rizun article series on why Nexa builds hardware — an FPGA/silicon node that validates signatures — including 'A Node Made of Wires' and 'Scaling by Circuit', framed as removing the full-node bottleneck.",
+        "title": "Hardware acceleration and NexaPoW 2.0",
+        "summary": "A series of posts from Blacktea ▽ introduced Dr. Peter Rizun's Blitz FPGA/hardware node work ('Why Nexa Builds Hardware', 'A Node Made of Wires', 'Scaling by Circuit') and the planned NexaPoW 2.0 with a cellular automaton making mining ASIC-resistant.",
         "message_ids": [
           4388,
-          4390,
           4398,
+          4401,
+          4407,
+          4677,
           4754
         ],
         "sentiment": "positive"
       },
       {
-        "title": "4-year anniversary and Spaces",
-        "summary": "The 21 June 2026 anniversary X Spaces with founder Andrew Stone, Andrea Suisani and David Thibodeau was announced, held, recapped, and followed by commemorative NFTs for attendees; June highlights also credited ambassador Kashish Gupta's 'Nexa Bharat Yatra: Bihar Chapter'.",
-        "message_ids": [
-          4295,
-          4306,
-          4311,
-          4314,
-          4315,
-          4336,
-          4339,
-          4385
-        ],
-        "sentiment": "positive"
-      },
-      {
-        "title": "India grassroots adoption push",
-        "summary": "DhammaDana urged members to become 'the catalyst' by convincing friends to hold 1–10 billion NEXA, and later argued at length that real adoption in India and Nepal is happening through OTC/P2P deals at 10–20% local premiums that put money into household economies, invisible in exchange volume.",
+        "title": "Grassroots adoption in India and Nepal",
+        "summary": "DhammaDana wrote two long posts arguing that each member should convert friends into 1–10 billion NEXA holders, and that real OTC/P2P trading at 10–20% local premiums in small towns and villages is genuine adoption invisible in exchange volume.",
         "message_ids": [
           4254,
           4751,
@@ -1406,22 +1374,50 @@
         "sentiment": "positive"
       },
       {
-        "title": "Webinars and education",
-        "summary": "Blacktea ▽ promoted and recapped webinars with EvolvH3R: smart contracts with David Thibodeau, gaming with Steven van den Meiracker, and proof-of-work with Bitcoin Unlimited president Andrew Clifford; Rinku Ram shared a video of meeting Clifford in person.",
+        "title": "4th anniversary and community events",
+        "summary": "Blacktea ▽ announced and recapped the 21 June X Spaces with Andrew Stone, Andrea Suisani and David Thibodeau, the commemorative anniversary NFT drop, and highlighted the India/Nepal ambassador Kashish Gupta's 'Nexa Bharat Yatra: Bihar Chapter'; Rinku Ram shared his meeting with Andrew Clifford.",
         "message_ids": [
-          4116,
-          4335,
+          4295,
+          4306,
+          4311,
+          4314,
+          4315,
+          4336,
+          4339,
+          4385,
           4337,
           4338,
-          4391,
-          4430,
-          4386
+          4262
         ],
         "sentiment": "positive"
       },
       {
-        "title": "Exchange shutdowns and third-party warnings",
-        "summary": "K. I. reported invalid authenticator OTP on Nexamine and Blacktea ▽ warned it is not an official Nexa project; later Blacktea ▽ posted notices that Exbitron is closing permanently and that BitMart announced a shutdown.",
+        "title": "Developer tooling, wallets and ecosystem",
+        "summary": "Announcements covered NexScript v1.1.0 and Playground upgrades, LibNexaKotlin 0.5.68, the updated 2026-27 roadmap, explorer features, Wally Wallet P2P offers, NiftyArt NFT stats and Steven van den Meiracker's gaming webinar with the 'Nexa Warriors' card game demo.",
+        "message_ids": [
+          4116,
+          4257,
+          4259,
+          4331,
+          4340,
+          4342,
+          4343,
+          4354,
+          4378,
+          4389,
+          4390,
+          4391,
+          4396,
+          4421,
+          4430,
+          4386,
+          4256
+        ],
+        "sentiment": "positive"
+      },
+      {
+        "title": "Exchange and third-party risk warnings",
+        "summary": "Blacktea ▽ warned that Nexamine is not an official Nexa project after K. I. reported invalid authenticator OTPs, and posted notices that Exbitron is shutting down permanently and that BitMart announced an imminent closure.",
         "message_ids": [
           4080,
           4081,
@@ -1432,10 +1428,9 @@
         "sentiment": "negative"
       },
       {
-        "title": "Bot raid, moderation and greetings",
-        "summary": "On 1 September Blacktea ▽ triggered antiraid mode and noted nobody was passing CAPTCHA; Asin pushed back, saying real invitees were being blocked and that India is unlikely to see bot attacks. Routine welcomes from Rose and greetings from Arun Dutta, Ravi Tembhare and others fill the rest, plus one off-topic spam link from Alex ▼.",
+        "title": "Anti-raid, CAPTCHA and group housekeeping",
+        "summary": "On 1 September Blacktea ▽ enabled antiraid mode and noted nobody was passing CAPTCHA; Asin pushed back, saying the links were shared deliberately and that India is unlikely to see bot attacks, while new members like Harjot Singh and Vikas Verma said thanks.",
         "message_ids": [
-          4371,
           4466,
           4509,
           4545,
@@ -1446,46 +1441,35 @@
           4620,
           4671,
           4691,
-          4719,
-          4800,
-          4806,
-          4808,
-          4811,
-          4333,
-          4404,
-          4159,
-          4160
+          4371,
+          4849
         ],
         "sentiment": "mixed"
       }
     ],
-    "mood_label": "Steady, announcement-driven optimism",
-    "mood_description": "The tone is consistently upbeat but largely one-directional: Blacktea ▽ broadcasts milestones and the room responds with little discussion. Genuine excitement peaks around the May halving and the June anniversary Spaces, and again with the hardware/NexaPoW 2.0 reveals. The only friction points are the Nexamine support complaint, the Exbitron and BitMart shutdown notices, and a brief disagreement over antiraid mode blocking legitimate new members. DhammaDana's grassroots posts inject the most authentic community energy in the window.",
-    "mood_score": 0.45,
+    "mood_label": "Steady and upbeat",
+    "mood_description": "The tone is overwhelmingly positive but largely one-directional: an official announcement stream with little back-and-forth. Genuine excitement peaks around the halving in early May and the 4th anniversary Spaces in June, and again around the hardware/NexaPoW 2.0 articles in August. Mild friction appears only in small pockets — an unresolved Nexamine OTP complaint, exchange shutdown warnings, and a short disagreement over the anti-raid CAPTCHA blocking new joiners. DhammaDana's adoption essays add the only strongly emotive, community-driven energy in the window.",
+    "mood_score": 0.55,
     "highlights": [
       {
-        "message_id": 4110,
-        "why": "The core event of the window: confirmation that Nexa's first halving executed and block rewards dropped to 5,000,000 NEXA."
+        "message_id": 4751,
+        "why": "DhammaDana's detailed account of real OTC/P2P NEXA trading at 10-20% premiums in Indian villages — the most substantive community-originated content in the window."
       },
       {
-        "message_id": 4751,
-        "why": "DhammaDana's long, concrete account of NEXA trading at 10-20% local premiums via OTC/P2P in small Indian towns — the most substantive community post here."
+        "message_id": 4110,
+        "why": "The moment the first Nexa halving is confirmed live: rewards cut from 10M to 5M NEXA per block."
       },
       {
         "message_id": 4254,
-        "why": "DhammaDana's 'become the catalyst' call to action urging every member to recruit holders of 1-10 billion NEXA; notable for its supply-squeeze framing."
+        "why": "A blunt call to action telling holders to become salespeople and personally convince friends to hold 1–10 billion NEXA; reveals grassroots strategy and sentiment."
       },
       {
-        "message_id": 4387,
-        "why": "Warning that BitMart is shutting down, following the Exbitron closure — the clearest negative development for Indian holders' liquidity."
+        "message_id": 4082,
+        "why": "Important safety clarification that Nexamine is a third-party project, in response to a user's login problem."
       },
       {
-        "message_id": 4545,
-        "why": "Asin pushing back on the antiraid lockdown, arguing real invited users were being shut out — the only visible disagreement in the window."
-      },
-      {
-        "message_id": 4699,
-        "why": "Full-Node 2.2.0.0 announced as the final checkpoint before the Tailstorm hard fork, with an explicit upgrade and wallet-backup call to node operators."
+        "message_id": 4671,
+        "why": "Asin's wry pushback on the anti-raid lockdown — 'India has less likely to have bot attacks, people are already busy in their life.'"
       }
     ]
   }
